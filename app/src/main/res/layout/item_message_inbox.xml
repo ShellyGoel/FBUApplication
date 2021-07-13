@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:orientation="horizontal">
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvUsername"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="TextView"-->
+    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+    <!--        tools:text="Shelly" />-->
+
+    <Button
+        android:id="@+id/btnPin"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:backgroundTint="@color/white"
+        app:icon="@drawable/ic_baseline_push_pin_24"
+        app:iconTint="@color/teal_700" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/ivImage"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:scaleType="fitCenter"-->
+    <!--        tools:srcCompat="@mipmap/ic_stickynote1" />-->
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:text="Date created" />
+
+    <TextView
+        android:id="@+id/tvMessageBody"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:text="Message from note filler text in inbox!" />
+
+</LinearLayout>
