@@ -15,6 +15,8 @@ import com.example.fbuapplication.R;
 import android.content.Intent;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +38,8 @@ public class ComposeFragment extends Fragment {
     private EditText etMessageFromSender;
     private EditText etRecipient;
     private Button btnSubmit;
+    private AutoCompleteTextView autocomplete;
+    private List<String> getAllUsernames;
 
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -49,6 +53,10 @@ public class ComposeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
         return inflater.inflate(R.layout.fragment_compose,parent, false);
+
+
+
+
     }
 
     // This event is triggered soon after onCreateView().
@@ -58,10 +66,36 @@ public class ComposeFragment extends Fragment {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.view.findViewById()(R.id.etFoo);
         super.onViewCreated(view, savedInstanceState);
+        autocomplete = view.findViewById(R.id.autoCompleteReceiver);
         btnLogout = view.findViewById(R.id.btnLogout);
         etMessageFromSender = view.findViewById(R.id.etMessageFromSender);
         etRecipient = view.findViewById(R.id.etRecipient);
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        getAllUsernames = new ArrayList<>();
+
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e == null) {
+                    // The query was successful.
+                    for(ParseUser p: objects){
+                        getAllUsernames.add(p.getUsername());
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                            (getContext(),android.R.layout.select_dialog_item, getAllUsernames);
+
+                    autocomplete.setThreshold(2);
+                    autocomplete.setAdapter(adapter);
+                } else {
+                    // Something went wrong.
+                    Log.e(TAG, "Error: " + e.getMessage());
+                }
+            }
+        });
+
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
