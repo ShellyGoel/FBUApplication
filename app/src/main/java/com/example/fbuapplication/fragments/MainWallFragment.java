@@ -135,7 +135,7 @@ public class MainWallFragment extends Fragment {
 
                 // for debugging purposes let's print every post description to logcat
                 for (Message post : posts) {
-                    Log.i(TAG, "Message: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
+                    Log.i(TAG, "MainWallMessage: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
                 }
 
                 // save received posts to list and notify adapter of new data

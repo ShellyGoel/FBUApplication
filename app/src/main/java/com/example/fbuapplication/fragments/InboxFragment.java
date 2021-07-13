@@ -66,7 +66,7 @@ public class InboxFragment extends Fragment {
         rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        // query posts from Parstagram
+        // query messages from Parstagram
         queryMessages();
 
         // Lookup the swipe container view
@@ -86,6 +86,8 @@ public class InboxFragment extends Fragment {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+
     }
 
     public void fetchTimelineAsync(int page) {
@@ -106,29 +108,31 @@ public class InboxFragment extends Fragment {
     protected void queryMessages() {
         // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
-        // include data referred by user key
-        query.include(Message.KEY_SENDER);
+//        // include data referred by user key
+        //query.include(Message.KEY_RECIEVER);
+        query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
         // limit query to latest 20 items
         query.setLimit(20);
-        // order posts by creation date (newest first)
+        // order messages by creation date (newest first)
         query.addDescendingOrder("createdAt");
-        // start an asynchronous call for posts
+        // start an asynchronous call for messages
         query.findInBackground(new FindCallback<Message>() {
             @Override
-            public void done(List<Message> posts, ParseException e) {
+            public void done(List<Message> messages, ParseException e) {
                 // check for errors
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Log.e(TAG, "Issue with getting messages", e);
                     return;
                 }
 
-                // for debugging purposes let's print every post description to logcat
-                for (Message post : posts) {
-                    Log.i(TAG, "Message: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
+                // for debugging purposes let's print every message description to logcat
+                for (Message message : messages) {
+                    Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
+
                 }
 
-                // save received posts to list and notify adapter of new data
-                allMessages.addAll(posts);
+                // save received messages to list and notify adapter of new data
+                allMessages.addAll(messages);
                 adapter.notifyDataSetChanged();
             }
         });
