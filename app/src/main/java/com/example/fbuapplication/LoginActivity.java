@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
@@ -65,13 +66,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if(e != null){
-                    Toast.makeText(LoginActivity.this, "Invalid login! Please try again.", Toast.LENGTH_LONG);
                     Log.e(TAG, "issue with login",e);
+                    Toast.makeText(LoginActivity.this, "Invalid login! Please try again.", Toast.LENGTH_LONG).show();
+
 
                 }
                 else {
                     goMainActivity();
-                    Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_LONG).show();
+
                 }
             }
         });

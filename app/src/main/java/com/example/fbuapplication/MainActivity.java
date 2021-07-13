@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new InboxFragment();
                         break;
 
+                    case R.id.action_main_wall:
+                        fragment = new MainWallFragment();
+
                     default:
                         fragment = new MainWallFragment();
                         break;

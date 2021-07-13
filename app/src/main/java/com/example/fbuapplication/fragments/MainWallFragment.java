@@ -55,7 +55,7 @@ public class MainWallFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
-        return inflater.inflate(R.layout.fragment_inbox,parent, false);
+        return inflater.inflate(R.layout.fragment_main_wall,parent, false);
     }
 
 
@@ -71,7 +71,7 @@ public class MainWallFragment extends Fragment {
         allMessages = new ArrayList<>();
         adapter = new MessagesMainWallAdapter(getContext(), allMessages);
 
-        //tvWallTitle.setText(ParseUser.getCurrentUser().toString()+ " \'s Main Wall");
+        tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
 
         // set the adapter on the recycler view
         rvMainWallMessages.setAdapter(adapter);

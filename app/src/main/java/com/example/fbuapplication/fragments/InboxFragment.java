@@ -60,7 +60,7 @@ public class InboxFragment extends Fragment {
 
         allMessages = new ArrayList<>();
         adapter = new MessagesInboxAdapter(getContext(), allMessages);
-        tvInboxTitle.setText(ParseUser.getCurrentUser().toString()+ "\'s Wall");
+        tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Inbox");
 
         // set the adapter on the recycler view
         rvInboxMessages.setAdapter(adapter);
