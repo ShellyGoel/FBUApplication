@@ -40,6 +40,7 @@ Week 4
 - Stretch: Create a dropdown menu which has a recyclerView that can be scrolled to display all the other users and the User can search for the recipient they would like to send a message to.
 - Stretch: Be able to select profile picture.
 - Stretch: Populate Inbox RecyclerView and MainWall RecyclerView with notes. Refresh screen (swipe down) to retrieve new messages.
+- Stretch: Implement remaining Parse API tasks as outlined in the Network section (deleting a message from inbox and wall).
 
 Week 5
 - Finish basic messaging system (send and recieve) and test using Log statements. 
