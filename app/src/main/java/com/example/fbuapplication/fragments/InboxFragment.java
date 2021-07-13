@@ -17,11 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.widget.TextView;
 
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +31,10 @@ import java.util.List;
 
 public class InboxFragment extends Fragment {
 
-    private RecyclerView rvMessages;
+    private RecyclerView rvInboxMessages;
     protected MessagesInboxAdapter adapter;
     protected List<Message> allMessages;
+    private TextView tvInboxTitle;
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -51,15 +54,18 @@ public class InboxFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        rvMessages = view.findViewById(R.id.rvInboxMessages);
+        rvInboxMessages = view.findViewById(R.id.rvInboxMessages);
+        tvInboxTitle = view.findViewById(R.id.tvInboxTitle);
+
 
         allMessages = new ArrayList<>();
         adapter = new MessagesInboxAdapter(getContext(), allMessages);
+        tvInboxTitle.setText(ParseUser.getCurrentUser().toString()+ "\'s Wall");
 
         // set the adapter on the recycler view
-        rvMessages.setAdapter(adapter);
+        rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
         // query posts from Parstagram
         queryMessages();
 
@@ -101,7 +107,7 @@ public class InboxFragment extends Fragment {
         // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
         // include data referred by user key
-        query.include(Message.KEY_USER);
+        query.include(Message.KEY_SENDER);
         // limit query to latest 20 items
         query.setLimit(20);
         // order posts by creation date (newest first)
@@ -118,7 +124,7 @@ public class InboxFragment extends Fragment {
 
                 // for debugging purposes let's print every post description to logcat
                 for (Message post : posts) {
-                    Log.i(TAG, "Message: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                    Log.i(TAG, "Message: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
                 }
 
                 // save received posts to list and notify adapter of new data

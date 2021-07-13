@@ -31,7 +31,7 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_message_inbox, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_message_mainwall, parent, false);
         return new ViewHolder(view);
     }
 

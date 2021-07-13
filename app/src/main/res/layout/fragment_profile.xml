@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivProfileImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="28dp"
@@ -29,7 +29,7 @@
             android:layout_marginTop="44dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.109"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="28dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:text="Number notes sent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fbuapplication.MessagesMainWallAdapter;
 import com.example.fbuapplication.R;
 
 import android.os.Bundle;
@@ -27,11 +28,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.widget.TextView;
 
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +42,12 @@ import java.util.List;
 
 public class MainWallFragment extends Fragment {
 
-    private RecyclerView rvMessages;
-    protected MessagesInboxAdapter adapter;
+    private RecyclerView rvMainWallMessages;
+    protected MessagesMainWallAdapter adapter;
     protected List<Message> allMessages;
 
     private SwipeRefreshLayout swipeContainer;
+    private TextView tvWallTitle;
 
 
     public static final String TAG = "FeedActivity";
@@ -61,15 +65,18 @@ public class MainWallFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        rvMessages = view.findViewById(R.id.rvMainWallMessages);
+        rvMainWallMessages = view.findViewById(R.id.rvMainWallMessages);
+        tvWallTitle = view.findViewById(R.id.tvWallTitle);
 
         allMessages = new ArrayList<>();
-        adapter = new MessagesInboxAdapter(getContext(), allMessages);
+        adapter = new MessagesMainWallAdapter(getContext(), allMessages);
+
+        //tvWallTitle.setText(ParseUser.getCurrentUser().toString()+ " \'s Main Wall");
 
         // set the adapter on the recycler view
-        rvMessages.setAdapter(adapter);
+        rvMainWallMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvMainWallMessages.setLayoutManager(new GridLayoutManager(getContext(), 3));
         // query posts from Parstagram
         queryMessages();
 
@@ -111,7 +118,7 @@ public class MainWallFragment extends Fragment {
         // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
         // include data referred by user key
-        query.include(Message.KEY_USER);
+        query.include(Message.KEY_SENDER);
         // limit query to latest 20 items
         query.setLimit(20);
         // order posts by creation date (newest first)
@@ -128,7 +135,7 @@ public class MainWallFragment extends Fragment {
 
                 // for debugging purposes let's print every post description to logcat
                 for (Message post : posts) {
-                    Log.i(TAG, "Message: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                    Log.i(TAG, "Message: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
                 }
 
                 // save received posts to list and notify adapter of new data
