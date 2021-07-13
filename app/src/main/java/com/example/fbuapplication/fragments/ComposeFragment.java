@@ -36,7 +36,7 @@ public class ComposeFragment extends Fragment {
 
     private Button btnLogout;
     private EditText etMessageFromSender;
-    private EditText etRecipient;
+    //private EditText etRecipient;
     private Button btnSubmit;
     private AutoCompleteTextView autocomplete;
     private List<String> getAllUsernames;
@@ -69,7 +69,7 @@ public class ComposeFragment extends Fragment {
         autocomplete = view.findViewById(R.id.autoCompleteReceiver);
         btnLogout = view.findViewById(R.id.btnLogout);
         etMessageFromSender = view.findViewById(R.id.etMessageFromSender);
-        etRecipient = view.findViewById(R.id.etRecipient);
+        //etRecipient = view.findViewById(R.id.etRecipient);
         btnSubmit = view.findViewById(R.id.btnSubmit);
         getAllUsernames = new ArrayList<>();
 
@@ -105,7 +105,8 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(),"Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String recipient = etRecipient.getText().toString();
+                //String recipient = etRecipient.getText().toString();
+                String recipient = autocomplete.getText().toString();
                 if(recipient.isEmpty()){
                     Toast.makeText(getContext(),"Recipient cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
@@ -134,7 +135,8 @@ public class ComposeFragment extends Fragment {
                             if(userListFinal.isEmpty()){
                                 Toast.makeText(getContext(),"Please select a valid user!", Toast.LENGTH_LONG).show();
                                 etMessageFromSender.setText("");
-                                etRecipient.setText("");
+                                //etRecipient.setText("");
+                                autocomplete.setText("");
                             }
                             else {
                                 ParseUser recipientUser = userListFinal.get(0);
@@ -185,7 +187,8 @@ public class ComposeFragment extends Fragment {
                 }
                 //reset field
                 etMessageFromSender.setText("");
-                etRecipient.setText("");
+                //etRecipient.setText("");
+                autocomplete.setText("");
 //                //set as empty resource ID
 //                ivMessageImage.setImageResource(0);
 
