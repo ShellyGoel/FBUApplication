@@ -43,11 +43,11 @@ public class Message extends ParseObject {
     }
 
 
-    public ParseUser getReciever(){
+    public ParseUser getReceiver(){
         return getParseUser(KEY_RECIEVER);
     }
 
-    public void setReciever(ParseUser user){
+    public void setReceiver(ParseUser user){
         put(KEY_RECIEVER, user);
     }
 

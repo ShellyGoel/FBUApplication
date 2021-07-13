@@ -26,6 +26,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -81,7 +82,38 @@ public class ComposeFragment extends Fragment {
 //                    return;
 //                }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                saveMessage(description,currentUser, recipient);
+                List<ParseUser> userListFinal = new ArrayList<>();
+
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                query.whereEqualTo("username",recipient);
+                query.findInBackground(new FindCallback<ParseUser>(){
+                    public void done(List<ParseUser> userList, ParseException e) {
+                        if (e == null) {
+                            Log.i(TAG, "Retrieved " + userList.size() + " scores");
+                            //friends = new ArrayList<>();//<-- Initialize the String array
+//                    for (int i = 0; i < userList.size(); i++) {
+//                        friends.add(userList.get(i).getUsername());
+//                    }
+                            //aAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, friends);
+                            //friendChooser.setAdapter(aAdapter);
+                            userListFinal.addAll(userList);
+                            if(userListFinal.isEmpty()){
+                                Toast.makeText(getContext(),"Please select a valid user!", Toast.LENGTH_LONG).show();
+                                etMessageFromSender.setText("");
+                                etRecipient.setText("");
+                            }
+                            else {
+                                ParseUser recipientUser = userListFinal.get(0);
+                                saveMessage(description, currentUser, recipientUser);
+                            }
+                            //message.setSender(userList.get(0));
+                        } else {
+                            Log.e(TAG, "Error: " + e.getMessage());
+                        }
+                    }
+                });
+
+
             }
         });
 
@@ -98,48 +130,25 @@ public class ComposeFragment extends Fragment {
     }
 
 
-    private void saveMessage(String description, ParseUser currentUser, String recipientUser) {
-        Message post = new Message();
-        post.setMessageBody(description);
-        post.setSender(currentUser);
-//        ParseQuery<ParseUser> query = ParseUser.getQuery();
-//
-////        A ParseQuery can also be used to retrieve a single object whose id is known, through
-////        the ParseQuery.getInBackground(String) method, using a GetCallback. For example, this sample
-////        code fetches an object of class "MyClass" and id myId. It calls a different function depending
-////        on whether the fetch succeeded or not.
-//        query.whereEqualTo("username",recipientUser);
-//        query.findInBackground(new FindCallback<ParseObject>() {
-//                                   public void done(List<ParseObject> objects, ParseException e) {
-//                                       if (e == null) {
-//                                           //objectsWereRetrievedSuccessfully(objects);
-//                                       } else {
-//                                           //objectRetrievalFailed();
-//                                       }
-//                                   }
-//                               };
+    private void saveMessage(String description, ParseUser currentUser, ParseUser recipientUser) {
 
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("username", recipientUser);
-        query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> recipientList, ParseException e) {
-                if (e == null) {
-                    Log.d("compose ", "Retrieved " + recipientList.size() + " recipient list");
-                    post.setReciever(recipientList.get(0));
-                } else {
-                    Log.d("compose ", "Error: " + e.getMessage());
-                }
-            }
-        });
 
-        post.saveInBackground(new SaveCallback() {
+        Message message = new Message();
+        message.setMessageBody(description);
+        message.setSender(currentUser);
+        message.setReceiver(recipientUser);
+
+
+        message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if(e != null){
                     Log.e(TAG, "Error while saving",e);
                     Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                 }
-                Log.i(TAG, "Message was successful!");
+                else {
+                    Log.i(TAG, "Message was successful!");
+                }
                 //reset field
                 etMessageFromSender.setText("");
                 etRecipient.setText("");
@@ -148,6 +157,21 @@ public class ComposeFragment extends Fragment {
 
             }
         });
+
+/*        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("username", recipientUser);
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> recipientList, ParseException e) {
+                if (e == null) {
+                    Log.d("compose ", "Retrieved " + recipientList.size() + " recipient list: " + recipientList );
+                    message.setReceiver(recipientList.get(0));
+                } else {
+                    Log.d("compose ", "Error: " + e.getMessage());
+                }
+            }
+        });*/
+
+
     }
 
     private void goLoginActivity(){
@@ -163,13 +187,13 @@ public class ComposeFragment extends Fragment {
 //        query.include(Message.KEY_USER);
 //        query.findInBackground(new FindCallback<Message>() {
 //            @Override
-//            public void done(List<Message> posts, ParseException e) {
+//            public void done(List<Message> messages, ParseException e) {
 //                if(e != null){
-//                    Log.e(TAG, "Issue with getting posts", e);
+//                    Log.e(TAG, "Issue with getting messages", e);
 //                }
 //                else{
-//                    for(Message post: posts){
-//                        Log.i(TAG, "Message: "+post.getDescription()+ ", username: " + post.getUser().getUsername());
+//                    for(Message message: messages){
+//                        Log.i(TAG, "Message: "+message.getDescription()+ ", username: " + message.getUser().getUsername());
 //                    }
 //                }
 //            }
