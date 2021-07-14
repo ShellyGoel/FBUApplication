@@ -119,6 +119,7 @@ public class InboxFragment extends Fragment {
                         adapter.notifyItemInserted(position);
                     }
                 }).show();
+                //TODO: Update User inbox_message arrays by removing deleted inbox message!
             }
             // at last we are adding this
             // to our recycler view.
