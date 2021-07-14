@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.StrictMode;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.internal.LazilyParsedNumber;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -102,6 +105,7 @@ public class ComposeFragment extends Fragment {
         etMessageFromSender = view.findViewById(R.id.etMessageFromSender);
         //etRecipient = view.findViewById(R.id.etRecipient);
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnSubmit.setBackgroundColor(getResources().getColor(R.color.teal_700));
         getAllUsernames = new ArrayList<>();
         //getAllUsernames.add("default");
 
@@ -138,6 +142,7 @@ public class ComposeFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnSubmit.setBackgroundDrawable(getResources().getDrawable(R.color.teal_200));
                 String description = etMessageFromSender.getText().toString();
                 if(description.isEmpty()){
                     Toast.makeText(getContext(),"Description cannot be empty", Toast.LENGTH_SHORT).show();
@@ -261,6 +266,7 @@ public class ComposeFragment extends Fragment {
         message.setReceiver(recipientUser);
 
 
+
         message.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -269,13 +275,21 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(getContext(), "Message sent!", Toast.LENGTH_LONG).show();
+//                    Toast toast = Toast.makeText(getContext(), "Message sent!", Toast.LENGTH_LONG);
+//                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 100, 100);
+//                    toast.show();
+                    Snackbar.make(btnLogout, "Message Sent!", Snackbar.LENGTH_LONG).show();
+
                     Log.i(TAG, "Message was successful!");
                 }
+                //Snackbar.make(btnLogout, "Message Sent!", Snackbar.LENGTH_INDEFINITE).show();
+
                 //reset field
                 etMessageFromSender.setText("");
                 //etRecipient.setText("");
                 autocomplete.setText("");
+
+                // below line is to display our snackbar with action.
 
             }
         });

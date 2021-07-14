@@ -68,6 +68,8 @@ public class InboxFragment extends Fragment {
         adapter = new MessagesInboxAdapter(getContext(), allMessages);
         tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString() + "\'s Inbox");
 
+
+
         // set the adapter on the recycler view
         rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view

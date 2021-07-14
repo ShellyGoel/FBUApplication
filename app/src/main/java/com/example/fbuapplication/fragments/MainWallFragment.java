@@ -75,12 +75,20 @@ public class MainWallFragment extends Fragment {
 
         tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
 
+
+
         // set the adapter on the recycler view
         rvMainWallMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvMainWallMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        if(ParseUser.getCurrentUser().get("num_messages_sent")==null){
+            ParseUser.getCurrentUser().put("num_messages_sent", 0);
+        }
         // query posts from Parstagram
         queryMessages();
+
+
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);

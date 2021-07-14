@@ -72,6 +72,9 @@ public class ProfileFragment extends Fragment{
         tvNumSent = view.findViewById(R.id.tvNumSent);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
 
+        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
+
+        tvNumSent.setText("Number of notes sent: " + ParseUser.getCurrentUser().get("num_messages_sent"));
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
