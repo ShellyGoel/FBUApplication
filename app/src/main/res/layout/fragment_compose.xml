@@ -30,15 +30,18 @@
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:backgroundTint="@color/teal_700"
+        android:text="Submit"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="@color/purple_500"
         android:text="Logout"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="310dp"
         tools:layout_editor_absoluteY="6dp" />
 

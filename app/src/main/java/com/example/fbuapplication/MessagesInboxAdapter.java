@@ -52,7 +52,7 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private Button btnPin;
+        private ImageView btnPin;
         private TextView tvMessageBody;
         private TextView tvDate;
 
@@ -63,7 +63,6 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
             btnPin = itemView.findViewById(R.id.btnPin);
             tvMessageBody = itemView.findViewById(R.id.tvMessageBody);
             tvDate = itemView.findViewById(R.id.tvDate);
-
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +103,14 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
 //                Glide.with(context).load(image.getUrl()).into(ivImage);
 //            }
 
+            //TODO: Check this!
+            if(message.getIsPinned()){
+                Glide.with(context).load(R.drawable.ic_baseline_push_pin_clicked).into(btnPin);
+            }
+
+            else{
+                Glide.with(context).load(R.drawable.ic_baseline_push_pin_24).into(btnPin);
+            }
             btnPin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -112,6 +119,8 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                     //currentUser.add("main_wall_notes", tvMessageBody.getText());
                     //currentUser.add("main_wall_messages",message);
                     message.setIsPinned(true);
+                    Glide.with(context).load(R.drawable.ic_baseline_push_pin_clicked).into(btnPin);
+
                     message.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {

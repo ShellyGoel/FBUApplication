@@ -14,15 +14,13 @@
     <!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
     <!--        tools:text="Shelly" />-->
 
-    <Button
+    <ImageView
         android:id="@+id/btnPin"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_push_pin_24"
         android:insetTop="0dp"
-        android:insetBottom="0dp"
-        app:backgroundTint="@color/white"
-        app:icon="@drawable/ic_baseline_push_pin_24"
-        app:iconTint="@color/teal_700" />
+        android:insetBottom="0dp" />
 
     <!--    <ImageView-->
     <!--        android:id="@+id/ivImage"-->

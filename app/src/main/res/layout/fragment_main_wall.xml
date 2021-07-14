@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="User's Wall"
             android:textAlignment="center"
+            android:textColor="@color/teal_700"
             android:textSize="24sp"
             android:textStyle="bold" />
 

@@ -183,6 +183,7 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    Toast.makeText(getContext(), "Message sent!", Toast.LENGTH_LONG).show();
                     Log.i(TAG, "Message was successful!");
                 }
                 //reset field
