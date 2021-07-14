@@ -29,12 +29,14 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +78,7 @@ public class MainWallFragment extends Fragment {
         // set the adapter on the recycler view
         rvMainWallMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvMainWallMessages.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        rvMainWallMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
         // query posts from Parstagram
         queryMessages();
 
@@ -113,35 +115,93 @@ public class MainWallFragment extends Fragment {
     }
 
 
-
     protected void queryMessages() {
         // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
-        // include data referred by user key
-        query.include(Message.KEY_SENDER);
+        ArrayList<String> messagesPinnedByUser = new ArrayList<>();
+//        // include data referred by user key
+        //query.include(Message.KEY_RECIEVER);
+        query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Message.KEY_ISPINNED, true);
         // limit query to latest 20 items
         query.setLimit(20);
-        // order posts by creation date (newest first)
+        // order messages by creation date (newest first)
         query.addDescendingOrder("createdAt");
-        // start an asynchronous call for posts
+        // start an asynchronous call for messages
         query.findInBackground(new FindCallback<Message>() {
             @Override
-            public void done(List<Message> posts, ParseException e) {
+            public void done(List<Message> messages, ParseException e) {
                 // check for errors
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Log.e(TAG, "Issue with getting messages", e);
                     return;
                 }
 
-                // for debugging purposes let's print every post description to logcat
-                for (Message post : posts) {
-                    Log.i(TAG, "MainWallMessage: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
+
+                // for debugging purposes let's print every message description to logcat
+                for (Message message : messages) {
+                    Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
+                    ParseUser.getCurrentUser().add("main_wall_notes", message.getMessageBody());
+                    ParseUser.getCurrentUser().add("main_wall_messages",message);
+                    messagesPinnedByUser.add(message.getMessageBody());
+
+                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null){
+                                Log.e(TAG, "Error while saving new messages",e);
+                                Toast.makeText(getContext(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                            }
+                            Log.i(TAG, "Profile picture upload was successful!");
+                        }
+                    });
+
+//                    try {
+//                        //TODO: maybe change to background save?
+//                        ParseUser.getCurrentUser().save();
+//                    } catch (ParseException parseException) {
+//                        parseException.printStackTrace();
+//                    }
+
                 }
 
-                // save received posts to list and notify adapter of new data
-                allMessages.addAll(posts);
+
+
+                // save received messages to list and notify adapter of new data
+                allMessages.addAll(messages);
                 adapter.notifyDataSetChanged();
             }
         });
     }
+
+//    protected void queryMessages() {
+//        // specify what type of data we want to query - Message.class
+//        ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
+//        // include data referred by user key
+//        query.include(Message.KEY_SENDER);
+//        // limit query to latest 20 items
+//        query.setLimit(20);
+//        // order posts by creation date (newest first)
+//        query.addDescendingOrder("createdAt");
+//        // start an asynchronous call for posts
+//        query.findInBackground(new FindCallback<Message>() {
+//            @Override
+//            public void done(List<Message> posts, ParseException e) {
+//                // check for errors
+//                if (e != null) {
+//                    Log.e(TAG, "Issue with getting posts", e);
+//                    return;
+//                }
+//
+//                // for debugging purposes let's print every post description to logcat
+//                for (Message post : posts) {
+//                    Log.i(TAG, "MainWallMessage: " + post.getMessageBody() + ", username: " + post.getSender().getUsername());
+//                }
+//
+//                // save received posts to list and notify adapter of new data
+//                allMessages.addAll(posts);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//    }
 }

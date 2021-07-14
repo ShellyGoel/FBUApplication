@@ -9,12 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuapplication.fragments.InboxFragment;
+import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.Date;
 import java.util.List;
@@ -51,11 +56,15 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
         private TextView tvMessageBody;
         private TextView tvDate;
 
+        public static final String TAG = "InboxAdapter";
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             btnPin = itemView.findViewById(R.id.btnPin);
             tvMessageBody = itemView.findViewById(R.id.tvMessageBody);
             tvDate = itemView.findViewById(R.id.tvDate);
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,7 +104,26 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
 //                Glide.with(context).load(image.getUrl()).into(ivImage);
 //            }
 
-
+            btnPin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("Inbox", "pinned message");
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+                    //currentUser.add("main_wall_notes", tvMessageBody.getText());
+                    //currentUser.add("main_wall_messages",message);
+                    message.setIsPinned(true);
+                    message.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null){
+                                Log.e(TAG, "Error while pinning note",e);
+                                Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
+                            }
+                            Log.i(TAG, "Note pinned successfully!");
+                        }
+                    });
+                }
+            });
         }
 
     }
