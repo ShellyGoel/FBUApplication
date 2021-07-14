@@ -41,7 +41,7 @@ public class ComposeFragment extends Fragment {
     private AutoCompleteTextView autocomplete;
     private List<String> getAllUsernames;
 
-
+    //TODO: add onAttach
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
 //    private File photoFile;
 //    public String photoFileName = "photo.jpg";
@@ -72,6 +72,7 @@ public class ComposeFragment extends Fragment {
         //etRecipient = view.findViewById(R.id.etRecipient);
         btnSubmit = view.findViewById(R.id.btnSubmit);
         getAllUsernames = new ArrayList<>();
+        //getAllUsernames.add("default");
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
 
@@ -83,11 +84,16 @@ public class ComposeFragment extends Fragment {
                         getAllUsernames.add(p.getUsername());
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                            (getContext(),android.R.layout.select_dialog_item, getAllUsernames);
+                    if(getActivity()!= null) {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                                (getContext(), android.R.layout.select_dialog_item, getAllUsernames);
 
-                    autocomplete.setThreshold(2);
-                    autocomplete.setAdapter(adapter);
+                        autocomplete.setThreshold(2);
+                        autocomplete.setAdapter(adapter);
+                    }
+                    else{
+                        Log.e(TAG,"Activity is null!");
+                    }
                 } else {
                     // Something went wrong.
                     Log.e(TAG, "Error: " + e.getMessage());
@@ -158,6 +164,7 @@ public class ComposeFragment extends Fragment {
             public void onClick(View v) {
                 ParseUser.logOut();
                 ParseUser currentUser = ParseUser.getCurrentUser();
+                //TODO: check if user is null
                 goLoginActivity();
             }
         });
@@ -216,7 +223,8 @@ public class ComposeFragment extends Fragment {
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
         //TODO:finish main activity once we have navigated to the next activity
-        // finish();
+        //want to close current fragment forever
+        getActivity().finish();
 
     }
 //
