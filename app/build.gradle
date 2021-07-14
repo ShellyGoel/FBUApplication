@@ -72,6 +72,7 @@ dependencies {
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation group: 'com.meaningcloud', name: 'meaningcloud-sdk', version: '2.0.0-beta1'
+    compile 'de.hdodenhof:circleimageview:1.2.1'
 
     //implementation("com.squareup.okhttp3:okhttp:4.9.0")
 //    implementation 'net.sourceforge.htmlunit:htmlunit:2.15'
