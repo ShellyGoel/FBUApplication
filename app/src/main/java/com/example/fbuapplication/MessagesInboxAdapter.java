@@ -50,6 +50,18 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
         return messages.size();
     }
 
+
+    public void removeItem(int position) {
+        messages.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(Message message, int position) {
+        messages.add(position, message);
+        notifyItemInserted(position);
+    }
+
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView btnPin;
@@ -134,6 +146,7 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                 }
             });
         }
+
 
     }
 

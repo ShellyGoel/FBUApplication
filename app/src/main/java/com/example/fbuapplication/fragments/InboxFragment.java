@@ -2,6 +2,7 @@ package com.example.fbuapplication.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.example.fbuapplication.R;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -22,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -63,15 +66,63 @@ public class InboxFragment extends Fragment {
 
         allMessages = new ArrayList<>();
         adapter = new MessagesInboxAdapter(getContext(), allMessages);
-        tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Inbox");
+        tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString() + "\'s Inbox");
 
         // set the adapter on the recycler view
         rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 1));
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvInboxMessages.getContext(),1);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvInboxMessages.getContext(), 1);
         rvInboxMessages.addItemDecoration(dividerItemDecoration);
         rvInboxMessages.smoothScrollToPosition(0);
+
+        // on below line we are creating a method to create item touch helper
+        // method for adding swipe to delete functionality.
+        // in this we are specifying drag direction and position to right
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                // this method is called
+                // when the item is moved.
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                // this method is called when we swipe our item to right direction.
+                // on below line we are getting the item at a particular position.
+                Message deletedCourse = allMessages.get(viewHolder.getAdapterPosition());
+
+                // below line is to get the position
+                // of the item at that position.
+                int position = viewHolder.getAdapterPosition();
+
+                // this method is called when item is swiped.
+                // below line is to remove item from our array list.
+                allMessages.remove(viewHolder.getAdapterPosition());
+
+                // below line is to notify our item is removed from adapter.
+                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
+                // below line is to display our snackbar with action.
+                Snackbar.make(rvInboxMessages, deletedCourse.getMessageBody(), Snackbar.LENGTH_LONG).setAction("Undo Delete", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // adding on click listener to our action of snack bar.
+                        // below line is to add our item to array list with a position.
+                        allMessages.add(position, deletedCourse);
+
+                        // below line is to notify item is
+                        // added to our adapter class.
+                        adapter.notifyItemInserted(position);
+                    }
+                }).show();
+            }
+            // at last we are adding this
+            // to our recycler view.
+        }).attachToRecyclerView(rvInboxMessages);
+
+
         // query messages from Parstagram
         queryMessages();
 
@@ -93,8 +144,8 @@ public class InboxFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
     }
+
 
     public void fetchTimelineAsync(int page) {
         // Send the network request to fetch the updated data
