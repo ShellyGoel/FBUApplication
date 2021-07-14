@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fbuapplication.BuildConfig;
 import com.example.fbuapplication.JClient;
 import com.example.fbuapplication.LoginActivity;
 import com.example.fbuapplication.Message;
@@ -167,7 +168,9 @@ public class ComposeFragment extends Fragment {
                         .url("https://text-sentiment.p.rapidapi.com/analyze")
                         .post(body)
                         .addHeader("content-type", "application/x-www-form-urlencoded")
-                        .addHeader("x-rapidapi-key", "37e97d30f9mshe0dd0b011989d8ap19a372jsn27c489c1c486")
+
+//                        .addHeader("x-rapidapi-key", "37e97d30f9mshe0dd0b011989d8ap19a372jsn27c489c1c486")
+                        .addHeader("x-rapidapi-key",  BuildConfig.CONSUMER_SECRET_KEY)
                         .addHeader("x-rapidapi-host", "text-sentiment.p.rapidapi.com")
                         .build();
 

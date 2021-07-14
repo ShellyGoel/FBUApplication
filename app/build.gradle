@@ -28,6 +28,7 @@ android {
 
         // should correspond to key/value pairs inside the file
         buildConfigField("String", "CONSUMER_KEY", apikeyProperties['CONSUMER_KEY'])
+        buildConfigField("String", "CONSUMER_SECRET_KEY", apikeyProperties['CONSUMER_SECRET_KEY'])
     }
 
     buildTypes {
