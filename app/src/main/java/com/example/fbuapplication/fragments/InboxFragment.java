@@ -12,18 +12,21 @@ import com.example.fbuapplication.Message;
 import com.example.fbuapplication.MessagesInboxAdapter;
 import com.example.fbuapplication.R;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +68,10 @@ public class InboxFragment extends Fragment {
         // set the adapter on the recycler view
         rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvInboxMessages.getContext(),1);
+        rvInboxMessages.addItemDecoration(dividerItemDecoration);
+        rvInboxMessages.smoothScrollToPosition(0);
         // query messages from Parstagram
         queryMessages();
 
@@ -108,6 +114,7 @@ public class InboxFragment extends Fragment {
     protected void queryMessages() {
         // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
+        ArrayList<String> messagesForUser = new ArrayList<>();
 //        // include data referred by user key
         //query.include(Message.KEY_RECIEVER);
         query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
@@ -125,9 +132,31 @@ public class InboxFragment extends Fragment {
                     return;
                 }
 
+
                 // for debugging purposes let's print every message description to logcat
                 for (Message message : messages) {
                     Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
+                    ParseUser.getCurrentUser().add("user_inbox", message.getMessageBody());
+                    ParseUser.getCurrentUser().add("inbox_messages",message);
+                    messagesForUser.add(message.getMessageBody());
+
+                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null){
+                                Log.e(TAG, "Error while saving new messages",e);
+                                Toast.makeText(getContext(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                            }
+                            Log.i(TAG, "Profile picture upload was successful!");
+                        }
+                    });
+
+//                    try {
+//                        //TODO: maybe change to background save?
+//                        ParseUser.getCurrentUser().save();
+//                    } catch (ParseException parseException) {
+//                        parseException.printStackTrace();
+//                    }
 
                 }
 

@@ -6,31 +6,59 @@
     android:layout_margin="8dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="102dp"
-        tools:layout_editor_absoluteY="137dp"
-        tools:text="Date created" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/ivStickyNoteImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerInside"
-        tools:srcCompat="@mipmap/ic_stickynote_foreground" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvMessageBody"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16sp"
-        android:padding="4dp"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"
-        android:visibility="visible"
-        tools:text="Message from note filler text!" />
+            <ImageView
+                android:id="@+id/ivStickyNoteImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:srcCompat="@mipmap/ic_stickynote_foreground" />
+
+            <TextView
+                android:id="@+id/tvMessageBody"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="41dp"
+                android:padding="4dp"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImage"
+                app:layout_constraintEnd_toEndOf="@+id/ivStickyNoteImage"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/ivStickyNoteImage"
+                app:layout_constraintTop_toTopOf="@+id/ivStickyNoteImage"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Message from note filler text!" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:layout_editor_absoluteX="102dp"
+            tools:layout_editor_absoluteY="137dp"
+            tools:text="Date created" />
+
+    </FrameLayout>
+
 
 </LinearLayout>

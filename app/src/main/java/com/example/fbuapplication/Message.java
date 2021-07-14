@@ -17,6 +17,7 @@ public class Message extends ParseObject {
     public static final String KEY_UNREAD = "unread";
     public static final String KEY_SENDER = "sender";
     public static final String KEY_RECIEVER = "reciever";
+    public static final String KEY_ISPINNED = "isPinned";
 
     public String getMessageBody(){
         return getString(KEY_MESSAGE_BODY);
@@ -49,6 +50,14 @@ public class Message extends ParseObject {
 
     public void setReceiver(ParseUser user){
         put(KEY_RECIEVER, user);
+    }
+
+    public boolean getIsPinned(){
+        return getBoolean(KEY_ISPINNED);
+    }
+
+    public void setIsPinned(boolean isPinned){
+        put(KEY_ISPINNED, isPinned);
     }
 
 
