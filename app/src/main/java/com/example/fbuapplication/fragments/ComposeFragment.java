@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fbuapplication.JClient;
 import com.example.fbuapplication.LoginActivity;
 import com.example.fbuapplication.Message;
 import com.example.fbuapplication.R;
@@ -28,8 +30,23 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.Request;
+
 
 
 public class ComposeFragment extends Fragment {
@@ -46,6 +63,8 @@ public class ComposeFragment extends Fragment {
 //    private File photoFile;
 //    public String photoFileName = "photo.jpg";
     public static final String TAG = "composeFragment";
+
+    JClient sentimentClient;
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
@@ -66,6 +85,17 @@ public class ComposeFragment extends Fragment {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.view.findViewById()(R.id.etFoo);
         super.onViewCreated(view, savedInstanceState);
+
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            //your codes here
+
+        }
+
         autocomplete = view.findViewById(R.id.autoCompleteReceiver);
         btnLogout = view.findViewById(R.id.btnLogout);
         etMessageFromSender = view.findViewById(R.id.etMessageFromSender);
@@ -74,6 +104,7 @@ public class ComposeFragment extends Fragment {
         getAllUsernames = new ArrayList<>();
         //getAllUsernames.add("default");
 
+        sentimentClient = new JClient();
         ParseQuery<ParseUser> query = ParseUser.getQuery();
 
         query.findInBackground(new FindCallback<ParseUser>() {
@@ -118,10 +149,60 @@ public class ComposeFragment extends Fragment {
                     return;
                 }
 
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+
+                String decoded = null;
+                try {
+                    decoded = URLDecoder.decode(description, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+//                RequestBody body = RequestBody.create(mediaType, "text=I%20am%20not%20really%20happy");
+
+                //https://rapidapi.com/fyhao/api/text-sentiment-analysis-method/
+                RequestBody body = RequestBody.create(mediaType, "text="+decoded);
+                Request request = new Request.Builder()
+                        .url("https://text-sentiment.p.rapidapi.com/analyze")
+                        .post(body)
+                        .addHeader("content-type", "application/x-www-form-urlencoded")
+                        .addHeader("x-rapidapi-key", "37e97d30f9mshe0dd0b011989d8ap19a372jsn27c489c1c486")
+                        .addHeader("x-rapidapi-host", "text-sentiment.p.rapidapi.com")
+                        .build();
+
+                try {
+                    Response response = client.newCall(request).execute();
+                    String jsonData = response.body().string();
+                    JSONObject properties = new JSONObject(jsonData);
+                    //JSONObject properties = Jobject.getJSONObject("properties");
+                    String pos = properties.getString("pos");
+                    String neg = properties.getString("neg");
+                    String mid = properties.getString("mid");
+                    String pos_percent = properties.getString("pos_percent");
+                    String mid_percent = properties.getString("mid_percent");
+                    String neg_percent = properties.getString("neg_percent");
+
+
+                    Log.i(TAG, "POSITIVE: "+ pos+ " NEUTRAL: " + mid + " NEGATIVE: "+neg);
+                    Log.i(TAG, "POSITIVE: "+ pos_percent+ " NEUTRAL: " + mid_percent + " NEGATIVE: "+neg_percent);
+
+                    if(Integer.parseInt(neg_percent.substring(0,neg_percent.length()-1))>50){
+                        Log.i(TAG, "too negative!");
+
+                    }
+                }
+                catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+
 //                if(photoFile == null || ivMessageImage.getDrawable()==null){
 //                    Toast.makeText(getContext(),"There is no image!", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
+
+
+
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 List<ParseUser> userListFinal = new ArrayList<>();
 
@@ -131,12 +212,7 @@ public class ComposeFragment extends Fragment {
                     public void done(List<ParseUser> userList, ParseException e) {
                         if (e == null) {
                             Log.i(TAG, "Retrieved " + userList.size() + " scores");
-                            //friends = new ArrayList<>();//<-- Initialize the String array
-//                    for (int i = 0; i < userList.size(); i++) {
-//                        friends.add(userList.get(i).getUsername());
-//                    }
-                            //aAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, friends);
-                            //friendChooser.setAdapter(aAdapter);
+
                             userListFinal.addAll(userList);
                             if(userListFinal.isEmpty()){
                                 Toast.makeText(getContext(),"Please select a valid user!", Toast.LENGTH_LONG).show();
@@ -197,24 +273,10 @@ public class ComposeFragment extends Fragment {
                 etMessageFromSender.setText("");
                 //etRecipient.setText("");
                 autocomplete.setText("");
-//                //set as empty resource ID
-//                ivMessageImage.setImageResource(0);
 
             }
         });
 
-/*        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("username", recipientUser);
-        query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> recipientList, ParseException e) {
-                if (e == null) {
-                    Log.d("compose ", "Retrieved " + recipientList.size() + " recipient list: " + recipientList );
-                    message.setReceiver(recipientList.get(0));
-                } else {
-                    Log.d("compose ", "Error: " + e.getMessage());
-                }
-            }
-        });*/
 
 
     }
@@ -227,22 +289,5 @@ public class ComposeFragment extends Fragment {
         getActivity().finish();
 
     }
-//
-//    private void queryMessages(){
-//        ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
-//        query.include(Message.KEY_USER);
-//        query.findInBackground(new FindCallback<Message>() {
-//            @Override
-//            public void done(List<Message> messages, ParseException e) {
-//                if(e != null){
-//                    Log.e(TAG, "Issue with getting messages", e);
-//                }
-//                else{
-//                    for(Message message: messages){
-//                        Log.i(TAG, "Message: "+message.getDescription()+ ", username: " + message.getUser().getUsername());
-//                    }
-//                }
-//            }
-//        });
-//    }
+
 }
