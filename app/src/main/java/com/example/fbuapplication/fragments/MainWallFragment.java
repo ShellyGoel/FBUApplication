@@ -1,5 +1,6 @@
 package com.example.fbuapplication.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -73,7 +74,12 @@ public class MainWallFragment extends Fragment {
         allMessages = new ArrayList<>();
         adapter = new MessagesMainWallAdapter(getContext(), allMessages);
 
-        tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
+//        tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
+
+        if(ParseUser.getCurrentUser().get("full_name")==null){
+            ParseUser.getCurrentUser().put("full_name","User");
+        }
+        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
 
 
 
@@ -158,8 +164,16 @@ public class MainWallFragment extends Fragment {
                         public void done(ParseException e) {
                             if(e != null){
                                 Log.e(TAG, "Error while saving new messages",e);
-                                Toast.makeText(getContext(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
-                            }
+
+                                // If the Activity is gone (the user navigated elsewhere), getActivity() returns null.
+                                Activity activity = getActivity();
+                                if(activity != null){
+
+                                    Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+
+
+                                }
+                                    }
                             Log.i(TAG, "Profile picture upload was successful!");
                         }
                     });

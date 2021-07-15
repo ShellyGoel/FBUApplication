@@ -19,6 +19,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText etSignUsername;
     private EditText etSignPassword;
     private EditText etSignEmail;
+    private EditText etFullName;
     private Button btnSignLogin;
     public static final String TAG = "SignUpActivity";
 
@@ -30,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
         etSignPassword = findViewById(R.id.etSignPassword);
         btnSignLogin = findViewById(R.id.btnSignLogin);
         etSignEmail = findViewById(R.id.etSignEmail);
+        etFullName = findViewById(R.id.etSignFullName);
 
 
         btnSignLogin.setOnClickListener(new View.OnClickListener() {
@@ -38,17 +40,19 @@ public class SignUpActivity extends AppCompatActivity {
                 String username = etSignUsername.getText().toString();
                 String password = etSignPassword.getText().toString();
                 String email = etSignEmail.getText().toString();
-                createUser(username,password, email);
+                String full_name = etFullName.getText().toString();
+                createUser(username,password, email, full_name);
             }
         });
 
     }
 
-    public void createUser(String username, String password, String email) {
+    public void createUser(String username, String password, String email, String full_name) {
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
+        user.put("full_name", full_name);
         //user.setEmail("email@example.com");
 
         // Other fields can be set just like any other ParseObject,

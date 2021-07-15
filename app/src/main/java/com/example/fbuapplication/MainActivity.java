@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     SpaceTabLayout tabLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

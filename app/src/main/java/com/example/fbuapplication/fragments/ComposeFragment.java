@@ -298,8 +298,9 @@ public class ComposeFragment extends Fragment {
 
     }
 
+    //changed getContext() to getActivity(), You should use getActivity() to launch an Activity from Fragment.
     private void goLoginActivity(){
-        Intent i = new Intent(getContext(), LoginActivity.class);
+        Intent i = new Intent(getActivity(), LoginActivity.class);
         startActivity(i);
         //TODO:finish main activity once we have navigated to the next activity
         //want to close current fragment forever

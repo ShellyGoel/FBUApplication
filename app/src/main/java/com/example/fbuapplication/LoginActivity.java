@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button btnLogin;
     private Button sign_up;
+
 
     private static final String TAG = "LoginActivity";
 
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etSignPassword);
         btnLogin = findViewById(R.id.btnSignLogin);
         sign_up = findViewById(R.id.sign_up);
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(e != null){
                     Log.e(TAG, "issue with login",e);
 
-                    Toast.makeText(LoginActivity.this, "Invalid login! Please try again.", Toast.LENGTH_LONG).show();
+                    Snackbar.make(btnLogin, "Invalid login! Please try again.", Snackbar.LENGTH_LONG).show();
 
 
 

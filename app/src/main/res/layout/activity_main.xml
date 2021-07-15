@@ -33,7 +33,7 @@
         app:icon_two="@drawable/ic_baseline_markunread_mailbox_24"
         app:icon_three="@drawable/ic_baseline_edit_24"
         app:icon_four="@drawable/ic_baseline_person_24"
-        app:starting_position="one" />
+        app:starting_position="four" />
 
 <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--        android:id="@+id/bottom_navigation"-->

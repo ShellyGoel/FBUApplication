@@ -1,5 +1,6 @@
 package com.example.fbuapplication.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -66,7 +67,12 @@ public class InboxFragment extends Fragment {
 
         allMessages = new ArrayList<>();
         adapter = new MessagesInboxAdapter(getContext(), allMessages);
-        tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString() + "\'s Inbox");
+        //tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString() + "\'s Inbox");
+
+        if(ParseUser.getCurrentUser().get("full_name")==null){
+            ParseUser.getCurrentUser().put("full_name","User");
+        }
+        tvInboxTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "\'s Inbox");
 
 
 
@@ -199,8 +205,11 @@ public class InboxFragment extends Fragment {
                         public void done(ParseException e) {
                             if(e != null){
                                 Log.e(TAG, "Error while saving new messages",e);
-                                Toast.makeText(getContext(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
-                            }
+
+                                if(getActivity() != null){
+                                    Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                                }
+                                 }
                             Log.i(TAG, "Profile picture upload was successful!");
                         }
                     });
