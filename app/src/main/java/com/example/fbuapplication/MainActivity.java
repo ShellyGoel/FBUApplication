@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -40,7 +41,10 @@ import com.parse.SaveCallback;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+
+import eu.long1.spacetablayout.SpaceTabLayout;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private BottomNavigationView bottomNavigationView;
+    SpaceTabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,48 +61,61 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //add the fragments you want to display in a List
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new MainWallFragment());
+        fragmentList.add(new InboxFragment());
+        fragmentList.add(new ComposeFragment());
+        fragmentList.add(new ProfileFragment());
 
 
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                Fragment fragment;
-                switch (item.getItemId()) {
-                    case R.id.action_profile:
-                        // do something here
-                        fragment = new ProfileFragment();
-                        break;
-                    case R.id.action_compose:
-                        // do something here
-                        fragment = new ComposeFragment();
-                        break;
-                    case R.id.action_inbox:
-                        // do something here
-                        fragment = new InboxFragment();
-                        break;
-
-                    case R.id.action_main_wall:
-                        fragment = new MainWallFragment();
-
-                    default:
-                        fragment = new MainWallFragment();
-                        break;
-                }
-
-                fragmentManager.beginTransaction().replace(R.id.flContainer,fragment).commit();
-                return true;
+        //bottomNavigationView = findViewById(R.id.bottom_navigation);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = (SpaceTabLayout) findViewById(R.id.spaceTabLayout);
 
 
-            }
-        });
-
-        //set default selection
-        bottomNavigationView.setSelectedItemId(R.id.action_main_wall);
-
-
+        tabLayout.initialize(viewPager, getSupportFragmentManager(),
+                fragmentList, savedInstanceState);
+//
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+//                Fragment fragment;
+//                switch (item.getItemId()) {
+//                    case R.id.action_profile:
+//                        // do something here
+//                        fragment = new ProfileFragment();
+//                        break;
+//                    case R.id.action_compose:
+//                        // do something here
+//                        fragment = new ComposeFragment();
+//                        break;
+//                    case R.id.action_inbox:
+//                        // do something here
+//                        fragment = new InboxFragment();
+//                        break;
+//
+//                    case R.id.action_main_wall:
+//                        fragment = new MainWallFragment();
+//
+//                    default:
+//                        fragment = new MainWallFragment();
+//                        break;
+//                }
+//
+//                fragmentManager.beginTransaction().replace(R.id.flContainer,fragment).commit();
+//                return true;
+//
+//
+//            }
+//        });
+//
+//        //set default selection
+//        bottomNavigationView.setSelectedItemId(R.id.action_main_wall);
+//
+//
+//    }
     }
-
 
 }
