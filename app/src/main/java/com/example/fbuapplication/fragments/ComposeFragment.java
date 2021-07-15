@@ -145,13 +145,16 @@ public class ComposeFragment extends Fragment {
                 btnSubmit.setBackgroundDrawable(getResources().getDrawable(R.color.teal_200));
                 String description = etMessageFromSender.getText().toString();
                 if(description.isEmpty()){
-                    Toast.makeText(getContext(),"Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),"Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(btnSubmit, "Message cannot be empty", Snackbar.LENGTH_LONG).show();
+
                     return;
                 }
                 //String recipient = etRecipient.getText().toString();
                 String recipient = autocomplete.getText().toString();
                 if(recipient.isEmpty()){
-                    Toast.makeText(getContext(),"Recipient cannot be empty", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),"Recipient cannot be empty", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(btnSubmit, "Recipient cannot be empty", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
@@ -223,7 +226,8 @@ public class ComposeFragment extends Fragment {
 
                             userListFinal.addAll(userList);
                             if(userListFinal.isEmpty()){
-                                Toast.makeText(getContext(),"Please select a valid user!", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getContext(),"Please select a valid user!", Toast.LENGTH_LONG).show();
+                                Snackbar.make(btnSubmit, "Please select a valid user!", Snackbar.LENGTH_LONG).show();
                                 etMessageFromSender.setText("");
                                 //etRecipient.setText("");
                                 autocomplete.setText("");
@@ -272,13 +276,15 @@ public class ComposeFragment extends Fragment {
             public void done(ParseException e) {
                 if(e != null){
                     Log.e(TAG, "Error while saving",e);
-                    Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Error while saving!", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(btnSubmit, "Error while sending message", Snackbar.LENGTH_LONG).show();
+
                 }
                 else {
 //                    Toast toast = Toast.makeText(getContext(), "Message sent!", Toast.LENGTH_LONG);
 //                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 100, 100);
 //                    toast.show();
-                    Snackbar.make(btnLogout, "Message Sent!", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(btnSubmit, "Message Sent!", Snackbar.LENGTH_LONG).show();
 
                     Log.i(TAG, "Message was successful!");
                 }

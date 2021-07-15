@@ -189,6 +189,7 @@ public class InboxFragment extends Fragment {
                 // check for errors
                 if (e != null) {
                     Log.e(TAG, "Issue with getting messages", e);
+                    Snackbar.make(rvInboxMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
@@ -207,7 +208,9 @@ public class InboxFragment extends Fragment {
                                 Log.e(TAG, "Error while saving new messages",e);
 
                                 if(getActivity() != null){
-                                    Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
+
                                 }
                                  }
                             Log.i(TAG, "Profile picture upload was successful!");

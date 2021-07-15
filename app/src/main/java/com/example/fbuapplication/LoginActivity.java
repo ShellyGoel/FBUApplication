@@ -71,16 +71,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if(e != null){
+
+                    Snackbar.make(btnLogin, e.getMessage()+" Please try again.", Snackbar.LENGTH_LONG).show();
                     Log.e(TAG, "issue with login",e);
-
-                    Snackbar.make(btnLogin, "Invalid login! Please try again.", Snackbar.LENGTH_LONG).show();
-
 
 
                 }
                 else {
                     goMainActivity();
-                    Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_LONG).show();
+                    Snackbar.make(btnLogin, "Success! Logging in...", Snackbar.LENGTH_LONG).show();
 
                 }
             }

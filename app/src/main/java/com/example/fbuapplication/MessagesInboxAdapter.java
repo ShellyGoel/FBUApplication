@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fbuapplication.fragments.InboxFragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -138,7 +139,9 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                         public void done(ParseException e) {
                             if(e != null){
                                 Log.e(TAG, "Error while pinning note",e);
-                                Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(btnPin, "Error while pinning note", Snackbar.LENGTH_LONG).show();
+
                             }
                             Log.i(TAG, "Note pinned successfully!");
                         }

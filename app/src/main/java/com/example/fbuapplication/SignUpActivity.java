@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseUser;
 
 
@@ -63,13 +64,17 @@ public class SignUpActivity extends AppCompatActivity {
             if (e == null) {
                 // Hooray! Let them use the app now.
                 Log.i(TAG, "Successful signup");
-                Toast.makeText(this, "Successful sign up! logging in...", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Successful sign up! logging in...", Toast.LENGTH_LONG).show();
+                Snackbar.make(btnSignLogin, "Successful sign up! logging in...", Snackbar.LENGTH_LONG).show();
+
                 goMainActivity();
             } else {
                 // Sign up didn't succeed. Look at the ParseException
                 // to figure out what went wrong
                 Log.e(TAG, "issue with sign up",e);
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Snackbar.make(btnSignLogin, e.getMessage()+" Please try again.", Snackbar.LENGTH_LONG).show();
+
             }
         });
     }

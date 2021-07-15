@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -139,7 +140,9 @@ public class ProfileFragment extends Fragment{
                 // Load the taken image into a preview
                ivProfileImage.setImageBitmap(takenImage);
             } else { // Result was a failure
-                Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Snackbar.make(ivProfileImage, "Picture wasn't taken!", Snackbar.LENGTH_LONG).show();
+
             }
         }
     }
@@ -170,7 +173,9 @@ public class ProfileFragment extends Fragment{
             public void done(ParseException e) {
                 if(e != null){
                     Log.e(TAG, "Error while uploading profile picture",e);
-                    Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
+
                 }
                 Log.i(TAG, "Profile picture upload was successful!");
             }

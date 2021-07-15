@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -231,6 +232,7 @@ public class MainWallFragment extends Fragment {
                 // check for errors
                 if (e != null) {
                     Log.e(TAG, "Issue with getting messages", e);
+                    Snackbar.make(rvMainWallMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
@@ -252,7 +254,8 @@ public class MainWallFragment extends Fragment {
                                 Activity activity = getActivity();
                                 if(activity != null){
 
-                                    Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(rvMainWallMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
 
 
                                 }
