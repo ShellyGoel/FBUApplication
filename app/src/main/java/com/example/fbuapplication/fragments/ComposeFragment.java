@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -61,6 +62,7 @@ public class ComposeFragment extends Fragment {
     private Button btnSubmit;
     private AutoCompleteTextView autocomplete;
     private List<String> getAllUsernames;
+    private TextView tvCompose;
 
     //TODO: add onAttach
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -107,6 +109,7 @@ public class ComposeFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btnSubmit);
         btnSubmit.setBackgroundColor(getResources().getColor(R.color.teal_700));
         getAllUsernames = new ArrayList<>();
+        tvCompose = view.findViewById(R.id.tvCompose);
         //getAllUsernames.add("default");
 
         sentimentClient = new JClient();
@@ -120,7 +123,7 @@ public class ComposeFragment extends Fragment {
                         getAllUsernames.add(p.getUsername());
                     }
 
-                    if(getActivity()!= null) {
+                    //if(getActivity()!= null) {
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                                 (getContext(), android.R.layout.select_dialog_item, getAllUsernames);
 
@@ -130,10 +133,10 @@ public class ComposeFragment extends Fragment {
                     else{
                         Log.e(TAG,"Activity is null!");
                     }
-                } else {
-                    // Something went wrong.
-                    Log.e(TAG, "Error: " + e.getMessage());
-                }
+//                } else {
+//                    // Something went wrong.
+//                    Log.e(TAG, "Error: " + e.getMessage());
+//                }
             }
         });
 

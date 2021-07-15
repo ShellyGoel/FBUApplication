@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +29,12 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +45,8 @@ public class InboxFragment extends Fragment {
     protected MessagesInboxAdapter adapter;
     protected List<Message> allMessages;
     private TextView tvInboxTitle;
+    private boolean shouldDelete;
+    private String shouldDeleteString;
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -64,7 +69,7 @@ public class InboxFragment extends Fragment {
         rvInboxMessages = view.findViewById(R.id.rvInboxMessages);
         tvInboxTitle = view.findViewById(R.id.tvInboxTitle);
 
-
+        shouldDelete = true;
         allMessages = new ArrayList<>();
         adapter = new MessagesInboxAdapter(getContext(), allMessages);
         //tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString() + "\'s Inbox");
@@ -99,7 +104,7 @@ public class InboxFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 // this method is called when we swipe our item to right direction.
                 // on below line we are getting the item at a particular position.
-                Message deletedCourse = allMessages.get(viewHolder.getAdapterPosition());
+                Message deletedMessage = allMessages.get(viewHolder.getAdapterPosition());
 
                 // below line is to get the position
                 // of the item at that position.
@@ -109,23 +114,95 @@ public class InboxFragment extends Fragment {
                 // below line is to remove item from our array list.
                 allMessages.remove(viewHolder.getAdapterPosition());
 
+                //remove deletedMessage from user's inbox in Parse! (from inbox_messages)
+
+                //Steps:
+                //1) Get User's inbox messages
+                //2) Find Message with ObjectId() of deleted message
+                //3) Remove that message from array
+
+
+
+
+                //TODO: Probably don't need this fields. May make more efficient though.
+                List<Message> user_inbox_messages = (List<Message>) ParseUser.getCurrentUser().get("inbox_messages");
+                // for debugging purposes let's print every message description to logcat
+                user_inbox_messages.remove(deletedMessage);
+                ParseUser.getCurrentUser().put("inbox_messages",user_inbox_messages);
+
+                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null){
+                                Log.e(TAG, "Error while saving new messages",e);
+
+                                if(getActivity() != null){
+                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
+
+                                }
+                            }
+                            Log.i(TAG, "Deleted message successfully from Parse (for inbox)");
+                        }
+                    });
+
+
+
+
                 // below line is to notify our item is removed from adapter.
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
 
                 // below line is to display our snackbar with action.
-                Snackbar.make(rvInboxMessages, deletedCourse.getMessageBody(), Snackbar.LENGTH_LONG).setAction("Undo Delete", new View.OnClickListener() {
+                Snackbar snack = Snackbar.make(rvInboxMessages, deletedMessage.getMessageBody(), Snackbar.LENGTH_SHORT).setAction("Undo Delete", new View.OnClickListener() {
+
                     @Override
                     public void onClick(View v) {
-                        // adding on click listener to our action of snack bar.
-                        // below line is to add our item to array list with a position.
-                        allMessages.add(position, deletedCourse);
 
-                        // below line is to notify item is
-                        // added to our adapter class.
+                        allMessages.add(position, deletedMessage);
+
                         adapter.notifyItemInserted(position);
+                        shouldDelete = false;
                     }
-                }).show();
-                //TODO: Update User inbox_message arrays by removing deleted inbox message!
+
+                });
+                snack.show();
+                snack.addCallback(new Snackbar.Callback() {
+
+                    @Override
+                    public void onDismissed(Snackbar snackbar, int event) {
+                        if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+
+                            if(shouldDelete) {
+                                ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+                                //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
+                                query.whereEqualTo("objectId", deletedMessage.getObjectId());
+                                query.findInBackground(new FindCallback<ParseObject>() {
+                                    public void done(List<ParseObject> messages, ParseException e) {
+                                        if (e == null) {
+
+                                            // iterate over all messages and delete them
+                                            for (ParseObject message : messages) {
+                                                message.deleteEventually();
+                                            }
+                                        } else {
+                                            Log.d(TAG, e.getMessage());
+                                        }
+                                    }
+                                });
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onShown(Snackbar snackbar) {
+
+                    }
+                });
+
+
+
+
             }
             // at last we are adding this
             // to our recycler view.
@@ -216,13 +293,6 @@ public class InboxFragment extends Fragment {
                             Log.i(TAG, "Profile picture upload was successful!");
                         }
                     });
-
-//                    try {
-//                        //TODO: maybe change to background save?
-//                        ParseUser.getCurrentUser().save();
-//                    } catch (ParseException parseException) {
-//                        parseException.printStackTrace();
-//                    }
 
                 }
 

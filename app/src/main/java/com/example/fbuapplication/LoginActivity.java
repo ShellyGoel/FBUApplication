@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Snackbar.make(btnLogin, e.getMessage()+" Please try again.", Snackbar.LENGTH_LONG).show();
                     Log.e(TAG, "issue with login",e);
-
+//                    ParseUser.
 
                 }
                 else {

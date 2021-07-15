@@ -30,9 +30,9 @@
         app:tab_color="@color/purple_500"
         app:button_color="@color/purple_200"
         app:icon_one="@drawable/ic_baseline_home_24"
-        app:icon_two="@drawable/ic_baseline_markunread_mailbox_24"
+        app:icon_two="@drawable/ic_baseline_email_24"
         app:icon_three="@drawable/ic_baseline_edit_24"
-        app:icon_four="@drawable/ic_baseline_person_24"
+        app:icon_four="@drawable/ic_baseline_search_24"
         app:starting_position="four" />
 
 <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->

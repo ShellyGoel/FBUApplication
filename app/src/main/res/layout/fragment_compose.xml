@@ -13,6 +13,17 @@
 <!--        android:layout_height="wrap_content"-->
 <!--        android:hint="Enter recepient user..." />-->
 
+    <TextView
+        android:id="@+id/tvCompose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hey_magnolia"
+        android:text="Compose a message:"
+        android:textAlignment="center"
+        android:textColor="@color/teal_700"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteReceiver"
