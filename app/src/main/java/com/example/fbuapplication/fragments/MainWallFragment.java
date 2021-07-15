@@ -3,26 +3,22 @@ package com.example.fbuapplication.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fbuapplication.MessagesMainWallAdapter;
 import com.example.fbuapplication.R;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.fbuapplication.Message;
-import com.example.fbuapplication.MessagesInboxAdapter;
-import com.example.fbuapplication.R;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +37,7 @@ import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import androidx.appcompat.widget.SearchView;
 
 public class MainWallFragment extends Fragment {
 
@@ -51,9 +47,15 @@ public class MainWallFragment extends Fragment {
 
     private SwipeRefreshLayout swipeContainer;
     private TextView tvWallTitle;
+    private Toolbar toolbar;
 
 
     public static final String TAG = "FeedActivity";
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -61,16 +63,97 @@ public class MainWallFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main_wall,parent, false);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_search_main_wall, menu);
+
+        final MenuItem item = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                final List<Message> filteredModelList = filter(allMessages, newText);
+                adapter.setFilter(filteredModelList);
+                return true;
+            }
+        });
+
+
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                // Do something when collapsed
+                adapter.setFilter(allMessages);
+                return true; // Return true to collapse action view
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                // Do something when expanded
+                return true; // Return true to expand action view
+            }
+        });
+
+    }
+
+
+    private List<Message> filter(List<Message> models, String query) {
+        query = query.toLowerCase();
+
+        final List<Message> filteredModelList = new ArrayList<>();
+        for (Message model : models) {
+            final String text = model.getMessageBody().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
+    }
+
+//    private void filter(String text) {
+//        // creating a new array list to filter our data.
+//        ArrayList<Message> filteredlist = new ArrayList<>();
+//
+//        // running a for loop to compare elements.
+//        for (Message item : allMessages) {
+//            // checking if the entered string matched with any item of our recycler view.
+//            if (item.getMessageBody().toLowerCase().contains(text.toLowerCase())) {
+//                // if the item is matched we are
+//                // adding it to our filtered list.
+//                filteredlist.add(item);
+//            }
+//        }
+//        if (filteredlist.isEmpty()) {
+//            // if no item is added in filtered list we are
+//            // displaying a toast message as no data found.
+//            Toast.makeText(requireActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+//        } else {
+//            // at last we are passing that filtered
+//            // list to our adapter class.
+//            adapter.filterList(filteredlist);
+//        }
+//    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
 
 
         rvMainWallMessages = view.findViewById(R.id.rvMainWallMessages);
         tvWallTitle = view.findViewById(R.id.tvWallTitle);
-
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         allMessages = new ArrayList<>();
         adapter = new MessagesMainWallAdapter(getContext(), allMessages);
 
@@ -189,5 +272,9 @@ public class MainWallFragment extends Fragment {
             }
         });
     }
+
+
+
+
 
 }

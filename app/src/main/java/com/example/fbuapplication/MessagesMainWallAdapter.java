@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +29,12 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         this.messages = messages;
     }
 
+    // method for filtering our recyclerview items.
+    public void setFilter(List<Message> countryModels){
+        messages = new ArrayList<>();
+        messages.addAll(countryModels);
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,17 +60,17 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         private TextView tvMessageBody;
         private TextView tvDate;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ivStickyNoteImage = itemView.findViewById(R.id.ivStickyNoteImage);
-            tvMessageBody = itemView.findViewById(R.id.tvMessageBody);
-            tvDate = itemView.findViewById(R.id.tvDate);
+        public ViewHolder(@NonNull View messageView) {
+            super(messageView);
+            ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImage);
+            tvMessageBody = messageView.findViewById(R.id.tvMessageBody);
+            tvDate = messageView.findViewById(R.id.tvDate);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            messageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d("MessageDetailsActivity", String.format("going to details"));
-                    // gets item position
+                    // gets message position
                     int position = getAdapterPosition();
                     // make sure the position is valid, i.e. actually exists in the view
                     if (position != RecyclerView.NO_POSITION) {
@@ -111,7 +118,7 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         notifyDataSetChanged();
     }
 
-    // Add a list of items -- change to type used
+    // Add a list of messages -- change to type used
     public void addAll(List<Message> list) {
         messages.addAll(list);
         notifyDataSetChanged();
