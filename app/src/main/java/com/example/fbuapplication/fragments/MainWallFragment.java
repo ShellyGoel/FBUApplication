@@ -240,8 +240,8 @@ public class MainWallFragment extends Fragment {
                 // for debugging purposes let's print every message description to logcat
                 for (Message message : messages) {
                     Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
-                    ParseUser.getCurrentUser().add("main_wall_notes", message.getMessageBody());
-                    ParseUser.getCurrentUser().add("main_wall_messages",message);
+                    //ParseUser.getCurrentUser().add("main_wall_notes", message.getMessageBody());
+                    //ParseUser.getCurrentUser().add("main_wall_messages",message);
                     messagesPinnedByUser.add(message.getMessageBody());
 
                     ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {

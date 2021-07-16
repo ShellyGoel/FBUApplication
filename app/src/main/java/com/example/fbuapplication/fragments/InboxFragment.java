@@ -124,30 +124,30 @@ public class InboxFragment extends Fragment {
 
 
 
-
-                //TODO: Probably don't need this fields. May make more efficient though.
-                List<Message> user_inbox_messages = (List<Message>) ParseUser.getCurrentUser().get("inbox_messages");
-                // for debugging purposes let's print every message description to logcat
-                user_inbox_messages.remove(deletedMessage);
-                ParseUser.getCurrentUser().put("inbox_messages",user_inbox_messages);
-
-                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while saving new messages",e);
-
-                                if(getActivity() != null){
-                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
-                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
-
-                                }
-                            }
-                            Log.i(TAG, "Deleted message successfully from Parse (for inbox)");
-                        }
-                    });
-
-
+//
+//                //TODO: Probably don't need this fields. May make more efficient though.
+//                List<Message> user_inbox_messages = (List<Message>) ParseUser.getCurrentUser().get("inbox_messages");
+//                // for debugging purposes let's print every message description to logcat
+//                user_inbox_messages.remove(deletedMessage);
+//                ParseUser.getCurrentUser().put("inbox_messages",user_inbox_messages);
+//
+//                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+//                        @Override
+//                        public void done(ParseException e) {
+//                            if(e != null){
+//                                Log.e(TAG, "Error while saving new messages",e);
+//
+//                                if(getActivity() != null){
+//                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+//                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
+//
+//                                }
+//                            }
+//                            Log.i(TAG, "Deleted message successfully from Parse (for inbox)");
+//                        }
+//                    });
+//
+//
 
 
                 // below line is to notify our item is removed from adapter.
@@ -274,30 +274,30 @@ public class InboxFragment extends Fragment {
                 }
 
 
-                // for debugging purposes let's print every message description to logcat
-                for (Message message : messages) {
-                    Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
-                    ParseUser.getCurrentUser().add("user_inbox", message.getMessageBody());
-                    ParseUser.getCurrentUser().add("inbox_messages",message);
-                    messagesForUser.add(message.getMessageBody());
-
-                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while saving new messages",e);
-
-                                if(getActivity() != null){
-                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
-                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
-
-                                }
-                                 }
-                            Log.i(TAG, "Profile picture upload was successful!");
-                        }
-                    });
-
-                }
+//                // for debugging purposes let's print every message description to logcat
+//                for (Message message : messages) {
+//                    Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
+//                    //ParseUser.getCurrentUser().add("user_inbox", message.getMessageBody());
+//                    //ParseUser.getCurrentUser().add("inbox_messages",message);
+//                    messagesForUser.add(message.getMessageBody());
+//
+//                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+//                        @Override
+//                        public void done(ParseException e) {
+//                            if(e != null){
+//                                Log.e(TAG, "Error while saving new messages",e);
+//
+//                                if(getActivity() != null){
+//                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
+//                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
+//
+//                                }
+//                                 }
+//                            Log.i(TAG, "Profile picture upload was successful!");
+//                        }
+//                    });
+//
+//                }
 
                 // save received messages to list and notify adapter of new data
                 allMessages.addAll(messages);
