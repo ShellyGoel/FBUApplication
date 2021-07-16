@@ -104,6 +104,7 @@ public class InboxFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 // this method is called when we swipe our item to right direction.
                 // on below line we are getting the item at a particular position.
+                shouldDelete = true;
                 Message deletedMessage = allMessages.get(viewHolder.getAdapterPosition());
 
                 // below line is to get the position
@@ -170,7 +171,8 @@ public class InboxFragment extends Fragment {
 
                     @Override
                     public void onDismissed(Snackbar snackbar, int event) {
-                        if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+                        if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT || event == Snackbar.Callback.DISMISS_EVENT_ACTION || event == Snackbar.Callback.DISMISS_EVENT_ACTION || event == Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE || event == Snackbar.Callback.DISMISS_EVENT_SWIPE || event == Snackbar.Callback.DISMISS_EVENT_MANUAL)
+                        {
 
                             if(shouldDelete) {
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
@@ -182,7 +184,8 @@ public class InboxFragment extends Fragment {
 
                                             // iterate over all messages and delete them
                                             for (ParseObject message : messages) {
-                                                message.deleteEventually();
+                                                //message.deleteEventually();
+                                                message.deleteInBackground();
                                             }
                                         } else {
                                             Log.d(TAG, e.getMessage());
@@ -196,7 +199,7 @@ public class InboxFragment extends Fragment {
 
                     @Override
                     public void onShown(Snackbar snackbar) {
-
+                        shouldDelete = true;
                     }
                 });
 

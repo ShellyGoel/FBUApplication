@@ -12,6 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -74,13 +76,23 @@ public class LoginActivity extends AppCompatActivity {
 
                     Snackbar.make(btnLogin, e.getMessage()+" Please try again.", Snackbar.LENGTH_LONG).show();
                     Log.e(TAG, "issue with login",e);
-//                    ParseUser.
+
+                    YoYo.with(Techniques.Shake)
+                            .duration(100)
+                            .repeat(3)
+                            .playOn(etUsername);
+
+                    YoYo.with(Techniques.Shake)
+                            .duration(100)
+                            .repeat(3)
+                            .playOn(etPassword);
 
                 }
                 else {
                     goMainActivity();
                     //Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_LONG).show();
                     Snackbar.make(btnLogin, "Success! Logging in...", Snackbar.LENGTH_LONG).show();
+
 
                 }
             }

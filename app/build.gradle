@@ -99,6 +99,7 @@ dependencies {
     // Room for simple persistence with an ORM
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
 
 
 }

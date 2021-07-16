@@ -123,7 +123,7 @@ public class ComposeFragment extends Fragment {
                         getAllUsernames.add(p.getUsername());
                     }
 
-                    //if(getActivity()!= null) {
+                    if(getActivity()!= null) {
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                                 (getContext(), android.R.layout.select_dialog_item, getAllUsernames);
 
@@ -133,10 +133,10 @@ public class ComposeFragment extends Fragment {
                     else{
                         Log.e(TAG,"Activity is null!");
                     }
-//                } else {
-//                    // Something went wrong.
-//                    Log.e(TAG, "Error: " + e.getMessage());
-//                }
+                } else {
+                    // Something went wrong.
+                    Log.e(TAG, "Error: " + e.getMessage());
+                }
             }
         });
 
