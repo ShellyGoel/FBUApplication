@@ -43,7 +43,7 @@
         <TextView
             android:id="@+id/tvWallTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:fontFamily="@font/hey_magnolia"
             android:text="User's Wall"
             android:textAlignment="center"

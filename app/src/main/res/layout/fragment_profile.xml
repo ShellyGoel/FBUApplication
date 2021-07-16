@@ -12,47 +12,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/plant_2"
+            android:layout_width="232dp"
+            android:layout_height="291dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumSent"
+            app:srcCompat="@drawable/fresh_folk___plants_4" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivProfileImage"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/white"
+            android:layout_marginTop="92dp"
             android:contentDescription="Add profile picture"
             android:cropToPadding="false"
-            android:src="@drawable/ic_baseline_person_add_person"
-            app:border_color="@color/teal_700"
-            app:border_width="4dp"
+            android:src="@mipmap/profile_pic_round"
+            app:border_color="@color/purple_500"
+            app:border_width="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_baseline_person_add_person" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNumSent"
+            tools:src="@mipmap/profile_pic_round" />
 
         <TextView
             android:id="@+id/tvUsername"
-            android:layout_width="237dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="380dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
             android:fontFamily="@font/hey_magnolia"
+            android:textAlignment="center"
             android:textColor="@color/teal_700"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.609"
-            app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
+
 
         <TextView
             android:id="@+id/tvNumSent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/biko_regular"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:text="Number notes sent" />
+
+
+        <TextView
+            android:id="@+id/tvMotivationalQuote"
+            android:layout_width="361dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/biko_regular"
+            android:textAlignment="center"
+            android:textColor="@color/teal_400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Motivational quote" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

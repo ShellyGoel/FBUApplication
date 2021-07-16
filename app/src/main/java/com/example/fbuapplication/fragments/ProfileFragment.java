@@ -10,8 +10,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -19,26 +17,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fbuapplication.Message;
-import com.example.fbuapplication.MessagesInboxAdapter;
 import com.example.fbuapplication.R;
 
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends Fragment{
@@ -48,6 +52,7 @@ public class ProfileFragment extends Fragment{
     private ImageView ivProfileImage;
     private TextView tvUsername;
     private  TextView tvNumSent;
+    private TextView tvMotivationalQuote;
 
     private static int RESULT_LOAD_IMAGE = 1;
 
@@ -72,6 +77,7 @@ public class ProfileFragment extends Fragment{
         tvUsername = view.findViewById(R.id.tvUsername);
         tvNumSent = view.findViewById(R.id.tvNumSent);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
+        tvMotivationalQuote = view.findViewById(R.id.tvMotivationalQuote);
 
 //        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
 
@@ -101,12 +107,108 @@ public class ProfileFragment extends Fragment{
             }
         });
 
-
+        getMotivationalQuote();
 
     }
 
+    public void getMotivationalQuote() {
+        OkHttpClient client = new OkHttpClient();
 
-    public void onLaunchCamera(View view) {
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(mediaType, "{\n    \"key1\": \"value\",\n    \"key2\": \"value\"\n}");
+        Request request = new Request.Builder()
+                .url("https://motivational-quotes1.p.rapidapi.com/motivation")
+                .post(body)
+                .addHeader("content-type", "application/json")
+                .addHeader("x-rapidapi-key", "37e97d30f9mshe0dd0b011989d8ap19a372jsn27c489c1c486")
+                .addHeader("x-rapidapi-host", "motivational-quotes1.p.rapidapi.com")
+                .build();
+
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                } else {
+                    String jsonData = response.body().string();
+                    //JSONObject properties = null;
+
+                        //properties = new JSONObject(jsonData);
+                        //String key1 = properties.getString("key1");
+                        //String key2 = properties.getString("key2");
+
+
+                    if(getActivity()!=null) {
+
+
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+
+                                // Stuff that updates the UI
+                                tvMotivationalQuote.setText(jsonData);
+
+                            }
+                        });
+
+                    }
+                }
+            }
+
+
+//        try {
+//            Response response = client.newCall(request).enqueue(new Callback() {
+//                @Override
+//                public void onFailure(Call call, IOException e) {
+//                    Log.e(TAG, e.toString());
+//                }
+//
+//                @Override
+//                public void onResponse(Call call, Response response) throws IOException {
+//                    JSONObject properties = null;
+//
+//                    try {
+//                        Log.w(TAG, response.body().string());
+//                        Log.i(TAG, response.toString());
+//
+//                        String jsonData = response.body().string();
+//
+//
+//                        properties = new JSONObject(jsonData);
+//                        String key1 = properties.getString("key1");
+//                        String key2 = properties.getString("key2");
+//
+//
+//                        Log.i(TAG, "key1: " + key1 + " key2: " + key2);
+//                        tvMotivationalQuote.setText(key1);
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//
+//
+//            });
+//
+
+//        }
+//
+//
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    });
+    }
+
+        public void onLaunchCamera(View view) {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
