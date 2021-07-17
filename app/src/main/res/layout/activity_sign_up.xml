@@ -54,4 +54,14 @@
         android:backgroundTint="@color/teal_700"
         android:text="Sign up" />
 
+    <ImageView
+        android:id="@+id/bgsignup"
+        android:layout_width="match_parent"
+        android:layout_height="405dp"
+        android:cropToPadding="false"
+        android:visibility="visible"
+        app:srcCompat="@drawable/fresh_folk___plants_3"
+        tools:srcCompat="@drawable/fresh_folk___plants_3"
+        tools:visibility="visible" />
+
 </LinearLayout>

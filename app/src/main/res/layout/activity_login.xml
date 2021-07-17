@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
+    android:background="#00FDF3F3"
     android:backgroundTint="#C51818"
     android:orientation="vertical"
     tools:context=".LoginActivity">
@@ -43,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/purple_500"
-        android:text="Login" />
+        android:text="Login"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/sign_up"
@@ -56,4 +58,15 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/bglogin"
+        android:layout_width="match_parent"
+        android:layout_height="405dp"
+        android:cropToPadding="false"
+        android:visibility="visible"
+        app:srcCompat="@drawable/fresh_folk___plants_3"
+        tools:srcCompat="@drawable/fresh_folk___plants_3"
+        tools:visibility="visible" />
+
 </LinearLayout>

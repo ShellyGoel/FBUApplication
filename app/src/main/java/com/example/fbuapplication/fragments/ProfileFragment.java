@@ -17,11 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.fbuapplication.R;
 
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseException;
@@ -34,6 +36,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -89,8 +92,15 @@ public class ProfileFragment extends Fragment{
         if(ParseUser.getCurrentUser().get("num_messages_sent")==null){
             ParseUser.getCurrentUser().put("num_messages_sent",0);
         }
+
+        ParseFile img_user = (ParseFile) ParseUser.getCurrentUser().get(KEY_PROFILE_PICTURE);
+        if(img_user!=null){
+            Glide.with(requireContext()).load(img_user.getUrl()).into(ivProfileImage);
+
+        }
         tvUsername.setText("Welcome " + ParseUser.getCurrentUser().get("full_name").toString() +"!");
         tvNumSent.setText("Number of notes sent: " + ParseUser.getCurrentUser().get("num_messages_sent"));
+
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -225,7 +235,17 @@ public class ProfileFragment extends Fragment{
     }
 
     private void updateUserWithPhoto(ParseUser currentUser, File photoFile) {
-        currentUser.put(KEY_PROFILE_PICTURE, new ParseFile(photoFile));
+
+        ParseFile img = new ParseFile(photoFile);
+
+        img.saveInBackground(new SaveCallback() {
+            public void done(ParseException e) {
+                // If successful add file to user and signUpInBackground
+                if(null == e)
+                    currentUser.put(KEY_PROFILE_PICTURE, img);
+
+            }
+        });
 
         currentUser.saveInBackground(new SaveCallback() {
             @Override
@@ -236,11 +256,19 @@ public class ProfileFragment extends Fragment{
                     Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
 
                 }
-                Log.i(TAG, "Profile picture upload was successful!");
+                else {
+                    Log.i(TAG, "Profile picture upload was successful!");
+                    //Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
+                }
+                //ivProfileImage.setImageResource(new ParseFile(photoFile));
             }
         });
 
+
     }
+
+
+
 
     public void onActivityGalleryResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

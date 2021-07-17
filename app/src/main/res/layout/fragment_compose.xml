@@ -56,4 +56,13 @@
         tools:layout_editor_absoluteX="310dp"
         tools:layout_editor_absoluteY="6dp" />
 
+    <ImageView
+        android:id="@+id/composeImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/teal_700"
+        app:srcCompat="@color/teal_700"
+        tools:src="@color/teal_700"
+        tools:srcCompat="@drawable/fuzzy_friends___plant" />
+
 </LinearLayout>
