@@ -162,49 +162,6 @@ public class ProfileFragment extends Fragment{
                 }
             }
 
-
-//        try {
-//            Response response = client.newCall(request).enqueue(new Callback() {
-//                @Override
-//                public void onFailure(Call call, IOException e) {
-//                    Log.e(TAG, e.toString());
-//                }
-//
-//                @Override
-//                public void onResponse(Call call, Response response) throws IOException {
-//                    JSONObject properties = null;
-//
-//                    try {
-//                        Log.w(TAG, response.body().string());
-//                        Log.i(TAG, response.toString());
-//
-//                        String jsonData = response.body().string();
-//
-//
-//                        properties = new JSONObject(jsonData);
-//                        String key1 = properties.getString("key1");
-//                        String key2 = properties.getString("key2");
-//
-//
-//                        Log.i(TAG, "key1: " + key1 + " key2: " + key2);
-//                        tvMotivationalQuote.setText(key1);
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//
-//
-//            });
-//
-
-//        }
-//
-//
-//        catch (Exception e) {
-//            e.printStackTrace();
-//        }
     });
     }
 

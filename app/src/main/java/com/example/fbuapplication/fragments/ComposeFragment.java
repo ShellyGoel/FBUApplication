@@ -31,6 +31,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.internal.LazilyParsedNumber;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -46,6 +47,8 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -64,6 +67,7 @@ public class ComposeFragment extends Fragment {
     private List<String> getAllUsernames;
     private TextView tvCompose;
 
+    boolean shouldDelete;
     //TODO: add onAttach
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
 //    private File photoFile;
@@ -161,61 +165,19 @@ public class ComposeFragment extends Fragment {
                     return;
                 }
 
-                OkHttpClient client = new OkHttpClient();
+                //TODO: Adding second sentiment analysis to double check sentiment
 
-                MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+                int sentiment_val1 = getSentiment1(description);
+                double sentiment_val2 = getSentiment2(description);
 
-                String decoded = null;
-                try {
-                    decoded = URLDecoder.decode(description, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                if(sentiment_val1>=50 || sentiment_val2<=0.6){
+                    //make a toast because the message might be negative
+
+                    DontSendDialogFragment dontSendDialogFragment = new DontSendDialogFragment();
+                    dontSendDialogFragment.show(
+                            getChildFragmentManager(), "Dialog");
+
                 }
-//                RequestBody body = RequestBody.create(mediaType, "text=I%20am%20not%20really%20happy");
-
-                //https://rapidapi.com/fyhao/api/text-sentiment-analysis-method/
-                RequestBody body = RequestBody.create(mediaType, "text="+decoded);
-                Request request = new Request.Builder()
-                        .url("https://text-sentiment.p.rapidapi.com/analyze")
-                        .post(body)
-                        .addHeader("content-type", "application/x-www-form-urlencoded")
-
-//                        .addHeader("x-rapidapi-key", "37e97d30f9mshe0dd0b011989d8ap19a372jsn27c489c1c486")
-                        .addHeader("x-rapidapi-key",  BuildConfig.CONSUMER_SECRET_KEY)
-                        .addHeader("x-rapidapi-host", "text-sentiment.p.rapidapi.com")
-                        .build();
-
-                try {
-                    Response response = client.newCall(request).execute();
-                    String jsonData = response.body().string();
-                    JSONObject properties = new JSONObject(jsonData);
-                    //JSONObject properties = Jobject.getJSONObject("properties");
-                    String pos = properties.getString("pos");
-                    String neg = properties.getString("neg");
-                    String mid = properties.getString("mid");
-                    String pos_percent = properties.getString("pos_percent");
-                    String mid_percent = properties.getString("mid_percent");
-                    String neg_percent = properties.getString("neg_percent");
-
-
-                    Log.i(TAG, "POSITIVE: "+ pos+ " NEUTRAL: " + mid + " NEGATIVE: "+neg);
-                    Log.i(TAG, "POSITIVE: "+ pos_percent+ " NEUTRAL: " + mid_percent + " NEGATIVE: "+neg_percent);
-
-                    if(Integer.parseInt(neg_percent.substring(0,neg_percent.length()-1))>50){
-                        Log.i(TAG, "too negative!");
-
-                    }
-                }
-                catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-
-//                if(photoFile == null || ivMessageImage.getDrawable()==null){
-//                    Toast.makeText(getContext(),"There is no image!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-
-
 
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 List<ParseUser> userListFinal = new ArrayList<>();
@@ -263,6 +225,150 @@ public class ComposeFragment extends Fragment {
 
     }
 
+    public Integer getSentiment1(String description) {
+        final int[] sent_val = {0};
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+
+        String decoded = null;
+        try {
+            decoded = URLDecoder.decode(description, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        //https://rapidapi.com/fyhao/api/text-sentiment-analysis-method/
+        RequestBody body = RequestBody.create(mediaType, "text="+decoded);
+        Request request = new Request.Builder()
+                .url("https://text-sentiment.p.rapidapi.com/analyze")
+                .post(body)
+                .addHeader("content-type", "application/x-www-form-urlencoded")
+                .addHeader("x-rapidapi-key",  BuildConfig.CONSUMER_SECRET_KEY)
+                .addHeader("x-rapidapi-host", "text-sentiment.p.rapidapi.com")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                } else {
+                    String jsonData = response.body().string();
+                    JSONObject properties = null;
+                    try {
+                        properties = new JSONObject(jsonData);
+                        //JSONObject properties = Jobject.getJSONObject("properties");
+                        String pos = properties.getString("pos");
+                        String neg = properties.getString("neg");
+                        String mid = properties.getString("mid");
+                        String pos_percent = properties.getString("pos_percent");
+                        String mid_percent = properties.getString("mid_percent");
+                        String neg_percent = properties.getString("neg_percent");
+
+
+                        Log.i(TAG, "POSITIVE: " + pos + " NEUTRAL: " + mid + " NEGATIVE: " + neg);
+                        Log.i(TAG, "POSITIVE: " + pos_percent + " NEUTRAL: " + mid_percent + " NEGATIVE: " + neg_percent);
+
+                        sent_val[0] = Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1));
+                        if (Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1)) > 50) {
+                            Log.i(TAG, "too negative!");
+                        }
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    if(getActivity()!=null) {
+
+
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+
+                                // Stuff that updates the UI
+                                //tvMotivationalQuote.setText(jsonData);
+
+                            }
+                        });
+
+                    }
+                }
+            }
+
+        });
+        return sent_val[0];
+    }
+
+    public double getSentiment2(String description) {OkHttpClient client = new OkHttpClient();
+
+        final double[] sent_score = {0.0};
+
+        MediaType mediaType = MediaType.parse("application/json");
+        String placeholder = "{\n    \"documents\": [\n        {\n            \"id\": \"1\",\n            \"text\": \""+description+"\"\n        }\n    ]\n}";
+        RequestBody body = RequestBody.create(mediaType, placeholder);
+        Request request = new Request.Builder()
+                .url("https://sentiments-analysis.p.rapidapi.com/")
+                .post(body)
+                .addHeader("content-type", "application/json")
+                .addHeader("x-rapidapi-key", "37e97d30f9mshe0dd0b011989d8ap19a372jsn27c489c1c486")
+                .addHeader("x-rapidapi-host", "sentiments-analysis.p.rapidapi.com")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                } else {
+                    String jsonData = response.body().string();
+                    JSONObject properties = null;
+                    try {
+                        properties = new JSONObject(jsonData);
+                        //JSONObject properties = Jobject.getJSONObject("properties");
+                        JSONObject result = properties.getJSONObject("result");
+                        JSONObject documents = result.getJSONObject("documents");
+                        JSONObject doc_0 = result.getJSONObject("0");
+                        String sentiment_score = doc_0.getString("sentiments_score");
+                        sent_score[0] = Integer.parseInt(sentiment_score.substring(0, sentiment_score.length() - 1));
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    if(getActivity()!=null) {
+
+
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+
+                                // Stuff that updates the UI
+                                //tvMotivationalQuote.setText(jsonData);
+
+                            }
+                        });
+
+                    }
+                }
+            }
+
+        });
+
+        return sent_score[0];
+    }
 
     private void saveMessage(String description, ParseUser currentUser, ParseUser recipientUser) {
 
