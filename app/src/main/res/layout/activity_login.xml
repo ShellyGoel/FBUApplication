@@ -65,8 +65,8 @@
         android:layout_height="405dp"
         android:cropToPadding="false"
         android:visibility="visible"
-        app:srcCompat="@drawable/fresh_folk___plants_3"
-        tools:srcCompat="@drawable/fresh_folk___plants_3"
+        app:srcCompat="@drawable/fresh_folk___plants_16"
+        tools:srcCompat="@drawable/fresh_folk___plants_16"
         tools:visibility="visible" />
 
 </LinearLayout>

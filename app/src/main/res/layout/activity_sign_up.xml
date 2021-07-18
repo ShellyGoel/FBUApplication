@@ -45,23 +45,23 @@
         android:inputType="textPersonName" />
 
 
-
     <Button
         android:id="@+id/btnSignLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/teal_700"
-        android:text="Sign up" />
+        android:text="Sign up"
+        android:textColor="@color/white" />
 
     <ImageView
         android:id="@+id/bgsignup"
         android:layout_width="match_parent"
-        android:layout_height="405dp"
+        android:layout_height="489dp"
         android:cropToPadding="false"
         android:visibility="visible"
-        app:srcCompat="@drawable/fresh_folk___plants_3"
-        tools:srcCompat="@drawable/fresh_folk___plants_3"
+        app:srcCompat="@drawable/fresh_folk___plants_15"
+        tools:srcCompat="@drawable/fresh_folk___plants_15"
         tools:visibility="visible" />
 
 </LinearLayout>

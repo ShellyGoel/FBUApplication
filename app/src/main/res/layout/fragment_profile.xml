@@ -13,28 +13,27 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/plant_2"
-            android:layout_width="232dp"
-            android:layout_height="291dp"
-            android:layout_marginTop="12dp"
+            android:id="@+id/profile1"
+            android:layout_width="375dp"
+            android:layout_height="650dp"
+            android:src="@drawable/fresh_folk___plants_2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNumSent"
-            app:srcCompat="@drawable/fresh_folk___plants_4" />
+            tools:layout_editor_absoluteY="-7dp" />
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivProfileImage"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="104dp"
+            android:layout_width="155dp"
+            android:layout_height="149dp"
+            android:layout_marginTop="152dp"
             android:contentDescription="Add profile picture"
             android:cropToPadding="false"
             android:src="@mipmap/profile_pic_round"
-            app:border_color="@color/purple_500"
+            app:border_color="@color/white"
             app:border_width="6dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNumSent"
             tools:src="@mipmap/profile_pic_round" />
@@ -44,7 +43,7 @@
             android:layout_width="376dp"
             android:layout_height="53dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/hey_magnolia"
             android:textAlignment="center"
@@ -52,16 +51,16 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
-
 
         <TextView
             android:id="@+id/tvNumSent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/biko_regular"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -75,7 +74,7 @@
             android:layout_width="361dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="412dp"
+            android:layout_marginTop="564dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/biko_regular"
             android:textAlignment="center"

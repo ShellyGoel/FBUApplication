@@ -172,8 +172,8 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
                 //TODO: Adding second sentiment analysis to double check sentiment
 
-                int sentiment_val1 = getSentiment1(description);
-                double sentiment_val2 = getSentiment2(description);
+//                int sentiment_val1 = getSentiment1(description);
+//                double sentiment_val2 = getSentiment2(description);
 
                 compose_description = description;
                 compose_recipient = recipient;
@@ -205,50 +205,51 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
                     try {
                         response = client.newCall(request).execute();
+                        try {
+                            String jsonData = response.body().string();
+                            JSONObject properties = null;
+                            properties = new JSONObject(jsonData);
+                            //JSONObject properties = Jobject.getJSONObject("properties");
+                            String pos = properties.getString("pos");
+                            String neg = properties.getString("neg");
+                            String mid = properties.getString("mid");
+                            String pos_percent = properties.getString("pos_percent");
+                            String mid_percent = properties.getString("mid_percent");
+                            String neg_percent = properties.getString("neg_percent");
+
+
+                            Log.i(TAG, "POSITIVE: " + pos + " NEUTRAL: " + mid + " NEGATIVE: " + neg);
+                            Log.i(TAG, "POSITIVE: " + pos_percent + " NEUTRAL: " + mid_percent + " NEGATIVE: " + neg_percent);
+
+                            sent_val[0] = Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1));
+                            sent1 = Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1));
+                            if (Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1)) > 50) {
+                                Log.i(TAG, "too negative!");
+                            }
+                        }catch (JSONException | IOException e) {
+                            e.printStackTrace();
+                        }
+
+
+                        if(getActivity()!=null) {
+
+
+                            getActivity().runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+
+                                    // Stuff that updates the UI
+                                    //tvMotivationalQuote.setText(jsonData);
+
+                                }
+                            });
+
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    try {
-                        String jsonData = response.body().string();
-                        JSONObject properties = null;
-                        properties = new JSONObject(jsonData);
-                        //JSONObject properties = Jobject.getJSONObject("properties");
-                        String pos = properties.getString("pos");
-                        String neg = properties.getString("neg");
-                        String mid = properties.getString("mid");
-                        String pos_percent = properties.getString("pos_percent");
-                        String mid_percent = properties.getString("mid_percent");
-                        String neg_percent = properties.getString("neg_percent");
 
-
-                        Log.i(TAG, "POSITIVE: " + pos + " NEUTRAL: " + mid + " NEGATIVE: " + neg);
-                        Log.i(TAG, "POSITIVE: " + pos_percent + " NEUTRAL: " + mid_percent + " NEGATIVE: " + neg_percent);
-
-                        sent_val[0] = Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1));
-                        sent1 = Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1));
-                        if (Integer.parseInt(neg_percent.substring(0, neg_percent.length() - 1)) > 50) {
-                            Log.i(TAG, "too negative!");
-                        }
-                    }catch (JSONException | IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    if(getActivity()!=null) {
-
-
-                        getActivity().runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-
-                                // Stuff that updates the UI
-                                //tvMotivationalQuote.setText(jsonData);
-
-                            }
-                        });
-
-                    }
 
                 //TODO:Sent 2
 
@@ -271,37 +272,38 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
                     try {
                         response1 = client1.newCall(request1).execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        String jsonData = response1.body().string();
-                        JSONObject properties = null;
-                        properties = new JSONObject(jsonData);
-                        //JSONObject properties = Jobject.getJSONObject("properties");
-                        JSONObject result = properties.getJSONObject("result");
-                        JSONArray documents = result.getJSONArray("documents");
-                        //JSONObject doc_0 = documents.getJSONObject("0");
-                        String sentiment_score = documents.getJSONObject(0).getString("sentiments_score");
-                        sent_score[0] = Double.parseDouble(sentiment_score);
-                        sent2 = Double.parseDouble(sentiment_score);
-                        Log.i(TAG, "SCORE: "+sent_score[0]);
-                        if(getActivity()!=null) {
+                        try {
+                            String jsonData = response1.body().string();
+                            JSONObject properties = null;
+                            properties = new JSONObject(jsonData);
+                            //JSONObject properties = Jobject.getJSONObject("properties");
+                            JSONObject result = properties.getJSONObject("result");
+                            JSONArray documents = result.getJSONArray("documents");
+                            //JSONObject doc_0 = documents.getJSONObject("0");
+                            String sentiment_score = documents.getJSONObject(0).getString("sentiments_score");
+                            sent_score[0] = Double.parseDouble(sentiment_score);
+                            sent2 = Double.parseDouble(sentiment_score);
+                            Log.i(TAG, "SCORE: "+sent_score[0]);
+                            if(getActivity()!=null) {
 
 
-                            getActivity().runOnUiThread(new Runnable() {
+                                getActivity().runOnUiThread(new Runnable() {
 
-                                @Override
-                                public void run() {
+                                    @Override
+                                    public void run() {
 
-                                    // Stuff that updates the UI
-                                    //tvMotivationalQuote.setText(jsonData);
+                                        // Stuff that updates the UI
+                                        //tvMotivationalQuote.setText(jsonData);
 
-                                }
-                            });
+                                    }
+                                });
 
+                            }
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (IOException | JSONException e) {
+
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
 
@@ -336,6 +338,10 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 //                    }
 
 
+                }
+
+                else{
+                    prepareMessage(getRecipient(), getDescription());
                 }
 
 
