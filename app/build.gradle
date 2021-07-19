@@ -15,6 +15,7 @@ android {
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/INDEX.LIST'
     }
     defaultConfig {
         applicationId "com.example.fbuapplication"
@@ -100,6 +101,23 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomVersion"
     annotationProcessor "androidx.room:room-compiler:$roomVersion"
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
+
+
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+//
+//    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+//    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+//
+//    // https://mvnrepository.com/artifact/com.google.guava/guava
+//    compile group: 'com.google.guava', name: 'guava', version: '23.0'
+//
+//    // https://mvnrepository.com/artifact/org.asynchttpclient/async-http-client
+//    compile group: 'org.asynchttpclient', name: 'async-http-client', version: '2.0.35'
+//
+//    // https://mvnrepository.com/artifact/org.asynchttpclient/async-http-client-extras-guava
+//    compile group: 'org.asynchttpclient', name: 'async-http-client-extras-guava', version: '2.0.35'
+
+
 
 
 }

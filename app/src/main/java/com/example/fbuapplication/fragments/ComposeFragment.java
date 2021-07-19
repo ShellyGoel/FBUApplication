@@ -37,12 +37,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+//import io.netty.handler.codec.http.multipart.Attribute;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -177,6 +185,47 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
                 compose_description = description;
                 compose_recipient = recipient;
+
+                //OkHttpClient listeners
+
+////TODO: HERE
+//                try {
+//                    String score = sentimentClient.sentimentRequest(description);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (com.meaningcloud.Request.ParameterValidationException e) {
+//                    e.printStackTrace();
+//                }
+
+
+                try {
+                    String url = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=", key = "AIzaSyAtB96LWAQqg5-E3L8Gz724U-IJhqvlkV0";
+
+                    final URL serverUrl = new URL(url + key);
+                    URLConnection urlConnection = serverUrl.openConnection();
+                    HttpURLConnection httpConnection = (HttpURLConnection)urlConnection;
+                    httpConnection.setRequestMethod("POST");
+                    httpConnection.setRequestProperty("Content-Type", "application/json");
+                    httpConnection.setDoOutput(true);
+                    BufferedWriter httpRequestBodyWriter = new BufferedWriter(new
+                            OutputStreamWriter(httpConnection.getOutputStream()));
+                    httpRequestBodyWriter.write("{\"comment\": {\"text\": \"" + getDescription() + "\"},"
+                            + "\"requestedAttributes\": {\"TOXICITY\": {}, \"SEVERE_TOXICITY\": {}}}");
+                   // + "\"requestedAttributes\": {\"TOXICITY\": {}}, {\"SEVERE_TOXICITY\": {}}, {\"INSULT\": {}}, {\"SEXUALLY_EXPLICIT\": {}}, {\"PROFANITY\": {}}, {\"LIKELY_TO_REJECT\": {}}, {\"THREAT\": {}}, {\"IDENTITY_ATTACK\": {}}}");
+                    httpRequestBodyWriter.flush();
+                    httpRequestBodyWriter.close();
+                    System.out.println("CODE : " + httpConnection.getResponseCode());
+
+                    BufferedReader responseBuffer = new BufferedReader(new InputStreamReader((httpConnection.getInputStream())));
+                    String output;
+                    while ((output = responseBuffer.readLine()) != null) {
+                        System.out.println(output);
+                    }
+                    Log.i(TAG, "OUTPUT: "+output);
+                    httpConnection.disconnect();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
 
 
                 int[] sent_val = {0};

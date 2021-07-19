@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InboxFragment">
+    tools:context=".fragments.MainWallFragment">
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,12 +20,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_200"
+            android:minHeight="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/tv_toolbar_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/biko_regular"
+                android:hint="Search:"
+                android:textColor="#fff"
+                android:textColorHint="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+        </androidx.appcompat.widget.Toolbar>
+
         <TextView
-            android:id="@+id/tvInboxTitle"
+            android:id="@+id/tvWallTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/hey_magnolia"
-            android:text="User's Mail"
+            android:text="User's Wall"
             android:textAlignment="center"
             android:textColor="@color/teal_700"
             android:textSize="34sp"
@@ -36,32 +54,30 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvInboxMessages"
+                    android:id="@+id/rvMainWallMessages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                  >
+                    android:padding="8dp" >
 
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/rvInboxMessages"
+                    android:layout_below="@+id/rvMainWallMessages"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/reading_a_letter_bro" />
+                    android:src="@drawable/fresh_folk___plants_12" />
             </RelativeLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
     </LinearLayout>
 
 </FrameLayout>

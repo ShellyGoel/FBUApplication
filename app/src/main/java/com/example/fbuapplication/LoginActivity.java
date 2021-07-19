@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(e != null){
 
                     Snackbar.make(btnLogin, e.getMessage()+" Please try again.", Snackbar.LENGTH_LONG).show();
-                    Log.e(TAG, "issue with login",e);
+                    Log.e(TAG, "issue with login" + e,e);
 
                     YoYo.with(Techniques.Shake)
                             .duration(100)

@@ -52,7 +52,7 @@ public class MainActivitySpace extends AppCompatActivity {
         fragmentList.add(new ComposeFragment());
         fragmentList.add(new ProfileFragment());
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.viewPager);
         tabLayout = (SpaceTabLayout) findViewById(R.id.spaceTabLayout);
 
         //we need the savedInstanceState to get the position

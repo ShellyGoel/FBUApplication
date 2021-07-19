@@ -19,6 +19,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,8 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //bottomNavigationView = findViewById(R.id.bottom_navigation);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.viewPager);
         tabLayout = (SpaceTabLayout) findViewById(R.id.spaceTabLayout);
+
+
+
 
 
         tabLayout.initialize(viewPager, getSupportFragmentManager(),

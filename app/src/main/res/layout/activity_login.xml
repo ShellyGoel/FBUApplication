@@ -11,62 +11,252 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/logo"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:cropToPadding="false"
-        android:visibility="visible"
-        app:srcCompat="@mipmap/ic_stickynote_foreground"
-        tools:srcCompat="@mipmap/ic_stickynote_background"
-        tools:visibility="visible" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etSignUsername"
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="username" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etSignPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/etSignUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="username"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="username" />
 
-    <Button
-        android:id="@+id/btnSignLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:backgroundTint="@color/purple_500"
-        android:text="Login"
-        android:textAlignment="center" />
+        <EditText
+            android:id="@+id/etSignPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/etSignUsername"
+            tools:layout_editor_absoluteX="0dp"
+            tools:text="Password" />
 
-    <Button
-        android:id="@+id/sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal|center_vertical"
-        android:backgroundTint="@color/purple_200"
-        android:foregroundTint="@color/purple_200"
-        android:text="Sign up"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/btnSignLogin"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_500"
+            android:gravity="clip_vertical|center_horizontal"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSignPassword" />
 
-    <ImageView
-        android:id="@+id/bglogin"
-        android:layout_width="match_parent"
-        android:layout_height="405dp"
-        android:cropToPadding="false"
-        android:visibility="visible"
-        app:srcCompat="@drawable/fresh_folk___plants_16"
-        tools:srcCompat="@drawable/fresh_folk___plants_16"
-        tools:visibility="visible" />
+        <Button
+            android:id="@+id/sign_up"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/purple_200"
+            android:foregroundTint="@color/purple_200"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Sign up"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSignLogin" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="294dp"
+            android:layout_height="371dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up"
+            app:srcCompat="@drawable/fresh_folk___plants_17" />
+
+        <!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/sign_up">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView43"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/imageView53"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView53"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.498"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView63"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.36"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/imageView53"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView41"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/imageView51"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView51"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.498"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView61"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.36"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/imageView51"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView42"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/imageView52"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/a10" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView52"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.498"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView62"-->
+<!--                    android:layout_width="110dp"-->
+<!--                    android:layout_height="110dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.36"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/imageView52"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.0"-->
+<!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </LinearLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </LinearLayout>

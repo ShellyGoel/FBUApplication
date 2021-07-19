@@ -20,7 +20,6 @@ import com.example.fbuapplication.R;
 
 import com.example.fbuapplication.Message;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -41,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 import androidx.appcompat.widget.SearchView;
 
-public class MainWallFragment extends Fragment {
+public class AllNotesFragment extends Fragment {
 
     private RecyclerView rvMainWallMessages;
     protected MessagesMainWallAdapter adapter;
@@ -50,6 +49,7 @@ public class MainWallFragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
     private TextView tvWallTitle;
     private Toolbar toolbar;
+
 
     public static final String TAG = "FeedActivity";
 
@@ -149,7 +149,7 @@ public class MainWallFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-       // mFrameLayout = view.findViewById(R.id.shimmerLayout);
+
         rvMainWallMessages = view.findViewById(R.id.rvMainWallMessages);
         tvWallTitle = view.findViewById(R.id.tvWallTitle);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -171,7 +171,6 @@ public class MainWallFragment extends Fragment {
         rvMainWallMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvMainWallMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
 
         if(ParseUser.getCurrentUser().get("num_messages_sent")==null){
             ParseUser.getCurrentUser().put("num_messages_sent", 0);
@@ -260,7 +259,7 @@ public class MainWallFragment extends Fragment {
 
 
                                 }
-                                    }
+                            }
                             Log.i(TAG, "Profile picture upload was successful!");
                         }
                     });
@@ -276,6 +275,7 @@ public class MainWallFragment extends Fragment {
             }
         });
     }
+
 
 
 

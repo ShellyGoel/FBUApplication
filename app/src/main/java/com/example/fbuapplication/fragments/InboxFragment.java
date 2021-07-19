@@ -80,12 +80,12 @@ public class InboxFragment extends Fragment {
         tvInboxTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "\'s Inbox");
 
 
-
-        // set the adapter on the recycler view
+    // set the adapter on the recycler view
         rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 1));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvInboxMessages.getContext(), 1);
+
         rvInboxMessages.addItemDecoration(dividerItemDecoration);
         rvInboxMessages.smoothScrollToPosition(0);
 

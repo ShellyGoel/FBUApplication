@@ -8,11 +8,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Date created" />
 
-        <EditText
+        <TextView
             android:id="@+id/editTextTextPersonName2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +56,14 @@
             android:textColor="@color/teal_700"
             android:textSize="18dp"
             tools:text="trying to look hipster" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="445dp"
+            android:layout_height="540dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            app:srcCompat="@drawable/fresh_folk___plants_11" />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-        android:hint="username" />
+        android:hint="username"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/etSignPassword"
@@ -48,7 +49,7 @@
     <Button
         android:id="@+id/btnSignLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
         android:layout_weight="1"
         android:backgroundTint="@color/teal_700"
         android:text="Sign up"
@@ -57,7 +58,7 @@
     <ImageView
         android:id="@+id/bgsignup"
         android:layout_width="match_parent"
-        android:layout_height="489dp"
+        android:layout_height="400dp"
         android:cropToPadding="false"
         android:visibility="visible"
         app:srcCompat="@drawable/fresh_folk___plants_15"
