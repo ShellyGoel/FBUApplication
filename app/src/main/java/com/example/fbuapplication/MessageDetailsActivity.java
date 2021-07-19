@@ -3,18 +3,22 @@ package com.example.fbuapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MessageDetailsActivity extends AppCompatActivity {
 
     TextView tvDate;
     TextView tvDescription;
+    ImageView ivStickyNoteImageDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_details);
         tvDate = findViewById(R.id.tvDate);
         tvDescription = findViewById(R.id.tvMessageBody);
+        ivStickyNoteImageDetails = findViewById(R.id.ivStickyNoteImageDetails);
 
         String createdAt = getIntent().getStringExtra("createdAt");
         String description = getIntent().getStringExtra("caption");

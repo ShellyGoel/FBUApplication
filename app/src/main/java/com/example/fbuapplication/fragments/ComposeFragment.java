@@ -199,7 +199,7 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
 
                 try {
-                    String url = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=", key = "AIzaSyAtB96LWAQqg5-E3L8Gz724U-IJhqvlkV0";
+                    String url = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=", key = BuildConfig.PERSPECTIVE_KEY;
 
                     final URL serverUrl = new URL(url + key);
                     URLConnection urlConnection = serverUrl.openConnection();
@@ -657,7 +657,12 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 //                    toast.show();
                     Snackbar.make(btnSubmit, "Message Sent!", Snackbar.LENGTH_LONG).show();
 
+
                     Log.i(TAG, "Message was successful!");
+
+                    ParseUser.getCurrentUser().put("num_messages_sent", (Integer)ParseUser.getCurrentUser().get("num_messages_sent")+1);
+                    ParseUser.getCurrentUser().saveInBackground();
+
                 }
                 //Snackbar.make(btnLogout, "Message Sent!", Snackbar.LENGTH_INDEFINITE).show();
 

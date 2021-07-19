@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.parse.ParseFile;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,7 +61,7 @@ public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNot
 
         public ViewHolder(@NonNull View messageView) {
             super(messageView);
-            ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImage);
+            ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImageDetails);
             tvMessageBody = messageView.findViewById(R.id.tvMessageBody);
             tvDate = messageView.findViewById(R.id.tvDate);
 

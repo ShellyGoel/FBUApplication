@@ -273,7 +273,7 @@ public class InboxFragment extends Fragment {
                     return;
                 }
 
-                ParseUser.getCurrentUser().put("num_messages_sent", messages.size());
+
 
 
 //                // for debugging purposes let's print every message description to logcat

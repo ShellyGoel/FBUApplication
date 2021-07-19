@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/ivStickyNoteImage"
+                android:id="@+id/ivStickyNoteImageDetails"
                 android:layout_width="60dp"
                 android:layout_height="61dp"
                 android:scaleType="centerCrop"
