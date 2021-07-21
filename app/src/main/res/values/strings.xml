@@ -2,4 +2,9 @@
     <string name="app_name">Cup of Positivitea</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">826542378066880</string>
+    <string name="fb_login_protocol_scheme">fb826542378066880</string>
+    <string name="facebook_client_token">4a2c67fff99088a900e9e64af4fe8185</string>
+
 </resources>
