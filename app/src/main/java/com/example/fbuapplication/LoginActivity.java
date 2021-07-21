@@ -14,11 +14,36 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.util.Arrays;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.Toast;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.parse.ParseUser;
+import com.parse.facebook.ParseFacebookUtils;
+import org.json.JSONException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,14 +51,60 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button btnLogin;
     private Button sign_up;
+    private LoginButton mLoginButton;
+
 
 
     private static final String TAG = "LoginActivity";
+
+    private static final String EMAIL = "email";
+    public static final String PROFILE = "public_profile";
+    private CallbackManager mCallbackManager;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mLoginButton = findViewById(R.id.login_button);
+        etUsername = findViewById(R.id.etSignUsername);
+        etPassword = findViewById(R.id.etSignPassword);
+        btnLogin = findViewById(R.id.btnSignLogin);
+        sign_up = findViewById(R.id.sign_up);
+
+
+        //FB SDK with Parse:
+
+        mCallbackManager = CallbackManager.Factory.create();
+        // If you are using in a fragment, call mLoginButton.setFragment(this);
+
+        // Callback registration
+        mLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                FaceBookLogin();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
+
 
         if(ParseUser.getCurrentUser()!=null){
             //means that someone is signed in already, go to main activity directly
@@ -41,10 +112,14 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-        etUsername = findViewById(R.id.etSignUsername);
-        etPassword = findViewById(R.id.etSignPassword);
-        btnLogin = findViewById(R.id.btnSignLogin);
-        sign_up = findViewById(R.id.sign_up);
+
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FaceBookLogin();
+            }
+        });
+
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +139,54 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+//
+//    public void parseFbLogin(){
+//
+//
+//        List<String> permissions = Arrays.asList("basic_info", "user_about_me",
+//                "user_relationships", "user_birthday", "user_location");
+//
+//        ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
+//            @Override
+//            public void done(ParseUser user, ParseException err) {
+//                if (user == null) {
+//                    Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+//                } else if (user.isNew()) {
+//                    Log.d("MyApp", "User signed up and logged in through Facebook!");
+//                } else {
+//                    Log.d("MyApp", "User logged in through Facebook!");
+////                            getUserDetailsFromParse();
+//                }
+//            }
+//        });
+//    }
+
+    public void FaceBookLogin(){
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setTitle("Please, wait a moment.");
+        dialog.setMessage("Logging in...");
+        dialog.show();
+        Collection<String> permissions = Arrays.asList("public_profile", "email");
+        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, (user, err) -> {
+            dialog.dismiss();
+            if (err != null) {
+                Log.e("FacebookLoginExample", "done: ", err);
+                Toast.makeText(this, err.getMessage(), Toast.LENGTH_LONG).show();
+            } else if (user == null) {
+                Toast.makeText(this, "The user cancelled the Facebook login.", Toast.LENGTH_LONG).show();
+                Log.d("FacebookLoginExample", "Uh oh. The user cancelled the Facebook login.");
+            } else if (user.isNew()) {
+                Toast.makeText(this, "User signed up and logged in through Facebook.", Toast.LENGTH_LONG).show();
+                Log.d("FacebookLoginExample", "User signed up and logged in through Facebook!");
+                getUserDetailFromFB();
+            } else {
+                Toast.makeText(this, "User logged in through Facebook.", Toast.LENGTH_LONG).show();
+                Log.d("FacebookLoginExample", "User logged in through Facebook!");
+                showAlert("Oh, you!", "Welcome back!");
+            }
+        });
     }
 
     private void loginUser(String username, String password){
@@ -112,4 +235,43 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+    private void getUserDetailFromFB() {
+        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), (object, response) -> {
+            ParseUser user = ParseUser.getCurrentUser();
+            try {
+                if (object.has("name"))
+                    user.setUsername(object.getString("name"));
+                if (object.has("email"))
+                    user.setEmail(object.getString("email"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            user.saveInBackground(e -> {
+                if (e == null) {
+                    showAlert("First Time Login!", "Welcome!");
+                } else
+                    showAlert("Error", e.getMessage());
+            });
+        });
+
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "name,email");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
+
+    private void showAlert(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    dialog.cancel();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
+    }
+
 }

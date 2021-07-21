@@ -87,7 +87,7 @@
         android:id="@+id/imageView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/_4" />
+        android:src="@drawable/_7" />
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--        android:layout_width="match_parent"-->

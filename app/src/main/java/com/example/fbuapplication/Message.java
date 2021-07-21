@@ -21,11 +21,10 @@ import androidx.room.PrimaryKey;
 public class Message extends ParseObject {
 
     public static final String KEY_MESSAGE_BODY = "message_body";
-    public static final String KEY_UNREAD = "unread";
     public static final String KEY_SENDER = "sender";
     public static final String KEY_RECIEVER = "reciever";
     public static final String KEY_ISPINNED = "isPinned";
-
+    public static final String KEY_ISUNREAD = "unread";
 
     @PrimaryKey(autoGenerate=true)
     String description;
@@ -53,13 +52,6 @@ public class Message extends ParseObject {
         put(KEY_MESSAGE_BODY, description);
     }
 
-    public boolean getUnread(){
-        return getBoolean(KEY_UNREAD);
-    }
-
-    public void setUnread(boolean unread){
-        put(KEY_UNREAD,unread);
-    }
 
     public ParseUser getSender(){
         return getParseUser(KEY_SENDER);
@@ -84,6 +76,14 @@ public class Message extends ParseObject {
 
     public void setIsPinned(boolean isPinned){
         put(KEY_ISPINNED, isPinned);
+    }
+
+    public boolean getIsUnread(){
+        return getBoolean(KEY_ISUNREAD);
+    }
+
+    public void setIsUnread(boolean isUnread){
+        put(KEY_ISUNREAD, isUnread);
     }
 
 

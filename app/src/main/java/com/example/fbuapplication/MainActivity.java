@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,8 +32,12 @@ import com.example.fbuapplication.fragments.ComposeFragment;
 import com.example.fbuapplication.fragments.InboxFragment;
 import com.example.fbuapplication.fragments.MainWallFragment;
 import com.example.fbuapplication.fragments.ProfileFragment;
+import com.facebook.AccessToken;
+import com.facebook.LoginStatusCallback;
+import com.facebook.login.LoginManager;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -46,6 +51,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import eu.long1.spacetablayout.SpaceTabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     SpaceTabLayout tabLayout;
-
+    private static final String DEFAULT_FB_APP_ID = "826542378066880";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
         super.onCreate(savedInstanceState);
@@ -122,6 +131,54 @@ public class MainActivity extends AppCompatActivity {
 //
 //
 //    }
+
+
+
+
+        if (getResources().getString(R.string.facebook_app_id).equals(DEFAULT_FB_APP_ID)) {
+            showAlertNoFacebookAppId();
+            return;
+        }
+
+
+        // User was previously logged in, can log them in directly here.
+        // If this callback is called, a popup notification appears
+        LoginManager.getInstance()
+                .retrieveLoginStatus(
+                        this,
+                        new LoginStatusCallback() {
+                            @Override
+                            public void onCompleted(AccessToken accessToken) {
+                                Snackbar snackbar = Snackbar.make(tabLayout, "User Logged in", 2);
+                                snackbar.show();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                // If MainActivity is reached without the user being logged in,
+                                // redirect to the Login Activity
+                                if (AccessToken.getCurrentAccessToken() == null) {
+                                    Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                                    startActivity(loginIntent);
+                                }
+                            }
+
+                            @Override
+                            public void onError(Exception exception) {
+                                // Handle exception
+                            }
+                        });
+
+    }
+
+    private void showAlertNoFacebookAppId() {
+        AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
+        alert.setTitle("Use your facebook app id in strings.xml");
+        alert.setMessage(
+                "This sample app can not properly function without your app id. "
+                        + "Use your facebook app id in strings.xml. Check out https://developers.facebook.com/docs/android/getting-started/ for more info. "
+                        + "Restart the app after that");
+        alert.show();
     }
 
 }

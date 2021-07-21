@@ -1,6 +1,9 @@
 package com.example.fbuapplication.fragments;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -45,10 +49,19 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import com.facebook.login.LoginManager;
+import com.parse.ParseUser;
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileFragment extends Fragment{
+public class ProfileFragment extends Fragment implements SelectCameraFragment.SelectCameraDialogListener{
 
     public static final String TAG = "profileFragment";
 
@@ -56,14 +69,29 @@ public class ProfileFragment extends Fragment{
     private TextView tvUsername;
     private  TextView tvNumSent;
     private TextView tvMotivationalQuote;
+    private View viewProfile;
 
-    private static int RESULT_LOAD_IMAGE = 1;
+
+    private boolean chooseCamera;
+   // private static int RESULT_LOAD_IMAGE = 1;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public static final int GALLERY_IMAGE_ACTIVITY_REQUEST_CODE = 13;
+
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
     public static final String KEY_PROFILE_PICTURE  = "profile_picture";
+
+
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -81,6 +109,7 @@ public class ProfileFragment extends Fragment{
         tvNumSent = view.findViewById(R.id.tvNumSent);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvMotivationalQuote = view.findViewById(R.id.tvMotivationalQuote);
+        chooseCamera = true;
 
 //        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
 
@@ -105,15 +134,29 @@ public class ProfileFragment extends Fragment{
             @Override
             public void onClick(View arg0) {
 
-                onLaunchCamera(arg0);
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                updateUserWithPhoto(currentUser, photoFile);
+                viewProfile = arg0;
 
 
-//                Intent i = new Intent(
-//                        Intent.ACTION_PICK,
-//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                FragmentManager fm = getFragmentManager();
+                SelectCameraFragment selectCameraFragment = new SelectCameraFragment();//;EditNameDialog.newInstance("Some Title");
+                // SETS the target fragment for use later when sending results
+                selectCameraFragment.setTargetFragment(ProfileFragment.this, 300);
+                selectCameraFragment.show(fm, "toSend");
+
+
+//
+//
+//                if(chooseCamera) {
+//                    onLaunchCamera(arg0);
+//                    ParseUser currentUser = ParseUser.getCurrentUser();
+//                    updateUserWithPhoto(currentUser, photoFile);
+//                }
+//
+//                else{
+//                    Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    startActivityForResult(i, GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
+//                }
+
             }
         });
 
@@ -214,6 +257,18 @@ public class ProfileFragment extends Fragment{
 
             }
         }
+
+        if (requestCode == GALLERY_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getContext().getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            ivProfileImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+        }
     }
 
     // Returns the File for a photo stored on disk given the fileName
@@ -267,23 +322,63 @@ public class ProfileFragment extends Fragment{
 
     }
 
+    @Override
+    public void onFinishSelectCameraDialog(boolean chooseCamera) {
+
+        if(chooseCamera) {
+            onLaunchCamera(getCameraView());
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            updateUserWithPhoto(currentUser, photoFile);
+        }
+
+        else{
+            verifyStoragePermissions(getActivity());
+            Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(i, GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
+        }
+
+    }
 
 
+    public View getCameraView(){
+        return viewProfile;
+    }
 
-    public void onActivityGalleryResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContext().getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            ivProfileImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
         }
     }
+
+//    public void onActivityGalleryResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+//            Uri selectedImage = data.getData();
+//            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+//            Cursor cursor = getContext().getContentResolver().query(selectedImage,
+//                    filePathColumn, null, null, null);
+//            cursor.moveToFirst();
+//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//            String picturePath = cursor.getString(columnIndex);
+//            cursor.close();
+//            ivProfileImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+//        }
+//    }
 
 
 }

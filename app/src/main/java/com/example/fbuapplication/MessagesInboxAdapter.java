@@ -92,6 +92,10 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                         String timeAgo = Message.calculateTimeAgo(createdAt);
                         // tvDate.setText(timeAgo);
 
+
+                        //set message as read since it was clicked on
+                        message.setIsUnread(false);
+                        message.saveInBackground();
                         // create intent for the new activity
                         Intent intent = new Intent(context, MessageDetailsActivity.class);
                         // serialize the movie using parceler, use its short name as a key
@@ -123,6 +127,18 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
 
             else{
                 Glide.with(context).load(R.drawable.ic_baseline_push_pin_24).into(btnPin);
+            }
+
+            //ADD UNREAD STUFF
+            //message is already read
+            if(!message.getIsUnread()){
+                //gray out that view
+                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.gray_out));
+            }
+
+            else{
+                //gray out that view
+                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
             }
             btnPin.setOnClickListener(new View.OnClickListener() {
                 @Override

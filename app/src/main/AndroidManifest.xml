@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+
+
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -19,7 +21,7 @@
         android:background="@color/white"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/login_bg_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FBUApplication">
         <activity android:name=".MainActivitySpace"></activity>
@@ -33,18 +35,44 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider" />
+
         </provider>
 
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity">
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
 <!--        <activity android:name=".MainActivity" />-->
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+<!--        <activity-->
+<!--            android:name=".LoginActivity"-->
+<!--            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation">-->
+<!--        </activity>-->
+
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider826542378066880"
+            android:exported="true"/>
+
+
+<!--        <activity android:name=".MainActivity" />-->
+
+
     </application>
 
 </manifest>
