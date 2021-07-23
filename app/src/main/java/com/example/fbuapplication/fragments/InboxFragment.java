@@ -46,7 +46,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import com.facebook.login.LoginManager;
 import com.parse.ParseUser;
-public class InboxFragment extends Fragment {
+public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFragment.DecidePinnedWallDialogListener {
 
     private RecyclerView rvInboxMessages;
     protected MessagesInboxAdapter adapter;
@@ -56,6 +56,9 @@ public class InboxFragment extends Fragment {
     private String shouldDeleteString;
 
     private SwipeRefreshLayout swipeContainer;
+
+    private RecyclerView.ViewHolder inboxViewHolder;
+
 
 
     public static final String TAG = "InboxFragment";
@@ -73,12 +76,14 @@ public class InboxFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+
+
         rvInboxMessages = view.findViewById(R.id.rvInboxMessages);
         tvInboxTitle = view.findViewById(R.id.tvInboxTitle);
 
         shouldDelete = true;
         allMessages = new ArrayList<>();
-        adapter = new MessagesInboxAdapter(getContext(), allMessages);
+        adapter = new MessagesInboxAdapter(getContext(), allMessages, InboxFragment.this);
         //tvInboxTitle.setText(ParseUser.getCurrentUser().getUsername().toString() + "\'s Inbox");
 
         if(ParseUser.getCurrentUser().get("full_name")==null){
@@ -113,6 +118,7 @@ public class InboxFragment extends Fragment {
                 // on below line we are getting the item at a particular position.
                 shouldDelete = true;
                 Message deletedMessage = allMessages.get(viewHolder.getAdapterPosition());
+
 
                 // below line is to get the position
                 // of the item at that position.
@@ -314,4 +320,31 @@ public class InboxFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onFinishDecidePinnedWallDialog(int toSend) {
+
+        Log.i("MESSAGE INBOX ", getCurrentMessage().getMessageBody()+" val: " +toSend);
+
+        if(toSend ==0){
+            getCurrentMessage().setIsKudos(true);
+            getCurrentMessage().saveInBackground();
+        }
+        if(toSend ==1){
+            getCurrentMessage().setIsmemories(true);
+            getCurrentMessage().saveInBackground();
+        }
+        if(toSend ==2){
+            getCurrentMessage().setIsGoals(true);
+            getCurrentMessage().saveInBackground();
+        }
+
+
+    }
+
+    private Message getCurrentMessage() {
+        return allMessages.get(adapter.getAdapterPosition());
+    }
+
+
 }

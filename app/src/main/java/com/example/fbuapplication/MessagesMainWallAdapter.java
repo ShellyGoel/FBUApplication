@@ -29,9 +29,9 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
     }
 
     // method for filtering our recyclerview items.
-    public void setFilter(List<Message> countryModels){
+    public void setFilter(List<Message> filteredMessages){
         messages = new ArrayList<>();
-        messages.addAll(countryModels);
+        messages.addAll(filteredMessages);
         notifyDataSetChanged();
     }
     @NonNull
@@ -106,6 +106,8 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
 
 
         }
+
+
 
     }
 

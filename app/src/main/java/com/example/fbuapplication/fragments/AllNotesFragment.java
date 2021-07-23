@@ -26,7 +26,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.material.snackbar.Snackbar;
@@ -68,10 +67,12 @@ public class AllNotesFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_search_main_wall, menu);
 
-        final MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        final MenuItem itemSearch = menu.findItem(R.id.action_search);
+        final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(itemSearch);
 
 
+        onOptionsItemSelected(itemSelectWall);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -88,16 +89,16 @@ public class AllNotesFragment extends Fragment {
         });
 
 
-        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+        itemSearch.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
+            public boolean onMenuItemActionCollapse(MenuItem itemSearch) {
                 // Do something when collapsed
                 adapter.setFilter(allMessages);
                 return true; // Return true to collapse action view
             }
 
             @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
+            public boolean onMenuItemActionExpand(MenuItem itemSearch) {
                 // Do something when expanded
                 return true; // Return true to expand action view
             }
@@ -105,6 +106,26 @@ public class AllNotesFragment extends Fragment {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_kudos:
+
+                return true;
+
+            case R.id.action_memories:
+
+                return true;
+
+            case R.id.action_goals:
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private List<Message> filter(List<Message> models, String query) {
         query = query.toLowerCase();
@@ -124,16 +145,16 @@ public class AllNotesFragment extends Fragment {
 //        ArrayList<Message> filteredlist = new ArrayList<>();
 //
 //        // running a for loop to compare elements.
-//        for (Message item : allMessages) {
-//            // checking if the entered string matched with any item of our recycler view.
-//            if (item.getMessageBody().toLowerCase().contains(text.toLowerCase())) {
-//                // if the item is matched we are
+//        for (Message itemSearch : allMessages) {
+//            // checking if the entered string matched with any itemSearch of our recycler view.
+//            if (itemSearch.getMessageBody().toLowerCase().contains(text.toLowerCase())) {
+//                // if the itemSearch is matched we are
 //                // adding it to our filtered list.
-//                filteredlist.add(item);
+//                filteredlist.add(itemSearch);
 //            }
 //        }
 //        if (filteredlist.isEmpty()) {
-//            // if no item is added in filtered list we are
+//            // if no itemSearch is added in filtered list we are
 //            // displaying a toast message as no data found.
 //            Toast.makeText(requireActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
 //        } else {
@@ -221,7 +242,7 @@ public class AllNotesFragment extends Fragment {
         //query.include(Message.KEY_RECIEVER);
         query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
         query.whereEqualTo(Message.KEY_ISPINNED, true);
-        // limit query to latest 20 items
+        // limit query to latest 20 itemSearchs
         query.setLimit(20);
         // order messages by creation date (newest first)
         query.addDescendingOrder("createdAt");
