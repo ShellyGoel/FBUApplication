@@ -8,14 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -31,19 +28,15 @@ import com.facebook.login.widget.LoginButton;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
+
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
-import com.parse.ParseUser;
 import com.parse.facebook.ParseFacebookUtils;
 import org.json.JSONException;
-import java.util.Arrays;
+
 import java.util.Collection;
-import java.util.List;
+
+import dyanamitechetan.vusikview.VusikView;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -60,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String EMAIL = "email";
     public static final String PROFILE = "public_profile";
     private CallbackManager mCallbackManager;
+    private VusikView vusikView;
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -81,7 +76,14 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnSignLogin);
         sign_up = findViewById(R.id.sign_up);
 
+        vusikView = findViewById(R.id.vusik);
+        vusikView.start();
 
+        vusikView = (VusikView) findViewById(R.id.vusik);
+        int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
+        vusikView
+                .setImages(myImageList)
+                .start();
         //FB SDK with Parse:
 
         mCallbackManager = CallbackManager.Factory.create();
@@ -125,9 +127,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vusikView.pauseNotesFall();
+
 
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
+
+                vusikView.resumeNotesFall();
                 loginUser(username, password);
             }
         });

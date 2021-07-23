@@ -268,6 +268,9 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
             ivProfileImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            updateUserWithPhoto(currentUser, new File(picturePath));
         }
     }
 
@@ -335,6 +338,8 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             verifyStoragePermissions(getActivity());
             Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(i, GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
+
+
         }
 
     }

@@ -26,6 +26,10 @@ public class Message extends ParseObject {
     public static final String KEY_ISPINNED = "isPinned";
     public static final String KEY_ISUNREAD = "unread";
 
+    public static final String KEY_ISKUDOS = "isKudos";
+    public static final String KEY_ISMEMORIES = "isMemories";
+    public static final String KEY_ISGOALS = "isGoals";
+
     @PrimaryKey(autoGenerate=true)
     String description;
 
@@ -43,6 +47,7 @@ public class Message extends ParseObject {
 
     @Ignore
     boolean isPinned;
+
 
     public String getMessageBody(){
         return getString(KEY_MESSAGE_BODY);
@@ -84,6 +89,30 @@ public class Message extends ParseObject {
 
     public void setIsUnread(boolean isUnread){
         put(KEY_ISUNREAD, isUnread);
+    }
+
+    public boolean getIsKudos(){
+        return getBoolean(KEY_ISKUDOS);
+    }
+
+    public void setIsKudos(boolean isKudos){
+        put(KEY_ISKUDOS, isKudos);
+    }
+
+    public boolean getIsMemories(){
+        return getBoolean(KEY_ISMEMORIES);
+    }
+
+    public void setIsmemories(boolean isMemories){
+        put(KEY_ISMEMORIES, isMemories);
+    }
+
+    public boolean getIsGoals(){
+        return getBoolean(KEY_ISGOALS);
+    }
+
+    public void setIsGoals(boolean isGoals){
+        put(KEY_ISGOALS, isGoals);
     }
 
 

@@ -12,10 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuapplication.fragments.DecidePinnedWallDialogFragment;
 import com.example.fbuapplication.fragments.InboxFragment;
+import com.example.fbuapplication.fragments.ProfileFragment;
+import com.example.fbuapplication.fragments.SelectCameraFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -25,13 +32,28 @@ import com.parse.SaveCallback;
 import java.util.Date;
 import java.util.List;
 
-public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdapter.ViewHolder> {
+public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdapter.ViewHolder> implements DecidePinnedWallDialogFragment.DecidePinnedWallDialogListener {
     private Context context;
     private List<Message> messages;
+    private Message currentMessage;
+    private Fragment inboxFragment;
 
-    public MessagesInboxAdapter(Context context, List<Message> messages) {
+    private int adapterPosition;
+
+    public int getAdapterPosition() {
+        return adapterPosition;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    private int position;
+
+    public MessagesInboxAdapter(Context context, List<Message> messages, Fragment inboxFragment) {
         this.context = context;
         this.messages = messages;
+        this.inboxFragment = inboxFragment;
     }
 
     @NonNull
@@ -43,7 +65,9 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
+        currentMessage = message;
         holder.bind(message);
+        position = position;
     }
 
     @Override
@@ -60,6 +84,28 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
     public void restoreItem(Message message, int position) {
         messages.add(position, message);
         notifyItemInserted(position);
+    }
+
+    public Message getCurrentMessage(){
+        return currentMessage;
+    }
+
+    @Override
+    public void onFinishDecidePinnedWallDialog(int toSend) {
+
+        Log.i("MESSAGE INBOX ADAPTER", "val: " +toSend);
+        if(toSend ==0){
+            getCurrentMessage().setIsKudos(true);
+
+        }
+        if(toSend ==1){
+            getCurrentMessage().setIsmemories(true);
+        }
+        if(toSend ==2){
+            getCurrentMessage().setIsGoals(true);
+        }
+
+        getCurrentMessage().saveInBackground();
     }
 
 
@@ -84,6 +130,7 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                     Log.d("MessageDetailsActivity", String.format("going to details"));
                     // gets item position
                     int position = getAdapterPosition();
+
                     // make sure the position is valid, i.e. actually exists in the view
                     if (position != RecyclerView.NO_POSITION) {
                         // get the movie at the position, this won't work if the class is static
@@ -147,6 +194,27 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                     ParseUser currentUser = ParseUser.getCurrentUser();
                     //currentUser.add("main_wall_notes", tvMessageBody.getText());
                     //currentUser.add("main_wall_messages",message);
+
+                    //check which wall to pin to
+                    adapterPosition = getPosition();
+
+
+                    FragmentActivity activity = (FragmentActivity)(context);
+                    FragmentManager fm = activity.getSupportFragmentManager();
+                    DecidePinnedWallDialogFragment decidePinnedWallDialogFragment = new DecidePinnedWallDialogFragment();
+                    decidePinnedWallDialogFragment.setTargetFragment(inboxFragment, 300);
+                    decidePinnedWallDialogFragment.show(fm, "toSend");
+
+//                    FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
+//                    DecidePinnedWallDialogFragment decidePinnedWallDialogFragment = new DecidePinnedWallDialogFragment();//;EditNameDialog.newInstance("Some Title");
+//                    // SETS the target fragment for use later when sending results
+//
+//                    decidePinnedWallDialogFragment.setTargetFragment(inboxFragment, 300);
+//                    decidePinnedWallDialogFragment.show(fm, "toSend");
+
+//                    decidePinnedWallDialogFragment.setTargetAc(inboxFragment, 300);
+//                    decidePinnedWallDialogFragment.show(fm, "toSend");
+
                     message.setIsPinned(true);
                     Glide.with(context).load(R.drawable.ic_baseline_push_pin_clicked).into(btnPin);
 
@@ -162,6 +230,8 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                             Log.i(TAG, "Note pinned successfully!");
                         }
                     });
+
+
                 }
             });
         }

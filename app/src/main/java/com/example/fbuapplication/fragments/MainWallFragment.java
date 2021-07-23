@@ -40,14 +40,7 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import com.facebook.login.LoginManager;
-import com.parse.ParseUser;
+
 public class MainWallFragment extends Fragment {
 
     private RecyclerView rvMainWallMessages;
@@ -57,6 +50,12 @@ public class MainWallFragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
     private TextView tvWallTitle;
     private Toolbar toolbar;
+
+    public int getClickedID() {
+        return clickedID;
+    }
+
+    private int clickedID;
 
     public static final String TAG = "FeedActivity";
 
@@ -77,7 +76,10 @@ public class MainWallFragment extends Fragment {
 
         final MenuItem item = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
 
+
+        //onOptionsItemSelected(itemSelectWall);
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -88,6 +90,46 @@ public class MainWallFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
+                String toUse;
+
+//                //int id = itemSelectWall.getItemId();
+//                int id = clickedID;
+//                Log.i(TAG, "CLCIKED: "+id);
+//                switch (id) {
+//                    case R.id.action_kudos:
+//                        Log.i(TAG, "kudos");
+//                        if(ParseUser.getCurrentUser().get("full_name")==null){
+//                            ParseUser.getCurrentUser().put("full_name","User");
+//                        }
+//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Kudos Wall");
+//                        toUse = Integer.toString(id);
+//
+//                    case R.id.action_memories:
+//                        Log.i(TAG, "memories");
+//                        if(ParseUser.getCurrentUser().get("full_name")==null){
+//                            ParseUser.getCurrentUser().put("full_name","User");
+//                        }
+//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Memories Wall");
+//                        toUse = Integer.toString(id);
+//
+//                    case R.id.action_goals:
+//                        Log.i(TAG, "goals");
+//                        if(ParseUser.getCurrentUser().get("full_name")==null){
+//                            ParseUser.getCurrentUser().put("full_name","User");
+//                        }
+//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Goals Wall");
+//                        toUse = Integer.toString(id);
+//
+//                    default:
+//                        if(ParseUser.getCurrentUser().get("full_name")==null){
+//                            ParseUser.getCurrentUser().put("full_name","User");
+//                        }
+//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+//                        toUse = newText;
+//        }
+
+                //toUse = newText;
                 final List<Message> filteredModelList = filter(allMessages, newText);
                 adapter.setFilter(filteredModelList);
                 return true;
@@ -110,22 +152,164 @@ public class MainWallFragment extends Fragment {
             }
         });
 
+        itemSelectWall.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem itemSelectWall) {
+                // Do something when collapsed
+                adapter.setFilter(allMessages);
+                return true; // Return true to collapse action view
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem itemSelectWall) {
+                // Do something when expanded
+                return true; // Return true to expand action view
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        clickedID = id;
+        final List<Message> filteredModelList;
+        switch (id) {
+            case R.id.action_kudos:
+                Log.i(TAG, "kudos");
+                if(ParseUser.getCurrentUser().get("full_name")==null){
+                    ParseUser.getCurrentUser().put("full_name","User");
+                }
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Kudos Wall");
+
+
+                filteredModelList = filterIsKudos(allMessages);
+                Log.i(TAG, "SIZE kudos: "+ filteredModelList.size());
+                adapter.setFilter(filteredModelList);
+                return true;
+
+            case R.id.action_memories:
+                Log.i(TAG, "memories");
+                if(ParseUser.getCurrentUser().get("full_name")==null){
+                    ParseUser.getCurrentUser().put("full_name","User");
+                }
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Memories Wall");
+
+                filteredModelList = filterIsMemories(allMessages);
+
+                Log.i(TAG, "SIZE memories: "+ filteredModelList.size());
+                adapter.setFilter(filteredModelList);
+                return true;
+
+            case R.id.action_goals:
+                Log.i(TAG, "goals");
+                if(ParseUser.getCurrentUser().get("full_name")==null){
+                    ParseUser.getCurrentUser().put("full_name","User");
+                }
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Goals Wall");
+
+                filteredModelList = filterIsGoals(allMessages);
+
+                Log.i(TAG, "SIZE goals: "+ filteredModelList.size());
+                adapter.setFilter(filteredModelList);
+                return true;
+
+
+            case R.id.action_wallmain:
+                Log.i(TAG, "wallmain");
+                if(ParseUser.getCurrentUser().get("full_name")==null){
+                    ParseUser.getCurrentUser().put("full_name","User");
+                }
+                Log.i(TAG, "SIZE kudos: "+ allMessages.size());
+
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+
+                adapter.setFilter(allMessages);
+                return true;
+
+            default:
+//                if(ParseUser.getCurrentUser().get("full_name")==null){
+//                    ParseUser.getCurrentUser().put("full_name","User");
+//                }
+//                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+//                Log.i(TAG, "SIZE main: "+ allMessages.size());
+//                adapter.setFilter(allMessages);
+
+                return true;
+        }
     }
 
 
     private List<Message> filter(List<Message> models, String query) {
         query = query.toLowerCase();
+        final List<Message> filteredModelList = new ArrayList<>();
+//        if(query.equals(Integer.toString(R.id.action_kudos))){
+//            for (Message model : models) {
+//                if (model.getIsKudos()) {
+//                    filteredModelList.add(model);
+//                }
+//            }
+//        }
+//
+//        else if(query.equals(Integer.toString(R.id.action_memories))){
+//            for (Message model : models) {
+//                if (model.getIsMemories()) {
+//                    filteredModelList.add(model);
+//                }
+//            }
+//        }
+//
+//        else if(query.equals(Integer.toString(R.id.action_goals))){
+//            for (Message model : models) {
+//                if (model.getIsGoals()) {
+//                    filteredModelList.add(model);
+//                }
+//            }
+//        }
+//
+//        else {
+            for (Message model : models) {
+                final String text = model.getMessageBody().toLowerCase();
+                if (text.contains(query)) {
+                    filteredModelList.add(model);
+                }
+            }
+       // }
+        return filteredModelList;
+    }
+
+    private List<Message> filterIsKudos(List<Message> models) {
 
         final List<Message> filteredModelList = new ArrayList<>();
         for (Message model : models) {
-            final String text = model.getMessageBody().toLowerCase();
-            if (text.contains(query)) {
+            if (model.getIsKudos()) {
                 filteredModelList.add(model);
             }
         }
         return filteredModelList;
     }
 
+    private List<Message> filterIsMemories(List<Message> models) {
+
+        final List<Message> filteredModelList = new ArrayList<>();
+        for (Message model : models) {
+            if (model.getIsMemories()) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
+    }
+
+    private List<Message> filterIsGoals(List<Message> models) {
+
+        final List<Message> filteredModelList = new ArrayList<>();
+        for (Message model : models) {
+            if (model.getIsGoals()) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
+    }
 //    private void filter(String text) {
 //        // creating a new array list to filter our data.
 //        ArrayList<Message> filteredlist = new ArrayList<>();
@@ -216,12 +400,27 @@ public class MainWallFragment extends Fragment {
         queryMessages();
         // Now we call setRefreshing(false) to signal refresh has finished
         swipeContainer.setRefreshing(false);
+        Log.i(TAG, "wallmain");
+        if(ParseUser.getCurrentUser().get("full_name")==null){
+            ParseUser.getCurrentUser().put("full_name","User");
+        }
+        Log.i(TAG, "SIZE kudos: "+ allMessages.size());
 
+        //tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+
+        adapter.setFilter(allMessages);
 
     }
 
 
     protected void queryMessages() {
+
+        if(ParseUser.getCurrentUser().get("full_name")==null){
+            ParseUser.getCurrentUser().put("full_name","User");
+        }
+        //tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Refreshed Main Wall");
+
+
         // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
         ArrayList<String> messagesPinnedByUser = new ArrayList<>();
@@ -229,6 +428,21 @@ public class MainWallFragment extends Fragment {
         //query.include(Message.KEY_RECIEVER);
         query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
         query.whereEqualTo(Message.KEY_ISPINNED, true);
+        int wall_chosen = getClickedID();
+
+        Log.i(TAG, "WALLCHOSEN "+wall_chosen);
+
+        if(wall_chosen == R.id.action_kudos){
+            query.whereEqualTo(Message.KEY_ISKUDOS, true);
+        }
+        if(wall_chosen == R.id.action_memories){
+            query.whereEqualTo(Message.KEY_ISMEMORIES, true);
+        }
+        if(wall_chosen == R.id.action_goals){
+            query.whereEqualTo(Message.KEY_ISGOALS, true);
+        }
+
+
         // limit query to latest 20 items
         query.setLimit(20);
         // order messages by creation date (newest first)
@@ -244,6 +458,8 @@ public class MainWallFragment extends Fragment {
                     return;
                 }
 
+
+                Log.i(TAG, "WALLCHOSEN SIZE"+messages.size());
 
                 // for debugging purposes let's print every message description to logcat
                 for (Message message : messages) {
@@ -275,10 +491,14 @@ public class MainWallFragment extends Fragment {
 
                 }
 
-
-
                 // save received messages to list and notify adapter of new data
+                allMessages.clear();
+                Log.i(TAG, "FINAL WALLCHOSEN SIZE"+messages.size());
+
                 allMessages.addAll(messages);
+                adapter.clear();
+                //added this
+                adapter.addAll(messages);
                 adapter.notifyDataSetChanged();
             }
         });
