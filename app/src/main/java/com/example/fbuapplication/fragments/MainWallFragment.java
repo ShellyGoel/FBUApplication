@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,8 @@ import java.util.ArrayList;
 import java.util.List;
 import androidx.appcompat.widget.SearchView;
 
+import dyanamitechetan.vusikview.VusikView;
+
 public class MainWallFragment extends Fragment {
 
     private RecyclerView rvMainWallMessages;
@@ -50,7 +54,9 @@ public class MainWallFragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
     private TextView tvWallTitle;
     private Toolbar toolbar;
+    private VusikView vusikView;
 
+    private ImageView ivPlant;
     public int getClickedID() {
         return clickedID;
     }
@@ -77,6 +83,8 @@ public class MainWallFragment extends Fragment {
         final MenuItem item = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
         final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
+
+
 
 
         //onOptionsItemSelected(itemSelectWall);
@@ -156,6 +164,8 @@ public class MainWallFragment extends Fragment {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem itemSelectWall) {
                 // Do something when collapsed
+                int id = item.getItemId();
+                clickedID = id;
                 adapter.setFilter(allMessages);
                 return true; // Return true to collapse action view
             }
@@ -163,6 +173,8 @@ public class MainWallFragment extends Fragment {
             @Override
             public boolean onMenuItemActionExpand(MenuItem itemSelectWall) {
                 // Do something when expanded
+                int id = item.getItemId();
+                clickedID = id;
                 return true; // Return true to expand action view
             }
         });
@@ -173,27 +185,34 @@ public class MainWallFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         clickedID = id;
+        System.out.println("clicked "+clickedID);
         final List<Message> filteredModelList;
+        ivPlant.setVisibility(View.VISIBLE);
         switch (id) {
             case R.id.action_kudos:
+                vusikView.setVisibility(View.GONE);
                 Log.i(TAG, "kudos");
                 if(ParseUser.getCurrentUser().get("full_name")==null){
                     ParseUser.getCurrentUser().put("full_name","User");
                 }
                 tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Kudos Wall");
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b7));
 
 
                 filteredModelList = filterIsKudos(allMessages);
                 Log.i(TAG, "SIZE kudos: "+ filteredModelList.size());
+
                 adapter.setFilter(filteredModelList);
                 return true;
 
             case R.id.action_memories:
+                vusikView.setVisibility(View.GONE);
                 Log.i(TAG, "memories");
                 if(ParseUser.getCurrentUser().get("full_name")==null){
                     ParseUser.getCurrentUser().put("full_name","User");
                 }
                 tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Memories Wall");
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b2));
 
                 filteredModelList = filterIsMemories(allMessages);
 
@@ -202,11 +221,13 @@ public class MainWallFragment extends Fragment {
                 return true;
 
             case R.id.action_goals:
+                vusikView.setVisibility(View.GONE);
                 Log.i(TAG, "goals");
                 if(ParseUser.getCurrentUser().get("full_name")==null){
                     ParseUser.getCurrentUser().put("full_name","User");
                 }
                 tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Goals Wall");
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b6));
 
                 filteredModelList = filterIsGoals(allMessages);
 
@@ -216,6 +237,7 @@ public class MainWallFragment extends Fragment {
 
 
             case R.id.action_wallmain:
+                vusikView.setVisibility(View.GONE);
                 Log.i(TAG, "wallmain");
                 if(ParseUser.getCurrentUser().get("full_name")==null){
                     ParseUser.getCurrentUser().put("full_name","User");
@@ -223,17 +245,37 @@ public class MainWallFragment extends Fragment {
                 Log.i(TAG, "SIZE kudos: "+ allMessages.size());
 
                 tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b1));
 
                 adapter.setFilter(allMessages);
                 return true;
 
+
+
+            case R.id.action_fun:
+                Log.i(TAG, "wallfun");
+                //rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b8));
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b6));
+
+                vusikView.setVisibility(View.VISIBLE);
+                ivPlant.setVisibility(View.INVISIBLE);
+                vusikView.start();
+                int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
+                vusikView
+                        .setImages(myImageList)
+                        .start();
+
+                return true;
+
             default:
+                vusikView.setVisibility(View.GONE);
+
 //                if(ParseUser.getCurrentUser().get("full_name")==null){
 //                    ParseUser.getCurrentUser().put("full_name","User");
 //                }
 //                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
 //                Log.i(TAG, "SIZE main: "+ allMessages.size());
-//                adapter.setFilter(allMessages);
+                adapter.setFilter(new ArrayList<>());
 
                 return true;
         }
@@ -344,11 +386,18 @@ public class MainWallFragment extends Fragment {
         rvMainWallMessages = view.findViewById(R.id.rvMainWallMessages);
         tvWallTitle = view.findViewById(R.id.tvWallTitle);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        vusikView = view.findViewById(R.id.vusik);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         allMessages = new ArrayList<>();
-        adapter = new MessagesMainWallAdapter(getContext(), allMessages);
-
+        //adapter = new MessagesMainWallAdapter(getContext(), allMessages, getClickedID());
+        adapter  = new MessagesMainWallAdapter(getContext(), allMessages, new MessagesMainWallAdapter.MainWallInterface(){
+            // Listen to the callback method of adapter
+            public int onWork() {
+                return getClickedID();
+            }
+        });
+        ivPlant = view.findViewById(R.id.ivPlant);
 //        tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
 
         if(ParseUser.getCurrentUser().get("full_name")==null){

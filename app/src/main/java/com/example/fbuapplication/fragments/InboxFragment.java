@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alexvasilkov.foldablelayout.UnfoldableView;
+import com.baoyz.widget.PullRefreshLayout;
 import com.example.fbuapplication.Message;
 import com.example.fbuapplication.MessagesInboxAdapter;
 import com.example.fbuapplication.R;
@@ -54,11 +56,12 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
     private TextView tvInboxTitle;
     private boolean shouldDelete;
     private String shouldDeleteString;
+    private UnfoldableView mUnfoldableView;
 
     private SwipeRefreshLayout swipeContainer;
 
     private RecyclerView.ViewHolder inboxViewHolder;
-
+    private PullRefreshLayout pullRefreshLayout;
 
 
     public static final String TAG = "InboxFragment";
@@ -80,6 +83,8 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 
         rvInboxMessages = view.findViewById(R.id.rvInboxMessages);
         tvInboxTitle = view.findViewById(R.id.tvInboxTitle);
+        pullRefreshLayout = (PullRefreshLayout) view.findViewById(R.id.pullRefreshLayout);
+
 
         shouldDelete = true;
         allMessages = new ArrayList<>();
@@ -100,6 +105,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 
         rvInboxMessages.addItemDecoration(dividerItemDecoration);
         rvInboxMessages.smoothScrollToPosition(0);
+
 
         // on below line we are creating a method to create item touch helper
         // method for adding swipe to delete functionality.
@@ -228,7 +234,22 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         // query messages from Parstagram
         queryMessages();
 
-        // Lookup the swipe container view
+        // listen refresh event
+        int[] color =  {R.color.teal_200,R.color.teal_400,R.color.teal_700,R.color.purple_500};
+        pullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_WATER_DROP);
+        //pullRefreshLayout.setColorSchemeColors(color);
+        pullRefreshLayout.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // start refresh
+                fetchTimelineAsync(0);
+            }
+        });
+
+        // refresh complete
+        pullRefreshLayout.setRefreshing(false);
+
+/*        // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -244,7 +265,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+                android.R.color.holo_red_light);*/
 
     }
 
@@ -257,7 +278,8 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         adapter.clear();
         queryMessages();
         // Now we call setRefreshing(false) to signal refresh has finished
-        swipeContainer.setRefreshing(false);
+        pullRefreshLayout.setRefreshing(false);
+        //swipeContainer.setRefreshing(false);
 
 
     }

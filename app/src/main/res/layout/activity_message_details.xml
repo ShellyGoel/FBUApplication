@@ -89,7 +89,7 @@
                 app:animationGenerators="@array/BubbleAnimations"
                 app:array_colors="@array/bubble"
                 app:ball_from_size="10dp"
-                app:ball_to_size="20dp"
+                app:ball_to_size="30dp"
                 app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
                 app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
                 app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
@@ -105,6 +105,7 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="41dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

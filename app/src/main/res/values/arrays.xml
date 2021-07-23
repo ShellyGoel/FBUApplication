@@ -11,6 +11,12 @@
         <item>#1fffffff</item>
         <item>#25ffffff</item>
     </string-array>
+    <string-array name="refresh_colors">
+        <item>@color/purple_700</item>
+        <item>@color/purple_500</item>
+        <item>@color/teal_200</item>
+        <item>@color/teal_400</item>
+    </string-array>
     <string-array name="BubbleAnimations">
         <item>com.github.glomadrian.grav.generator.animation.SideToSideAnimator</item>
         <item>com.github.glomadrian.grav.generator.animation.ShakeAnimator</item>

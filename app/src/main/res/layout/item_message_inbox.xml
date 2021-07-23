@@ -25,6 +25,8 @@
     <!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
     <!--        tools:text="Shelly" />-->
 
+
+
     <ImageView
         android:id="@+id/btnPin"
         android:layout_width="wrap_content"
@@ -33,7 +35,9 @@
         android:insetTop="0dp"
         android:insetBottom="0dp" />
 
-    <!--    <ImageView-->
+
+
+        <!--    <ImageView-->
     <!--        android:id="@+id/ivImage"-->
     <!--        android:layout_width="wrap_content"-->
     <!--        android:layout_height="wrap_content"-->
@@ -59,6 +63,8 @@
         android:visibility="visible"
         tools:text="Message from note filler text in inbox!" />
 
-</LinearLayout>
+
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

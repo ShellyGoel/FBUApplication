@@ -11,9 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuapplication.fragments.InboxFragment;
+import com.example.fbuapplication.fragments.MainWallFragment;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,10 +26,22 @@ import java.util.List;
 public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWallAdapter.ViewHolder> {
     private Context context;
     private List<Message> messages;
+    private int clickedVal;
+    private MainWallInterface mListener;
 
-    public MessagesMainWallAdapter(Context context, List<Message> messages) {
+
+
+    public interface MainWallInterface{
+        int onWork (); // Here you can customize the method you want to achieve, generally passed into the variables in the adapter for activity use.
+    }
+
+
+
+    public MessagesMainWallAdapter(Context context, List<Message> messages, MainWallInterface mListener) {
         this.context = context;
         this.messages = messages;
+        this.mListener = mListener;
+
     }
 
     // method for filtering our recyclerview items.
@@ -58,10 +74,11 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         private ImageView ivStickyNoteImage;
         private TextView tvMessageBody;
         private TextView tvDate;
-
+        private FragmentManager fm;
         public ViewHolder(@NonNull View messageView) {
             super(messageView);
-            ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImageDetails);
+
+           ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImageDetails);
             tvMessageBody = messageView.findViewById(R.id.tvMessageBody);
             tvDate = messageView.findViewById(R.id.tvDate);
 
@@ -98,7 +115,39 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
             Date createdAt = message.getCreatedAt();
             String timeAgo = Message.calculateTimeAgo(createdAt);
             tvDate.setText(timeAgo);
-            Glide.with(context).load(R.mipmap.ic_stickynote_foreground).into(ivStickyNoteImage);
+
+
+            MainWallFragment mainfragment = new MainWallFragment();
+            //int idClicked = mainfragment.getClickedID();
+            //int idClicked = clickedVal;
+            int idClicked = mListener.onWork();
+            int stickyNote;
+
+            System.out.println("HERE: "+idClicked);
+            switch (idClicked)
+            {
+                case R.id.action_kudos:
+                    stickyNote = R.drawable._removal_ai__tmp_60ebbfcbb11a1;
+
+                    break;
+                case R.id.action_memories:
+                    stickyNote = R.drawable._removal_ai__tmp_60ebbf6e0f434;
+
+                    break;
+                case R.id.action_goals:
+                    stickyNote = R.drawable._removal_ai__tmp_60ebbf43c2076;
+
+                    break;
+                case R.id.action_wallmain:
+                    stickyNote = R.drawable._removal_ai__tmp_60ebbf6e0f434;
+
+                    break;
+                default:
+                    stickyNote = R.drawable._removal_ai__tmp_60ebbf1103f00;
+            }
+
+
+            Glide.with(context).load(stickyNote).into(ivStickyNoteImage);
 //            ParseFile image = message.getImage();
 //            if (image != null) {
 //                Glide.with(context).load(image.getUrl()).into(ivImage);

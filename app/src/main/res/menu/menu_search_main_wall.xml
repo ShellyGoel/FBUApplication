@@ -50,6 +50,10 @@
                 android:id="@+id/action_wallmain"
 
                 android:title="back to main wall" />
+            <item
+                android:id="@+id/action_fun"
+
+                android:title="fun notes:)" />
         </menu>
     </item>
 
