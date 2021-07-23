@@ -33,10 +33,19 @@
             android:textSize="34sp"
             android:textStyle="bold" />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeContainer"
+<!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--            android:id="@+id/swipeContainer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+
+        <com.baoyz.widget.PullRefreshLayout
+            android:id="@+id/pullRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            app:refreshColors="@array/refresh_colors"
+            app:refreshType="water_drop">
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,8 +55,8 @@
                     android:id="@+id/rvInboxMessages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                  >
+                    android:background="@drawable/b7"
+                    android:padding="8dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -60,7 +69,8 @@
                     android:src="@drawable/reading_a_letter_bro" />
             </RelativeLayout>
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+<!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+        </com.baoyz.widget.PullRefreshLayout>
 
     </LinearLayout>
 

@@ -130,4 +130,8 @@ dependencies {
     compile 'dyanamitechetan.vusikview:vusikview:1.1'
 
     compile 'com.github.glomadrian:Grav:1.1'
+
+    compile 'com.alexvasilkov:foldable-layout:1.2.1'
+
+    compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
 }

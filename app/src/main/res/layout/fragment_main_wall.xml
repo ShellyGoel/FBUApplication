@@ -64,13 +64,25 @@
                     android:id="@+id/rvMainWallMessages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-               >
+                    android:background="@drawable/b2"
+                    android:padding="8dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
+                <dyanamitechetan.vusikview.VusikView
+                    android:id="@+id/vusik"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:fallCount="40"
+                    app:fallSpeed="0.13"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ivPlant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvMainWallMessages"

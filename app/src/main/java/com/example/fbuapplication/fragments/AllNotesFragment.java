@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fbuapplication.MessagesAllNotesAdapter;
 import com.example.fbuapplication.MessagesMainWallAdapter;
 import com.example.fbuapplication.R;
 
@@ -177,8 +178,13 @@ public class AllNotesFragment extends Fragment {
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         allMessages = new ArrayList<>();
-        adapter = new MessagesMainWallAdapter(getContext(), allMessages);
-
+        //adapter = new MessagesAllNotesAdapter(getContext(), allMessages);
+        adapter  = new MessagesMainWallAdapter(getContext(), allMessages, new MessagesMainWallAdapter.MainWallInterface(){
+            // Listen to the callback method of adapter
+            public int onWork() {
+                return 0;
+            }
+        });
 //        tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
 
         if(ParseUser.getCurrentUser().get("full_name")==null){
