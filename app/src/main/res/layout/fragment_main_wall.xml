@@ -69,25 +69,28 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
+
+
+                <ImageView
+                    android:id="@+id/ivPlant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/_9"
+                    android:layout_below="@+id/rvMainWallMessages"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/fresh_folk___plants_12" />
+
                 <dyanamitechetan.vusikview.VusikView
                     android:id="@+id/vusik"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone"
                     app:fallCount="40"
-                    app:fallSpeed="0.13"
+                    app:fallSpeed="0.05"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivPlant"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/rvMainWallMessages"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/fresh_folk___plants_12" />
             </RelativeLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

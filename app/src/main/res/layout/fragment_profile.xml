@@ -13,6 +13,16 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/b7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/profile1"
             android:layout_width="375dp"
             android:layout_height="650dp"
@@ -27,7 +37,7 @@
             android:id="@+id/ivProfileImage"
             android:layout_width="155dp"
             android:layout_height="149dp"
-            android:layout_marginTop="152dp"
+            android:layout_marginTop="156dp"
             android:contentDescription="Add profile picture"
             android:cropToPadding="false"
             android:src="@mipmap/profile_pic_round"
@@ -41,7 +51,7 @@
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="376dp"
-            android:layout_height="53dp"
+            android:layout_height="59dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
@@ -74,12 +84,12 @@
             android:layout_width="361dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="564dp"
+            android:layout_marginTop="536dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/biko_regular"
             android:textAlignment="center"
-            android:textColor="@color/teal_400"
-            android:textSize="20sp"
+            android:textColor="@color/teal_700"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

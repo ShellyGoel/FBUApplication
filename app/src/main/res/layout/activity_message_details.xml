@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@drawable/b8"
     tools:context=".MessageDetailsActivity">
 
     <LinearLayout
@@ -17,70 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <ImageView
-                android:id="@+id/ivStickyNoteImageDetails"
-                android:layout_width="410dp"
-                android:layout_height="410dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00"
-                tools:srcCompat="@mipmap/ic_stickynote_foreground" />
-
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="138dp"
-                android:layout_height="31dp"
-                android:textAlignment="viewStart"
-                android:textColor="#817E79"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.172"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.058"
-                tools:text="Date created" />
-
-            <TextView
-                android:id="@+id/tvMessageBody"
-                android:layout_width="316dp"
-                android:layout_height="289dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="22dp"
-                android:fontFamily="@font/biko_regular"
-                android:padding="2dp"
-                android:textAlignment="viewStart"
-                android:textColor="@color/teal_700"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImageDetails"
-                app:layout_constraintEnd_toEndOf="@+id/ivStickyNoteImageDetails"
-                app:layout_constraintStart_toStartOf="@+id/ivStickyNoteImageDetails"
-                app:layout_constraintTop_toTopOf="@+id/ivStickyNoteImageDetails"
-                app:layout_constraintVertical_bias="0.514"
-                tools:text="Message from note filler text!" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="356dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivStickyNoteImageDetails"
-                app:srcCompat="@drawable/fresh_folk___plants_16" />
-
             <com.github.glomadrian.grav.GravView
                 android:id="@+id/grav"
                 android:layout_width="match_parent"
@@ -92,6 +28,12 @@
                 app:ball_to_size="30dp"
                 app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
                 app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
                 app:regular_cell_size="300"
                 app:regular_variance="200"
@@ -101,12 +43,75 @@
                 app:shake_variance="500dp"
                 app:side_to_side_direction="leftToRight"
                 app:side_to_side_max_duration="10000"
-                app:side_to_side_min_duration="10000"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="41dp" />
+                app:side_to_side_min_duration="10000" />
+
+            <ImageView
+                android:id="@+id/ivStickyNoteImageDetails"
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.407"
+                app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00"
+                tools:srcCompat="@mipmap/ic_stickynote_foreground" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="262dp"
+                android:layout_height="23dp"
+                android:textAlignment="viewStart"
+                android:textColor="#817E79"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.355"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.254"
+                tools:text="Date created" />
+
+            <TextView
+                android:id="@+id/tvMessageBody"
+                android:layout_width="301dp"
+                android:layout_height="284dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="22dp"
+                android:fontFamily="@font/biko_regular"
+                android:padding="2dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/teal_700"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintEnd_toEndOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintTop_toTopOf="@+id/ivStickyNoteImageDetails"
+                tools:text="Message from note filler text!" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="235dp"
+                android:layout_height="216dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:srcCompat="@drawable/fresh_folk___plants_16" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
     </LinearLayout>

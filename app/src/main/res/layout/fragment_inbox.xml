@@ -61,12 +61,21 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="139dp"
+                    android:layout_below="@+id/rvInboxMessages"
+                    android:layout_marginTop="-1dp"
+                    android:src="@drawable/_7" />
+
+                <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvInboxMessages"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/reading_a_letter_bro" />
+                    android:src="@drawable/reading_a_letter_bro"
+                    android:visibility="gone" />
             </RelativeLayout>
 
 <!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->

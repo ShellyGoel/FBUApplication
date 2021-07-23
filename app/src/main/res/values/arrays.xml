@@ -5,12 +5,19 @@
         <item>Memories</item>
         <item>Goals</item>
     </string-array>
+
     <string-array name="bubble">
-        <item>#41ffffff</item>
-        <item>#18ffffff</item>
-        <item>#1fffffff</item>
-        <item>#25ffffff</item>
+        <item>#83FBE1B6</item>
+        <item>#60FBAC91</item>
+        <item>#6BA7EFE9</item>
+        <item>#6533B3A4</item>
     </string-array>
+<!--    <string-array name="bubble">-->
+<!--        <item>#41ffffff</item>-->
+<!--        <item>#18ffffff</item>-->
+<!--        <item>#1fffffff</item>-->
+<!--        <item>#25ffffff</item>-->
+<!--    </string-array>-->
     <string-array name="refresh_colors">
         <item>@color/purple_700</item>
         <item>@color/purple_500</item>
