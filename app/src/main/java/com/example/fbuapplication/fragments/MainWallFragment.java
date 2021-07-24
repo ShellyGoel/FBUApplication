@@ -1,6 +1,7 @@
 package com.example.fbuapplication.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fbuapplication.MessageDetailsActivity;
 import com.example.fbuapplication.MessagesMainWallAdapter;
 import com.example.fbuapplication.R;
 
@@ -40,7 +42,10 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
 import androidx.appcompat.widget.SearchView;
 
 import dyanamitechetan.vusikview.VusikView;
@@ -50,6 +55,7 @@ public class MainWallFragment extends Fragment {
     private RecyclerView rvMainWallMessages;
     protected MessagesMainWallAdapter adapter;
     protected List<Message> allMessages;
+    protected List<Message> wallSpecificAllMessages;
 
     private SwipeRefreshLayout swipeContainer;
     private TextView tvWallTitle;
@@ -138,7 +144,7 @@ public class MainWallFragment extends Fragment {
 //        }
 
                 //toUse = newText;
-                final List<Message> filteredModelList = filter(allMessages, newText);
+                final List<Message> filteredModelList = filter(wallSpecificAllMessages, newText);
                 adapter.setFilter(filteredModelList);
                 return true;
             }
@@ -149,7 +155,7 @@ public class MainWallFragment extends Fragment {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
                 // Do something when collapsed
-                adapter.setFilter(allMessages);
+                adapter.setFilter(wallSpecificAllMessages);
                 return true; // Return true to collapse action view
             }
 
@@ -200,6 +206,8 @@ public class MainWallFragment extends Fragment {
 
 
                 filteredModelList = filterIsKudos(allMessages);
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(filteredModelList);
                 Log.i(TAG, "SIZE kudos: "+ filteredModelList.size());
 
                 adapter.setFilter(filteredModelList);
@@ -215,7 +223,8 @@ public class MainWallFragment extends Fragment {
                 rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b2));
 
                 filteredModelList = filterIsMemories(allMessages);
-
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(filteredModelList);
                 Log.i(TAG, "SIZE memories: "+ filteredModelList.size());
                 adapter.setFilter(filteredModelList);
                 return true;
@@ -230,7 +239,8 @@ public class MainWallFragment extends Fragment {
                 rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b6));
 
                 filteredModelList = filterIsGoals(allMessages);
-
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(filteredModelList);
                 Log.i(TAG, "SIZE goals: "+ filteredModelList.size());
                 adapter.setFilter(filteredModelList);
                 return true;
@@ -246,7 +256,8 @@ public class MainWallFragment extends Fragment {
 
                 tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
                 rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b1));
-
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(allMessages);
                 adapter.setFilter(allMessages);
                 return true;
 
@@ -255,15 +266,39 @@ public class MainWallFragment extends Fragment {
             case R.id.action_fun:
                 Log.i(TAG, "wallfun");
                 //rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b8));
-                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b6));
+                tvWallTitle.setText("Pick a random note!");
 
+                rvMainWallMessages.setBackground(getResources().getDrawable(android.R.drawable.screen_background_light));
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(allMessages);
                 vusikView.setVisibility(View.VISIBLE);
-                ivPlant.setVisibility(View.INVISIBLE);
+//                ivPlant.setVisibility(View.INVISIBLE);
+                ivPlant.setBackground(getResources().getDrawable(R.drawable._9));
                 vusikView.start();
                 int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
                 vusikView
                         .setImages(myImageList)
                         .start();
+
+                ivPlant.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // create intent for the new activity
+
+                        Random rand = new Random();
+                        int randomNum = rand.nextInt(allMessages.size());
+                        Message randomMessage = allMessages.get(randomNum);
+                        Date createdAt = randomMessage.getCreatedAt();
+                        String timeAgo = Message.calculateTimeAgo(createdAt);
+
+                        Intent intent = new Intent(getContext(), MessageDetailsActivity.class);
+                        // serialize the movie using parceler, use its short name as a key
+                        intent.putExtra("createdAt", timeAgo);
+                        intent.putExtra("caption",randomMessage.getMessageBody());
+                        // show the activity
+                        getContext().startActivity(intent);
+                    }
+                });
 
                 return true;
 
@@ -276,6 +311,8 @@ public class MainWallFragment extends Fragment {
 //                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
 //                Log.i(TAG, "SIZE main: "+ allMessages.size());
                 adapter.setFilter(new ArrayList<>());
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(allMessages);
 
                 return true;
         }
@@ -389,6 +426,7 @@ public class MainWallFragment extends Fragment {
         vusikView = view.findViewById(R.id.vusik);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        wallSpecificAllMessages = new ArrayList<>();
         allMessages = new ArrayList<>();
         //adapter = new MessagesMainWallAdapter(getContext(), allMessages, getClickedID());
         adapter  = new MessagesMainWallAdapter(getContext(), allMessages, new MessagesMainWallAdapter.MainWallInterface(){
