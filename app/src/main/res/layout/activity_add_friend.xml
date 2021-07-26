@@ -11,7 +11,7 @@
     <!--        android:id="@+id/etRecipient"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="Enter recipient user..." />-->
+    <!--        android:hint="Enter recepient user..." />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/hey_magnolia"
-            android:text="Compose a message:"
+            android:text="Send a friend request!"
             android:textAlignment="center"
             android:textColor="@color/teal_700"
             android:textSize="34sp"
@@ -38,14 +38,8 @@
         android:layout_height="wrap_content"
 
         android:backgroundTint="@color/teal_700"
-        android:hint="Enter recepient user..." />
+        android:hint="Enter recipient user..." />
 
-    <EditText
-        android:id="@+id/etMessageFromSender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
-        android:hint="Enter message..." />
 
     <Button
         android:id="@+id/btnSubmit"
@@ -58,19 +52,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="391dp"
-        android:background="@drawable/b1">
+        android:background="@drawable/b7">
 
-        <Button
-            android:id="@+id/btnSendText"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="188dp"
-            android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
-            android:foreground="@android:drawable/ic_menu_send"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/plantCompose1"
@@ -96,37 +79,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
-        <Button
-            android:id="@+id/btnRandCompliment"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center|center_horizontal|center_vertical"
-            android:layout_weight="1"
-            android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
-            android:fontFamily="@font/biko_regular"
-            android:foregroundGravity="center_vertical|center|center_horizontal"
-            android:scaleType="center"
-            android:src="@drawable/_removal_ai__tmp_60ebbf5282318"
-            android:text="Random \n Compliment"
-            android:textAlignment="center"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSendText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="Logout"
-        android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="310dp"
-        tools:layout_editor_absoluteY="6dp" />
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
     <!--        android:layout_width="match_parent"-->

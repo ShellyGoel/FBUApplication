@@ -7,6 +7,7 @@ import com.facebook.FacebookSdk;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.facebook.ParseFacebookUtils;
+//import com.parse.facebook.ParseFacebookUtils;
 
 public class ParseApplication extends Application {
 
@@ -14,7 +15,7 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        //FacebookSdk.sdkInitialize(getApplicationContext());
         // Register your parse models
         ParseObject.registerSubclass(Message.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
@@ -23,7 +24,7 @@ public class ParseApplication extends Application {
                 .server("https://fbuapp.b4a.io")
                 .build()
         );
-        ParseFacebookUtils.initialize(this);
+        //ParseFacebookUtils.initialize(this);
 
     }
 }

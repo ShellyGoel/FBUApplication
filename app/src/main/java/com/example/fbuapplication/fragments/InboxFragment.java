@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,9 +59,10 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
     private boolean shouldDelete;
     private String shouldDeleteString;
     private UnfoldableView mUnfoldableView;
-
+    private TextView tvInboxNewMessages;
     private SwipeRefreshLayout swipeContainer;
 
+    private ConstraintLayout cl;
     private RecyclerView.ViewHolder inboxViewHolder;
     private PullRefreshLayout pullRefreshLayout;
 
@@ -82,9 +85,27 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 
 
         rvInboxMessages = view.findViewById(R.id.rvInboxMessages);
+        cl = view.findViewById(R.id.placeholderInbox);
+
+
+       // rvInboxMessages
+//                .getViewTreeObserver()
+//                .addOnGlobalLayoutListener(
+//                        new ViewTreeObserver.OnGlobalLayoutListener() {
+//                            @Override
+//                            public void onGlobalLayout() {
+//                                // At this point the layout is complete and the
+//                                // dimensions of recyclerView and any child views
+//                                // are known.
+//                                rvInboxMessages
+//                                        .getViewTreeObserver()
+//                                        .removeOnGlobalLayoutListener(this);
+//                            }
+//                        });
         tvInboxTitle = view.findViewById(R.id.tvInboxTitle);
         pullRefreshLayout = (PullRefreshLayout) view.findViewById(R.id.pullRefreshLayout);
 
+        tvInboxNewMessages = view.findViewById(R.id.tvNewMessagesInbox);
 
         shouldDelete = true;
         allMessages = new ArrayList<>();
@@ -97,7 +118,10 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         tvInboxTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "\'s Inbox");
 
 
-    // set the adapter on the recycler view
+        TextView tvNum = view.findViewById(R.id.tvNumUnread);
+
+
+        // set the adapter on the recycler view
         rvInboxMessages.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvInboxMessages.setLayoutManager(new GridLayoutManager(getContext(), 1));
@@ -308,6 +332,23 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                     return;
                 }
 
+                else{
+                    query.whereEqualTo(Message.KEY_ISUNREAD, true);
+
+                    try {
+                        tvInboxNewMessages.setText("You have "+ query.count()+ " new messages!");
+                    } catch (ParseException parseException) {
+                        parseException.printStackTrace();
+                    }
+
+
+                }
+
+                cl.postDelayed(new Runnable() {
+                    public void run() {
+                        cl.setVisibility(View.GONE);
+                    }
+                }, 3000);
 
 
 
@@ -337,8 +378,10 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 //                }
 
                 // save received messages to list and notify adapter of new data
+
                 allMessages.addAll(messages);
                 adapter.notifyDataSetChanged();
+
             }
         });
     }

@@ -86,6 +86,7 @@
                 android:fontFamily="@font/biko_regular"
                 android:padding="2dp"
                 android:textAlignment="viewStart"
+                android:scrollbars = "vertical"
                 android:textColor="@color/teal_700"
                 android:textSize="18dp"
                 android:textStyle="bold"

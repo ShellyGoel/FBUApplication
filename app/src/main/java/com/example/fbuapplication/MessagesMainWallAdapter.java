@@ -126,9 +126,12 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
             System.out.println("HERE: "+idClicked);
             switch (idClicked)
             {
+
+                case 0:
+                    stickyNote = R.drawable._removal_ai__tmp_60ebbf1103f00;
+                    break;
                 case R.id.action_kudos:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbfcbb11a1;
-
                     break;
                 case R.id.action_memories:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf6e0f434;
@@ -144,6 +147,7 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                     break;
                 default:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf1103f00;
+                    break;
             }
 
 

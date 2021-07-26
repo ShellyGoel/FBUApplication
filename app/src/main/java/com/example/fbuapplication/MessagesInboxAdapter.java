@@ -253,6 +253,10 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
         notifyDataSetChanged();
     }
 
+    public int getSize() {
+        return messages.size();
+    }
+
 
 
 }

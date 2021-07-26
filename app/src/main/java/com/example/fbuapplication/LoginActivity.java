@@ -31,7 +31,7 @@ import android.app.ProgressDialog;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
-import com.parse.facebook.ParseFacebookUtils;
+//import com.parse.facebook.ParseFacebookUtils;
 import org.json.JSONException;
 
 import java.util.Collection;
@@ -52,15 +52,18 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String EMAIL = "email";
     public static final String PROFILE = "public_profile";
+    private static final String AUTH_TYPE = "rerequest";
+
+
     private CallbackManager mCallbackManager;
     private VusikView vusikView;
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
+       // mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        //ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
 
     }
 
@@ -76,36 +79,47 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnSignLogin);
         sign_up = findViewById(R.id.sign_up);
 
-        vusikView = findViewById(R.id.vusik);
-        vusikView.start();
-
-        vusikView = (VusikView) findViewById(R.id.vusik);
-        int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
-        vusikView
-                .setImages(myImageList)
-                .start();
+//        vusikView = findViewById(R.id.vusik);
+//        vusikView.start();
+//
+//        vusikView = (VusikView) findViewById(R.id.vusik);
+//        int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
+//        vusikView
+//                .setImages(myImageList)
+//                .start();
         //FB SDK with Parse:
 
-        mCallbackManager = CallbackManager.Factory.create();
-        // If you are using in a fragment, call mLoginButton.setFragment(this);
+        //mCallbackManager = CallbackManager.Factory.create();
+
+        // Set the initial permissions to request from the user while logging in
+       // mLoginButton.setPermissions(Arrays.asList(EMAIL, PROFILE));
+
+        mLoginButton.setAuthType(AUTH_TYPE);
 
         // Callback registration
-        mLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                FaceBookLogin();
-            }
+        // Register a callback to respond to the user
+//        mLoginButton.registerCallback(
+//                mCallbackManager,
+//                new FacebookCallback<LoginResult>() {
+//                    @Override
+//                    public void onSuccess(LoginResult loginResult) {
+//                        setResult(RESULT_OK);
+//                        Log.i(TAG, loginResult.toString());
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        setResult(RESULT_CANCELED);
+//                        finish();
+//                    }
+//
+//                    @Override
+//                    public void onError(FacebookException e) {
+//                        // Handle exception
+//                    }
+//                });
 
-            @Override
-            public void onCancel() {
-                // App code
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
 
 
         if(ParseUser.getCurrentUser()!=null){
@@ -115,25 +129,25 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FaceBookLogin();
-            }
-        });
+//        mLoginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FaceBookLogin();
+//            }
+//        });
 
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vusikView.pauseNotesFall();
+                //vusikView.pauseNotesFall();
 
 
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                vusikView.resumeNotesFall();
+                //vusikView.resumeNotesFall();
                 loginUser(username, password);
             }
         });
@@ -168,32 +182,32 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
-
-    public void FaceBookLogin(){
-        final ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setTitle("Please, wait a moment.");
-        dialog.setMessage("Logging in...");
-        dialog.show();
-        Collection<String> permissions = Arrays.asList("public_profile", "email");
-        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, (user, err) -> {
-            dialog.dismiss();
-            if (err != null) {
-                Log.e("FacebookLoginExample", "done: ", err);
-                Toast.makeText(this, err.getMessage(), Toast.LENGTH_LONG).show();
-            } else if (user == null) {
-                Toast.makeText(this, "The user cancelled the Facebook login.", Toast.LENGTH_LONG).show();
-                Log.d("FacebookLoginExample", "Uh oh. The user cancelled the Facebook login.");
-            } else if (user.isNew()) {
-                Toast.makeText(this, "User signed up and logged in through Facebook.", Toast.LENGTH_LONG).show();
-                Log.d("FacebookLoginExample", "User signed up and logged in through Facebook!");
-                getUserDetailFromFB();
-            } else {
-                Toast.makeText(this, "User logged in through Facebook.", Toast.LENGTH_LONG).show();
-                Log.d("FacebookLoginExample", "User logged in through Facebook!");
-                showAlert("Oh, you!", "Welcome back!");
-            }
-        });
-    }
+//
+//    public void FaceBookLogin(){
+//        final ProgressDialog dialog = new ProgressDialog(this);
+//        dialog.setTitle("Please, wait a moment.");
+//        dialog.setMessage("Logging in...");
+//        dialog.show();
+//        Collection<String> permissions = Arrays.asList("public_profile", "email");
+//        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, permissions, (user, err) -> {
+//            dialog.dismiss();
+//            if (err != null) {
+//                Log.e("FacebookLoginExample", "done: ", err);
+//                Toast.makeText(this, err.getMessage(), Toast.LENGTH_LONG).show();
+//            } else if (user == null) {
+//                Toast.makeText(this, "The user cancelled the Facebook login.", Toast.LENGTH_LONG).show();
+//                Log.d("FacebookLoginExample", "Uh oh. The user cancelled the Facebook login.");
+//            } else if (user.isNew()) {
+//                Toast.makeText(this, "User signed up and logged in through Facebook.", Toast.LENGTH_LONG).show();
+//                Log.d("FacebookLoginExample", "User signed up and logged in through Facebook!");
+//                getUserDetailFromFB();
+//            } else {
+//                Toast.makeText(this, "User logged in through Facebook.", Toast.LENGTH_LONG).show();
+//                Log.d("FacebookLoginExample", "User logged in through Facebook!");
+//                showAlert("Oh, you!", "Welcome back!");
+//            }
+//        });
+ //   }
 
     private void loginUser(String username, String password){
         //TODO: navigate to the main activity if the user has signed in properly

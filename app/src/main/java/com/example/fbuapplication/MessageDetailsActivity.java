@@ -3,6 +3,7 @@ package com.example.fbuapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class MessageDetailsActivity extends AppCompatActivity {
         // set the title and overview
         //Log.i("postdetails",createdAt);
         tvDate.setText(createdAt);
+        tvDescription.setMovementMethod(new ScrollingMovementMethod());
         tvDescription.setText(description);
 
         Random r = new Random();
