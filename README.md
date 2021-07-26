@@ -55,7 +55,7 @@ Week 6
 - Allow users to add Sticky Notes of their own to their personal walls (Ex. My Memories, My goals) users should be able to populate these walls themselves, bypassing the send/recieve.
 
 Week 7
--Explore other SDKs for real-time message (Some on Codepath site, also looking into ScaleDrone SDK. (Stretch Goal)
+-Use Facebook SDK for login
 
 Week 8
 
