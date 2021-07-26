@@ -22,6 +22,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuapplication.FriendRequest;
+import com.example.fbuapplication.Message;
 import com.example.fbuapplication.R;
 
 import android.util.Log;
@@ -30,8 +32,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -40,6 +44,9 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import okhttp3.Call;
@@ -70,6 +77,9 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     private  TextView tvNumSent;
     private TextView tvMotivationalQuote;
     private View viewProfile;
+    private  TextView tvNumUnread;
+    private Button btnAddFriend;
+    private Button btnAddGroup;
 
 
     private boolean chooseCamera;
@@ -109,7 +119,10 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         tvNumSent = view.findViewById(R.id.tvNumSent);
         ivProfileImage = view.findViewById(R.id.ivProfileImage);
         tvMotivationalQuote = view.findViewById(R.id.tvMotivationalQuote);
+        tvNumUnread = view.findViewById(R.id.tvNumUnread);
         chooseCamera = true;
+        btnAddFriend = view.findViewById(R.id.btnAddFriend);
+        btnAddGroup  = view.findViewById(R.id.btnAddGroup);
 
 //        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
 
@@ -129,6 +142,45 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         }
         tvUsername.setText("Welcome " + ParseUser.getCurrentUser().get("full_name").toString() +"!");
         tvNumSent.setText("Number of notes sent: " + ParseUser.getCurrentUser().get("num_messages_sent"));
+
+
+        if(!tvNumUnread.equals("")) {
+            int numRead = numNewMessages();
+        }
+
+        btnAddFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+//                ParseQuery<FriendRequest> query = ParseQuery.getQuery(FriendRequest.class);
+//
+//                query.whereEqualTo(FriendRequest.KEY_FROMUSER, ParseUser.getCurrentUser());
+//                query.whereEqualTo(FriendRequest.KEY_TOUSER, true);
+//
+//                query.findInBackground(new FindCallback<Message>() {
+//                    @Override
+//                    public void done(List<Message> messages, ParseException e) {
+//                        // check for errors
+//                        if (e != null) {
+//                            Log.e(TAG, "Issue with getting messages", e);
+//                            //Snackbar.make(rvInboxMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
+//                            return;
+//                        }
+//
+//                        else{
+//                            numUnread[0] = messages.size();
+//                            tvNumUnread.setText("You have "+messages.size() + " new messages!");
+//
+//                        }
+//
+//                    }
+//
+//                });
+
+            }
+        });
 
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -370,20 +422,37 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         }
     }
 
-//    public void onActivityGalleryResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-//            Uri selectedImage = data.getData();
-//            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-//            Cursor cursor = getContext().getContentResolver().query(selectedImage,
-//                    filePathColumn, null, null, null);
-//            cursor.moveToFirst();
-//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//            String picturePath = cursor.getString(columnIndex);
-//            cursor.close();
-//            ivProfileImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-//        }
-//    }
+    protected int numNewMessages() {
 
+        int[] numUnread = {0};
+        // specify what type of data we want to query - Message.class
+        ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
+
+        query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Message.KEY_ISUNREAD, true);
+
+        query.findInBackground(new FindCallback<Message>() {
+            @Override
+            public void done(List<Message> messages, ParseException e) {
+                // check for errors
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting messages", e);
+                //Snackbar.make(rvInboxMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                else{
+                    numUnread[0] = messages.size();
+                    tvNumUnread.setText("You have "+messages.size() + " new messages!");
+
+                }
+
+            }
+
+        });
+
+        System.out.println("NUM "+numUnread[0]);
+        return numUnread[0];
+    }
 
 }

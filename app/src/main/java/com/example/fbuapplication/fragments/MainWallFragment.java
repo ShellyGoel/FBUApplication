@@ -195,6 +195,12 @@ public class MainWallFragment extends Fragment {
         final List<Message> filteredModelList;
         ivPlant.setVisibility(View.VISIBLE);
         switch (id) {
+
+
+            case R.id.action_search:
+                adapter.setFilter(wallSpecificAllMessages);
+                return true;
+
             case R.id.action_kudos:
                 vusikView.setVisibility(View.GONE);
                 Log.i(TAG, "kudos");

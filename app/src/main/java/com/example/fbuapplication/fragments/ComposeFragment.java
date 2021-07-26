@@ -1,11 +1,18 @@
 package com.example.fbuapplication.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +21,9 @@ import com.example.fbuapplication.BuildConfig;
 import com.example.fbuapplication.JClient;
 import com.example.fbuapplication.LoginActivity;
 import com.example.fbuapplication.Message;
+import com.example.fbuapplication.MessageDetailsActivity;
 import com.example.fbuapplication.R;
+
 
 import android.content.Intent;
 
@@ -23,11 +32,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -48,6 +59,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -82,10 +95,18 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
     private int sent1;
     private double sent2;
     private boolean shouldMessageSend;
+    private Button btnSendText;
 
     private String compose_description;
     private String compose_recipient;
 
+    private TextView tvMessageBodyToSend;
+    private TextView tvDateToSend;
+    private ImageView ivStickyNoteImageDetailsToSend;
+    private ConstraintLayout clSendText;
+
+
+    private View stickyNote;
     boolean shouldDelete;
     //TODO: add onAttach
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -101,6 +122,8 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
+       stickyNote = inflater.inflate(R.layout.stickynotetosend, parent, false);
+
         return inflater.inflate(R.layout.fragment_compose,parent, false);
 
 
@@ -126,6 +149,8 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
         }
 
+        btnSendText = view.findViewById(R.id.btnSendText);
+
         autocomplete = view.findViewById(R.id.autoCompleteReceiver);
         btnLogout = view.findViewById(R.id.btnLogout);
         btnRandCompliment = view.findViewById(R.id.btnRandCompliment);
@@ -139,6 +164,14 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
         sent1 = 0;
         sent2 = 1.0;
         shouldMessageSend = false;
+
+
+
+        clSendText = stickyNote.findViewById(R.id.clSendText);
+        tvDateToSend = stickyNote.findViewById(R.id.tvDateToSend);
+        tvMessageBodyToSend = stickyNote.findViewById(R.id.tvMessageBodyToSend);
+        ivStickyNoteImageDetailsToSend = stickyNote.findViewById(R.id.ivStickyNoteImageDetailsToSend);
+
 
         sentimentClient = new JClient();
         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -169,6 +202,82 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
         });
 
 
+        btnSendText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Drawable mDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable._removal_ai__tmp_60ebbf7af41b4, null);
+//                Bitmap mBitmap = ((BitmapDrawable)mDrawable).getBitmap();
+//                String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), mBitmap, "Emoticon", null);
+//                Uri fileUri = Uri.parse(path);
+//
+//
+//
+//                Intent picMessageIntent = new Intent(Intent.ACTION_SEND);
+//                picMessageIntent.setPackage("com.android.mms");
+//                picMessageIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+//                picMessageIntent.setType("image/png");
+//                picMessageIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                getContext().startActivity(picMessageIntent);
+
+                // Create the text message with a string
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                String textMessage = (String) etMessageFromSender.getText().toString();
+                tvMessageBodyToSend.setText(textMessage);
+
+                Date createdAt = Calendar.getInstance().getTime();
+                String timeAgo = Message.calculateTimeAgo(createdAt);
+
+                tvDateToSend.setText("You're invited by "+ ParseUser.getCurrentUser().get("full_name").toString()+" to join this app!");
+                //sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);
+
+
+
+
+               // Drawable mDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable._removal_ai__tmp_60ebbf7af41b4, null);
+             //   Bitmap mBitmap = ((BitmapDrawable)mDrawable).getBitmap();
+//                String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), mBitmap, "Emoticon", null);
+//                Uri fileUri = Uri.parse(path);
+
+
+                //sendIntent.setPackage("com.android.mms");
+
+
+                clSendText.setDrawingCacheEnabled(true);
+
+// this is the important code :)
+// Without it the view will have a dimension of 0,0 and the bitmap will be null
+                clSendText.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                clSendText.layout(0, 0, clSendText.getMeasuredWidth(), clSendText.getMeasuredHeight());
+
+                clSendText.buildDrawingCache(true);
+                Bitmap b = Bitmap.createBitmap(clSendText.getDrawingCache());
+                //cl.setDrawingCacheEnabled(false); // clear drawing cache
+               // Bitmap b = clSendText.getDrawingCache();
+                String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), b, "Emoticon2", null);
+                if(path!=null) {
+                    Uri fileUri = Uri.parse(path);
+                    sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+                    sendIntent.setType("image/png");
+                    clSendText.setDrawingCacheEnabled(false);
+                    if (sendIntent.resolveActivity(getContext().getPackageManager()) != null) {
+                        startActivity(sendIntent);
+                    }
+
+
+                }
+                //b.compress(Bitmap.CompressFormat.JPEG,95,)
+//                sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+//                sendIntent.setType("image/png");
+                //sendIntent.setType("text/plain");
+
+// Verify that the intent will resolve to an activity
+//                if (sendIntent.resolveActivity(getContext().getPackageManager()) != null) {
+//                    startActivity(sendIntent);
+//                }
+            }
+        });
 
         btnRandCompliment.setOnClickListener(new View.OnClickListener() {
             @Override
