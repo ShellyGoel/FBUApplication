@@ -120,7 +120,7 @@
             android:layout_height="56dp"
 
             android:layout_marginBottom="468dp"
-            android:background="@drawable/ic_baseline_group_add_24"
+            android:background="@drawable/ic_baseline_group_add_243"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,6 +128,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/profile1"
             app:layout_constraintVertical_bias="0.476" />
+
+
+        <Button
+            android:id="@+id/btnAcceptFriend"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_marginBottom="468dp"
+            android:background="@drawable/ic_baseline_person_add_243"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.265"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile1"
+            app:layout_constraintVertical_bias="0.476" />
+
+        <Button
+            android:id="@+id/btnAcceptGroup"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+
+            android:layout_marginBottom="468dp"
+            android:background="@drawable/ic_baseline_group_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.721"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/profile1"
+            app:layout_constraintVertical_bias="0.466" />
 
         <TextView
             android:id="@+id/tvMotivationalQuote"

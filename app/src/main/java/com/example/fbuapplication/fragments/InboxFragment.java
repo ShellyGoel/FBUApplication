@@ -158,39 +158,6 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                 // below line is to remove item from our array list.
                 allMessages.remove(viewHolder.getAdapterPosition());
 
-                //remove deletedMessage from user's inbox in Parse! (from inbox_messages)
-
-                //Steps:
-                //1) Get User's inbox messages
-                //2) Find Message with ObjectId() of deleted message
-                //3) Remove that message from array
-
-
-
-//
-//                //TODO: Probably don't need this fields. May make more efficient though.
-//                List<Message> user_inbox_messages = (List<Message>) ParseUser.getCurrentUser().get("inbox_messages");
-//                // for debugging purposes let's print every message description to logcat
-//                user_inbox_messages.remove(deletedMessage);
-//                ParseUser.getCurrentUser().put("inbox_messages",user_inbox_messages);
-//
-//                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-//                        @Override
-//                        public void done(ParseException e) {
-//                            if(e != null){
-//                                Log.e(TAG, "Error while saving new messages",e);
-//
-//                                if(getActivity() != null){
-//                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
-//                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
-//
-//                                }
-//                            }
-//                            Log.i(TAG, "Deleted message successfully from Parse (for inbox)");
-//                        }
-//                    });
-//
-//
 
 
                 // below line is to notify our item is removed from adapter.
