@@ -24,7 +24,8 @@
         android:roundIcon="@mipmap/login_bg_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FBUApplication">
-        <activity android:name=".AddFriend"></activity>
+        <activity android:name=".FriendsRequestList"></activity>
+        <activity android:name=".AddFriend" />
         <activity android:name=".MainActivitySpace" />
         <activity android:name=".MessageDetailsActivity" />
 

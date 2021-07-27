@@ -22,8 +22,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuapplication.AddFriend;
 import com.example.fbuapplication.FriendRequest;
+import com.example.fbuapplication.FriendsRequestList;
+import com.example.fbuapplication.MainActivity;
 import com.example.fbuapplication.Message;
+import com.example.fbuapplication.MessageDetailsActivity;
 import com.example.fbuapplication.R;
 
 import android.util.Log;
@@ -31,8 +35,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fbuapplication.SignUpActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
@@ -81,6 +87,9 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     private Button btnAddFriend;
     private Button btnAddGroup;
 
+    private Button btnAcceptFriend;
+    private Button btnAcceptGroup;
+
 
     private boolean chooseCamera;
    // private static int RESULT_LOAD_IMAGE = 1;
@@ -123,6 +132,8 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         chooseCamera = true;
         btnAddFriend = view.findViewById(R.id.btnAddFriend);
         btnAddGroup  = view.findViewById(R.id.btnAddGroup);
+        btnAcceptFriend = view.findViewById(R.id.btnAcceptFriend);
+        btnAcceptGroup  = view.findViewById(R.id.btnAcceptGroup);
 
 //        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
 
@@ -135,9 +146,9 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             ParseUser.getCurrentUser().put("num_messages_sent",0);
         }
 
-        ParseFile img_user = (ParseFile) ParseUser.getCurrentUser().get(KEY_PROFILE_PICTURE);
+        ParseFile img_user = ParseUser.getCurrentUser().getParseFile(KEY_PROFILE_PICTURE);
         if(img_user!=null){
-            Glide.with(requireContext()).load(img_user.getUrl()).into(ivProfileImage);
+            Glide.with(getContext()).load(img_user.getUrl()).into(ivProfileImage);
 
         }
         tvUsername.setText("Welcome " + ParseUser.getCurrentUser().get("full_name").toString() +"!");
@@ -148,40 +159,27 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             int numRead = numNewMessages();
         }
 
+
         btnAddFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
+                goFriendRequestActivity();
 
-//                ParseQuery<FriendRequest> query = ParseQuery.getQuery(FriendRequest.class);
-//
-//                query.whereEqualTo(FriendRequest.KEY_FROMUSER, ParseUser.getCurrentUser());
-//                query.whereEqualTo(FriendRequest.KEY_TOUSER, true);
-//
-//                query.findInBackground(new FindCallback<Message>() {
-//                    @Override
-//                    public void done(List<Message> messages, ParseException e) {
-//                        // check for errors
-//                        if (e != null) {
-//                            Log.e(TAG, "Issue with getting messages", e);
-//                            //Snackbar.make(rvInboxMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
-//                            return;
-//                        }
-//
-//                        else{
-//                            numUnread[0] = messages.size();
-//                            tvNumUnread.setText("You have "+messages.size() + " new messages!");
-//
-//                        }
-//
-//                    }
-//
-//                });
+                //TODO:finish signup activity once we have navigated to the next activity
+
+
 
             }
         });
 
+        btnAcceptFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goAcceptFriendRequestActivity();
+            }
+        });
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -353,7 +351,6 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
                 // If successful add file to user and signUpInBackground
                 if(null == e)
                     currentUser.put(KEY_PROFILE_PICTURE, img);
-
             }
         });
 
@@ -453,6 +450,20 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
         System.out.println("NUM "+numUnread[0]);
         return numUnread[0];
+    }
+
+    private void goFriendRequestActivity(){
+        Intent intent = new Intent(getContext(), AddFriend.class);
+
+        getContext().startActivity(intent);
+
+    }
+
+    private void goAcceptFriendRequestActivity(){
+        Intent intent = new Intent(getContext(), FriendsRequestList.class);
+
+        getContext().startActivity(intent);
+
     }
 
 }

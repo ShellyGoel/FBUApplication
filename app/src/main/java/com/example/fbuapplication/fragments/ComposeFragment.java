@@ -1,13 +1,10 @@
 package com.example.fbuapplication.fragments;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -21,7 +18,6 @@ import com.example.fbuapplication.BuildConfig;
 import com.example.fbuapplication.JClient;
 import com.example.fbuapplication.LoginActivity;
 import com.example.fbuapplication.Message;
-import com.example.fbuapplication.MessageDetailsActivity;
 import com.example.fbuapplication.R;
 
 
@@ -38,7 +34,6 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -73,15 +68,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.Request;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Button;
-import com.facebook.login.LoginManager;
-import com.parse.ParseUser;
 public class ComposeFragment extends Fragment implements DoNotSendDialogFragment.DoNotSendDialogListener {
 
     private Button btnLogout;

@@ -22,29 +22,29 @@ public class FriendRequest extends  ParseObject {
         public static final String KEY_TOUSER = "toUser";
 
 
-        public String getMessageBody(){
+        public String getStatus(){
             return getString(KEY_STATUS);
         }
 
-        public void setMessageBody(String description){
+        public void setStatus(String description){
             put(KEY_STATUS, description);
         }
 
 
-        public ParseUser getSender(){
+        public ParseUser getFromUser(){
             return getParseUser(KEY_FROMUSER);
         }
 
-        public void setSender(ParseUser user){
+        public void setFromUser(ParseUser user){
             put(KEY_FROMUSER, user);
         }
 
 
-        public ParseUser getReceiver(){
+        public ParseUser getToUser(){
             return getParseUser(KEY_TOUSER);
         }
 
-        public void setReceiver(ParseUser user){
+        public void setToUser(ParseUser user){
             put(KEY_TOUSER, user);
         }
 

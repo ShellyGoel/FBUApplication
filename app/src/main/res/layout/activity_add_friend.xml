@@ -19,7 +19,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvCompose"
+            android:id="@+id/tvComposeFriend"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/hey_magnolia"
@@ -33,7 +33,7 @@
 
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteReceiver"
+        android:id="@+id/autoCompleteReceiverFriend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -42,11 +42,11 @@
 
 
     <Button
-        android:id="@+id/btnSubmit"
+        android:id="@+id/btnSubmitFriend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
-        android:text="Submit"
+        android:text="Send Friend Request!"
         android:textColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.InboxFragment">
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FeedActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvFriendListTitle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:fontFamily="@font/hey_magnolia"
+            android:text="Friends"
+            android:textAlignment="center"
+            android:textColor="@color/teal_700"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+        <!--            android:id="@+id/swipeContainer"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
+
+
+        <com.baoyz.widget.PullRefreshLayout
+            android:id="@+id/pullRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:refreshColors="@array/refresh_colors"
+            app:refreshType="water_drop">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/friendrequests"
+                        android:layout_width="363dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/biko_regular"
+                        android:text="Friend Requests"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFriendRequest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/b7"
+                        android:padding="8dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="39dp"
+                        android:layout_below="@+id/rvFriendRequest"
+                        android:layout_marginTop="-1dp"
+                        android:src="@drawable/_4" />
+
+                    <TextView
+                        android:id="@+id/friendstv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/biko_regular"
+                        android:text="Friends"
+                        android:textSize="20sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFriends"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imageView8"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/b1"
+                        android:padding="8dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rvFriendRequest"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/reading_a_letter_bro"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+        </com.baoyz.widget.PullRefreshLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -18,6 +18,7 @@ public class ParseApplication extends Application {
         //FacebookSdk.sdkInitialize(getApplicationContext());
         // Register your parse models
         ParseObject.registerSubclass(Message.class);
+        ParseObject.registerSubclass(FriendRequest.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("Y3SvrsAgWAlKviTxUyemv0A1HxnRSZ81JBNz0CV7")
                 .clientKey("QwwjT0AYA0fG6vstrKXGENwmKEVUxquAso3utQCz")
