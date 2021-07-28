@@ -4,9 +4,11 @@ package com.example.fbuapplication;
 import android.app.Application;
 
 import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.facebook.ParseFacebookUtils;
+//import com.parse.facebook.ParseFacebookUtils;
 //import com.parse.facebook.ParseFacebookUtils;
 
 public class ParseApplication extends Application {
@@ -14,6 +16,7 @@ public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
 
         //FacebookSdk.sdkInitialize(getApplicationContext());
         // Register your parse models
@@ -26,6 +29,8 @@ public class ParseApplication extends Application {
                 .build()
         );
         //ParseFacebookUtils.initialize(this);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
     }
 }

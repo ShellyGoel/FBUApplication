@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.facebook.login.LoginManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -544,6 +545,7 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LoginManager.getInstance().logOut();
                 ParseUser.logOut();
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 //TODO: check if user is null

@@ -68,6 +68,7 @@ public class MainWallFragment extends Fragment {
     }
 
     private int clickedID;
+    private SearchView searchView;
 
     public static final String TAG = "FeedActivity";
 
@@ -87,7 +88,7 @@ public class MainWallFragment extends Fragment {
         inflater.inflate(R.menu.menu_search_main_wall, menu);
 
         final MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+       searchView = (SearchView) MenuItemCompat.getActionView(item);
         final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
 
 
@@ -474,6 +475,7 @@ public class MainWallFragment extends Fragment {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
+
                 fetchTimelineAsync(0);
             }
         });
@@ -489,6 +491,13 @@ public class MainWallFragment extends Fragment {
         // `client` here is an instance of Android Async HTTP
         // getHomeTimeline is an example endpoint.
 
+
+        //TODO: check if searchbar is empty
+
+        if(searchView.getQuery().length()!=0){
+            swipeContainer.setRefreshing(false);
+            return;
+        }
         adapter.clear();
         queryMessages();
         // Now we call setRefreshing(false) to signal refresh has finished

@@ -349,27 +349,31 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         img.saveInBackground(new SaveCallback() {
             public void done(ParseException e) {
                 // If successful add file to user and signUpInBackground
-                if(null == e)
+                if(null == e) {
                     currentUser.put(KEY_PROFILE_PICTURE, img);
+
+                    currentUser.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null){
+                                Log.e(TAG, "Error while uploading profile picture",e);
+                                //Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
+
+                            }
+                            else {
+                                Log.i(TAG, "Profile picture upload was successful!");
+                                //Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
+                            }
+                            //ivProfileImage.setImageResource(new ParseFile(photoFile));
+                        }
+                    });
+
+                }
             }
         });
 
-        currentUser.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e != null){
-                    Log.e(TAG, "Error while uploading profile picture",e);
-                    //Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
 
-                }
-                else {
-                    Log.i(TAG, "Profile picture upload was successful!");
-                    //Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
-                }
-                //ivProfileImage.setImageResource(new ParseFile(photoFile));
-            }
-        });
 
 
     }

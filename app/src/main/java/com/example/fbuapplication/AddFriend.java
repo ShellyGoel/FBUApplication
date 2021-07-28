@@ -178,7 +178,7 @@ Log.i(TAG, "recipient "+recipientUser[0].toString());
 
 
                                                         case "accepted":
-                                                            Snackbar.make(btnSubmitFriend, "Already sent friend request to " + recipient, Snackbar.LENGTH_LONG).show();
+                                                            Snackbar.make(btnSubmitFriend, "You are already friends with " + recipient, Snackbar.LENGTH_LONG).show();
 
                                                             break;
 
@@ -189,7 +189,7 @@ Log.i(TAG, "recipient "+recipientUser[0].toString());
                                                             break;
 
                                                         case "denied":
-                                                            Snackbar.make(btnSubmitFriend, "Friend request not accapted by " + recipient, Snackbar.LENGTH_LONG).show();
+                                                            Snackbar.make(btnSubmitFriend, "Friend request was not accepted by " + recipient, Snackbar.LENGTH_LONG).show();
 
                                                             break;
 

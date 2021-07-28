@@ -1,10 +1,10 @@
 package com.example.fbuapplication;
 
 import android.util.Log;
-
-import androidx.room.ColumnInfo;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+//
+//import androidx.room.ColumnInfo;
+//import androidx.room.Ignore;
+//import androidx.room.PrimaryKey;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;

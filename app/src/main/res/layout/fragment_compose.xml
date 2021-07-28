@@ -64,30 +64,29 @@
             android:id="@+id/btnSendText"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="188dp"
             android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
             android:foreground="@android:drawable/ic_menu_send"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.223"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/plantCompose1"
             android:layout_width="215dp"
-            android:layout_height="390dp"
+            android:layout_height="330dp"
             android:src="@drawable/fresh_folk___plants_11"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.01"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/plantCompose2"
             android:layout_width="215dp"
-            android:layout_height="390dp"
+            android:layout_height="325dp"
             android:src="@drawable/fresh_folk___plants_13"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,9 +111,9 @@
             android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSendText" />
+            app:layout_constraintHorizontal_bias="0.621"
+            app:layout_constraintStart_toEndOf="@+id/btnSendText"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -127,6 +126,8 @@
         android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="310dp"
         tools:layout_editor_absoluteY="6dp" />
+
+
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
     <!--        android:layout_width="match_parent"-->
