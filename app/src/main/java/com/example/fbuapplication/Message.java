@@ -9,14 +9,14 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.Date;
-import androidx.room.Entity;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+//import androidx.room.Entity;
+//import androidx.room.ColumnInfo;
+//import androidx.room.Entity;
+//import androidx.room.Ignore;
+//import androidx.room.PrimaryKey;
 
 
-@Entity
+//@Entity
 @ParseClassName("Message")
 public class Message extends ParseObject {
 
@@ -30,23 +30,23 @@ public class Message extends ParseObject {
     public static final String KEY_ISMEMORIES = "isMemories";
     public static final String KEY_ISGOALS = "isGoals";
 
-    @PrimaryKey(autoGenerate=true)
-    String description;
-
-    @ColumnInfo
-    Date createdAt;
-
-    @Ignore
-    boolean unread;
-
-    @Ignore
-    ParseUser receiver;
-
-    @Ignore
-    ParseUser sender;
-
-    @Ignore
-    boolean isPinned;
+//    @PrimaryKey(autoGenerate=true)
+//    String description;
+//
+//    @ColumnInfo
+//    Date createdAt;
+//
+//    @Ignore
+//    boolean unread;
+//
+//    @Ignore
+//    ParseUser receiver;
+//
+//    @Ignore
+//    ParseUser sender;
+//
+//    @Ignore
+//    boolean isPinned;
 
 
     public String getMessageBody(){

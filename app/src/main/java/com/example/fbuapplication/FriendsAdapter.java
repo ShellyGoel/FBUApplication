@@ -124,6 +124,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
             ParseObject textMessageContent=addFriendRequest.getFromUser().fetchIfNeeded();
             tvFriendName.setText((textMessageContent.get("username").toString()));
 
+            Glide.with(context).load(R.drawable.ic_baseline_person_remove_24).into(btnRemove);
+            itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
+
             Date createdAt = addFriendRequest.getCreatedAt();
             String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
             tvFriendAddedDate.setText(timeAgo);

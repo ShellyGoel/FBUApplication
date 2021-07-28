@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ import com.parse.SaveCallback;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
@@ -65,7 +67,9 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
     private ConstraintLayout cl;
     private RecyclerView.ViewHolder inboxViewHolder;
     private PullRefreshLayout pullRefreshLayout;
+    private Stack<Pair<Integer,Message>> deleteMessageStack;
 
+    private Button undoButton;
 
     public static final String TAG = "InboxFragment";
 
@@ -87,6 +91,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         rvInboxMessages = view.findViewById(R.id.rvInboxMessages);
         cl = view.findViewById(R.id.placeholderInbox);
 
+         deleteMessageStack = new Stack<Pair<Integer,Message>>();
 
        // rvInboxMessages
 //                .getViewTreeObserver()
@@ -107,6 +112,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 
         tvInboxNewMessages = view.findViewById(R.id.tvNewMessagesInbox);
 
+        undoButton = view.findViewById(R.id.undoButton);
         shouldDelete = true;
         allMessages = new ArrayList<>();
         adapter = new MessagesInboxAdapter(getContext(), allMessages, InboxFragment.this);
@@ -115,6 +121,8 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         if(ParseUser.getCurrentUser().get("full_name")==null){
             ParseUser.getCurrentUser().put("full_name","User");
         }
+
+
         tvInboxTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "\'s Inbox");
 
 
@@ -150,6 +158,32 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                 Message deletedMessage = allMessages.get(viewHolder.getAdapterPosition());
 
 
+                undoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //pop top of stack message from stack since we no longer want to delete
+                        if(!deleteMessageStack.isEmpty()) {
+                            Snackbar.make(rvInboxMessages, "Undo Delete of " + deleteMessageStack.peek().second.getMessageBody(), Snackbar.LENGTH_SHORT).show();
+
+                            Pair<Integer,Message> dpair = deleteMessageStack.peek();
+                            Message dMessage = dpair.second;
+                            int dposition = dpair.first;
+
+
+
+
+                            allMessages.add(dposition,dMessage);
+                            adapter.notifyItemInserted(dposition);
+                            shouldDelete = false;
+                            deleteMessageStack.pop();
+                              }
+                        else {
+                            Snackbar.make(rvInboxMessages, "No more messages to Undo Delete! ", Snackbar.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
                 // below line is to get the position
                 // of the item at that position.
                 int position = viewHolder.getAdapterPosition();
@@ -159,9 +193,13 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                 allMessages.remove(viewHolder.getAdapterPosition());
 
 
+                //add message to stack since we want to delete it
+                deleteMessageStack.push(new Pair(position,deletedMessage));
+
 
                 // below line is to notify our item is removed from adapter.
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
 
                 // below line is to display our snackbar with action.
                 Snackbar snack = Snackbar.make(rvInboxMessages, deletedMessage.getMessageBody(), Snackbar.LENGTH_SHORT).setAction("Undo Delete", new View.OnClickListener() {
@@ -173,6 +211,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 
                         adapter.notifyItemInserted(position);
                         shouldDelete = false;
+
                     }
 
                 });
@@ -184,7 +223,10 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                         if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT || event == Snackbar.Callback.DISMISS_EVENT_ACTION || event == Snackbar.Callback.DISMISS_EVENT_ACTION || event == Snackbar.Callback.DISMISS_EVENT_CONSECUTIVE || event == Snackbar.Callback.DISMISS_EVENT_SWIPE )//|| event == Snackbar.Callback.DISMISS_EVENT_MANUAL)
                         {
 
-                            if(shouldDelete) {
+//for the second undo button option dont want to use this. Instead delete all messages when user refreshes the screen
+                            if(false) {
+                            //if(shouldDelete) {
+
                                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
                                 //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
                                 query.whereEqualTo("objectId", deletedMessage.getObjectId());
@@ -233,6 +275,32 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
             @Override
             public void onRefresh() {
                 // start refresh
+                Snackbar.make(rvInboxMessages, "Deleted " + deleteMessageStack.size() + " messages.", Snackbar.LENGTH_SHORT).show();
+
+
+                for(Pair<Integer,Message> a:deleteMessageStack) {
+
+                    Message m = a.second;
+                    //delete all messages in stack!
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+                    //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
+                    query.whereEqualTo("objectId", m.getObjectId());
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> messages, ParseException e) {
+                            if (e == null) {
+
+                                // iterate over all messages and delete them
+                                for (ParseObject message : messages) {
+                                    //message.deleteEventually();
+                                    message.deleteInBackground();
+                                }
+                            } else {
+                                Log.d(TAG, e.getMessage());
+                            }
+                        }
+                    });
+                }
+                deleteMessageStack.clear();
                 fetchTimelineAsync(0);
             }
         });
@@ -240,23 +308,6 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
         // refresh complete
         pullRefreshLayout.setRefreshing(false);
 
-/*        // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
-                fetchTimelineAsync(0);
-            }
-        });
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);*/
 
     }
 
@@ -318,31 +369,6 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                 }, 3000);
 
 
-
-//                // for debugging purposes let's print every message description to logcat
-//                for (Message message : messages) {
-//                    Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
-//                    //ParseUser.getCurrentUser().add("user_inbox", message.getMessageBody());
-//                    //ParseUser.getCurrentUser().add("inbox_messages",message);
-//                    messagesForUser.add(message.getMessageBody());
-//
-//                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-//                        @Override
-//                        public void done(ParseException e) {
-//                            if(e != null){
-//                                Log.e(TAG, "Error while saving new messages",e);
-//
-//                                if(getActivity() != null){
-//                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
-//                                    Snackbar.make(rvInboxMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
-//
-//                                }
-//                                 }
-//                            Log.i(TAG, "Profile picture upload was successful!");
-//                        }
-//                    });
-//
-//                }
 
                 // save received messages to list and notify adapter of new data
 
