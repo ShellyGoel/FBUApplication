@@ -28,7 +28,7 @@ The overall concept of the app is that users are able to send each other kind me
 
 #2 Set the reasonable milestones for your milestones. Please set the milestones for your required feature first (don't think about the stretch goal), also include the work for debugging and polishing.
 
-Milestones:
+## Milestones:
 
 
 Week 4 (7/12-7/16):
