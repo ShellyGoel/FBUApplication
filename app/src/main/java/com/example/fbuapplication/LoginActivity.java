@@ -254,7 +254,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
                 else {
-                    if((boolean) user.get("facebook_login") && isAppButton){
+
+                    if(user.get("facebook_login") !=null && (boolean) user.get("facebook_login") && isAppButton){
                         Snackbar.make(btnLogin, "You have to login via facebook.", Snackbar.LENGTH_LONG).show();
                         return;
                     }

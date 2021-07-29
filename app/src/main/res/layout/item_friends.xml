@@ -27,8 +27,8 @@
 
         <ImageView
             android:id="@+id/btnRemove"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/ic_baseline_person_remove_24"
             android:insetTop="0dp"
             android:insetBottom="0dp" />
@@ -46,6 +46,7 @@
             android:id="@+id/tvFriendAddedDate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
             android:textStyle="italic"
             android:visibility="visible"
             tools:text="Date created" />
@@ -55,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
+            android:fontFamily="@font/biko_regular"
             android:textColor="#058170"
             android:textSize="16sp"
             android:textStyle="bold"
