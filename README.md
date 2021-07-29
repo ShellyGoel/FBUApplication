@@ -29,7 +29,10 @@ The overall concept of the app is that users are able to send each other kind me
 #2 Set the reasonable milestones for your milestones. Please set the milestones for your required feature first (don't think about the stretch goal), also include the work for debugging and polishing.
 
 Milestones:
+
+
 Week 4 (7/12-7/16):
+
 - Set up all Fragment and Activity layouts (Compose, Inbox, Main Wall, Profile fragments) and Sign Up, Login, Main Activities, MessageDetails Activity
 - Finished all layouts as shown in Wireframe. Added all necessary onClickListeners.
 - Set up Parse User login, logout, and sign-up with persistence.
@@ -63,7 +66,8 @@ Week 4 (7/12-7/16):
 - Updated Profile fragment with better profile image icon.
 - Used https://rapidapi.com/bitbiscuit.../api/motivational-quotes1/ Motivational API to get and populate a motivational quote on the profile screen.
 - Updated Inbox fragment to update the number of notes sent by and populate Profile fragment with value.
-- Week 5 (7/19-7/23):
+Week 5 (7/19-7/23):
+
 - Implemented displaying to the user a dialog box if the Sentiment Analysis API returns that a message about to be sent is negative. Dialog box asks if they would still want to send a message if negative percentage is greater than 50%
 - Added second sentiment analysis API. Added DialogBox to warn users that their message might be negative. Prompts them to decide to continue sending or don't send.
 - Implemented DoNotSendDialogFragment which extends DialogFragment.
@@ -87,7 +91,9 @@ Week 4 (7/12-7/16):
 - Updated backgrounds for each screen.
 - Updated MainWallFragment so that when a wall is selected and then search is used then we search the sticky notes within that specific wall.
 - Implemented autofilling a random compliment if a user decides to press the random compliment button.
-- Week 6 (7/26-today):
+
+Week 6 (7/26-today):
+
 - Added a send message icon on the ComposeMessage screen where if a user want to send a message to a user that's not on the app they have the option to still compose the message and then click the send text message icon which will allow the user to share it via email/text/other apps. Added a layout for setting up a sticky note graphic where the message the user composes is the text within the sticky note along with a message on top where it says that 'you were invited by [user] to join the app!' (used buildDrawingCache and creating a bitmap) and then created a ACTION_SEND intent)
 - MainWall: Added a onOptionsItemSelected case for when the search icon is pressed so that it doesn't automatically refresh to showing all the messages (adapter filter set to only use messages of the current wall).
 - Added scrolling to the details sticky note so that if the user receives a really long message that doesn't fit on a sticky note they can still scroll through the text on the sticky note.
