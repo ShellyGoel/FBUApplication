@@ -66,6 +66,8 @@ Week 4 (7/12-7/16):
 - Updated Profile fragment with better profile image icon.
 - Used https://rapidapi.com/bitbiscuit.../api/motivational-quotes1/ Motivational API to get and populate a motivational quote on the profile screen.
 - Updated Inbox fragment to update the number of notes sent by and populate Profile fragment with value.
+
+
 Week 5 (7/19-7/23):
 
 - Implemented displaying to the user a dialog box if the Sentiment Analysis API returns that a message about to be sent is negative. Dialog box asks if they would still want to send a message if negative percentage is greater than 50%
