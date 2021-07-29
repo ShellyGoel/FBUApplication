@@ -250,6 +250,8 @@ public class MainWallFragment extends Fragment {
                 wallSpecificAllMessages.addAll(filteredModelList);
                 Log.i(TAG, "SIZE goals: "+ filteredModelList.size());
                 adapter.setFilter(filteredModelList);
+
+
                 return true;
 
 

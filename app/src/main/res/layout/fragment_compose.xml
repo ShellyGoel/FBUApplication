@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.ComposeFragment">
 
@@ -25,7 +25,7 @@
             android:fontFamily="@font/hey_magnolia"
             android:text="Compose a message:"
             android:textAlignment="center"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/title"
             android:textSize="34sp"
             android:textStyle="bold" />
 
@@ -36,23 +36,37 @@
         android:id="@+id/autoCompleteReceiver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:backgroundTint="@color/teal_700"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rounded_corner"
+        android:fontFamily="@font/biko_regular"
         android:hint="Enter recepient user..." />
 
     <EditText
         android:id="@+id/etMessageFromSender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rounded_corner"
+        android:fontFamily="@font/biko_regular"
         android:hint="Enter message..." />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
+        android:layout_width="107dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/purple_200"
+        android:foregroundGravity="center_vertical|center|center_horizontal"
+        android:gravity="center|center_horizontal|center_vertical"
         android:text="Submit"
+        android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +79,12 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
-            android:foreground="@android:drawable/ic_menu_send"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="Send \n as Text"
+            android:textColor="@color/black"
+
+            android:textSize="13sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.223"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,16 +121,16 @@
             android:layout_gravity="center|center_horizontal|center_vertical"
             android:layout_weight="1"
             android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
-            android:fontFamily="@font/biko_regular"
+            android:foreground="?android:attr/selectableItemBackground"
             android:foregroundGravity="center_vertical|center|center_horizontal"
             android:scaleType="center"
             android:src="@drawable/_removal_ai__tmp_60ebbf5282318"
-            android:text="Random \n Compliment"
+            android:text="Random Kudos"
             android:textAlignment="center"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.621"
+            app:layout_constraintHorizontal_bias="0.593"
             app:layout_constraintStart_toEndOf="@+id/btnSendText"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -123,10 +142,10 @@
         android:layout_marginTop="1dp"
         android:backgroundTint="@color/purple_700"
         android:text="Logout"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="310dp"
         tools:layout_editor_absoluteY="6dp" />
-
 
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->

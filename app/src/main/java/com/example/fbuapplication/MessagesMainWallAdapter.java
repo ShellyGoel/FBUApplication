@@ -1,12 +1,14 @@
 package com.example.fbuapplication;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,17 +20,53 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.fbuapplication.fragments.InboxFragment;
 import com.example.fbuapplication.fragments.MainWallFragment;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWallAdapter.ViewHolder> {
+import tyrantgit.explosionfield.ExplosionField;
+
+public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWallAdapter.ViewHolder> implements View.OnLongClickListener {
     private Context context;
     private List<Message> messages;
     private int clickedVal;
     private MainWallInterface mListener;
 
+    @Override
+    public boolean onLongClick(View v) {
+        //if goal, then explode:)
+
+        Log.i("ADAPTER","in long click");
+
+        if(mListener.onWork()==R.id.action_goals) {
+            ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
+            reset(v);
+            explosionField.explode(v);
+
+            explosionField.clear();
+        }
+        return true;
+    }
+
+
+
+    private void reset(View root) {
+        if (root instanceof ViewGroup) {
+            ViewGroup parent = (ViewGroup) root;
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                reset(parent.getChildAt(i));
+            }
+        } else {
+            root.setScaleX(1);
+            root.setScaleY(1);
+            root.setAlpha(1);
+        }
+    }
 
 
     public interface MainWallInterface{
@@ -54,6 +92,7 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_message_mainwall, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -78,7 +117,9 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         public ViewHolder(@NonNull View messageView) {
             super(messageView);
 
-           ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImageDetails);
+
+
+            ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImageDetails);
             tvMessageBody = messageView.findViewById(R.id.tvMessageBody);
             tvDate = messageView.findViewById(R.id.tvDate);
 
@@ -106,6 +147,9 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                     }
                 }
             });
+
+
+
         }
 
 
@@ -151,7 +195,44 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
             }
 
 
+
+
             Glide.with(context).load(stickyNote).into(ivStickyNoteImage);
+
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    if(mListener.onWork()==R.id.action_goals) {
+                        ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
+
+                        explosionField.explode(v);
+
+
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+                        //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
+                        query.whereEqualTo("objectId", message.getObjectId());
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            public void done(List<ParseObject> messages, ParseException e) {
+                                if (e == null) {
+
+                                    // iterate over all messages and delete them
+                                    for (ParseObject message : messages) {
+                                        //message.deleteEventually();
+                                        message.deleteInBackground();
+                                    }
+                                } else {
+                                    Log.d("main wall adapter", e.getMessage());
+                                }
+                            }
+                        });
+                        //reset(v);
+                        //explosionField.clear();
+                    }
+                    return true;
+                }
+            });
 //            ParseFile image = message.getImage();
 //            if (image != null) {
 //                Glide.with(context).load(image.getUrl()).into(ivImage);

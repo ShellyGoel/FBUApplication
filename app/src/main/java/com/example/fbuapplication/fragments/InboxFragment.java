@@ -155,6 +155,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                 // this method is called when we swipe our item to right direction.
                 // on below line we are getting the item at a particular position.
                 shouldDelete = true;
+                undoButton.setVisibility(View.VISIBLE);
                 Message deletedMessage = allMessages.get(viewHolder.getAdapterPosition());
 
 
@@ -301,6 +302,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
                     });
                 }
                 deleteMessageStack.clear();
+                undoButton.setVisibility(View.INVISIBLE);
                 fetchTimelineAsync(0);
             }
         });
@@ -372,6 +374,7 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
 
                 // save received messages to list and notify adapter of new data
 
+
                 allMessages.addAll(messages);
                 adapter.notifyDataSetChanged();
 
@@ -380,19 +383,19 @@ public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFr
     }
 
     @Override
-    public void onFinishDecidePinnedWallDialog(int toSend) {
+    public void onFinishDecidePinnedWallDialog(boolean[] toSend) {
 
         Log.i("MESSAGE INBOX ", getCurrentMessage().getMessageBody()+" val: " +toSend);
 
-        if(toSend ==0){
+        if(toSend[0] == true){
             getCurrentMessage().setIsKudos(true);
             getCurrentMessage().saveInBackground();
         }
-        if(toSend ==1){
+        if(toSend[1] == true){
             getCurrentMessage().setIsmemories(true);
             getCurrentMessage().saveInBackground();
         }
-        if(toSend ==2){
+        if(toSend[2] == true){
             getCurrentMessage().setIsGoals(true);
             getCurrentMessage().saveInBackground();
         }

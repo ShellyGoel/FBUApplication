@@ -124,7 +124,7 @@ dependencies {
     compile 'com.alexvasilkov:foldable-layout:1.2.1'
 
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
-
+    compile 'tyrantgit:explosionfield:1.0.1'
 
 
 

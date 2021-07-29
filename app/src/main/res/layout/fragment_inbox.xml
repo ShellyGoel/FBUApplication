@@ -22,29 +22,41 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvInboxTitle"
-                android:layout_width="298dp"
-                android:layout_height="match_parent"
+                android:layout_width="312dp"
+                android:layout_height="59dp"
                 android:fontFamily="@font/hey_magnolia"
                 android:text="User's Mail"
                 android:textAlignment="center"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/title"
                 android:textSize="34sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/undoButton"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:background="@color/purple_700"
-                android:text="Undo delete" />
-        </LinearLayout>
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:foregroundGravity="center"
+                android:text="Undo delete"
+                android:textAllCaps="true"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
 <!--            android:id="@+id/swipeContainer"-->
@@ -124,10 +136,10 @@
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="match_parent"
-                    android:layout_height="139dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/rvInboxMessages"
                     android:layout_marginTop="-1dp"
-                    android:src="@drawable/_7" />
+                    android:src="@drawable/fresh_folk___plants_3" />
 
                 <ImageView
                     android:id="@+id/imageView"

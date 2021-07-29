@@ -47,7 +47,7 @@
             android:fontFamily="@font/hey_magnolia"
             android:text="User's Wall"
             android:textAlignment="center"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/title"
             android:textSize="34sp"
             android:textStyle="bold" />
 

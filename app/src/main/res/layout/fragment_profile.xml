@@ -20,7 +20,7 @@
             android:src="@drawable/b7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -29,7 +29,7 @@
             android:id="@+id/profile1"
             android:layout_width="400dp"
             android:layout_height="400dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="176dp"
             android:src="@drawable/fresh_folk___plants_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.454"
@@ -40,7 +40,7 @@
             android:id="@+id/ivProfileImage"
             android:layout_width="155dp"
             android:layout_height="149dp"
-            android:layout_marginTop="156dp"
+            android:layout_marginTop="120dp"
             android:contentDescription="Add profile picture"
             android:cropToPadding="false"
             android:src="@mipmap/profile_pic_round"
@@ -51,16 +51,17 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNumSent"
             tools:src="@mipmap/profile_pic_round" />
 
+
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="374dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/hey_magnolia"
             android:textAlignment="center"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/title"
             android:textSize="32dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,15 +70,61 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Username" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="71dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername">
+
+            <Button
+                android:id="@+id/btnAddFriend"
+                android:layout_width="63dp"
+                android:layout_height="61dp"
+                android:background="@drawable/ic_baseline_person_add_24"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btnAcceptFriend"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+
+                android:background="@drawable/conversation_01_256__1_"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btnAcceptGroup"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+
+                android:layout_marginStart="20dp"
+                android:background="@drawable/ic_baseline_group_add_24"
+
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btnAddGroup"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+
+                android:background="@drawable/ic_baseline_people_24"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/tvNumSent"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
             android:fontFamily="@font/biko_regular"
             android:textSize="14dp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:text="Number notes sent" />
@@ -100,74 +147,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNumSent"
             tools:text="Messages unread" />
 
-
-        <Button
-            android:id="@+id/btnAddFriend"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginBottom="468dp"
-            android:background="@drawable/ic_baseline_person_add_24"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile1"
-            app:layout_constraintVertical_bias="0.476" />
-
-        <Button
-            android:id="@+id/btnAddGroup"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-
-            android:layout_marginBottom="468dp"
-            android:background="@drawable/ic_baseline_group_add_243"
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.916"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile1"
-            app:layout_constraintVertical_bias="0.476" />
-
-
-        <Button
-            android:id="@+id/btnAcceptFriend"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_marginBottom="468dp"
-            android:background="@drawable/ic_baseline_person_add_243"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.238"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile1"
-            app:layout_constraintVertical_bias="0.476" />
-
-        <Button
-            android:id="@+id/btnAcceptGroup"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-
-            android:layout_marginBottom="468dp"
-            android:background="@drawable/ic_baseline_group_add_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.74"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile1"
-            app:layout_constraintVertical_bias="0.466" />
-
         <TextView
             android:id="@+id/tvMotivationalQuote"
-            android:layout_width="wrap_content"
+            android:layout_width="296dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="484dp"
+            android:layout_marginTop="544dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/biko_regular"
             android:textAlignment="center"

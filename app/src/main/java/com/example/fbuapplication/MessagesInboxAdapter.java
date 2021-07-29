@@ -84,17 +84,17 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
     }
 
     @Override
-    public void onFinishDecidePinnedWallDialog(int toSend) {
+    public void onFinishDecidePinnedWallDialog(boolean[] toSend) {
 
         Log.i("MESSAGE INBOX ADAPTER", "val: " +toSend);
-        if(toSend ==0){
+        if(toSend[0]){
             getCurrentMessage().setIsKudos(true);
 
         }
-        if(toSend ==1){
+        if(toSend[1]){
             getCurrentMessage().setIsmemories(true);
         }
-        if(toSend ==2){
+        if(toSend[2]){
             getCurrentMessage().setIsGoals(true);
         }
 
