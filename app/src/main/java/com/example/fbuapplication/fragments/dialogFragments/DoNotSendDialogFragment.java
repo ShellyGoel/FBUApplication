@@ -1,4 +1,4 @@
-package com.example.fbuapplication.fragments;
+package com.example.fbuapplication.fragments.dialogFragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,19 +15,19 @@ import android.view.ViewGroup;
 import com.example.fbuapplication.R;
 
 
-public class SelectCameraFragment extends DialogFragment {
+public class DoNotSendDialogFragment extends DialogFragment {
     // Defines the listener interface
     //dialog fragment may be invoked within the context of another fragment.
     //In this case, we may want to pass the date back not to the activity but instead to the parent fragment.
-    public interface SelectCameraDialogListener {
-        void onFinishSelectCameraDialog(boolean toSend);
+    public interface DoNotSendDialogListener {
+        void onFinishDoNotSendDialog(boolean toSend);
     }
 
     // Call this method to send the data back to the parent fragment
     public void sendBackResult(boolean toSend) {
         // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
-        SelectCameraDialogListener listener = (SelectCameraDialogListener) getTargetFragment();
-        listener.onFinishSelectCameraDialog(toSend);
+        DoNotSendDialogListener listener = (DoNotSendDialogListener) getTargetFragment();
+        listener.onFinishDoNotSendDialog(toSend);
         dismiss();
     }
 
@@ -40,14 +40,14 @@ public class SelectCameraFragment extends DialogFragment {
 //        Bundle mArgs = getArguments();
 //        String myValue = mArgs.getString("keyUsed to send it...");
 
-        builder.setMessage("Do you want to take a photo or choose an image from your gallery?")
-                .setPositiveButton("TAKE A PHOTO", new DialogInterface.OnClickListener() {
+        builder.setMessage("Negative sentiment detected. Are you sure you want to send this message?")
+                .setPositiveButton("SEND", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // FIRE ZE MISSILES!
                         sendBackResult(true);
                     }
                 })
-                .setNegativeButton("CHOOSE GALLERY IMAGE", new DialogInterface.OnClickListener() {
+                .setNegativeButton("DON'T SEND", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialogs
                         sendBackResult(false);

@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.fbuapplication.fragments.DecidePinnedWallDialogFragment;
+import com.example.fbuapplication.ParseModels.Message;
+import com.example.fbuapplication.R;
+import com.example.fbuapplication.activities.MessageDetailsActivity;
+import com.example.fbuapplication.fragments.dialogFragments.DecidePinnedWallDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseException;
 import com.parse.ParseUser;

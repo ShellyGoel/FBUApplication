@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.activities;
 
 
 import androidx.annotation.NonNull;
@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.example.fbuapplication.CustomViewPager;
+import com.example.fbuapplication.R;
 import com.example.fbuapplication.fragments.ComposeFragment;
 import com.example.fbuapplication.fragments.InboxFragment;
 import com.example.fbuapplication.fragments.MainWallFragment;

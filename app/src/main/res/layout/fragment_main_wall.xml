@@ -20,10 +20,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@color/purple_200"
             android:minHeight="?attr/actionBarSize">
 
@@ -44,41 +45,43 @@
             android:id="@+id/tvWallTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/title"
             android:fontFamily="@font/hey_magnolia"
             android:text="User's Wall"
             android:textAlignment="center"
-            android:textColor="@color/title"
+            android:textColor="@color/title_text"
             android:textSize="34sp"
             android:textStyle="bold" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvMainWallMessages"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="550dp"
                     android:background="@drawable/b2"
                     android:padding="8dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
-
-
                 <ImageView
                     android:id="@+id/ivPlant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/_9"
                     android:layout_below="@+id/rvMainWallMessages"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/fresh_folk___plants_12" />
+                    android:background="@drawable/_9"
+                    android:src="@drawable/fresh_folk___plants_12"
+                    android:visibility="gone" />
 
                 <dyanamitechetan.vusikview.VusikView
                     android:id="@+id/vusik"

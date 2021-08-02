@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.adapters;
 
 
 import android.app.Activity;
@@ -8,22 +8,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.fbuapplication.fragments.InboxFragment;
+import com.example.fbuapplication.ParseModels.Message;
+import com.example.fbuapplication.R;
+import com.example.fbuapplication.activities.MessageDetailsActivity;
 import com.example.fbuapplication.fragments.MainWallFragment;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,6 +32,9 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
     private List<Message> messages;
     private int clickedVal;
     private MainWallInterface mListener;
+    ExplosionField explosionField;
+    boolean explod = true;
+
 
     @Override
     public boolean onLongClick(View v) {
@@ -43,22 +42,21 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
 
         Log.i("ADAPTER","in long click");
 
-        if(mListener.onWork()==R.id.action_goals) {
+        if(mListener.onWork()== R.id.action_goals) {
             ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
             reset(v);
             explosionField.explode(v);
-
             explosionField.clear();
         }
         return true;
     }
 
 
-
     private void reset(View root) {
         if (root instanceof ViewGroup) {
             ViewGroup parent = (ViewGroup) root;
             for (int i = 0; i < parent.getChildCount(); i++) {
+                explosionField.clear();
                 reset(parent.getChildAt(i));
             }
         } else {
@@ -67,7 +65,6 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
             root.setAlpha(1);
         }
     }
-
 
     public interface MainWallInterface{
         int onWork (); // Here you can customize the method you want to achieve, generally passed into the variables in the adapter for activity use.
@@ -79,7 +76,7 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         this.context = context;
         this.messages = messages;
         this.mListener = mListener;
-
+        explosionField = ExplosionField.attach2Window((Activity) context);
     }
 
     // method for filtering our recyclerview items.
@@ -148,6 +145,52 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                 }
             });
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+//                    if(mListener.onWork()==R.id.action_goals) {
+//
+//
+//                        explosionField.explode(v);
+//
+////                        ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
+//                        reset(v);
+//
+//        //                explosionField.explode(v);
+//
+//                        int position = getAdapterPosition();
+//                        if (position != RecyclerView.NO_POSITION) {
+//                            // get the movie at the position, this won't work if the class is static
+//                            Message message = messages.get(position);
+//                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+//                        //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
+//                        query.whereEqualTo("objectId", message.getObjectId());
+//                        query.findInBackground(new FindCallback<ParseObject>() {
+//                            public void done(List<ParseObject> messages, ParseException e) {
+//                                if (e == null) {
+//
+//                                    // iterate over all messages and delete them
+//                                    for (ParseObject message : messages) {
+//                                        //message.deleteEventually();
+//                                        message.deleteInBackground();
+//                                    }
+//                                } else {
+//                                    Log.d("main wall adapter", e.getMessage());
+//                                }
+//                            }
+//                        });
+//                       // explosionField.clear();
+//                    }
+//                    }
+//
+
+
+
+                    return true;
+                }
+            });
+
 
 
         }
@@ -187,8 +230,9 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                     break;
                 case R.id.action_wallmain:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf6e0f434;
-
-                    break;
+//                case R.id.action_search:
+//                    stickyNote = ivStickyNoteImage.getResources().getDrawable();
+//                    break;
                 default:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf1103f00;
                     break;
@@ -200,39 +244,7 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
             Glide.with(context).load(stickyNote).into(ivStickyNoteImage);
 
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
 
-                    if(mListener.onWork()==R.id.action_goals) {
-                        ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
-
-                        explosionField.explode(v);
-
-
-                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
-                        //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
-                        query.whereEqualTo("objectId", message.getObjectId());
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            public void done(List<ParseObject> messages, ParseException e) {
-                                if (e == null) {
-
-                                    // iterate over all messages and delete them
-                                    for (ParseObject message : messages) {
-                                        //message.deleteEventually();
-                                        message.deleteInBackground();
-                                    }
-                                } else {
-                                    Log.d("main wall adapter", e.getMessage());
-                                }
-                            }
-                        });
-                        //reset(v);
-                        //explosionField.clear();
-                    }
-                    return true;
-                }
-            });
 //            ParseFile image = message.getImage();
 //            if (image != null) {
 //                Glide.with(context).load(image.getUrl()).into(ivImage);

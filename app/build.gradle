@@ -125,7 +125,7 @@ dependencies {
 
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'tyrantgit:explosionfield:1.0.1'
-
+    implementation 'com.github.parse-community.ParseUI-Android:widget:0.0.6'
 
 
 }

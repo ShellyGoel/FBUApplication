@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.ParseModels;
 
 
 import android.util.Log;
