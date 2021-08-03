@@ -167,12 +167,12 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintBottom_toBottomOf="@+id/ivGroupStickyNoteImageDetails"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvIntroMessage"
-                app:layout_constraintVertical_bias="0.54"
+                app:layout_constraintVertical_bias="0.104"
                 tools:text="Category" />
 
             <Button
@@ -180,23 +180,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="128dp"
-                android:layout_marginEnd="130dp"
+                android:layout_marginTop="29dp"
                 android:background="@drawable/rounded_corners_4"
                 android:fontFamily="@font/biko_regular"
                 android:padding="2dp"
                 android:scrollbars="vertical"
-                android:textAlignment="viewStart"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/ivGroupStickyNoteImageDetails"
                 app:layout_constraintEnd_toEndOf="@+id/ivGroupStickyNoteImageDetails"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/ivGroupStickyNoteImageDetails"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.94"
+                app:layout_constraintTop_toBottomOf="@+id/tvCategory"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="Assigned user" />
 
             <ImageView
@@ -209,7 +206,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintTop_toBottomOf="@+id/ivGroupStickyNoteImageDetails"
                 app:srcCompat="@drawable/fresh_folk___plants_16" />
 
 
@@ -217,5 +214,12 @@
 
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </RelativeLayout>

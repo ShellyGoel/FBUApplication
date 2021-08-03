@@ -112,10 +112,7 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
        stickyNote = inflater.inflate(R.layout.stickynotetosend, parent, false);
-       if(getArguments()!=null){
-           String userToSend = getArguments().getString("sendTo");
-           stringToSend = userToSend;
-       }
+
         return inflater.inflate(R.layout.fragment_compose,parent, false);
 
 
@@ -157,7 +154,11 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
         sent2 = 1.0;
         shouldMessageSend = false;
 
-
+        if(getArguments()!=null){
+            Log.i("GROUP DETAILS", "CLICKED");
+            String userToSend = getArguments().getString("sendingTo");
+            autocomplete.setText(userToSend);
+        }
 
         clSendText = stickyNote.findViewById(R.id.clSendText);
         tvDateToSend = stickyNote.findViewById(R.id.tvDateToSend);
@@ -304,9 +305,7 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
                 String recipient = autocomplete.getText().toString();
               //  String sendingTo= getArguments().getString("sendingTo");
-                if(stringToSend.length()>0){
-                    recipient = stringToSend;
-                }
+
                 if(recipient.isEmpty()){
                     //Toast.makeText(getContext(),"Recipient cannot be empty", Toast.LENGTH_SHORT).show();
                     Snackbar.make(btnSubmit, "Recipient cannot be empty", Snackbar.LENGTH_LONG).show();
