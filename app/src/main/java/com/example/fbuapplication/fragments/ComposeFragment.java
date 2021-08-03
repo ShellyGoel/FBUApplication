@@ -95,6 +95,7 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
 
     private View stickyNote;
+    private String stringToSend;
     boolean shouldDelete;
     //TODO: add onAttach
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
@@ -111,7 +112,10 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
        stickyNote = inflater.inflate(R.layout.stickynotetosend, parent, false);
-
+       if(getArguments()!=null){
+           String userToSend = getArguments().getString("sendTo");
+           stringToSend = userToSend;
+       }
         return inflater.inflate(R.layout.fragment_compose,parent, false);
 
 
@@ -293,7 +297,16 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
                 }
                 //String recipient = etRecipient.getText().toString();
+
+
+
+
+
                 String recipient = autocomplete.getText().toString();
+              //  String sendingTo= getArguments().getString("sendingTo");
+                if(stringToSend.length()>0){
+                    recipient = stringToSend;
+                }
                 if(recipient.isEmpty()){
                     //Toast.makeText(getContext(),"Recipient cannot be empty", Toast.LENGTH_SHORT).show();
                     Snackbar.make(btnSubmit, "Recipient cannot be empty", Snackbar.LENGTH_LONG).show();

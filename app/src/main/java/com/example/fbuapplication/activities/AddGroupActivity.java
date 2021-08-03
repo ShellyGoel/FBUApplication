@@ -8,26 +8,26 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
 
+import com.example.fbuapplication.ParseModels.FriendRequest;
 import com.example.fbuapplication.ParseModels.Group;
+import com.example.fbuapplication.ParseModels.GroupToMembers;
 import com.example.fbuapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import org.json.JSONArray;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class AddGroupActivity extends AppCompatActivity {
 
@@ -155,7 +155,6 @@ public class AddGroupActivity extends AppCompatActivity {
 //                    }
 
 
-                    ParseQuery<ParseUser> query1 = ParseUser.getQuery();
 
 
                     if(groupMembers.length==0){
@@ -171,21 +170,7 @@ public class AddGroupActivity extends AppCompatActivity {
                           }
 
                     }
-                    for(String u:groupMembersNew) {
-                        query1.whereEqualTo("username",u);
-                        query1.findInBackground(new FindCallback<ParseUser>() {
-                            public void done(List<ParseUser> userList, ParseException e) {
-                                if(e == null){
-                                    ParseUser user = userList.get(0);
-                                    user.add("groupsIn",groupName);
-                                    user.saveInBackground();
-                                }
-                                else{
 
-                                }
-                        }
-                        });
-                    }
                     //query1.whereEqualTo("username","shelly");
                     Log.i(TAG, "recipient111 ");
 
@@ -209,7 +194,7 @@ public class AddGroupActivity extends AppCompatActivity {
                                     allGroup.setGroupName(groupName);
                                     allGroup.setIntroMessage(introMessage);
                                     allGroup.setCategory(category);
-
+                                    allGroup.setToUsers(autocompleteGroup.getText().toString());
                                     allGroup.setFromUser(ParseUser.getCurrentUser());
                                     Log.i(TAG, "recipient122221 ");
 
@@ -222,7 +207,8 @@ public class AddGroupActivity extends AppCompatActivity {
                                  //   allGroup.setToUsers(usersGroup);
                                     Log.i(TAG, "recipient1222212323232 ");
 
-                                    allGroup.saveInBackground(new SaveCallback() {
+                    String[] finalGroupMembersNew = groupMembersNew;
+                    allGroup.saveInBackground(new SaveCallback() {
                                         @Override
                                         public void done(ParseException e) {
                                             if (e != null) {
@@ -234,14 +220,85 @@ public class AddGroupActivity extends AppCompatActivity {
                                             } else {
                                                 Snackbar.make(autocompleteGroup, "Group created!", Snackbar.LENGTH_LONG).show();
                                                 Log.i(TAG, "recipient4 " );
-                                                Log.i(TAG, "recipientf3431 ");
 
+
+//                                                ParseObject gameScore = new ParseObject("GroupToMembers");
+//
+//                                                gameScore.put("userID", ParseUser.getCurrentUser());
+//                                                gameScore.put("groupID", allGroup);
+//
+//                                                gameScore.saveInBackground(new SaveCallback() {
+//                                                    @Override
+//                                                    public void done(ParseException e) {
+//                                                        if(e!=null){
+//
+//                                                        }
+//                                                        else{
+//                                                            ParseQuery<ParseObject> query = ParseQuery.getQuery("GroupToMembers");
+//                                                            query.whereEqualTo("userID", ParseUser.getCurrentUser());
+//                                                            query.findInBackground(new FindCallback<ParseObject>() {
+//                                                                public void done(List<ParseObject> members, ParseException e) {
+//                                                                    if (e == null) {
+//                                                                        Log.d("score", "Retrieved " + members + " members");
+//                                                                    } else {
+//                                                                        Log.d("score", "Error: " + e.getMessage());
+//                                                                    }
+//                                                                }
+//                                                            });
+//                                                        }
+//                                                    }
+//                                                });
 
                                             }
                                         }
 
                                     });
 
+
+                    ParseQuery<ParseUser> query1 = ParseUser.getQuery();
+
+                    List<String> groupsList = Arrays.asList(finalGroupMembersNew);
+
+                    Collections.shuffle(groupsList);
+                    String[] shuffledArray = new String[groupsList.size()];
+                    groupsList.toArray(shuffledArray);
+                    String[] finalAssignedUsersArray = new String[groupsList.size()];
+
+
+                    //shuffled array, now set each assignedUser to the one after, for last element set as first
+
+                    for(int i = 0;i<shuffledArray.length;i++){
+                        if(i!=shuffledArray.length-1) {
+                            finalAssignedUsersArray[i] = shuffledArray[i + 1];
+                        }
+                        else{
+                            finalAssignedUsersArray[i] = shuffledArray[0];
+                        }
+                    }
+                    for(int i = 0;i <shuffledArray.length;i++) {
+
+                        String u = finalGroupMembersNew[i];
+                        query1.whereEqualTo("username",u);
+                        int finalI = i;
+                        query1.findInBackground(new FindCallback<ParseUser>() {
+                            public void done(List<ParseUser> userList, ParseException e) {
+                                if(e == null){
+
+                                    Log.i(TAG, u);
+
+                                    GroupToMembers groupUser = new GroupToMembers();
+                                    groupUser.setUsername(u);
+                                    groupUser.setGroupID(allGroup);
+                                    String randomMember = finalAssignedUsersArray[finalI];
+                                    groupUser.put("assignedUser", randomMember);
+                                    groupUser.saveInBackground();
+                                }
+                                else{
+
+                                }
+                            }
+                        });
+                    }
                                     Log.i(TAG, "recipient343341222212323232 ");
 
                                 }
@@ -253,5 +310,6 @@ public class AddGroupActivity extends AppCompatActivity {
 
         });
     }
+
 
 }

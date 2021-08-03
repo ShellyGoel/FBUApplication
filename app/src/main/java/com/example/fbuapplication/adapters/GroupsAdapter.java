@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fbuapplication.ParseModels.Group;
+import com.example.fbuapplication.ParseModels.GroupToMembers;
 import com.example.fbuapplication.R;
+import com.example.fbuapplication.activities.GroupDetailsActivity;
 import com.example.fbuapplication.activities.GroupDetailsActivity;
 import com.example.fbuapplication.activities.MessageDetailsActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,13 +26,15 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Date;
 import java.util.List;
 
 public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder> {
     private Context context;
 
-    private List<Group> addGroups;
+    private List<GroupToMembers> addGroupToMembers;
     private int adapterPosition;
 
 
@@ -43,22 +48,26 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
 
     private int position;
 
-    public GroupsAdapter(Context context, List<Group> addGroups) {
+    public GroupsAdapter(Context context, List<GroupToMembers> addGroupToMembers) {
         this.context = context;
-        this.addGroups = addGroups;
+        this.addGroupToMembers = addGroupToMembers;
     }
 
-    @NonNull
+
+    @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_group, parent, false);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Group addGroup = addGroups.get(position);
+        GroupToMembers GroupToMembers = addGroupToMembers.get(position);
         try {
-            holder.bind(addGroup);
+
+
+            holder.bind(GroupToMembers,position);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -67,17 +76,17 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return addGroups.size();
+        return addGroupToMembers.size();
     }
 
 
     public void removeItem(int position) {
-        addGroups.remove(position);
+        addGroupToMembers.remove(position);
         notifyItemRemoved(position);
     }
 
-    public void restoreItem(Group addGroup, int position) {
-        addGroups.add(position, addGroup);
+    public void restoreItem(GroupToMembers addGroupToMembers, int position) {
+        addGroupToMembers.add(String.valueOf(position), addGroupToMembers);
         notifyItemInserted(position);
     }
 
@@ -86,16 +95,16 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView btnRemove;
-        private TextView tvGroupName;
-        private TextView tvGroupAddedDate;
+        private TextView tvGroupToMembersName;
+        private TextView tvGroupToMembersAddedDate;
 
         public static final String TAG = "InboxAdapter";
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            btnRemove = itemView.findViewById(R.id.btnRemove);
-            tvGroupName = itemView.findViewById(R.id.tvGroupName);
-            tvGroupAddedDate = itemView.findViewById(R.id.tvGroupAddedDate);
+            btnRemove = itemView.findViewById(R.id.btnGroupRemove);
+            tvGroupToMembersName = itemView.findViewById(R.id.tvGroupName);
+            tvGroupToMembersAddedDate = itemView.findViewById(R.id.tvGroupAddedDate);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -107,18 +116,20 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                     // make sure the position is valid, i.e. actually exists in the view
                     if (position != RecyclerView.NO_POSITION) {
                         // get the movie at the position, this won't work if the class is static
-                        Group addGroup = addGroups.get(position);
-                        Date createdAt = addGroup.getCreatedAt();
-                        String timeAgo = Group.calculateTimeAgo(createdAt);
+                        GroupToMembers groupToMembers = addGroupToMembers.get(position);
+                        Date createdAt = groupToMembers.getCreatedAt();
+                        String timeAgo = GroupToMembers.calculateTimeAgo(createdAt);
 
                         Intent intent = new Intent(context, GroupDetailsActivity.class);
                         // serialize the movie using parceler, use its short name as a key
                         intent.putExtra("createdAt", timeAgo);
-                        intent.putExtra("groupMembers","TO:DO");
-                        intent.putExtra("introMessage",addGroup.getIntroMessage());
-                        intent.putExtra("assignedUser","TO:DO");
-                        intent.putExtra("category",addGroup.getCategory());
 
+                        Group g = groupToMembers.getGroupID();
+                        intent.putExtra("groupMembers",g.getToUsers().substring(0,g.getToUsers().length()-2));
+                        intent.putExtra("introMessage",g.getIntroMessage());
+                        intent.putExtra("assignedUser",groupToMembers.getAssignedUser());
+                        intent.putExtra("category",g.getCategory());
+                        intent.putExtra("groupName",g.getGroupName());
 
                         // show the activity
                         context.startActivity(intent);
@@ -130,54 +141,61 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
         }
 
 
-        public void bind(Group addGroup) throws ParseException {
-            // Bind the addGroup data to the view elements
+        public void bind(GroupToMembers addGroupToMembers,int position) throws ParseException {
+            // Bind the addGroupToMembers data to the view elements
 
-            ParseObject textMessageContent=addGroup.getFromUser().fetchIfNeeded();
-            tvGroupName.setText((textMessageContent.get("username").toString()));
 
-            Glide.with(context).load(R.drawable.ic_baseline_person_remove_24).into(btnRemove);
+            GroupToMembers gtm =addGroupToMembers.fetchIfNeeded();
+            Group g = gtm.getGroupID().fetchIfNeeded();//.getGroupID();
+            tvGroupToMembersName.setText(g.getGroupName());
+
+            if(position%2==0){
+                Glide.with(context).load(R.drawable.ic_baseline_people_24).into(btnRemove);
+            }
+            else{
+                Glide.with(context).load(R.drawable.ic_baseline_people_243).into(btnRemove);
+            }
             itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
 
-            Date createdAt = addGroup.getCreatedAt();
-            String timeAgo = Group.calculateTimeAgo(createdAt);
-            tvGroupAddedDate.setText(timeAgo);
+            Date createdAt = addGroupToMembers.getCreatedAt();
+            String timeAgo = GroupToMembers.calculateTimeAgo(createdAt);
+            tvGroupToMembersAddedDate.setText(timeAgo);
 
 
 
 
 
-            btnRemove.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    ParseUser currentUser = ParseUser.getCurrentUser();
-
-                    //check which wall to pin to
-                    adapterPosition = getPosition();
-                    itemView.setBackgroundColor(itemView.getResources().getColor(R.color.gray_out));
-
-                    Glide.with(context).load(R.drawable.ic_baseline_person_remove_243).into(btnRemove);
-
-
-                   // addGroup.setStatus("unfriended");
-
-                    addGroup.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while accepting friend request",e);
-                                //Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
-                                Snackbar.make(btnRemove, "Error while unfriending", Snackbar.LENGTH_LONG).show();
-
-                            }
-
-                        }
-                    });
-
-
-                }
-            });
+//            btnRemove.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    ParseUser currentUser = ParseUser.getCurrentUser();
+//
+//                    //check which wall to pin to
+//                    adapterPosition = getPosition();
+//                    itemView.setBackgroundColor(itemView.getResources().getColor(R.color.gray_out));
+//
+//                    Glide.with(context).load(R.drawable.ic_baseline_person_remove_243).into(btnRemove);
+//
+//
+//                   // addGroupToMembers.setStatus("unfriended");
+//
+//                    addGroupToMembers.saveInBackground(new SaveCallback() {
+//                        @Override
+//                        public void done(ParseException e) {
+//                            if(e != null){
+//                                Log.e(TAG, "Error while accepting friend request",e);
+//                                //Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
+//                                Snackbar.make(btnRemove, "Error while unfriending", Snackbar.LENGTH_LONG).show();
+//
+//                            }
+//
+//                        }
+//                    });
+//
+//
+//                }
+//            });
         }
 
 
@@ -187,18 +205,18 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
 
     // Clean all elements of the recycler
     public void clear() {
-        addGroups.clear();
+        addGroupToMembers.clear();
         notifyDataSetChanged();
     }
 
     // Add a list of items -- change to type used
-    public void addAll(List<Group> list) {
-        addGroups.addAll(list);
+    public void addAll(List<GroupToMembers> list) {
+        addGroupToMembers.addAll(list);
         notifyDataSetChanged();
     }
 
     public int getSize() {
-        return addGroups.size();
+        return addGroupToMembers.size();
     }
 
 

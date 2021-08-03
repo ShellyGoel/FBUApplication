@@ -26,7 +26,7 @@
 
 
         <ImageView
-            android:id="@+id/btnRemove"
+            android:id="@+id/btnGroupRemove"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/ic_baseline_people_24"
@@ -46,7 +46,7 @@
             android:id="@+id/tvGroupAddedDate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="4dp"
             android:text="date"
             android:textStyle="italic"
             android:visibility="visible"

@@ -14,16 +14,13 @@ import org.json.JSONArray;
 
 import java.util.Date;
 
-@ParseClassName("Group")
-public class Group extends ParseObject {
+@ParseClassName("GroupToMembers")
+public class GroupToMembers extends ParseObject {
 
-    public static final String KEY_FROMUSER = "fromUser";
-    public static final String KEY_TOUSERS = "toUsers";
+
+    public static final String KEY_USERNAME = "username";
     public static final String KEY_ASSIGNEDUSER = "assignedUser";
-
-    public static final String KEY_INTROMESSAGE= "introMessage";
-    public static final String KEY_CATEGORYSELECTED = "categorySelected";
-    public static final String KEY_GROUPNAME = "groupName";
+    public static final String KEY_GROUPID = "groupID";
 
 
     public String getAssignedUser(){
@@ -34,57 +31,23 @@ public class Group extends ParseObject {
         put(KEY_ASSIGNEDUSER, assignedUser);
     }
 
-    public String getIntroMessage(){
-        return getString(KEY_INTROMESSAGE);
+
+    public String getUsername(){
+        return getString(KEY_USERNAME);
     }
 
-    public void setIntroMessage(String message){
-        put(KEY_INTROMESSAGE, message);
-    }
-
-    public String getCategory(){
-        return getString(KEY_CATEGORYSELECTED);
-    }
-
-    public void setCategory(String message){
-        put(KEY_CATEGORYSELECTED, message);
-    }
-
-    public String getGroupName(){
-        return getString(KEY_GROUPNAME);
-    }
-
-    public void setGroupName(String message){
-        put(KEY_GROUPNAME, message);
-    }
-
-    public String getToUsers(){
-        return getString(KEY_TOUSERS);
-    }
-
-    public void setToUsers(String toUsers){
-        put(KEY_TOUSERS, toUsers);
+    public void setUsername(String user){
+        put(KEY_USERNAME, user);
     }
 
 
-    public ParseUser getFromUser(){
-        return getParseUser(KEY_FROMUSER);
+    public Group getGroupID(){
+        return (Group) getParseObject(KEY_GROUPID);
     }
 
-    public void setFromUser(ParseUser user){
-        put(KEY_FROMUSER, user);
+    public void setGroupID(Group group){
+        put(KEY_GROUPID, group);
     }
-
-
-//    public JSONArray getToUsers(){
-//        return getJSONArray(KEY_TOUSERS);
-//    }
-//
-//    public void setToUsers(ParseUser[] users){
-//        put(KEY_TOUSERS, users);
-//    }
-//
-
 
 
     public static String calculateTimeAgo(Date createdAt) {

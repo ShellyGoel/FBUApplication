@@ -56,7 +56,7 @@ public class AllNotesActivity extends AppCompatActivity {
         // set the adapter on the recycler view
         rvAllNotes.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvAllNotes.setLayoutManager(new GridLayoutManager(this, 5));
+        rvAllNotes.setLayoutManager(new GridLayoutManager(this, 4));
 
         if(ParseUser.getCurrentUser().get("num_messages_sent")==null){
             ParseUser.getCurrentUser().put("num_messages_sent", 0);

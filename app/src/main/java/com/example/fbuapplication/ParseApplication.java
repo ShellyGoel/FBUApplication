@@ -5,6 +5,7 @@ import android.app.Application;
 
 import com.example.fbuapplication.ParseModels.FriendRequest;
 import com.example.fbuapplication.ParseModels.Group;
+import com.example.fbuapplication.ParseModels.GroupToMembers;
 import com.example.fbuapplication.ParseModels.Message;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -25,6 +26,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Message.class);
         ParseObject.registerSubclass(FriendRequest.class);
         ParseObject.registerSubclass(Group.class);
+        ParseObject.registerSubclass(GroupToMembers.class);
 
         // Within the Android Application where Parse is initialized
         Parse.enableLocalDatastore(this);
