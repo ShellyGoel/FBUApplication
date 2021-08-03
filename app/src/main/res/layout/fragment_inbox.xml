@@ -29,12 +29,13 @@
 
             <TextView
                 android:id="@+id/tvInboxTitle"
-                android:layout_width="312dp"
+                android:layout_width="match_parent"
                 android:layout_height="59dp"
+                android:background="@color/title"
                 android:fontFamily="@font/hey_magnolia"
                 android:text="User's Mail"
                 android:textAlignment="center"
-                android:textColor="@color/title"
+                android:textColor="@color/title_text"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +68,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/placeholderInbox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/imageView10"
@@ -83,10 +85,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="242dp"
+                android:layout_height="97dp"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/nomads___send_notification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNewMessagesInbox" />
+
+            <ImageView
                 android:id="@+id/ivNewMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fuzzy_friends___little_elephant"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -96,16 +109,17 @@
 
             <TextView
                 android:id="@+id/tvNewMessagesInbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="52dp"
+                android:layout_width="290dp"
+                android:layout_height="107dp"
+                android:layout_marginTop="96dp"
                 android:fontFamily="@font/biko_regular"
                 android:text="Loading messages..."
-                android:textColor="@color/teal_700"
-                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="@color/teal_400"
+                android:textSize="40dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.231"
+                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView10"
                 tools:text="Loading messages..." />
@@ -116,6 +130,7 @@
             android:id="@+id/pullRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             app:refreshColors="@array/refresh_colors"
             app:refreshType="water_drop">
 
@@ -127,7 +142,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvInboxMessages"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="585dp"
                     android:background="@drawable/b7"
                     android:padding="8dp">
 
@@ -139,7 +154,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvInboxMessages"
                     android:layout_marginTop="-1dp"
-                    android:src="@drawable/fresh_folk___plants_3" />
+                    android:src="@drawable/fresh_folk___plants_3"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -151,7 +167,7 @@
                     android:visibility="gone" />
             </RelativeLayout>
 
-<!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+            <!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         </com.baoyz.widget.PullRefreshLayout>
 
     </LinearLayout>

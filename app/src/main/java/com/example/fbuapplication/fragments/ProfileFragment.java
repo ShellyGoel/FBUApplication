@@ -7,7 +7,11 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.ImageDecoder;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,38 +26,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.fbuapplication.AddFriend;
-import com.example.fbuapplication.FriendRequest;
-import com.example.fbuapplication.FriendsRequestList;
-import com.example.fbuapplication.MainActivity;
-import com.example.fbuapplication.Message;
-import com.example.fbuapplication.MessageDetailsActivity;
+import com.example.fbuapplication.activities.AddFriendActivity;
+import com.example.fbuapplication.activities.AddGroupActivity;
+import com.example.fbuapplication.activities.FriendsRequestListActivity;
+import com.example.fbuapplication.ParseModels.Message;
 import com.example.fbuapplication.R;
 
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.fbuapplication.SignUpActivity;
+import com.example.fbuapplication.activities.AllNotesActivity;
+import com.example.fbuapplication.activities.GroupActivity;
+import com.example.fbuapplication.fragments.dialogFragments.SelectCameraFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.SocketOption;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -62,16 +57,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.FragmentManager;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
-import com.facebook.login.LoginManager;
-import com.parse.ParseUser;
+
 import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends Fragment implements SelectCameraFragment.SelectCameraDialogListener{
@@ -93,6 +83,8 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
     private boolean chooseCamera;
    // private static int RESULT_LOAD_IMAGE = 1;
+// PICK_PHOTO_CODE is a constant integer
+   public final static int PICK_PHOTO_CODE = 1046;
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public static final int GALLERY_IMAGE_ACTIVITY_REQUEST_CODE = 13;
@@ -160,6 +152,13 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         }
 
 
+
+        tvNumSent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goAllNotesActivity();
+            }
+        });
         btnAddFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,17 +166,28 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
                 goFriendRequestActivity();
 
-                //TODO:finish signup activity once we have navigated to the next activity
-
-
-
-            }
+                         }
         });
 
         btnAcceptFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goAcceptFriendRequestActivity();
+            }
+        });
+
+        btnAddGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goAddGroupActivity();
+            }
+        });
+
+
+        btnAcceptGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goGroupActivity();
             }
         });
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -268,7 +278,43 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     });
     }
 
-        public void onLaunchCamera(View view) {
+    // Trigger gallery selection for a photo
+    public void onPickPhoto() {
+
+        Log.d(TAG, "failed to create directory2");
+        // Create intent for picking a photo from the gallery
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
+        // So as long as the result is not null, it's safe to use the intent.
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Bring up gallery to select a photo
+            Log.d(TAG, "failed to create directory3");
+            startActivityForResult(intent, PICK_PHOTO_CODE);
+        }
+    }
+
+    public Bitmap loadFromUri(Uri photoUri) {
+        Bitmap image = null;
+        try {
+            // check version of Android on device
+            if(Build.VERSION.SDK_INT > 27){
+                // on newer versions of Android, use the new decodeBitmap method
+                ImageDecoder.Source source = ImageDecoder.createSource(getContext().getContentResolver(), photoUri);
+                image = ImageDecoder.decodeBitmap(source);
+            } else {
+                // support older versions of Android by using getBitmap
+                image = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+
+    public void onLaunchCamera(View view) {
         // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
@@ -306,8 +352,20 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
                 Snackbar.make(ivProfileImage, "Picture wasn't taken!", Snackbar.LENGTH_LONG).show();
 
             }
-        }
 
+
+//        if (requestCode == PICK_PHOTO_CODE) {
+//            Uri photoUri = data.getData();
+//            Log.d(TAG, "failed to create directory4");
+//            // Load the image located at photoUri into selectedImage
+//            Bitmap selectedImage = loadFromUri(photoUri);
+//
+//            // Load the selected image into a preview
+//
+//            ivProfileImage.setImageBitmap(selectedImage);
+//            Snackbar.make(ivProfileImage, "Picture was selected!", Snackbar.LENGTH_LONG).show();
+//        }
+        }
         if (requestCode == GALLERY_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
@@ -342,36 +400,48 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         return file;
     }
 
-    private void updateUserWithPhoto(ParseUser currentUser, File photoFile) {
+    private void updateUserWithPhoto(ParseUser currentUser, File photoFile){
 
         ParseFile img = new ParseFile(photoFile);
+        currentUser.put(KEY_PROFILE_PICTURE, img);
+        //Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
 
-        img.saveInBackground(new SaveCallback() {
-            public void done(ParseException e) {
-                // If successful add file to user and signUpInBackground
-                if(null == e) {
-                    currentUser.put(KEY_PROFILE_PICTURE, img);
+        try {
+            currentUser.save();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-                    currentUser.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while uploading profile picture",e);
-                                //Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
-                                Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
 
-                            }
-                            else {
-                                Log.i(TAG, "Profile picture upload was successful!");
-                                //Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
-                            }
-                            //ivProfileImage.setImageResource(new ParseFile(photoFile));
-                        }
-                    });
-
-                }
-            }
-        });
+//        img.saveInBackground(new SaveCallback() {
+//            public void done(ParseException e) {
+//                // If successful add file to user and signUpInBackground
+//                if(null == e) {
+//                    currentUser.put(KEY_PROFILE_PICTURE, img);
+//
+//                    currentUser.saveInBackground(new SaveCallback() {
+//                        @Override
+//                        public void done(ParseException e) {
+//                            if(e != null){
+//                                Log.e(TAG, "Error while uploading profile picture",e);
+//                                //Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
+//                                Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
+//
+//                            }
+//                            else {
+//                                Log.i(TAG, "Profile picture upload was successful!");
+//                                Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
+//
+//                                ///Glide.with(getContext()).load(img_user.getUrl()).into(ivProfileImage);
+//
+//                            }
+//                            //ivProfileImage.setImageResource(new ParseFile(photoFile));
+//                        }
+//                    });
+//
+//                }
+//            }
+//        });
 
 
 
@@ -391,7 +461,10 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             verifyStoragePermissions(getActivity());
             Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(i, GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
+            Log.d(TAG, "failed to create directory");
 
+            //startActivityForResult(i, PICK_PHOTO_CODE);
+            //onPickPhoto();
 
         }
 
@@ -456,18 +529,76 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         return numUnread[0];
     }
 
-    private void goFriendRequestActivity(){
-        Intent intent = new Intent(getContext(), AddFriend.class);
+    private void goAllNotesActivity(){
+        Intent intent = new Intent(getContext(), AllNotesActivity.class);
 
         getContext().startActivity(intent);
 
     }
 
-    private void goAcceptFriendRequestActivity(){
-        Intent intent = new Intent(getContext(), FriendsRequestList.class);
+    private void goFriendRequestActivity(){
+        Intent intent = new Intent(getContext(), AddFriendActivity.class);
 
         getContext().startActivity(intent);
 
+    }
+    private void goGroupActivity(){
+        Intent intent = new Intent(getContext(), GroupActivity.class);
+
+        getContext().startActivity(intent);
+
+    }
+
+    private void goAddGroupActivity(){
+        Intent intent = new Intent(getContext(), AddGroupActivity.class);
+
+        getContext().startActivity(intent);
+
+    }
+
+
+
+    private void goCreateGroupActivity(){
+        Intent intent = new Intent(getContext(), GroupActivity.class);
+
+        getContext().startActivity(intent);
+
+    }
+
+
+    private void goAcceptFriendRequestActivity(){
+        Intent intent = new Intent(getContext(), FriendsRequestListActivity.class);
+
+        getContext().startActivity(intent);
+
+    }
+
+    public Bitmap rotateBitmapOrientation(String photoFilePath) {
+        // Create and configure BitmapFactory
+        BitmapFactory.Options bounds = new BitmapFactory.Options();
+        bounds.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(photoFilePath, bounds);
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        Bitmap bm = BitmapFactory.decodeFile(photoFilePath, opts);
+        // Read EXIF Data
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(photoFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String orientString = exif.getAttribute(ExifInterface.TAG_ORIENTATION);
+        int orientation = orientString != null ? Integer.parseInt(orientString) : ExifInterface.ORIENTATION_NORMAL;
+        int rotationAngle = 0;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_90) rotationAngle = 90;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_180) rotationAngle = 180;
+        if (orientation == ExifInterface.ORIENTATION_ROTATE_270) rotationAngle = 270;
+        // Rotate Bitmap
+        Matrix matrix = new Matrix();
+        matrix.setRotate(rotationAngle, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
+        Bitmap rotatedBitmap = Bitmap.createBitmap(bm, 0, 0, bounds.outWidth, bounds.outHeight, matrix, true);
+        // Return result
+        return rotatedBitmap;
     }
 
 }

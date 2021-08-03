@@ -15,11 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fbuapplication.MessagesAllNotesAdapter;
-import com.example.fbuapplication.MessagesMainWallAdapter;
+import com.example.fbuapplication.adapters.MessagesMainWallAdapter;
 import com.example.fbuapplication.R;
 
-import com.example.fbuapplication.Message;
+import com.example.fbuapplication.ParseModels.Message;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

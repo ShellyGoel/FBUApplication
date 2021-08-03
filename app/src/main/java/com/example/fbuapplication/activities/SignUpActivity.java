@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.example.fbuapplication.R;
+import com.example.fbuapplication.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseUser;
 

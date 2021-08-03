@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.fbuapplication.R;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,26 +6,26 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.baoyz.widget.PullRefreshLayout;
-import com.example.fbuapplication.fragments.InboxFragment;
+import com.example.fbuapplication.ParseModels.FriendRequest;
+import com.example.fbuapplication.R;
+import com.example.fbuapplication.adapters.FriendRequestsAdapter;
+import com.example.fbuapplication.adapters.FriendsAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendsRequestList extends AppCompatActivity {
+public class FriendsRequestListActivity extends AppCompatActivity {
 
 
     private RecyclerView rvFriendRequest;

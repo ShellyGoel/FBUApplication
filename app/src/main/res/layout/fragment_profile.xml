@@ -10,19 +10,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="648dp"
+        android:background="@drawable/b7">
 
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="590dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/b7"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
@@ -35,6 +38,8 @@
             app:layout_constraintHorizontal_bias="0.454"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivProfileImage"
@@ -54,14 +59,12 @@
 
         <TextView
             android:id="@+id/tvUsername"
-            android:layout_width="374dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="4dp"
+            android:background="@color/title"
             android:fontFamily="@font/hey_magnolia"
             android:textAlignment="center"
-            android:textColor="@color/title"
+            android:textColor="@color/title_text"
             android:textSize="32dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +98,7 @@
                 android:foreground="?android:attr/selectableItemBackground" />
 
             <Button
-                android:id="@+id/btnAcceptGroup"
+                android:id="@+id/btnAddGroup"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
 
@@ -105,7 +108,7 @@
                 android:foreground="?android:attr/selectableItemBackground" />
 
             <Button
-                android:id="@+id/btnAddGroup"
+                android:id="@+id/btnAcceptGroup"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="20dp"
@@ -115,16 +118,23 @@
 
         </LinearLayout>
 
-        <TextView
+        <Button
             android:id="@+id/tvNumSent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="212dp"
+            android:layout_height="21dp"
             android:layout_marginTop="76dp"
+            android:background="@drawable/rounded_corners_4"
             android:fontFamily="@font/biko_regular"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:shadowColor="#057163"
+            android:shadowRadius="0"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="14dp"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:text="Number notes sent" />
@@ -134,11 +144,10 @@
             android:layout_width="wrap_content"
             android:layout_height="27dp"
             android:layout_marginTop="8dp"
-            android:background="@color/white"
+            android:background="@drawable/rounded_corner_nocolor"
             android:fontFamily="@font/biko_regular"
             android:gravity="center_vertical"
-            android:textAlignment="center"
-            android:textColor="#EF6D46"
+            android:textColor="#F66642"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,11 +158,11 @@
 
         <TextView
             android:id="@+id/tvMotivationalQuote"
-            android:layout_width="296dp"
+            android:layout_width="358dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="544dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/biko_regular"
             android:textAlignment="center"
             android:textColor="@color/teal_700"

@@ -16,22 +16,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fbuapplication.MessageDetailsActivity;
-import com.example.fbuapplication.MessagesMainWallAdapter;
+import com.example.fbuapplication.activities.MessageDetailsActivity;
+import com.example.fbuapplication.adapters.MessagesMainWallAdapter;
 import com.example.fbuapplication.R;
 
-import com.example.fbuapplication.Message;
+import com.example.fbuapplication.ParseModels.Message;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.material.snackbar.Snackbar;
@@ -194,7 +191,9 @@ public class MainWallFragment extends Fragment {
         clickedID = id;
         System.out.println("clicked "+clickedID);
         final List<Message> filteredModelList;
-        ivPlant.setVisibility(View.VISIBLE);
+        rvMainWallMessages.setVisibility(View.VISIBLE);
+
+        ivPlant.setVisibility(View.INVISIBLE);
         switch (id) {
 
 
@@ -247,6 +246,8 @@ public class MainWallFragment extends Fragment {
 
                 filteredModelList = filterIsGoals(allMessages);
                 wallSpecificAllMessages.clear();
+
+
                 wallSpecificAllMessages.addAll(filteredModelList);
                 Log.i(TAG, "SIZE goals: "+ filteredModelList.size());
                 adapter.setFilter(filteredModelList);
@@ -264,7 +265,7 @@ public class MainWallFragment extends Fragment {
                 Log.i(TAG, "SIZE kudos: "+ allMessages.size());
 
                 tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
-                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b1));
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b2));
                 wallSpecificAllMessages.clear();
                 wallSpecificAllMessages.addAll(allMessages);
                 adapter.setFilter(allMessages);
@@ -277,11 +278,12 @@ public class MainWallFragment extends Fragment {
                 //rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b8));
                 tvWallTitle.setText("Pick a random note!");
 
-                rvMainWallMessages.setBackground(getResources().getDrawable(android.R.drawable.screen_background_light));
+                rvMainWallMessages.setVisibility(View.GONE);
                 wallSpecificAllMessages.clear();
                 wallSpecificAllMessages.addAll(allMessages);
                 vusikView.setVisibility(View.VISIBLE);
 //                ivPlant.setVisibility(View.INVISIBLE);
+                ivPlant.setVisibility(View.VISIBLE);
                 ivPlant.setBackground(getResources().getDrawable(R.drawable._9));
                 vusikView.start();
                 int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
@@ -295,17 +297,19 @@ public class MainWallFragment extends Fragment {
                         // create intent for the new activity
 
                         Random rand = new Random();
-                        int randomNum = rand.nextInt(allMessages.size());
-                        Message randomMessage = allMessages.get(randomNum);
-                        Date createdAt = randomMessage.getCreatedAt();
-                        String timeAgo = Message.calculateTimeAgo(createdAt);
+                        if(allMessages.size()>0) {
+                            int randomNum = rand.nextInt(allMessages.size());
+                            Message randomMessage = allMessages.get(randomNum);
+                            Date createdAt = randomMessage.getCreatedAt();
+                            String timeAgo = Message.calculateTimeAgo(createdAt);
 
-                        Intent intent = new Intent(getContext(), MessageDetailsActivity.class);
-                        // serialize the movie using parceler, use its short name as a key
-                        intent.putExtra("createdAt", timeAgo);
-                        intent.putExtra("caption",randomMessage.getMessageBody());
-                        // show the activity
-                        getContext().startActivity(intent);
+                            Intent intent = new Intent(getContext(), MessageDetailsActivity.class);
+                            // serialize the movie using parceler, use its short name as a key
+                            intent.putExtra("createdAt", timeAgo);
+                            intent.putExtra("caption", randomMessage.getMessageBody());
+                            // show the activity
+                            getContext().startActivity(intent);
+                        }
                     }
                 });
 
@@ -319,9 +323,9 @@ public class MainWallFragment extends Fragment {
 //                }
 //                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
 //                Log.i(TAG, "SIZE main: "+ allMessages.size());
-                adapter.setFilter(new ArrayList<>());
-                wallSpecificAllMessages.clear();
-                wallSpecificAllMessages.addAll(allMessages);
+                //adapter.setFilter(new ArrayList<>());
+                //wallSpecificAllMessages.clear();
+                //wallSpecificAllMessages.addAll(allMessages);
 
                 return true;
         }

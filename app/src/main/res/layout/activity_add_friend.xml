@@ -22,10 +22,11 @@
             android:id="@+id/tvComposeFriend"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/title"
             android:fontFamily="@font/hey_magnolia"
             android:text="Send a friend request!"
             android:textAlignment="center"
-            android:textColor="@color/title"
+            android:textColor="@color/white"
             android:textSize="34sp"
             android:textStyle="bold" />
 
@@ -37,9 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:backgroundTint="@color/teal_700"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rounded_corner"
         android:hint="Enter recipient user..." />
-
 
     <Button
         android:id="@+id/btnSubmitFriend"

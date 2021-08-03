@@ -7,7 +7,7 @@
     android:layout_margin="16dp"
     android:backgroundTint="#C51818"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <!--    <FrameLayout-->
     <!--        android:id="@+id/flContainer"-->

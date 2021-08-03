@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import com.example.fbuapplication.FriendRequest;
+
+import com.example.fbuapplication.ParseModels.FriendRequest;
+import com.example.fbuapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -20,7 +21,7 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddFriend extends AppCompatActivity {
+public class AddFriendActivity extends AppCompatActivity {
 
 
     private AutoCompleteTextView autocompleteFriend;
@@ -50,7 +51,7 @@ public class AddFriend extends AppCompatActivity {
 
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                            (AddFriend.this, android.R.layout.select_dialog_item, getAllUsernames);
+                            (AddFriendActivity.this, android.R.layout.select_dialog_item, getAllUsernames);
 
                     autocompleteFriend.setThreshold(2);
                     autocompleteFriend.setAdapter(adapter);

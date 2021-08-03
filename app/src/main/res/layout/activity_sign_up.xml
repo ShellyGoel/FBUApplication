@@ -3,19 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="16dp"
-    android:backgroundTint="#C51818"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
-
+    tools:context=".activities.LoginActivity">
 
 
     <EditText
         android:id="@+id/etSignUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
+        android:background="@drawable/rounded_corners_3"
         android:ems="10"
         android:hint="username"
         android:textColor="@color/black" />
@@ -24,7 +27,11 @@
         android:id="@+id/etSignPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword" />
@@ -33,7 +40,11 @@
         android:id="@+id/etSignEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
+        android:background="@drawable/rounded_corners_3"
         android:ems="10"
         android:hint="email"
         android:inputType="textEmailAddress" />
@@ -42,7 +53,11 @@
         android:id="@+id/etSignFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
         android:hint="full name"
         android:inputType="textPersonName" />
@@ -50,10 +65,15 @@
 
     <Button
         android:id="@+id/btnSignLogin"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:backgroundTint="@color/teal_700"
+        android:gravity="center|center_horizontal"
         android:text="Sign up"
         android:textColor="@color/white" />
 

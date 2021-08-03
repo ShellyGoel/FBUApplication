@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".fragments.InboxFragment">
 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,10 +27,11 @@
             android:id="@+id/tvFriendListTitle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
+            android:background="@color/title"
             android:fontFamily="@font/hey_magnolia"
             android:text="Friends"
             android:textAlignment="center"
-            android:textColor="@color/title"
+            android:textColor="@color/white"
             android:textSize="34sp"
             android:textStyle="bold" />
 
@@ -58,8 +60,9 @@
 
                     <TextView
                         android:id="@+id/friendrequests"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/purple_500"
                         android:fontFamily="@font/biko_regular"
                         android:text="Friend Requests"
                         android:textColor="@color/white"
@@ -78,8 +81,9 @@
 
                     <TextView
                         android:id="@+id/friendstv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/purple_500"
                         android:fontFamily="@font/biko_regular"
                         android:text="Friends"
                         android:textColor="@color/white"
@@ -91,7 +95,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
                         android:layout_below="@+id/imageView8"
-                        android:layout_marginTop="3dp"
                         android:background="@drawable/b2"
                         android:padding="8dp">
 
@@ -106,7 +109,6 @@
                         android:src="@drawable/reading_a_letter_bro"
                         android:visibility="gone" />
                 </LinearLayout>
-
 
 
             </RelativeLayout>

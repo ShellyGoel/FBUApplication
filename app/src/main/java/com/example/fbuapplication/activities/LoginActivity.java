@@ -1,4 +1,4 @@
-package com.example.fbuapplication;
+package com.example.fbuapplication.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.example.fbuapplication.R;
 import com.facebook.AccessToken;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -29,19 +30,9 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-
-import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 //import com.parse.facebook.ParseFacebookUtils;
 import org.json.JSONException;
-
-import java.util.Collection;
-
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-import com.parse.facebook.ParseFacebookUtils;
 
 
 import dyanamitechetan.vusikview.VusikView;

@@ -1,6 +1,5 @@
 package com.example.fbuapplication.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +13,8 @@ import android.view.ViewGroup;
 
 import com.alexvasilkov.foldablelayout.UnfoldableView;
 import com.baoyz.widget.PullRefreshLayout;
-import com.example.fbuapplication.Message;
-import com.example.fbuapplication.MessagesInboxAdapter;
+import com.example.fbuapplication.ParseModels.Message;
+import com.example.fbuapplication.adapters.MessagesInboxAdapter;
 import com.example.fbuapplication.R;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -25,33 +24,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.view.ViewTreeObserver;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
+import com.example.fbuapplication.fragments.dialogFragments.DecidePinnedWallDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
 import android.widget.Button;
-import com.facebook.login.LoginManager;
-import com.parse.ParseUser;
+
 public class InboxFragment extends Fragment  implements DecidePinnedWallDialogFragment.DecidePinnedWallDialogListener {
 
     private RecyclerView rvInboxMessages;

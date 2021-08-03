@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/b8"
+    tools:context=".activities.GroupDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.github.glomadrian.grav.GravView
+                android:id="@+id/grav"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                app:animationGenerators="@array/BubbleAnimations"
+                app:array_colors="@array/bubble"
+                app:ball_from_size="10dp"
+                app:ball_to_size="30dp"
+                app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
+                app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
+                app:regular_cell_size="300"
+                app:regular_variance="200"
+                app:shake_direction="vertical"
+                app:shake_max_duration="20000"
+                app:shake_min_duration="10000"
+                app:shake_variance="500dp"
+                app:side_to_side_direction="leftToRight"
+                app:side_to_side_max_duration="10000"
+                app:side_to_side_min_duration="10000" />
+
+
+            <ImageView
+                android:id="@+id/ivGroupStickyNoteImageDetails"
+                android:layout_width="400dp"
+                android:layout_height="550dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.596"
+                app:srcCompat="@drawable/b5"
+                tools:srcCompat="@drawable/b5" />
+
+            <TextView
+                android:id="@+id/tvGroupDetailsName"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="444dp"
+                android:background="@color/white"
+                android:fontFamily="@font/biko_regular"
+                android:padding="2dp"
+                android:scrollbars="vertical"
+                android:textAlignment="textStart"
+                android:textColor="#062E28"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/grav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivGroupStickyNoteImageDetails"
+                app:layout_constraintVertical_bias="0.25"
+                tools:text="Group name" />
+
+            <TextView
+                android:id="@+id/tvGroupAddedDate"
+                android:layout_width="262dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="19dp"
+                android:textAlignment="viewStart"
+                android:textColor="#817E79"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivGroupStickyNoteImageDetails"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Date created" />
+
+            <TextView
+                android:id="@+id/tvGroupMembers"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="348dp"
+                android:background="@color/white"
+                android:fontFamily="@font/biko_regular"
+                android:padding="2dp"
+                android:scrollbars="vertical"
+                android:textAlignment="textStart"
+                android:textColor="#00BFA5"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/grav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGroupDetailsName"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Group members" />
+
+            <TextView
+                android:id="@+id/tvIntroMessage"
+                android:layout_width="300dp"
+                android:layout_height="130dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:fontFamily="@font/biko_regular"
+                android:padding="2dp"
+                android:scrollbars="vertical"
+                android:textAlignment="viewStart"
+                android:textColor="#062E28"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGroupMembers"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Message from note filler text!" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:fontFamily="@font/biko_regular"
+                android:padding="2dp"
+                android:scrollbars="vertical"
+                android:textAlignment="viewStart"
+                android:textColor="#00BFA5"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.111"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIntroMessage"
+                app:layout_constraintVertical_bias="0.54"
+                tools:text="Category" />
+
+            <Button
+                android:id="@+id/tvAssignedUser"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="128dp"
+                android:layout_marginEnd="130dp"
+                android:background="@drawable/rounded_corners_4"
+                android:fontFamily="@font/biko_regular"
+                android:padding="2dp"
+                android:scrollbars="vertical"
+                android:textAlignment="viewStart"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/ivGroupStickyNoteImageDetails"
+                app:layout_constraintEnd_toEndOf="@+id/ivGroupStickyNoteImageDetails"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/ivGroupStickyNoteImageDetails"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.94"
+                tools:text="Assigned user" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="235dp"
+                android:layout_height="216dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:srcCompat="@drawable/fresh_folk___plants_16" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

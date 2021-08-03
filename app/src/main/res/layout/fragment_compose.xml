@@ -22,203 +22,210 @@
             android:id="@+id/tvCompose"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/title"
             android:fontFamily="@font/hey_magnolia"
             android:text="Compose a message:"
             android:textAlignment="center"
-            android:textColor="@color/title"
+            android:textColor="@color/title_text"
             android:textSize="34sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteReceiver"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/rounded_corner"
-        android:fontFamily="@font/biko_regular"
-        android:hint="Enter recepient user..." />
+        android:layout_height="575dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/b1"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etMessageFromSender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/rounded_corner"
-        android:fontFamily="@font/biko_regular"
-        android:hint="Enter message..." />
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteReceiver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_corner"
+            android:fontFamily="@font/biko_regular"
+            android:hint="Enter recepient user..." />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="107dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center|center_horizontal|center_vertical"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/purple_200"
-        android:foregroundGravity="center_vertical|center|center_horizontal"
-        android:gravity="center|center_horizontal|center_vertical"
-        android:text="Submit"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/white" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="391dp"
-        android:background="@drawable/b1">
+        <EditText
+            android:id="@+id/etMessageFromSender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_corner"
+            android:hint="Enter message..." />
 
         <Button
-            android:id="@+id/btnSendText"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="Send \n as Text"
-            android:textColor="@color/black"
-
-            android:textSize="13sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.223"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/plantCompose1"
-            android:layout_width="215dp"
-            android:layout_height="330dp"
-            android:src="@drawable/fresh_folk___plants_11"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.01"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/plantCompose2"
-            android:layout_width="215dp"
-            android:layout_height="325dp"
-            android:src="@drawable/fresh_folk___plants_13"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <Button
-            android:id="@+id/btnRandCompliment"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:id="@+id/btnSubmit"
+            android:layout_width="107dp"
+            android:layout_height="32dp"
             android:layout_gravity="center|center_horizontal|center_vertical"
-            android:layout_weight="1"
-            android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
-            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/purple_200"
             android:foregroundGravity="center_vertical|center|center_horizontal"
-            android:scaleType="center"
-            android:src="@drawable/_removal_ai__tmp_60ebbf5282318"
-            android:text="Random Kudos"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="Submit"
             android:textAlignment="center"
-            android:textSize="13sp"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="391dp">
+
+            <Button
+                android:id="@+id/btnSendText"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="Send \n as Text"
+                android:textColor="@color/black"
+
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.223"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/plantCompose1"
+                android:layout_width="215dp"
+                android:layout_height="330dp"
+                android:src="@drawable/fresh_folk___plants_11"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.01"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/plantCompose2"
+                android:layout_width="215dp"
+                android:layout_height="325dp"
+                android:src="@drawable/fresh_folk___plants_13"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/btnRandCompliment"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:foregroundGravity="center_vertical|center|center_horizontal"
+                android:scaleType="center"
+                android:src="@drawable/_removal_ai__tmp_60ebbf5282318"
+                android:text="Random Kudos"
+                android:textAlignment="center"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.593"
+                app:layout_constraintStart_toEndOf="@+id/btnSendText"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:backgroundTint="@color/purple_700"
+            android:text="Logout"
+            android:textColor="@color/teal_700"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.593"
-            app:layout_constraintStart_toEndOf="@+id/btnSendText"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="Logout"
-        android:textColor="@color/teal_700"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="310dp"
-        tools:layout_editor_absoluteY="6dp" />
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="6dp" />
 
 
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent">-->
+        <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent">-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView9"-->
-    <!--            android:layout_width="62dp"-->
-    <!--            android:layout_height="63dp"-->
-    <!--            android:layout_marginEnd="8dp"-->
-    <!--            android:layout_marginBottom="24dp"-->
-    <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toStartOf="@+id/imageView91"-->
-    <!--            app:layout_constraintHorizontal_bias="0.41"-->
-    <!--            app:layout_constraintStart_toStartOf="parent" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView9"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="63dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:layout_marginBottom="24dp"-->
+        <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/imageView91"-->
+        <!--            app:layout_constraintHorizontal_bias="0.41"-->
+        <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView91"-->
-    <!--            android:layout_width="62dp"-->
-    <!--            android:layout_height="63dp"-->
-    <!--            android:layout_marginEnd="8dp"-->
-    <!--            android:layout_marginBottom="24dp"-->
-    <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toStartOf="@+id/imageView93"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/imageView9" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView91"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="63dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:layout_marginBottom="24dp"-->
+        <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/imageView93"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/imageView9" />-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView93"-->
-    <!--            android:layout_width="62dp"-->
-    <!--            android:layout_height="63dp"-->
-    <!--            android:layout_marginEnd="8dp"-->
-    <!--            android:layout_marginBottom="24dp"-->
-    <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toStartOf="@+id/imageView95"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/imageView91" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView93"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="63dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:layout_marginBottom="24dp"-->
+        <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/imageView95"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/imageView91" />-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView94"-->
-    <!--            android:layout_width="62dp"-->
-    <!--            android:layout_height="63dp"-->
-    <!--            android:layout_marginEnd="8dp"-->
-    <!--            android:layout_marginBottom="24dp"-->
-    <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toStartOf="@+id/imageView96"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/imageView95" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView94"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="63dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:layout_marginBottom="24dp"-->
+        <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/imageView96"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/imageView95" />-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView95"-->
-    <!--            android:layout_width="62dp"-->
-    <!--            android:layout_height="63dp"-->
-    <!--            android:layout_marginEnd="8dp"-->
-    <!--            android:layout_marginBottom="24dp"-->
-    <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toStartOf="@+id/imageView94"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/imageView93" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView95"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="63dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:layout_marginBottom="24dp"-->
+        <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/imageView94"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/imageView93" />-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView96"-->
-    <!--            android:layout_width="62dp"-->
-    <!--            android:layout_height="63dp"-->
-    <!--            android:layout_marginBottom="24dp"-->
-    <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toEndOf="@+id/imageView94" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView96"-->
+        <!--            android:layout_width="62dp"-->
+        <!--            android:layout_height="63dp"-->
+        <!--            android:layout_marginBottom="24dp"-->
+        <!--            android:src="@drawable/seekpng_com_hawaiian_flowers_png_542430"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/imageView94" />-->
 
 
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
+        <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </LinearLayout>
 </LinearLayout>
