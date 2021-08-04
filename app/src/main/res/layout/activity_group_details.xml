@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/b8"
+    android:background="@drawable/bg_img_10"
     tools:context=".activities.GroupDetailsActivity">
 
     <LinearLayout
@@ -15,7 +15,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <com.github.glomadrian.grav.GravView
                 android:id="@+id/grav"
@@ -56,7 +56,7 @@
                 app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.589"
+                app:layout_constraintVertical_bias="0.369"
                 app:srcCompat="@drawable/b5"
                 tools:srcCompat="@drawable/b5" />
 
@@ -82,7 +82,7 @@
                 app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ivGroupStickyNoteImageDetails"
-                app:layout_constraintVertical_bias="0.25"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="Group name" />
 
             <TextView
@@ -143,12 +143,12 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/ivStickyNoteImageDetails"
+                app:layout_constraintBottom_toBottomOf="@+id/ivGroupStickyNoteImageDetails"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvGroupMembers"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="0.012"
                 tools:text="Message from note filler text!" />
 
             <TextView
@@ -172,7 +172,7 @@
                 app:layout_constraintHorizontal_bias="0.111"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvIntroMessage"
-                app:layout_constraintVertical_bias="0.104"
+                app:layout_constraintVertical_bias="0.021"
                 tools:text="Category" />
 
             <Button
@@ -197,7 +197,6 @@
                 tools:text="Assigned user" />
 
             <ImageView
-                android:id="@+id/imageView3"
                 android:layout_width="235dp"
                 android:layout_height="216dp"
                 android:layout_gravity="center_horizontal|center_vertical"

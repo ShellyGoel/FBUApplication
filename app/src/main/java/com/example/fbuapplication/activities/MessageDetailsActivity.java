@@ -1,11 +1,11 @@
 package com.example.fbuapplication.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.fbuapplication.R;
@@ -22,14 +22,14 @@ public class MessageDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_details);
+
         tvDate = findViewById(R.id.tvDate);
         tvDescription = findViewById(R.id.tvMessageBody);
         ivStickyNoteImageDetails = findViewById(R.id.ivStickyNoteImageDetails);
 
         String createdAt = getIntent().getStringExtra("createdAt");
         String description = getIntent().getStringExtra("caption");
-        // set the title and overview
-        //Log.i("postdetails",createdAt);
+
         tvDate.setText(createdAt);
         tvDescription.setMovementMethod(new ScrollingMovementMethod());
         tvDescription.setText(description);
@@ -38,8 +38,7 @@ public class MessageDetailsActivity extends AppCompatActivity {
         int idClicked = r.nextInt(4);
         int stickyNote;
 
-        switch (idClicked)
-        {
+        switch (idClicked) {
             case 0:
                 stickyNote = R.drawable._removal_ai__tmp_60ebbfcbb11a1;
 

@@ -3,34 +3,29 @@ package com.example.fbuapplication.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.fbuapplication.activities.MessageDetailsActivity;
-import com.example.fbuapplication.adapters.MessagesMainWallAdapter;
-import com.example.fbuapplication.R;
-
-import com.example.fbuapplication.ParseModels.Message;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-
+import com.example.fbuapplication.ParseModels.Message;
+import com.example.fbuapplication.R;
+import com.example.fbuapplication.activities.MessageDetailsActivity;
+import com.example.fbuapplication.adapters.MessagesMainWallAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -43,31 +38,26 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import androidx.appcompat.widget.SearchView;
-
 import dyanamitechetan.vusikview.VusikView;
 
 public class MainWallFragment extends Fragment {
 
-    private RecyclerView rvMainWallMessages;
+    public static final String TAG = "FeedActivity";
     protected MessagesMainWallAdapter adapter;
     protected List<Message> allMessages;
     protected List<Message> wallSpecificAllMessages;
-
+    private RecyclerView rvMainWallMessages;
     private SwipeRefreshLayout swipeContainer;
     private TextView tvWallTitle;
     private Toolbar toolbar;
     private VusikView vusikView;
-
     private ImageView ivPlant;
-    public int getClickedID() {
-        return clickedID;
-    }
-
     private int clickedID;
     private SearchView searchView;
 
-    public static final String TAG = "FeedActivity";
+    public int getClickedID() {
+        return clickedID;
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +66,8 @@ public class MainWallFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        // Defines the xml file for the fragment
-        return inflater.inflate(R.layout.fragment_main_wall,parent, false);
+
+        return inflater.inflate(R.layout.fragment_main_wall, parent, false);
     }
 
     @Override
@@ -85,14 +75,8 @@ public class MainWallFragment extends Fragment {
         inflater.inflate(R.menu.menu_search_main_wall, menu);
 
         final MenuItem item = menu.findItem(R.id.action_search);
-       searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView = (SearchView) MenuItemCompat.getActionView(item);
         final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
-
-
-
-
-        //onOptionsItemSelected(itemSelectWall);
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -105,81 +89,43 @@ public class MainWallFragment extends Fragment {
 
                 String toUse;
 
-//                //int id = itemSelectWall.getItemId();
-//                int id = clickedID;
-//                Log.i(TAG, "CLCIKED: "+id);
-//                switch (id) {
-//                    case R.id.action_kudos:
-//                        Log.i(TAG, "kudos");
-//                        if(ParseUser.getCurrentUser().get("full_name")==null){
-//                            ParseUser.getCurrentUser().put("full_name","User");
-//                        }
-//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Kudos Wall");
-//                        toUse = Integer.toString(id);
-//
-//                    case R.id.action_memories:
-//                        Log.i(TAG, "memories");
-//                        if(ParseUser.getCurrentUser().get("full_name")==null){
-//                            ParseUser.getCurrentUser().put("full_name","User");
-//                        }
-//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Memories Wall");
-//                        toUse = Integer.toString(id);
-//
-//                    case R.id.action_goals:
-//                        Log.i(TAG, "goals");
-//                        if(ParseUser.getCurrentUser().get("full_name")==null){
-//                            ParseUser.getCurrentUser().put("full_name","User");
-//                        }
-//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Goals Wall");
-//                        toUse = Integer.toString(id);
-//
-//                    default:
-//                        if(ParseUser.getCurrentUser().get("full_name")==null){
-//                            ParseUser.getCurrentUser().put("full_name","User");
-//                        }
-//                        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
-//                        toUse = newText;
-//        }
-
-                //toUse = newText;
                 final List<Message> filteredModelList = filter(wallSpecificAllMessages, newText);
                 adapter.setFilter(filteredModelList);
                 return true;
             }
         });
 
-
         item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                // Do something when collapsed
+
                 adapter.setFilter(wallSpecificAllMessages);
-                return true; // Return true to collapse action view
+                return true;
             }
 
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
-                // Do something when expanded
-                return true; // Return true to expand action view
+
+                return true;
             }
         });
 
         itemSelectWall.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem itemSelectWall) {
-                // Do something when collapsed
+
                 int id = item.getItemId();
                 clickedID = id;
                 adapter.setFilter(allMessages);
-                return true; // Return true to collapse action view
+                return true;
             }
 
             @Override
             public boolean onMenuItemActionExpand(MenuItem itemSelectWall) {
-                // Do something when expanded
+
                 int id = item.getItemId();
                 clickedID = id;
-                return true; // Return true to expand action view
+                return true;
             }
         });
 
@@ -189,13 +135,12 @@ public class MainWallFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         clickedID = id;
-        System.out.println("clicked "+clickedID);
+        System.out.println("clicked " + clickedID);
         final List<Message> filteredModelList;
         rvMainWallMessages.setVisibility(View.VISIBLE);
 
         ivPlant.setVisibility(View.INVISIBLE);
         switch (id) {
-
 
             case R.id.action_search:
                 adapter.setFilter(wallSpecificAllMessages);
@@ -203,90 +148,83 @@ public class MainWallFragment extends Fragment {
 
             case R.id.action_kudos:
                 vusikView.setVisibility(View.GONE);
-                Log.i(TAG, "kudos");
-                if(ParseUser.getCurrentUser().get("full_name")==null){
-                    ParseUser.getCurrentUser().put("full_name","User");
-                }
-                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Kudos Wall");
-                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b7));
 
+                if (ParseUser.getCurrentUser().get("full_name") == null) {
+                    ParseUser.getCurrentUser().put("full_name", "User");
+                }
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "'s Kudos Wall");
+                rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b8));
 
                 filteredModelList = filterIsKudos(allMessages);
                 wallSpecificAllMessages.clear();
                 wallSpecificAllMessages.addAll(filteredModelList);
-                Log.i(TAG, "SIZE kudos: "+ filteredModelList.size());
 
                 adapter.setFilter(filteredModelList);
                 return true;
 
             case R.id.action_memories:
                 vusikView.setVisibility(View.GONE);
-                Log.i(TAG, "memories");
-                if(ParseUser.getCurrentUser().get("full_name")==null){
-                    ParseUser.getCurrentUser().put("full_name","User");
+
+                if (ParseUser.getCurrentUser().get("full_name") == null) {
+                    ParseUser.getCurrentUser().put("full_name", "User");
                 }
-                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Memories Wall");
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "'s Memories Wall");
                 rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b2));
 
                 filteredModelList = filterIsMemories(allMessages);
                 wallSpecificAllMessages.clear();
                 wallSpecificAllMessages.addAll(filteredModelList);
-                Log.i(TAG, "SIZE memories: "+ filteredModelList.size());
+
                 adapter.setFilter(filteredModelList);
                 return true;
 
             case R.id.action_goals:
                 vusikView.setVisibility(View.GONE);
-                Log.i(TAG, "goals");
-                if(ParseUser.getCurrentUser().get("full_name")==null){
-                    ParseUser.getCurrentUser().put("full_name","User");
+
+                if (ParseUser.getCurrentUser().get("full_name") == null) {
+                    ParseUser.getCurrentUser().put("full_name", "User");
                 }
-                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Goals Wall");
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "'s Goals Wall");
                 rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b6));
 
                 filteredModelList = filterIsGoals(allMessages);
                 wallSpecificAllMessages.clear();
 
-
                 wallSpecificAllMessages.addAll(filteredModelList);
-                Log.i(TAG, "SIZE goals: "+ filteredModelList.size());
-                adapter.setFilter(filteredModelList);
 
+                adapter.setFilter(filteredModelList);
 
                 return true;
 
-
             case R.id.action_wallmain:
                 vusikView.setVisibility(View.GONE);
-                Log.i(TAG, "wallmain");
-                if(ParseUser.getCurrentUser().get("full_name")==null){
-                    ParseUser.getCurrentUser().put("full_name","User");
-                }
-                Log.i(TAG, "SIZE kudos: "+ allMessages.size());
 
-                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+                if (ParseUser.getCurrentUser().get("full_name") == null) {
+                    ParseUser.getCurrentUser().put("full_name", "User");
+                }
+
+                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "'s Main Wall");
                 rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b2));
                 wallSpecificAllMessages.clear();
                 wallSpecificAllMessages.addAll(allMessages);
                 adapter.setFilter(allMessages);
                 return true;
 
-
-
             case R.id.action_fun:
-                Log.i(TAG, "wallfun");
-                //rvMainWallMessages.setBackground(getResources().getDrawable(R.drawable.b8));
+
                 tvWallTitle.setText("Pick a random note!");
 
                 rvMainWallMessages.setVisibility(View.GONE);
                 wallSpecificAllMessages.clear();
                 wallSpecificAllMessages.addAll(allMessages);
                 vusikView.setVisibility(View.VISIBLE);
-//                ivPlant.setVisibility(View.INVISIBLE);
+
+                List<Message> emptyList = new ArrayList<>();
+                adapter.setFilter(emptyList);
                 ivPlant.setVisibility(View.VISIBLE);
-                ivPlant.setBackground(getResources().getDrawable(R.drawable._9));
+                ivPlant.setBackground(getResources().getDrawable(R.drawable.stickynote_pile));
                 vusikView.start();
-                int[]  myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
+                int[] myImageList = new int[]{R.drawable._removal_ai__tmp_60ebbf1103f00, R.drawable._removal_ai__tmp_60ebbf43c2076, R.drawable._removal_ai__tmp_60ebbf5282318, R.drawable._removal_ai__tmp_60ebbf5fd350d};
                 vusikView
                         .setImages(myImageList)
                         .start();
@@ -294,20 +232,19 @@ public class MainWallFragment extends Fragment {
                 ivPlant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // create intent for the new activity
 
                         Random rand = new Random();
-                        if(allMessages.size()>0) {
+                        if (allMessages.size() > 0) {
                             int randomNum = rand.nextInt(allMessages.size());
                             Message randomMessage = allMessages.get(randomNum);
                             Date createdAt = randomMessage.getCreatedAt();
                             String timeAgo = Message.calculateTimeAgo(createdAt);
 
                             Intent intent = new Intent(getContext(), MessageDetailsActivity.class);
-                            // serialize the movie using parceler, use its short name as a key
+
                             intent.putExtra("createdAt", timeAgo);
                             intent.putExtra("caption", randomMessage.getMessageBody());
-                            // show the activity
+
                             getContext().startActivity(intent);
                         }
                     }
@@ -318,55 +255,21 @@ public class MainWallFragment extends Fragment {
             default:
                 vusikView.setVisibility(View.GONE);
 
-//                if(ParseUser.getCurrentUser().get("full_name")==null){
-//                    ParseUser.getCurrentUser().put("full_name","User");
-//                }
-//                tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
-//                Log.i(TAG, "SIZE main: "+ allMessages.size());
-                //adapter.setFilter(new ArrayList<>());
-                //wallSpecificAllMessages.clear();
-                //wallSpecificAllMessages.addAll(allMessages);
-
                 return true;
         }
     }
 
-
     private List<Message> filter(List<Message> models, String query) {
         query = query.toLowerCase();
         final List<Message> filteredModelList = new ArrayList<>();
-//        if(query.equals(Integer.toString(R.id.action_kudos))){
-//            for (Message model : models) {
-//                if (model.getIsKudos()) {
-//                    filteredModelList.add(model);
-//                }
-//            }
-//        }
-//
-//        else if(query.equals(Integer.toString(R.id.action_memories))){
-//            for (Message model : models) {
-//                if (model.getIsMemories()) {
-//                    filteredModelList.add(model);
-//                }
-//            }
-//        }
-//
-//        else if(query.equals(Integer.toString(R.id.action_goals))){
-//            for (Message model : models) {
-//                if (model.getIsGoals()) {
-//                    filteredModelList.add(model);
-//                }
-//            }
-//        }
-//
-//        else {
-            for (Message model : models) {
-                final String text = model.getMessageBody().toLowerCase();
-                if (text.contains(query)) {
-                    filteredModelList.add(model);
-                }
+
+        for (Message model : models) {
+            final String text = model.getMessageBody().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
             }
-       // }
+        }
+
         return filteredModelList;
     }
 
@@ -402,90 +305,54 @@ public class MainWallFragment extends Fragment {
         }
         return filteredModelList;
     }
-//    private void filter(String text) {
-//        // creating a new array list to filter our data.
-//        ArrayList<Message> filteredlist = new ArrayList<>();
-//
-//        // running a for loop to compare elements.
-//        for (Message item : allMessages) {
-//            // checking if the entered string matched with any item of our recycler view.
-//            if (item.getMessageBody().toLowerCase().contains(text.toLowerCase())) {
-//                // if the item is matched we are
-//                // adding it to our filtered list.
-//                filteredlist.add(item);
-//            }
-//        }
-//        if (filteredlist.isEmpty()) {
-//            // if no item is added in filtered list we are
-//            // displaying a toast message as no data found.
-//            Toast.makeText(requireActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
-//        } else {
-//            // at last we are passing that filtered
-//            // list to our adapter class.
-//            adapter.filterList(filteredlist);
-//        }
-//    }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         setHasOptionsMenu(true);
 
-       // mFrameLayout = view.findViewById(R.id.shimmerLayout);
         rvMainWallMessages = view.findViewById(R.id.rvMainWallMessages);
         tvWallTitle = view.findViewById(R.id.tvWallTitle);
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar = view.findViewById(R.id.toolbar);
         vusikView = view.findViewById(R.id.vusik);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         wallSpecificAllMessages = new ArrayList<>();
         allMessages = new ArrayList<>();
-        //adapter = new MessagesMainWallAdapter(getContext(), allMessages, getClickedID());
-        adapter  = new MessagesMainWallAdapter(getContext(), allMessages, new MessagesMainWallAdapter.MainWallInterface(){
-            // Listen to the callback method of adapter
+
+        adapter = new MessagesMainWallAdapter(getContext(), allMessages, new MessagesMainWallAdapter.MainWallInterface() {
+
             public int onWork() {
                 return getClickedID();
             }
         });
         ivPlant = view.findViewById(R.id.ivPlant);
-//        tvWallTitle.setText(ParseUser.getCurrentUser().getUsername().toString()+ "\'s Main Wall");
 
-        if(ParseUser.getCurrentUser().get("full_name")==null){
-            ParseUser.getCurrentUser().put("full_name","User");
+        if (ParseUser.getCurrentUser().get("full_name") == null) {
+            ParseUser.getCurrentUser().put("full_name", "User");
         }
-        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+        tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString() + "'s Main Wall");
 
-
-
-        // set the adapter on the recycler view
         rvMainWallMessages.setAdapter(adapter);
-        // set the layout manager on the recycler view
+
         rvMainWallMessages.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-
-        if(ParseUser.getCurrentUser().get("num_messages_sent")==null){
+        if (ParseUser.getCurrentUser().get("num_messages_sent") == null) {
             ParseUser.getCurrentUser().put("num_messages_sent", 0);
         }
-        // query posts from Parstagram
+
         queryMessages();
 
+        swipeContainer = view.findViewById(R.id.swipeContainer);
 
-
-        // Lookup the swipe container view
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
 
                 fetchTimelineAsync(0);
             }
         });
-        // Configure the refreshing colors
+
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -493,126 +360,93 @@ public class MainWallFragment extends Fragment {
     }
 
     public void fetchTimelineAsync(int page) {
-        // Send the network request to fetch the updated data
-        // `client` here is an instance of Android Async HTTP
-        // getHomeTimeline is an example endpoint.
 
-
-        //TODO: check if searchbar is empty
-
-        if(searchView.getQuery().length()!=0){
+        if (searchView.getQuery().length() != 0) {
             swipeContainer.setRefreshing(false);
             return;
         }
         adapter.clear();
         queryMessages();
-        // Now we call setRefreshing(false) to signal refresh has finished
-        swipeContainer.setRefreshing(false);
-        Log.i(TAG, "wallmain");
-        if(ParseUser.getCurrentUser().get("full_name")==null){
-            ParseUser.getCurrentUser().put("full_name","User");
-        }
-        Log.i(TAG, "SIZE kudos: "+ allMessages.size());
 
-        //tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Main Wall");
+        swipeContainer.setRefreshing(false);
+
+        if (ParseUser.getCurrentUser().get("full_name") == null) {
+            ParseUser.getCurrentUser().put("full_name", "User");
+        }
 
         adapter.setFilter(allMessages);
 
     }
 
-
     protected void queryMessages() {
 
-        if(ParseUser.getCurrentUser().get("full_name")==null){
-            ParseUser.getCurrentUser().put("full_name","User");
+        if (ParseUser.getCurrentUser().get("full_name") == null) {
+            ParseUser.getCurrentUser().put("full_name", "User");
         }
-        //tvWallTitle.setText(ParseUser.getCurrentUser().get("full_name").toString()+ "\'s Refreshed Main Wall");
 
-
-        // specify what type of data we want to query - Message.class
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
         ArrayList<String> messagesPinnedByUser = new ArrayList<>();
-//        // include data referred by user key
-        //query.include(Message.KEY_RECIEVER);
+
         query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
         query.whereEqualTo(Message.KEY_ISPINNED, true);
         int wall_chosen = getClickedID();
 
-        Log.i(TAG, "WALLCHOSEN "+wall_chosen);
-
-        if(wall_chosen == R.id.action_kudos){
+        if (wall_chosen == R.id.action_kudos) {
             query.whereEqualTo(Message.KEY_ISKUDOS, true);
         }
-        if(wall_chosen == R.id.action_memories){
+        if (wall_chosen == R.id.action_memories) {
             query.whereEqualTo(Message.KEY_ISMEMORIES, true);
         }
-        if(wall_chosen == R.id.action_goals){
+        if (wall_chosen == R.id.action_goals) {
             query.whereEqualTo(Message.KEY_ISGOALS, true);
         }
 
-
-        // limit query to latest 20 items
         query.setLimit(20);
-        // order messages by creation date (newest first)
+
         query.addDescendingOrder("createdAt");
-        // start an asynchronous call for messages
+
         query.findInBackground(new FindCallback<Message>() {
             @Override
             public void done(List<Message> messages, ParseException e) {
-                // check for errors
+
                 if (e != null) {
                     Log.e(TAG, "Issue with getting messages", e);
                     Snackbar.make(rvMainWallMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
                     return;
                 }
 
-
-                Log.i(TAG, "WALLCHOSEN SIZE"+messages.size());
-
-                // for debugging purposes let's print every message description to logcat
                 for (Message message : messages) {
-                    Log.i(TAG, "InboxMessage: " + message.getMessageBody() + "sent to: " + ParseUser.getCurrentUser().getUsername());
-                    //ParseUser.getCurrentUser().add("main_wall_notes", message.getMessageBody());
-                    //ParseUser.getCurrentUser().add("main_wall_messages",message);
+
                     messagesPinnedByUser.add(message.getMessageBody());
 
                     ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while saving new messages",e);
+                            if (e != null) {
+                                Log.e(TAG, "Error while saving new messages", e);
 
-                                // If the Activity is gone (the user navigated elsewhere), getActivity() returns null.
                                 Activity activity = getActivity();
-                                if(activity != null){
+                                if (activity != null) {
 
-                                    //Toast.makeText(requireActivity(), "Error while retrieving new messages!", Toast.LENGTH_SHORT).show();
                                     Snackbar.make(rvMainWallMessages, "Error while retrieving new messages!", Snackbar.LENGTH_LONG).show();
 
-
                                 }
-                                    }
-                            Log.i(TAG, "Profile picture upload was successful!");
+                            }
+
                         }
                     });
 
-
                 }
 
-                // save received messages to list and notify adapter of new data
                 allMessages.clear();
-                Log.i(TAG, "FINAL WALLCHOSEN SIZE"+messages.size());
 
                 allMessages.addAll(messages);
                 adapter.clear();
-                //added this
+
                 adapter.addAll(messages);
                 adapter.notifyDataSetChanged();
             }
         });
     }
-
-
-
 
 }

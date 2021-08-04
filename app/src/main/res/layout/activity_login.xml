@@ -4,7 +4,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linlay"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
@@ -14,12 +13,14 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/title">
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageView"
             android:layout_width="110dp"
             android:layout_height="110dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +42,6 @@
             app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />
 
         <ImageView
-            android:id="@+id/imageView6"
             android:layout_width="110dp"
             android:layout_height="110dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,9 +54,53 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:background="@color/title"
+        android:fontFamily="@font/hey_magnolia"
+        android:text="Cup of Positivitea"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/title">
+
+        <com.github.glomadrian.grav.GravView
+            android:id="@+id/grav"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:animationGenerators="@array/BubbleAnimations"
+            app:array_colors="@array/bubble"
+            app:ball_from_size="10dp"
+            app:ball_to_size="30dp"
+            app:colorGenerator="com.github.glomadrian.grav.generator.paint.ArrayColorGenerator"
+            app:gravGenerator="com.github.glomadrian.grav.generator.grav.BallGenerator"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:pointGenerator="com.github.glomadrian.grav.generator.point.RegularPointGenerator"
+            app:regular_cell_size="300"
+            app:regular_variance="200"
+            app:shake_direction="vertical"
+            app:shake_max_duration="20000"
+            app:shake_min_duration="10000"
+            app:shake_variance="500dp"
+            app:side_to_side_direction="leftToRight"
+            app:side_to_side_max_duration="10000"
+            app:side_to_side_min_duration="10000" />
 
         <EditText
             android:id="@+id/etSignUsername"
@@ -139,10 +183,46 @@
             app:layout_constraintTop_toBottomOf="@+id/sign_up" />
 
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="299dp"
-            android:layout_height="329dp"
+            android:id="@+id/imageView4"
+            android:layout_width="366dp"
+            android:layout_height="295dp"
+            android:layout_marginTop="188dp"
+            android:src="@drawable/cup"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="284dp"
+            android:layout_height="246dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/fresh_folk___plants_3"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.336"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="378dp"
+            android:layout_height="197dp"
+            android:layout_marginTop="104dp"
+            android:src="@drawable/amigos___tea_cup"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="380dp"
             android:layout_marginTop="15dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_button"
@@ -152,142 +232,15 @@
             android:id="@+id/vusik"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fallCount="40"
-            app:fallSpeed="0.13"
+            app:fallCount="50"
+            app:fallSpeed="0.30"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="4dp"-->
-        <!--            android:orientation="vertical"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/sign_up">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent">-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView43"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@+id/imageView53"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView53"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.498"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:layout_constraintVertical_bias="0.0"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView63"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.36"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/imageView53"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:layout_constraintVertical_bias="0.0"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />-->
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent">-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView41"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@+id/imageView51"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView51"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.498"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:layout_constraintVertical_bias="0.0"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView61"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.36"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/imageView51"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:layout_constraintVertical_bias="0.0"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />-->
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content">-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView42"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@+id/imageView52"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:srcCompat="@drawable/a10" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView52"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.498"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:layout_constraintVertical_bias="0.0"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/imageView62"-->
-        <!--                    android:layout_width="110dp"-->
-        <!--                    android:layout_height="110dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.36"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/imageView52"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:layout_constraintVertical_bias="0.0"-->
-        <!--                    app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />-->
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--        </LinearLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

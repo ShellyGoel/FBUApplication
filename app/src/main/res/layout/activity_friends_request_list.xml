@@ -24,7 +24,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvFriendListTitle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@color/title"
@@ -35,16 +34,11 @@
             android:textSize="34sp"
             android:textStyle="bold" />
 
-        <!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-        <!--            android:id="@+id/swipeContainer"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
-
-
         <com.baoyz.widget.PullRefreshLayout
             android:id="@+id/pullRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/friend"
             app:refreshColors="@array/refresh_colors"
             app:refreshType="water_drop">
 
@@ -59,7 +53,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/friendrequests"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/purple_500"
@@ -74,13 +67,11 @@
                         android:id="@+id/rvFriendRequest"
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
-                        android:background="@drawable/b6"
                         android:padding="8dp">
 
                     </androidx.recyclerview.widget.RecyclerView>
 
                     <TextView
-                        android:id="@+id/friendstv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/purple_500"
@@ -93,27 +84,24 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvFriends"
                         android:layout_width="match_parent"
-                        android:layout_height="280dp"
+                        android:layout_height="290dp"
                         android:layout_below="@+id/imageView8"
-                        android:background="@drawable/b2"
                         android:padding="8dp">
 
                     </androidx.recyclerview.widget.RecyclerView>
 
                     <ImageView
-                        android:id="@+id/imageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rvFriendRequest"
                         android:layout_marginTop="5dp"
-                        android:src="@drawable/reading_a_letter_bro"
+                        android:src="@drawable/_removal_ai__tmp_60ebbf1103f00"
                         android:visibility="gone" />
                 </LinearLayout>
 
 
             </RelativeLayout>
 
-            <!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         </com.baoyz.widget.PullRefreshLayout>
 
     </LinearLayout>

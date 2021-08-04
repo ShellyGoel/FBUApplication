@@ -13,30 +13,29 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
-
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
-import com.example.fbuapplication.activities.AddFriendActivity;
-import com.example.fbuapplication.activities.AddGroupActivity;
-import com.example.fbuapplication.activities.FriendsRequestListActivity;
 import com.example.fbuapplication.ParseModels.Message;
 import com.example.fbuapplication.R;
-
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.example.fbuapplication.activities.AddFriendActivity;
+import com.example.fbuapplication.activities.AddGroupActivity;
 import com.example.fbuapplication.activities.AllNotesActivity;
+import com.example.fbuapplication.activities.FriendsRequestListActivity;
 import com.example.fbuapplication.activities.GroupActivity;
 import com.example.fbuapplication.fragments.dialogFragments.SelectCameraFragment;
 import com.google.android.material.snackbar.Snackbar;
@@ -58,58 +57,63 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import androidx.fragment.app.FragmentManager;
-
-import android.widget.Button;
-
 import static android.app.Activity.RESULT_OK;
 
-public class ProfileFragment extends Fragment implements SelectCameraFragment.SelectCameraDialogListener{
+public class ProfileFragment extends Fragment implements SelectCameraFragment.SelectCameraDialogListener {
 
     public static final String TAG = "profileFragment";
-
-    private ImageView ivProfileImage;
-    private TextView tvUsername;
-    private  TextView tvNumSent;
-    private TextView tvMotivationalQuote;
-    private View viewProfile;
-    private  TextView tvNumUnread;
-    private Button btnAddFriend;
-    private Button btnAddGroup;
-
-    private Button btnAcceptFriend;
-    private Button btnAcceptGroup;
-
-
-    private boolean chooseCamera;
-   // private static int RESULT_LOAD_IMAGE = 1;
+    // private static int RESULT_LOAD_IMAGE = 1;
 // PICK_PHOTO_CODE is a constant integer
-   public final static int PICK_PHOTO_CODE = 1046;
-
+    public final static int PICK_PHOTO_CODE = 1046;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     public static final int GALLERY_IMAGE_ACTIVITY_REQUEST_CODE = 13;
-
-    private File photoFile;
-    public String photoFileName = "photo.jpg";
-
-    public static final String KEY_PROFILE_PICTURE  = "profile_picture";
-
-
+    public static final String KEY_PROFILE_PICTURE = "profile_picture";
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
+    private static final String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    public String photoFileName = "photo.jpg";
+    private ImageView ivProfileImage;
+    private TextView tvUsername;
+    private TextView tvNumSent;
+    private TextView tvMotivationalQuote;
+    private View viewProfile;
+    private TextView tvNumUnread;
+    private Button btnAddFriend;
+    private Button btnAddGroup;
+    private Button btnAcceptFriend;
+    private Button btnAcceptGroup;
+    private boolean chooseCamera;
+    private File photoFile;
 
+    /**
+     * Checks if the app has permission to write to device storage
+     * <p>
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         // Defines the xml file for the fragment
-        return inflater.inflate(R.layout.fragment_profile,parent, false);
+        return inflater.inflate(R.layout.fragment_profile, parent, false);
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -123,35 +127,31 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         tvNumUnread = view.findViewById(R.id.tvNumUnread);
         chooseCamera = true;
         btnAddFriend = view.findViewById(R.id.btnAddFriend);
-        btnAddGroup  = view.findViewById(R.id.btnAddGroup);
+        btnAddGroup = view.findViewById(R.id.btnAddGroup);
         btnAcceptFriend = view.findViewById(R.id.btnAcceptFriend);
-        btnAcceptGroup  = view.findViewById(R.id.btnAcceptGroup);
+        btnAcceptGroup = view.findViewById(R.id.btnAcceptGroup);
 
 //        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
 
-
-        if(ParseUser.getCurrentUser().get("full_name")==null){
-            ParseUser.getCurrentUser().put("full_name","User");
+        if (ParseUser.getCurrentUser().get("full_name") == null) {
+            ParseUser.getCurrentUser().put("full_name", "User");
         }
 
-        if(ParseUser.getCurrentUser().get("num_messages_sent")==null){
-            ParseUser.getCurrentUser().put("num_messages_sent",0);
+        if (ParseUser.getCurrentUser().get("num_messages_sent") == null) {
+            ParseUser.getCurrentUser().put("num_messages_sent", 0);
         }
 
         ParseFile img_user = ParseUser.getCurrentUser().getParseFile(KEY_PROFILE_PICTURE);
-        if(img_user!=null){
+        if (img_user != null) {
             Glide.with(getContext()).load(img_user.getUrl()).into(ivProfileImage);
 
         }
-        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().get("full_name").toString() +"!");
+        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().get("full_name").toString() + "!");
         tvNumSent.setText("Number of notes sent: " + ParseUser.getCurrentUser().get("num_messages_sent"));
 
-
-        if(!tvNumUnread.equals("")) {
+        if (!tvNumUnread.equals("")) {
             int numRead = numNewMessages();
         }
-
-
 
         tvNumSent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,10 +163,9 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             @Override
             public void onClick(View v) {
 
-
                 goFriendRequestActivity();
 
-                         }
+            }
         });
 
         btnAcceptFriend.setOnClickListener(new View.OnClickListener() {
@@ -183,7 +182,6 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             }
         });
 
-
         btnAcceptGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,26 +194,16 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
                 viewProfile = arg0;
 
+                ParseFile img_user = ParseUser.getCurrentUser().getParseFile(KEY_PROFILE_PICTURE);
+                if (img_user != null) {
+                    Glide.with(getContext()).load(img_user.getUrl()).into(ivProfileImage);
 
+                }
                 FragmentManager fm = getFragmentManager();
                 SelectCameraFragment selectCameraFragment = new SelectCameraFragment();//;EditNameDialog.newInstance("Some Title");
                 // SETS the target fragment for use later when sending results
                 selectCameraFragment.setTargetFragment(ProfileFragment.this, 300);
                 selectCameraFragment.show(fm, "toSend");
-
-
-//
-//
-//                if(chooseCamera) {
-//                    onLaunchCamera(arg0);
-//                    ParseUser currentUser = ParseUser.getCurrentUser();
-//                    updateUserWithPhoto(currentUser, photoFile);
-//                }
-//
-//                else{
-//                    Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    startActivityForResult(i, GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
-//                }
 
             }
         });
@@ -237,7 +225,6 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
                 .addHeader("x-rapidapi-host", "motivational-quotes1.p.rapidapi.com")
                 .build();
 
-
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -252,13 +239,11 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
                     String jsonData = response.body().string();
                     //JSONObject properties = null;
 
-                        //properties = new JSONObject(jsonData);
-                        //String key1 = properties.getString("key1");
-                        //String key2 = properties.getString("key2");
+                    //properties = new JSONObject(jsonData);
+                    //String key1 = properties.getString("key1");
+                    //String key2 = properties.getString("key2");
 
-
-                    if(getActivity()!=null) {
-
+                    if (getActivity() != null) {
 
                         getActivity().runOnUiThread(new Runnable() {
 
@@ -275,7 +260,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
                 }
             }
 
-    });
+        });
     }
 
     // Trigger gallery selection for a photo
@@ -298,13 +283,13 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     public Bitmap loadFromUri(Uri photoUri) {
         Bitmap image = null;
         try {
-            // check version of Android on device
-            if(Build.VERSION.SDK_INT > 27){
-                // on newer versions of Android, use the new decodeBitmap method
+
+            if (Build.VERSION.SDK_INT > 27) {
+
                 ImageDecoder.Source source = ImageDecoder.createSource(getContext().getContentResolver(), photoUri);
                 image = ImageDecoder.decodeBitmap(source);
             } else {
-                // support older versions of Android by using getBitmap
+
                 image = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoUri);
             }
         } catch (IOException e) {
@@ -313,62 +298,42 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         return image;
     }
 
-
     public void onLaunchCamera(View view) {
-        // create Intent to take a picture and return control to the calling application
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Create a File reference for future access
+
         photoFile = getPhotoFileUri(photoFileName);
 
-        // wrap File object into a content provider
-        // required for API >= 24
-        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
         Uri fileProvider = FileProvider.getUriForFile(getContext(), "com.codepath.fileprovider", photoFile);
-        //where do you want to put the output (in the EXTRA_OUTPUT), passing in fileProvider which wraps photo path
+
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
-        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-        // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-            // Start the image capture intent to take photo
+
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
     }
 
-    //invoked when child activitt returns to parent activity
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        //need a call to superclass
+
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-               ivProfileImage.setImageBitmap(takenImage);
-            } else { // Result was a failure
-                //Toast.makeText(getContext(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+
+                Bitmap takenImage = rotateBitmapOrientation(photoFile.getAbsolutePath());//BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+
+                ivProfileImage.setImageBitmap(takenImage);
+            } else {
+
                 Snackbar.make(ivProfileImage, "Picture wasn't taken!", Snackbar.LENGTH_LONG).show();
 
             }
 
-
-//        if (requestCode == PICK_PHOTO_CODE) {
-//            Uri photoUri = data.getData();
-//            Log.d(TAG, "failed to create directory4");
-//            // Load the image located at photoUri into selectedImage
-//            Bitmap selectedImage = loadFromUri(photoUri);
-//
-//            // Load the selected image into a preview
-//
-//            ivProfileImage.setImageBitmap(selectedImage);
-//            Snackbar.make(ivProfileImage, "Picture was selected!", Snackbar.LENGTH_LONG).show();
-//        }
         }
         if (requestCode == GALLERY_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContext().getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
@@ -382,29 +347,23 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         }
     }
 
-    // Returns the File for a photo stored on disk given the fileName
     public File getPhotoFileUri(String fileName) {
-        // Get safe storage directory for photos
-        // Use `getExternalFilesDir` on Context to access package-specific directories.
-        // This way, we don't need to request external read/write runtime permissions.
+
         File mediaStorageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
-        // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
             Log.d(TAG, "failed to create directory");
         }
 
-        // Return the file target for the photo based on filename
         File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
 
         return file;
     }
 
-    private void updateUserWithPhoto(ParseUser currentUser, File photoFile){
+    private void updateUserWithPhoto(ParseUser currentUser, File photoFile) {
 
         ParseFile img = new ParseFile(photoFile);
         currentUser.put(KEY_PROFILE_PICTURE, img);
-        //Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
 
         try {
             currentUser.save();
@@ -412,94 +371,33 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             e.printStackTrace();
         }
 
-
-//        img.saveInBackground(new SaveCallback() {
-//            public void done(ParseException e) {
-//                // If successful add file to user and signUpInBackground
-//                if(null == e) {
-//                    currentUser.put(KEY_PROFILE_PICTURE, img);
-//
-//                    currentUser.saveInBackground(new SaveCallback() {
-//                        @Override
-//                        public void done(ParseException e) {
-//                            if(e != null){
-//                                Log.e(TAG, "Error while uploading profile picture",e);
-//                                //Toast.makeText(getContext(), "Error while saving profile picture!", Toast.LENGTH_SHORT).show();
-//                                Snackbar.make(ivProfileImage, "Error while saving profile picture!", Snackbar.LENGTH_LONG).show();
-//
-//                            }
-//                            else {
-//                                Log.i(TAG, "Profile picture upload was successful!");
-//                                Glide.with(requireContext()).load(img.getUrl()).into(ivProfileImage);
-//
-//                                ///Glide.with(getContext()).load(img_user.getUrl()).into(ivProfileImage);
-//
-//                            }
-//                            //ivProfileImage.setImageResource(new ParseFile(photoFile));
-//                        }
-//                    });
-//
-//                }
-//            }
-//        });
-
-
-
-
     }
 
     @Override
     public void onFinishSelectCameraDialog(boolean chooseCamera) {
 
-        if(chooseCamera) {
+        if (chooseCamera) {
             onLaunchCamera(getCameraView());
             ParseUser currentUser = ParseUser.getCurrentUser();
             updateUserWithPhoto(currentUser, photoFile);
-        }
-
-        else{
+        } else {
             verifyStoragePermissions(getActivity());
             Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(i, GALLERY_IMAGE_ACTIVITY_REQUEST_CODE);
             Log.d(TAG, "failed to create directory");
 
-            //startActivityForResult(i, PICK_PHOTO_CODE);
-            //onPickPhoto();
-
         }
 
     }
 
-
-    public View getCameraView(){
+    public View getCameraView() {
         return viewProfile;
-    }
-
-    /**
-     * Checks if the app has permission to write to device storage
-     *
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param activity
-     */
-    public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
     }
 
     protected int numNewMessages() {
 
         int[] numUnread = {0};
-        // specify what type of data we want to query - Message.class
+
         ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
 
         query.whereEqualTo(Message.KEY_RECIEVER, ParseUser.getCurrentUser());
@@ -508,65 +406,65 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         query.findInBackground(new FindCallback<Message>() {
             @Override
             public void done(List<Message> messages, ParseException e) {
-                // check for errors
+
                 if (e != null) {
                     Log.e(TAG, "Issue with getting messages", e);
-                //Snackbar.make(rvInboxMessages, "Issue with getting messages. Please try again.", Snackbar.LENGTH_LONG).show();
+
                     return;
-                }
+                } else {
 
-                else{
-                    numUnread[0] = messages.size();
-                    tvNumUnread.setText("You have "+messages.size() + " new messages!");
-
+                    int count = messages.size();
+                    if (count == 1) {
+                        tvNumUnread.setText("You have " + count + " new message!");
+                    } else {
+                        tvNumUnread.setText("You have " + count + " new messages!");
+                    }
                 }
 
             }
 
         });
 
-        System.out.println("NUM "+numUnread[0]);
+        System.out.println("NUM " + numUnread[0]);
         return numUnread[0];
     }
 
-    private void goAllNotesActivity(){
+    private void goAllNotesActivity() {
         Intent intent = new Intent(getContext(), AllNotesActivity.class);
 
         getContext().startActivity(intent);
 
     }
 
-    private void goFriendRequestActivity(){
+    private void goFriendRequestActivity() {
         Intent intent = new Intent(getContext(), AddFriendActivity.class);
 
         getContext().startActivity(intent);
 
     }
-    private void goGroupActivity(){
+
+    private void goGroupActivity() {
         Intent intent = new Intent(getContext(), GroupActivity.class);
 
         getContext().startActivity(intent);
 
     }
 
-    private void goAddGroupActivity(){
+    private void goAddGroupActivity() {
         Intent intent = new Intent(getContext(), AddGroupActivity.class);
 
         getContext().startActivity(intent);
 
     }
 
-
-
-    private void goCreateGroupActivity(){
+    private void goCreateGroupActivity() {
         Intent intent = new Intent(getContext(), GroupActivity.class);
 
         getContext().startActivity(intent);
 
     }
 
-
-    private void goAcceptFriendRequestActivity(){
+    private void goAcceptFriendRequestActivity() {
         Intent intent = new Intent(getContext(), FriendsRequestListActivity.class);
 
         getContext().startActivity(intent);
@@ -574,13 +472,13 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     }
 
     public Bitmap rotateBitmapOrientation(String photoFilePath) {
-        // Create and configure BitmapFactory
+
         BitmapFactory.Options bounds = new BitmapFactory.Options();
         bounds.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(photoFilePath, bounds);
         BitmapFactory.Options opts = new BitmapFactory.Options();
         Bitmap bm = BitmapFactory.decodeFile(photoFilePath, opts);
-        // Read EXIF Data
+
         ExifInterface exif = null;
         try {
             exif = new ExifInterface(photoFilePath);
@@ -593,11 +491,11 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         if (orientation == ExifInterface.ORIENTATION_ROTATE_90) rotationAngle = 90;
         if (orientation == ExifInterface.ORIENTATION_ROTATE_180) rotationAngle = 180;
         if (orientation == ExifInterface.ORIENTATION_ROTATE_270) rotationAngle = 270;
-        // Rotate Bitmap
+
         Matrix matrix = new Matrix();
         matrix.setRotate(rotationAngle, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
         Bitmap rotatedBitmap = Bitmap.createBitmap(bm, 0, 0, bounds.outWidth, bounds.outHeight, matrix, true);
-        // Return result
+
         return rotatedBitmap;
     }
 

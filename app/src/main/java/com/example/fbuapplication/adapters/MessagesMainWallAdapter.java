@@ -1,6 +1,5 @@
 package com.example.fbuapplication.adapters;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -28,21 +27,24 @@ import java.util.List;
 import tyrantgit.explosionfield.ExplosionField;
 
 public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWallAdapter.ViewHolder> implements View.OnLongClickListener {
-    private Context context;
-    private List<Message> messages;
-    private int clickedVal;
-    private MainWallInterface mListener;
+    private final Context context;
+    private final MainWallInterface mListener;
     ExplosionField explosionField;
     boolean explod = true;
+    private List<Message> messages;
+    private int clickedVal;
 
+    public MessagesMainWallAdapter(Context context, List<Message> messages, MainWallInterface mListener) {
+        this.context = context;
+        this.messages = messages;
+        this.mListener = mListener;
+        explosionField = ExplosionField.attach2Window((Activity) context);
+    }
 
     @Override
     public boolean onLongClick(View v) {
-        //if goal, then explode:)
 
-        Log.i("ADAPTER","in long click");
-
-        if(mListener.onWork()== R.id.action_goals) {
+        if (mListener.onWork() == R.id.action_goals) {
             ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
             reset(v);
             explosionField.explode(v);
@@ -50,7 +52,6 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         }
         return true;
     }
-
 
     private void reset(View root) {
         if (root instanceof ViewGroup) {
@@ -66,25 +67,12 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         }
     }
 
-    public interface MainWallInterface{
-        int onWork (); // Here you can customize the method you want to achieve, generally passed into the variables in the adapter for activity use.
-    }
-
-
-
-    public MessagesMainWallAdapter(Context context, List<Message> messages, MainWallInterface mListener) {
-        this.context = context;
-        this.messages = messages;
-        this.mListener = mListener;
-        explosionField = ExplosionField.attach2Window((Activity) context);
-    }
-
-    // method for filtering our recyclerview items.
-    public void setFilter(List<Message> filteredMessages){
+    public void setFilter(List<Message> filteredMessages) {
         messages = new ArrayList<>();
         messages.addAll(filteredMessages);
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -104,17 +92,31 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
         return messages.size();
     }
 
+    public void clear() {
+        messages.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Message> list) {
+        messages.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    /* Within the RecyclerView.Adapter class */
+
+    public interface MainWallInterface {
+        int onWork();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
-
-        private ImageView ivStickyNoteImage;
-        private TextView tvMessageBody;
-        private TextView tvDate;
+        private final ImageView ivStickyNoteImage;
+        private final TextView tvMessageBody;
+        private final TextView tvDate;
         private FragmentManager fm;
+
         public ViewHolder(@NonNull View messageView) {
             super(messageView);
-
-
 
             ivStickyNoteImage = messageView.findViewById(R.id.ivStickyNoteImageDetails);
             tvMessageBody = messageView.findViewById(R.id.tvMessageBody);
@@ -124,22 +126,20 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                 @Override
                 public void onClick(View v) {
                     Log.d("MessageDetailsActivity", String.format("going to details"));
-                    // gets message position
+
                     int position = getAdapterPosition();
-                    // make sure the position is valid, i.e. actually exists in the view
+
                     if (position != RecyclerView.NO_POSITION) {
-                        // get the movie at the position, this won't work if the class is static
+
                         Message message = messages.get(position);
                         Date createdAt = message.getCreatedAt();
                         String timeAgo = Message.calculateTimeAgo(createdAt);
-                        // tvDate.setText(timeAgo);
 
-                        // create intent for the new activity
                         Intent intent = new Intent(context, MessageDetailsActivity.class);
-                        // serialize the movie using parceler, use its short name as a key
+
                         intent.putExtra("createdAt", timeAgo);
-                        intent.putExtra("caption",message.getMessageBody());
-                        // show the activity
+                        intent.putExtra("caption", message.getMessageBody());
+
                         context.startActivity(intent);
                     }
                 }
@@ -149,70 +149,26 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                 @Override
                 public boolean onLongClick(View v) {
 
-//                    if(mListener.onWork()==R.id.action_goals) {
-//
-//
-//                        explosionField.explode(v);
-//
-////                        ExplosionField explosionField = ExplosionField.attach2Window((Activity) context);
-//                        reset(v);
-//
-//        //                explosionField.explode(v);
-//
-//                        int position = getAdapterPosition();
-//                        if (position != RecyclerView.NO_POSITION) {
-//                            // get the movie at the position, this won't work if the class is static
-//                            Message message = messages.get(position);
-//                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
-//                        //query.whereEqualTo("receiver", ParseUser.getCurrentUser());
-//                        query.whereEqualTo("objectId", message.getObjectId());
-//                        query.findInBackground(new FindCallback<ParseObject>() {
-//                            public void done(List<ParseObject> messages, ParseException e) {
-//                                if (e == null) {
-//
-//                                    // iterate over all messages and delete them
-//                                    for (ParseObject message : messages) {
-//                                        //message.deleteEventually();
-//                                        message.deleteInBackground();
-//                                    }
-//                                } else {
-//                                    Log.d("main wall adapter", e.getMessage());
-//                                }
-//                            }
-//                        });
-//                       // explosionField.clear();
-//                    }
-//                    }
-//
-
-
-
                     return true;
                 }
             });
 
-
-
         }
 
-
         public void bind(Message message) {
-            // Bind the message data to the view elements
+
             tvMessageBody.setText(message.getMessageBody());
             Date createdAt = message.getCreatedAt();
             String timeAgo = Message.calculateTimeAgo(createdAt);
             tvDate.setText(timeAgo);
 
-
             MainWallFragment mainfragment = new MainWallFragment();
-            //int idClicked = mainfragment.getClickedID();
-            //int idClicked = clickedVal;
+
             int idClicked = mListener.onWork();
             int stickyNote;
 
-            System.out.println("HERE: "+idClicked);
-            switch (idClicked)
-            {
+            System.out.println("HERE: " + idClicked);
+            switch (idClicked) {
 
                 case 0:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf1103f00;
@@ -230,47 +186,16 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
                     break;
                 case R.id.action_wallmain:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf6e0f434;
-//                case R.id.action_search:
-//                    stickyNote = ivStickyNoteImage.getResources().getDrawable();
-//                    break;
+
                 default:
                     stickyNote = R.drawable._removal_ai__tmp_60ebbf1103f00;
                     break;
             }
 
-
-
-
             Glide.with(context).load(stickyNote).into(ivStickyNoteImage);
-
-
-
-//            ParseFile image = message.getImage();
-//            if (image != null) {
-//                Glide.with(context).load(image.getUrl()).into(ivImage);
-//            }
-
 
         }
 
-
-
     }
-
-    /* Within the RecyclerView.Adapter class */
-
-    // Clean all elements of the recycler
-    public void clear() {
-        messages.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of messages -- change to type used
-    public void addAll(List<Message> list) {
-        messages.addAll(list);
-        notifyDataSetChanged();
-    }
-
-
 
 }

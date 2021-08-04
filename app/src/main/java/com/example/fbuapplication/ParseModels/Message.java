@@ -1,22 +1,11 @@
 package com.example.fbuapplication.ParseModels;
 
-
-import android.util.Log;
-
 import com.parse.ParseClassName;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.Date;
-//import androidx.room.Entity;
-//import androidx.room.ColumnInfo;
-//import androidx.room.Entity;
-//import androidx.room.Ignore;
-//import androidx.room.PrimaryKey;
 
-
-//@Entity
 @ParseClassName("Message")
 public class Message extends ParseObject {
 
@@ -29,93 +18,6 @@ public class Message extends ParseObject {
     public static final String KEY_ISKUDOS = "isKudos";
     public static final String KEY_ISMEMORIES = "isMemories";
     public static final String KEY_ISGOALS = "isGoals";
-
-//    @PrimaryKey(autoGenerate=true)
-//    String description;
-//
-//    @ColumnInfo
-//    Date createdAt;
-//
-//    @Ignore
-//    boolean unread;
-//
-//    @Ignore
-//    ParseUser receiver;
-//
-//    @Ignore
-//    ParseUser sender;
-//
-//    @Ignore
-//    boolean isPinned;
-
-
-    public String getMessageBody(){
-        return getString(KEY_MESSAGE_BODY);
-    }
-
-    public void setMessageBody(String description){
-        put(KEY_MESSAGE_BODY, description);
-    }
-
-
-    public ParseUser getSender(){
-        return getParseUser(KEY_SENDER);
-    }
-
-    public void setSender(ParseUser user){
-        put(KEY_SENDER, user);
-    }
-
-
-    public ParseUser getReceiver(){
-        return getParseUser(KEY_RECIEVER);
-    }
-
-    public void setReceiver(ParseUser user){
-        put(KEY_RECIEVER, user);
-    }
-
-    public boolean getIsPinned(){
-        return getBoolean(KEY_ISPINNED);
-    }
-
-    public void setIsPinned(boolean isPinned){
-        put(KEY_ISPINNED, isPinned);
-    }
-
-    public boolean getIsUnread(){
-        return getBoolean(KEY_ISUNREAD);
-    }
-
-    public void setIsUnread(boolean isUnread){
-        put(KEY_ISUNREAD, isUnread);
-    }
-
-    public boolean getIsKudos(){
-        return getBoolean(KEY_ISKUDOS);
-    }
-
-    public void setIsKudos(boolean isKudos){
-        put(KEY_ISKUDOS, isKudos);
-    }
-
-    public boolean getIsMemories(){
-        return getBoolean(KEY_ISMEMORIES);
-    }
-
-    public void setIsmemories(boolean isMemories){
-        put(KEY_ISMEMORIES, isMemories);
-    }
-
-    public boolean getIsGoals(){
-        return getBoolean(KEY_ISGOALS);
-    }
-
-    public void setIsGoals(boolean isGoals){
-        put(KEY_ISGOALS, isGoals);
-    }
-
-
 
     public static String calculateTimeAgo(Date createdAt) {
 
@@ -146,11 +48,75 @@ public class Message extends ParseObject {
                 return diff / DAY_MILLIS + " d";
             }
         } catch (Exception e) {
-            Log.i("Error:", "getRelativeTimeAgo failed", e);
+
             e.printStackTrace();
         }
 
         return "";
+    }
+
+    public String getMessageBody() {
+        return getString(KEY_MESSAGE_BODY);
+    }
+
+    public void setMessageBody(String description) {
+        put(KEY_MESSAGE_BODY, description);
+    }
+
+    public ParseUser getSender() {
+        return getParseUser(KEY_SENDER);
+    }
+
+    public void setSender(ParseUser user) {
+        put(KEY_SENDER, user);
+    }
+
+    public ParseUser getReceiver() {
+        return getParseUser(KEY_RECIEVER);
+    }
+
+    public void setReceiver(ParseUser user) {
+        put(KEY_RECIEVER, user);
+    }
+
+    public boolean getIsPinned() {
+        return getBoolean(KEY_ISPINNED);
+    }
+
+    public void setIsPinned(boolean isPinned) {
+        put(KEY_ISPINNED, isPinned);
+    }
+
+    public boolean getIsUnread() {
+        return getBoolean(KEY_ISUNREAD);
+    }
+
+    public void setIsUnread(boolean isUnread) {
+        put(KEY_ISUNREAD, isUnread);
+    }
+
+    public boolean getIsKudos() {
+        return getBoolean(KEY_ISKUDOS);
+    }
+
+    public void setIsKudos(boolean isKudos) {
+        put(KEY_ISKUDOS, isKudos);
+    }
+
+    public boolean getIsMemories() {
+        return getBoolean(KEY_ISMEMORIES);
+    }
+
+    public void setIsmemories(boolean isMemories) {
+        put(KEY_ISMEMORIES, isMemories);
+    }
+
+    public boolean getIsGoals() {
+        return getBoolean(KEY_ISGOALS);
+    }
+
+    public void setIsGoals(boolean isGoals) {
+        put(KEY_ISGOALS, isGoals);
     }
 
 }

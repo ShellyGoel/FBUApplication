@@ -29,7 +29,6 @@
             android:minHeight="?attr/actionBarSize">
 
             <TextView
-                android:id="@+id/tv_toolbar_custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/biko_regular"
@@ -79,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvMainWallMessages"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/_9"
+                    android:background="@drawable/stickynote_pile"
                     android:src="@drawable/fresh_folk___plants_12"
                     android:visibility="gone" />
 
