@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="login_bg_background">@color/title</color>
+    <color name="launch_icon_background">#279B97</color>
 </resources>

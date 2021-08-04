@@ -104,7 +104,7 @@ public class GroupActivity extends AppCompatActivity {
                     Snackbar.make(rvGroup, "Issue with getting groups. Please try again.", Snackbar.LENGTH_LONG).show();
                     return;
                 } else {
-                    Snackbar.make(rvGroup, "Got all groups!", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(rvGroup, "All groups shown!", Snackbar.LENGTH_LONG).show();
                     for (GroupToMembers g : groups) {
 
                         toAddGroups.add(g);

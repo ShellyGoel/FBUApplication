@@ -14,9 +14,9 @@
         android:id="@+id/etSignUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corners_3"
         android:ems="10"
@@ -27,9 +27,9 @@
         android:id="@+id/etSignPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corner"
         android:ems="10"
@@ -40,9 +40,9 @@
         android:id="@+id/etSignEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corners_3"
         android:ems="10"
@@ -53,9 +53,9 @@
         android:id="@+id/etSignFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corner"
         android:ems="10"
@@ -88,5 +88,9 @@
         app:srcCompat="@drawable/fresh_folk___plants_15"
         tools:srcCompat="@drawable/fresh_folk___plants_15"
         tools:visibility="visible" />
+
+
+
+
 
 </LinearLayout>

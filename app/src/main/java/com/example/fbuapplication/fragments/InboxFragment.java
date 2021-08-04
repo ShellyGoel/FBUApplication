@@ -238,6 +238,8 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
 
         adapter.clear();
         queryMessages();
+        adapter.notifyDataSetChanged();
+        pullRefreshLayout.setRefreshing(false);
 
 
 
