@@ -6,65 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".activities.AllNotesActivity">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvWallTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/title"
+            android:fontFamily="@font/hey_magnolia"
+            android:text="User's Wall"
+            android:textAlignment="center"
+            android:textColor="@color/title_text"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginTop="0dp">
 
-            <TextView
-                android:id="@+id/tvWallTitle"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/title"
-                android:fontFamily="@font/hey_magnolia"
-                android:text="User's Wall"
-                android:textAlignment="center"
-                android:textColor="@color/title_text"
-                android:textSize="34sp"
-                android:textStyle="bold" />
+                android:background="@color/title">
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipeContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="0dp">
 
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAllNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <ImageView
+                    android:id="@+id/ivPlant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/title">
+                    android:layout_below="@+id/rvAllNotes"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/stickynote_pile"
+                    android:src="@drawable/fresh_folk___plants_12"
+                    android:visibility="gone" />
 
+                <dyanamitechetan.vusikview.VusikView
+                    android:id="@+id/vusik"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:fallCount="40"
+                    app:fallSpeed="0.05"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvAllNotes"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    </androidx.recyclerview.widget.RecyclerView>
-
-                    <ImageView
-                        android:id="@+id/ivPlant"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/rvAllNotes"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/_9"
-                        android:src="@drawable/fresh_folk___plants_12"
-                        android:visibility="gone" />
-
-                    <dyanamitechetan.vusikview.VusikView
-                        android:id="@+id/vusik"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"
-                        app:fallCount="40"
-                        app:fallSpeed="0.05"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </RelativeLayout>
-
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-        </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

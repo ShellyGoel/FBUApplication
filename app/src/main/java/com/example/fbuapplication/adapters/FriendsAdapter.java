@@ -24,11 +24,16 @@ import java.util.Date;
 import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
 
-    private List<FriendRequest> addFriends;
+    private final List<FriendRequest> addFriends;
     private int adapterPosition;
+    private int position;
 
+    public FriendsAdapter(Context context, List<FriendRequest> addFriends) {
+        this.context = context;
+        this.addFriends = addFriends;
+    }
 
     public int getAdapterPosition() {
         return adapterPosition;
@@ -38,19 +43,13 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         return position;
     }
 
-    private int position;
-
-    public FriendsAdapter(Context context, List<FriendRequest> addFriends) {
-        this.context = context;
-        this.addFriends = addFriends;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_friends, parent, false);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FriendRequest addFriendRequest = addFriends.get(position);
@@ -67,7 +66,6 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         return addFriends.size();
     }
 
-
     public void removeItem(int position) {
         addFriends.remove(position);
         notifyItemRemoved(position);
@@ -78,22 +76,36 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         notifyItemInserted(position);
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        addFriends.clear();
+        notifyDataSetChanged();
+    }
 
+    /* Within the RecyclerView.Adapter class */
+
+    // Add a list of items -- change to type used
+    public void addAll(List<FriendRequest> list) {
+        addFriends.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public int getSize() {
+        return addFriends.size();
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView btnRemove;
-        private TextView tvFriendName;
-        private TextView tvFriendAddedDate;
-
         public static final String TAG = "InboxAdapter";
+        private final ImageView btnRemove;
+        private final TextView tvFriendName;
+        private final TextView tvFriendAddedDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             btnRemove = itemView.findViewById(R.id.btnRemove);
             tvFriendName = itemView.findViewById(R.id.tvFriendName);
             tvFriendAddedDate = itemView.findViewById(R.id.tvFriendAddedDate);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,17 +120,15 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
                         Date createdAt = addFriendRequest.getCreatedAt();
                         String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
 
-
                     }
                 }
             });
         }
 
-
         public void bind(FriendRequest addFriendRequest) throws ParseException {
             // Bind the addFriendRequest data to the view elements
 
-            ParseObject textMessageContent=addFriendRequest.getFromUser().fetchIfNeeded();
+            ParseObject textMessageContent = addFriendRequest.getFromUser().fetchIfNeeded();
             tvFriendName.setText((textMessageContent.get("username").toString()));
 
             Glide.with(context).load(R.drawable.ic_baseline_person_remove_24).into(btnRemove);
@@ -127,10 +137,6 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
             Date createdAt = addFriendRequest.getCreatedAt();
             String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
             tvFriendAddedDate.setText(timeAgo);
-
-
-
-
 
             btnRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -144,15 +150,14 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
                     Glide.with(context).load(R.drawable.ic_baseline_person_remove_243).into(btnRemove);
 
-
                     addFriendRequest.setStatus("unfriended");
 
                     addFriendRequest.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while accepting friend request",e);
-                                //Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
+                            if (e != null) {
+                                Log.e(TAG, "Error while accepting friend request", e);
+
                                 Snackbar.make(btnRemove, "Error while unfriending", Snackbar.LENGTH_LONG).show();
 
                             }
@@ -160,32 +165,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
                         }
                     });
 
-
                 }
             });
         }
 
-
     }
-
-    /* Within the RecyclerView.Adapter class */
-
-    // Clean all elements of the recycler
-    public void clear() {
-        addFriends.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<FriendRequest> list) {
-        addFriends.addAll(list);
-        notifyDataSetChanged();
-    }
-
-    public int getSize() {
-        return addFriends.size();
-    }
-
-
 
 }

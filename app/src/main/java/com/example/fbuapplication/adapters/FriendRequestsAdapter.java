@@ -24,11 +24,16 @@ import java.util.Date;
 import java.util.List;
 
 public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
 
-    private List<FriendRequest> addFriendRequests;
+    private final List<FriendRequest> addFriendRequests;
     private int adapterPosition;
+    private int position;
 
+    public FriendRequestsAdapter(Context context, List<FriendRequest> addFriendRequests) {
+        this.context = context;
+        this.addFriendRequests = addFriendRequests;
+    }
 
     public int getAdapterPosition() {
         return adapterPosition;
@@ -38,19 +43,13 @@ public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAd
         return position;
     }
 
-    private int position;
-
-    public FriendRequestsAdapter(Context context, List<FriendRequest> addFriendRequests) {
-        this.context = context;
-        this.addFriendRequests = addFriendRequests;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_friend_requests, parent, false);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FriendRequest addFriendRequest = addFriendRequests.get(position);
@@ -67,7 +66,6 @@ public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAd
         return addFriendRequests.size();
     }
 
-
     public void removeItem(int position) {
         addFriendRequests.remove(position);
         notifyItemRemoved(position);
@@ -78,101 +76,13 @@ public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAd
         notifyItemInserted(position);
     }
 
-
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        private ImageView btnAccept;
-        private TextView tvFriendRequest;
-        private TextView tvFriendDate;
-
-        public static final String TAG = "InboxAdapter";
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            btnAccept = itemView.findViewById(R.id.btnAccept);
-            tvFriendRequest = itemView.findViewById(R.id.tvFriendRequest);
-            tvFriendDate = itemView.findViewById(R.id.tvFriendDate);
-
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                      // gets item position
-                    int position = getAdapterPosition();
-
-                    // make sure the position is valid, i.e. actually exists in the view
-                    if (position != RecyclerView.NO_POSITION) {
-                        // get the movie at the position, this won't work if the class is static
-                        FriendRequest addFriendRequest = addFriendRequests.get(position);
-                        Date createdAt = addFriendRequest.getCreatedAt();
-                        String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
-
-
-                    }
-                }
-            });
-        }
-
-
-        public void bind(FriendRequest addFriendRequest) throws ParseException {
-            // Bind the addFriendRequest data to the view elements
-
-            ParseObject textMessageContent=addFriendRequest.getFromUser().fetchIfNeeded();
-            tvFriendRequest.setText((textMessageContent.get("username").toString()));
-
-            Date createdAt = addFriendRequest.getCreatedAt();
-            String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
-            tvFriendDate.setText(timeAgo);
-
-
-
-
-
-            btnAccept.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    ParseUser currentUser = ParseUser.getCurrentUser();
-
-                    //check which wall to pin to
-                    adapterPosition = getPosition();
-
-                    //TODO: Check this!
-
-                    Glide.with(context).load(R.drawable.ic_baseline_person_add_24).into(btnAccept);
-                    addFriendRequest.setStatus("accepted");
-
-                    addFriendRequest.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while accepting friend request",e);
-                                //Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
-                                Snackbar.make(btnAccept, "Error while accepting friend request", Snackbar.LENGTH_LONG).show();
-
-                            }
-
-                        }
-                    });
-
-
-                }
-            });
-        }
-
-
-    }
-
-    /* Within the RecyclerView.Adapter class */
-
-    // Clean all elements of the recycler
     public void clear() {
         addFriendRequests.clear();
         notifyDataSetChanged();
     }
 
-    // Add a list of items -- change to type used
+    /* Within the RecyclerView.Adapter class */
+
     public void addAll(List<FriendRequest> list) {
         addFriendRequests.addAll(list);
         notifyDataSetChanged();
@@ -182,6 +92,73 @@ public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAd
         return addFriendRequests.size();
     }
 
+    class ViewHolder extends RecyclerView.ViewHolder {
 
+        public static final String TAG = "InboxAdapter";
+        private final ImageView btnAccept;
+        private final TextView tvFriendRequest;
+        private final TextView tvFriendDate;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            btnAccept = itemView.findViewById(R.id.btnAccept);
+            tvFriendRequest = itemView.findViewById(R.id.tvFriendRequest);
+            tvFriendDate = itemView.findViewById(R.id.tvFriendDate);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+
+                    if (position != RecyclerView.NO_POSITION) {
+
+                        FriendRequest addFriendRequest = addFriendRequests.get(position);
+                        Date createdAt = addFriendRequest.getCreatedAt();
+                        String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
+
+                    }
+                }
+            });
+        }
+
+        public void bind(FriendRequest addFriendRequest) throws ParseException {
+
+            ParseObject textMessageContent = addFriendRequest.getFromUser().fetchIfNeeded();
+            tvFriendRequest.setText((textMessageContent.get("username").toString()));
+
+            Date createdAt = addFriendRequest.getCreatedAt();
+            String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
+            tvFriendDate.setText(timeAgo);
+
+            btnAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    ParseUser currentUser = ParseUser.getCurrentUser();
+
+                    adapterPosition = getPosition();
+
+                    Glide.with(context).load(R.drawable.ic_baseline_person_add_24).into(btnAccept);
+                    addFriendRequest.setStatus("accepted");
+
+                    addFriendRequest.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Log.e(TAG, "Error while accepting friend request", e);
+
+                                Snackbar.make(btnAccept, "Error while accepting friend request", Snackbar.LENGTH_LONG).show();
+
+                            }
+
+                        }
+                    });
+
+                }
+            });
+        }
+
+    }
 
 }

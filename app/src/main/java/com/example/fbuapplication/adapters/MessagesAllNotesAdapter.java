@@ -1,6 +1,5 @@
 package com.example.fbuapplication.adapters;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNotesAdapter.ViewHolder> {
-    private Context context;
+    private final Context context;
     private List<Integer> messages;
 
     public MessagesAllNotesAdapter(Context context, List<Integer> messages) {
@@ -26,12 +25,12 @@ public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNot
         this.messages = messages;
     }
 
-    // method for filtering our recyclerview items.
-    public void setFilter(List<Integer> countryModels){
+    public void setFilter(List<Integer> countryModels) {
         messages = new ArrayList<>();
         messages.addAll(countryModels);
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,11 +49,22 @@ public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNot
         return messages.size();
     }
 
+    public void clear() {
+        messages.clear();
+        notifyDataSetChanged();
+    }
+
+    /* Within the RecyclerView.Adapter class */
+
+    public void addAll(List<Integer> list) {
+        messages.addAll(list);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
-
-        private ImageView ivStickyNoteImage;
-        private TextView messageNum;
+        private final ImageView ivStickyNoteImage;
+        private final TextView messageNum;
 
         public ViewHolder(@NonNull View messageView) {
             super(messageView);
@@ -62,32 +72,26 @@ public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNot
             messageNum = messageView.findViewById(R.id.tvAllNotesNum);
         }
 
-
         public void bind(Integer message) {
             messageNum.setVisibility(View.INVISIBLE);
 
-            if(message!= null && message%5==0) {
+            if (message != null && message % 5 == 0) {
 
                 messageNum.setVisibility(View.VISIBLE);
                 messageNum.setText(message.toString());
-                if(message%20==0){
+                if (message % 20 == 0) {
                     messageNum.setTextColor(context.getResources().getColor(R.color.white));
                     messageNum.setTextSize(30);
-                    }
+                }
                 Glide.with(context).load(R.drawable._removal_ai__tmp_60ebbfc098d23).into(ivStickyNoteImage);
-            }
-            else if(message!= null && message%5==1) {
+            } else if (message != null && message % 5 == 1) {
 
                 Glide.with(context).load(R.drawable._removal_ai__tmp_60ebbf43c2076).into(ivStickyNoteImage);
-            }
-            else if(message!= null && message%5==2) {
+            } else if (message != null && message % 5 == 2) {
                 Glide.with(context).load(R.drawable._removal_ai__tmp_60ebbfb3c4dd3).into(ivStickyNoteImage);
-            }
-
-            else if(message!= null && message%5==3) {
+            } else if (message != null && message % 5 == 3) {
                 Glide.with(context).load(R.drawable._removal_ai__tmp_60ebbf8c7f2f5).into(ivStickyNoteImage);
-            }
-            else{
+            } else {
                 Glide.with(context).load(R.drawable._removal_ai__tmp_60ebbf1103f00).into(ivStickyNoteImage);
 
             }
@@ -95,21 +99,5 @@ public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNot
         }
 
     }
-
-    /* Within the RecyclerView.Adapter class */
-
-    // Clean all elements of the recycler
-    public void clear() {
-        messages.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of messages -- change to type used
-    public void addAll(List<Integer> list) {
-        messages.addAll(list);
-        notifyDataSetChanged();
-    }
-
-
 
 }

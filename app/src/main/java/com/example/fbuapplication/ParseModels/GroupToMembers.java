@@ -1,54 +1,16 @@
 package com.example.fbuapplication.ParseModels;
 
-import android.util.Log;
-//
-//import androidx.room.ColumnInfo;
-//import androidx.room.Ignore;
-//import androidx.room.PrimaryKey;
-
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
-
-import org.json.JSONArray;
 
 import java.util.Date;
 
 @ParseClassName("GroupToMembers")
 public class GroupToMembers extends ParseObject {
 
-
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ASSIGNEDUSER = "assignedUser";
     public static final String KEY_GROUPID = "groupID";
-
-
-    public String getAssignedUser(){
-        return getString(KEY_ASSIGNEDUSER);
-    }
-
-    public void setAssignedUser(String assignedUser){
-        put(KEY_ASSIGNEDUSER, assignedUser);
-    }
-
-
-    public String getUsername(){
-        return getString(KEY_USERNAME);
-    }
-
-    public void setUsername(String user){
-        put(KEY_USERNAME, user);
-    }
-
-
-    public Group getGroupID(){
-        return (Group) getParseObject(KEY_GROUPID);
-    }
-
-    public void setGroupID(Group group){
-        put(KEY_GROUPID, group);
-    }
-
 
     public static String calculateTimeAgo(Date createdAt) {
 
@@ -79,11 +41,35 @@ public class GroupToMembers extends ParseObject {
                 return diff / DAY_MILLIS + " d";
             }
         } catch (Exception e) {
-            Log.i("Error:", "getRelativeTimeAgo failed", e);
+
             e.printStackTrace();
         }
 
         return "";
+    }
+
+    public String getAssignedUser() {
+        return getString(KEY_ASSIGNEDUSER);
+    }
+
+    public void setAssignedUser(String assignedUser) {
+        put(KEY_ASSIGNEDUSER, assignedUser);
+    }
+
+    public String getUsername() {
+        return getString(KEY_USERNAME);
+    }
+
+    public void setUsername(String user) {
+        put(KEY_USERNAME, user);
+    }
+
+    public Group getGroupID() {
+        return (Group) getParseObject(KEY_GROUPID);
+    }
+
+    public void setGroupID(Group group) {
+        put(KEY_GROUPID, group);
     }
 
 }

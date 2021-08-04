@@ -29,12 +29,18 @@ import java.util.Date;
 import java.util.List;
 
 public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdapter.ViewHolder> implements DecidePinnedWallDialogFragment.DecidePinnedWallDialogListener {
-    private Context context;
-    private List<Message> messages;
+    private final Context context;
+    private final List<Message> messages;
+    private final Fragment inboxFragment;
     private Message currentMessage;
-    private Fragment inboxFragment;
-
     private int adapterPosition;
+    private int position;
+
+    public MessagesInboxAdapter(Context context, List<Message> messages, Fragment inboxFragment) {
+        this.context = context;
+        this.messages = messages;
+        this.inboxFragment = inboxFragment;
+    }
 
     public int getAdapterPosition() {
         return adapterPosition;
@@ -44,20 +50,13 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
         return position;
     }
 
-    private int position;
-
-    public MessagesInboxAdapter(Context context, List<Message> messages, Fragment inboxFragment) {
-        this.context = context;
-        this.messages = messages;
-        this.inboxFragment = inboxFragment;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_message_inbox, parent, false);
         return new ViewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
@@ -71,7 +70,6 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
         return messages.size();
     }
 
-
     public void removeItem(int position) {
         messages.remove(position);
         notifyItemRemoved(position);
@@ -82,43 +80,57 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
         notifyItemInserted(position);
     }
 
-    public Message getCurrentMessage(){
+    public Message getCurrentMessage() {
         return currentMessage;
     }
 
     @Override
     public void onFinishDecidePinnedWallDialog(boolean[] toSend) {
 
-        Log.i("MESSAGE INBOX ADAPTER", "val: " +toSend);
-        if(toSend[0]){
+        if (toSend[0]) {
             getCurrentMessage().setIsKudos(true);
 
         }
-        if(toSend[1]){
+        if (toSend[1]) {
             getCurrentMessage().setIsmemories(true);
         }
-        if(toSend[2]){
+        if (toSend[2]) {
             getCurrentMessage().setIsGoals(true);
         }
 
         getCurrentMessage().saveInBackground();
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        messages.clear();
+        notifyDataSetChanged();
+    }
+
+    /* Within the RecyclerView.Adapter class */
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Message> list) {
+        messages.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public int getSize() {
+        return messages.size();
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView btnPin;
-        private TextView tvMessageBody;
-        private TextView tvDate;
-
         public static final String TAG = "InboxAdapter";
+        private final ImageView btnPin;
+        private final TextView tvMessageBody;
+        private final TextView tvDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             btnPin = itemView.findViewById(R.id.btnPin);
             tvMessageBody = itemView.findViewById(R.id.tvMessageBody);
             tvDate = itemView.findViewById(R.id.tvDate);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -135,7 +147,6 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                         String timeAgo = Message.calculateTimeAgo(createdAt);
                         // tvDate.setText(timeAgo);
 
-
                         //set message as read since it was clicked on
                         message.setIsUnread(false);
                         message.saveInBackground();
@@ -143,14 +154,13 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                         Intent intent = new Intent(context, MessageDetailsActivity.class);
                         // serialize the movie using parceler, use its short name as a key
                         intent.putExtra("createdAt", timeAgo);
-                        intent.putExtra("caption",message.getMessageBody());
+                        intent.putExtra("caption", message.getMessageBody());
                         // show the activity
                         context.startActivity(intent);
                     }
                 }
             });
         }
-
 
         public void bind(Message message) {
             // Bind the message data to the view elements
@@ -164,29 +174,25 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
 //            }
 
             //TODO: Check this!
-            if(message.getIsPinned()){
+            if (message.getIsPinned()) {
                 Glide.with(context).load(R.drawable.ic_baseline_push_pin_clicked).into(btnPin);
-            }
-
-            else{
+            } else {
                 Glide.with(context).load(R.drawable.ic_baseline_push_pin_24).into(btnPin);
             }
 
             //ADD UNREAD STUFF
             //message is already read
-            if(!message.getIsUnread()){
+            if (!message.getIsUnread()) {
                 //gray out that view
                 itemView.setBackgroundColor(itemView.getResources().getColor(R.color.gray_out));
-            }
-
-            else{
+            } else {
                 //gray out that view
                 itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
             }
             btnPin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i("Inbox", "pinned message");
+
                     ParseUser currentUser = ParseUser.getCurrentUser();
                     //currentUser.add("main_wall_notes", tvMessageBody.getText());
                     //currentUser.add("main_wall_messages",message);
@@ -194,8 +200,7 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                     //check which wall to pin to
                     adapterPosition = getPosition();
 
-
-                    FragmentActivity activity = (FragmentActivity)(context);
+                    FragmentActivity activity = (FragmentActivity) (context);
                     FragmentManager fm = activity.getSupportFragmentManager();
                     DecidePinnedWallDialogFragment decidePinnedWallDialogFragment = new DecidePinnedWallDialogFragment();
                     decidePinnedWallDialogFragment.setTargetFragment(inboxFragment, 300);
@@ -217,42 +222,20 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
                     message.saveInBackground(new SaveCallback() {
                         @Override
                         public void done(ParseException e) {
-                            if(e != null){
-                                Log.e(TAG, "Error while pinning note",e);
-                                //Toast.makeText(context, "Error in pinning note!", Toast.LENGTH_SHORT).show();
+                            if (e != null) {
+                                Log.e(TAG, "Error while pinning note", e);
+
                                 Snackbar.make(btnPin, "Error while pinning note", Snackbar.LENGTH_LONG).show();
 
                             }
-                            Log.i(TAG, "Note pinned successfully!");
+
                         }
                     });
-
 
                 }
             });
         }
 
-
     }
-
-    /* Within the RecyclerView.Adapter class */
-
-    // Clean all elements of the recycler
-    public void clear() {
-        messages.clear();
-        notifyDataSetChanged();
-    }
-
-    // Add a list of items -- change to type used
-    public void addAll(List<Message> list) {
-        messages.addAll(list);
-        notifyDataSetChanged();
-    }
-
-    public int getSize() {
-        return messages.size();
-    }
-
-
 
 }

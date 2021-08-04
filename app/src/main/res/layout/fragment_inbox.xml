@@ -53,16 +53,12 @@
                 android:foregroundGravity="center"
                 android:text="Undo delete"
                 android:textAllCaps="true"
+                android:textColor="@color/title"
+                android:textSize="12sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--            android:id="@+id/swipeContainer"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +81,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView9"
                 android:layout_width="242dp"
                 android:layout_height="97dp"
                 android:layout_marginTop="7dp"
@@ -95,7 +90,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvNewMessagesInbox" />
 
             <ImageView
-                android:id="@+id/ivNewMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fuzzy_friends___little_elephant"
@@ -158,7 +152,6 @@
                     android:visibility="gone" />
 
                 <ImageView
-                    android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rvInboxMessages"
@@ -167,7 +160,6 @@
                     android:visibility="gone" />
             </RelativeLayout>
 
-            <!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         </com.baoyz.widget.PullRefreshLayout>
 
     </LinearLayout>

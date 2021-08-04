@@ -9,27 +9,19 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.fbuapplication.R;
 
-
 public class DecidePinnedWallDialogFragment extends DialogFragment {
 
-    private boolean[] selectedItems = new boolean[] { false, false, false, true,
-            true, false };
-    private boolean[] clickedItems = selectedItems;
+    private boolean[] selectedItems = new boolean[]{false, false, false, true,
+            true, false};
+    private final boolean[] clickedItems = selectedItems;
 
-    // Defines the listener interface
-    //dialog fragment may be invoked within the context of another fragment.
-    //In this case, we may want to pass the date back not to the activity but instead to the parent fragment.
-    public interface DecidePinnedWallDialogListener {
-        void onFinishDecidePinnedWallDialog(boolean[] toSend);
-    }
-
-    // Call this method to send the data back to the parent fragment
     public void sendBackResult(boolean[] toSend) {
-        // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
+
         DecidePinnedWallDialogListener listener = (DecidePinnedWallDialogListener) getTargetFragment();
         listener.onFinishDecidePinnedWallDialog(toSend);
         dismiss();
     }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -44,9 +36,8 @@ public class DecidePinnedWallDialogFragment extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which, boolean isChecked) {
-                                clickedItems[which]= isChecked;
-//                                Toast.makeText(getActivity(), languages[which],
-//                                        Toast.LENGTH_SHORT).show();
+                                clickedItems[which] = isChecked;
+
                             }
                         })
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -67,43 +58,10 @@ public class DecidePinnedWallDialogFragment extends DialogFragment {
         AlertDialog dialog = alertDialogBuilder.create();
         return dialog;
     }
-//
-//    public Dialog onCreateDialog(Bundle savedInstanceState) {
-//        // Use the Builder class for convenient dialog construction
-//        //AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//
-//        ArrayList<Integer> pinTo = new ArrayList<>();
-//        builder.setTitle("Which wall do you want to pin the note to?");
-//        builder.setMultiChoiceItems(R.array.walls_array, null, new DialogInterface.OnMultiChoiceClickListener()
-//        {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i, boolean b)
-//            {
-////                Toast.makeText(getActivity(), "item clicked at " + i, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//
-//
-//        Dialog dialog = builder.create();
-//        return dialog;
-//
-////        builder.setTitle("Which wall do you want to pin the note to?")
-////                .setItems(R.array.walls_array, new DialogInterface.OnClickListener() {
-////                    public void onClick(DialogInterface dialog, int which) {
-////                        // The 'which' argument contains the index position
-////                        // of the selected item
-////
-////                        sendBackResult(which);
-////                    }
-////                });
-////
-////        return builder.create();
-//
-//    }
 
+    public interface DecidePinnedWallDialogListener {
+        void onFinishDecidePinnedWallDialog(boolean[] toSend);
+    }
 
 }
 

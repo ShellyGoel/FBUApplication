@@ -33,7 +33,6 @@
         <activity android:name=".activities.AllNotesActivity" />
         <activity android:name=".activities.FriendsRequestListActivity" />
         <activity android:name=".activities.AddFriendActivity" />
-        <activity android:name=".activities.AllNotesActivity" />
         <activity android:name=".activities.MessageDetailsActivity" />
 
         <provider
