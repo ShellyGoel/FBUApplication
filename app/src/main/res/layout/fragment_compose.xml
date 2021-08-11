@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="575dp"
+            android:layout_height="590dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/b1"
             android:orientation="vertical">
@@ -48,8 +48,8 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/rounded_corner"
                 android:fontFamily="@font/biko_regular"
-                android:hint="Enter recepient user..."
-                android:textSize="20sp" />
+                android:hint="Enter recipient user..."
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/etMessageFromSender"
@@ -60,99 +60,104 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/rounded_corner"
                 android:fontFamily="@font/biko_regular"
-                android:hint="Enter message..." />
+                android:hint="Enter message..."
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btnSubmit"
                 android:layout_width="107dp"
-                android:layout_height="32dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="6dp"
                 android:background="@drawable/rounded_corner"
-                android:backgroundTint="@color/purple_200"
+                android:backgroundTint="@color/title"
                 android:foregroundGravity="center_vertical|center|center_horizontal"
                 android:gravity="center|center_horizontal|center_vertical"
                 android:text="Submit"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="391dp">
+                android:layout_height="418dp"
+                android:layout_marginTop="10dp">
+
 
                 <Button
                     android:id="@+id/btnSendText"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:text="Send \n as Text"
+                    android:text="Share \n Via..."
                     android:textColor="@color/title"
-
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.223"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnRandomUser"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/_removal_ai__tmp_60ebbfb3c4dd3"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="Random \nFriend"
+
+                    android:textColor="@color/title"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.107"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:layout_width="215dp"
-                    android:layout_height="330dp"
+                    android:layout_width="211dp"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="100dp"
                     android:src="@drawable/fresh_folk___plants_11"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.01"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="0.127" />
 
                 <ImageView
                     android:layout_width="215dp"
-                    android:layout_height="325dp"
+                    android:layout_height="400dp"
+                    android:layout_marginTop="100dp"
                     android:src="@drawable/fresh_folk___plants_13"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/btnRandCompliment"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center|center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:background="@drawable/_removal_ai__tmp_60ebbf6e0f434"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/_removal_ai__tmp_60ebbfb3c4dd3"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:foregroundGravity="center_vertical|center|center_horizontal"
-                    android:scaleType="center"
-                    android:src="@drawable/_removal_ai__tmp_60ebbf5282318"
                     android:text="Random Kudos"
-                    android:textAlignment="center"
                     android:textColor="@color/title"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.593"
+                    app:layout_constraintHorizontal_bias="0.474"
                     app:layout_constraintStart_toEndOf="@+id/btnSendText"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:backgroundTint="@color/purple_700"
-                android:text="Logout"
-                android:textColor="@color/teal_700"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="310dp"
-                tools:layout_editor_absoluteY="6dp" />
 
 
         </LinearLayout>

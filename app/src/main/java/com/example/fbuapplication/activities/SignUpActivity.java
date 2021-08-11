@@ -13,6 +13,7 @@ import com.example.fbuapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseUser;
 
+//class to sign up user.
 public class SignUpActivity extends AppCompatActivity {
 
     public static final String TAG = "SignUpActivity";

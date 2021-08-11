@@ -24,9 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.fbuapplication.BuildConfig;
 import com.example.fbuapplication.ParseModels.Message;
 import com.example.fbuapplication.R;
-import com.example.fbuapplication.activities.LoginActivity;
 import com.example.fbuapplication.fragments.dialogFragments.DoNotSendDialogFragment;
-import com.facebook.login.LoginManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -62,20 +60,21 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+//Fragment where a message is composed by the user and sent
 public class ComposeFragment extends Fragment implements DoNotSendDialogFragment.DoNotSendDialogListener {
 
-    //TODO: add onAttach
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
-    //    private File photoFile;
-//    public String photoFileName = "photo.jpg";
+
+    //    public String photoFileName = "photo.jpg";
     public static final String TAG = "composeFragment";
-    public static final String[] randomCompliments = {"You look great today.", "You’re a smart cookie.", "You have impeccable manners.", "You have the best laugh.", "You are appreciated.", "You’re strong.", "Your perspective is refreshing.", "You’re an awesome friend.", "You light up the room.", "You should be proud of yourself.", "You’re more helpful than you realize.", "You have a great sense of humor.", "Your kindness is a balm to all who encounter it.", "On a scale from 1 to 10, you’re an 11.", "You are brave.", "You have the courage of your convictions.", "You are making a difference.", "You’re like sunshine on a rainy day.", "You bring out the best in other people.", "You’re a great listener.", "Everything would be better if more people were like you!", "When you’re not afraid to be yourself is when you’re most incredible.", "You’re wonderful.", "Jokes are funnier when you tell them.", "You’re better than a triple-scoop ice cream cone. With sprinkles.", "You’re one of a kind!", "You’re inspiring.", "If you were a box of crayons, you’d be the giant name-brand one with the built-in sharpener.", "You should be thanked more often. So thank you!!", "Our community is better because you’re in it.", "Someone is getting through something hard right now because you’ve got their back.", "You have the best ideas.", "You always know how to find that silver lining.", "Everyone gets knocked down sometimes, but you always get back up and keep going.", "You’re a candle in the darkness.", "You’re a great example to others.", "You always know just what to say.", "You’re always learning new things and trying to better yourself, which is awesome.", "You could survive a Zombie apocalypse.", "You’re more fun than bubble wrap.", "When you make a mistake, you fix it.", "You’re great at figuring stuff out.", "Your voice is magnificent.", "The people you love are lucky to have you in their lives.", "You’re like a breath of fresh air.", "You’re so thoughtful.", "Your creative potential seems limitless.", "Actions speak louder than words, and yours tell an incredible story.", "Somehow you make time stop and fly at the same time.", "When you make up your mind about something, nothing stands in your way.", "You seem to really know who you are.", "Any team would be lucky to have you on it.", "In high school I bet you were voted “most likely to keep being awesome.”", "I bet you do the crossword puzzle in ink.", "Babies and small animals probably love you.", "There’s ordinary, and then there’s you.", "You’re someone’s reason to smile.", "You’re even better than a unicorn, because you’re real.", "The way you treasure your loved ones is incredible.", "You’re really something special.", "You’re a gift to those around you."};
+    public static final String[] randomCompliments = {"You have the best laugh.", "You are appreciated.", "You’re strong.", "Your perspective is refreshing.", "You’re an awesome friend.", "You light up the room.", "You should be proud of yourself.", "You have a great sense of humor.", "On a scale from 1 to 10, you’re an 11.", "You are brave.", "You are making a difference.", "You’re like sunshine on a rainy day.", "You bring out the best in other people.", "You’re a great listener.", "Everything would be better if more people were like you!", "You’re wonderful.", "Jokes are funnier when you tell them.", "You’re better than a triple-scoop ice cream cone. With sprinkles.", "You’re one of a kind!", "You’re inspiring.", "You should be thanked more often. So thank you!!", "Our community is better because you’re in it.", "Someone is getting through something hard right now because you’ve got their back.", "You have the best ideas.", "You always know how to find that silver lining.", "Everyone gets knocked down sometimes, but you always get back up and keep going.", "You’re a candle in the darkness.", "You’re a great example to others.", "You always know just what to say.", "You’re always learning new things and trying to better yourself, which is awesome.", "You could survive a Zombie apocalypse.", "You’re more fun than bubble wrap.", "When you make a mistake, you fix it.", "You’re great at figuring stuff out.", "Your voice is magnificent.", "The people you love are lucky to have you in their lives.", "You’re like a breath of fresh air.", "You’re so thoughtful.", "Your creative potential seems limitless.", "Actions speak louder than words, and yours tell an incredible story.", "Somehow you make time stop and fly at the same time.", "When you make up your mind about something, nothing stands in your way.", "You seem to really know who you are.", "Any team would be lucky to have you on it.", "In high school I bet you were voted “most likely to keep being awesome.”", "I bet you do the crossword puzzle in ink.", "Babies and small animals probably love you.", "There’s ordinary, and then there’s you.", "You’re someone’s reason to smile.", "You’re even better than a unicorn, because you’re real.", "The way you treasure your loved ones is incredible.", "You’re really something special.", "You’re a gift to those around you."};
     boolean shouldDelete;
-    private Button btnLogout;
+
     private EditText etMessageFromSender;
-    //private EditText etRecipient;
+
     private Button btnSubmit;
     private Button btnRandCompliment;
+    private Button btnRandUser;
     private AutoCompleteTextView autocomplete;
     private List<String> getAllUsernames;
     private TextView tvCompose;
@@ -92,23 +91,18 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
     private View stickyNote;
     private String stringToSend;
 
-    // The onCreateView method is called when Fragment should create its View object hierarchy,
-    // either dynamically or via XML layout inflation.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        // Defines the xml file for the fragment
+
         stickyNote = inflater.inflate(R.layout.stickynotetosend, parent, false);
 
         return inflater.inflate(R.layout.fragment_compose, parent, false);
 
     }
 
-    // This event is triggered soon after onCreateView().
-    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Setup any handles to view objects here
-        // EditText etFoo = (EditText) view.view.findViewById()(R.id.etFoo);
+
         super.onViewCreated(view, savedInstanceState);
 
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
@@ -116,22 +110,21 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            //your codes here
 
         }
 
         btnSendText = view.findViewById(R.id.btnSendText);
 
         autocomplete = view.findViewById(R.id.autoCompleteReceiver);
-        btnLogout = view.findViewById(R.id.btnLogout);
         btnRandCompliment = view.findViewById(R.id.btnRandCompliment);
         etMessageFromSender = view.findViewById(R.id.etMessageFromSender);
-        //etRecipient = view.findViewById(R.id.etRecipient);
+
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        btnRandUser = view.findViewById(R.id.btnRandomUser);
         btnSubmit.setBackgroundColor(getResources().getColor(R.color.teal_700));
         getAllUsernames = new ArrayList<>();
         tvCompose = view.findViewById(R.id.tvCompose);
-        //getAllUsernames.add("default");
+
         sent1 = 0;
         sent2 = 1.0;
         shouldMessageSend = false;
@@ -156,6 +149,15 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
                     for (ParseUser p : objects) {
                         getAllUsernames.add(p.getUsername());
                     }
+
+                    btnRandUser.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Random r = new Random();
+                            int ind = r.nextInt(getAllUsernames.size());
+                            autocomplete.setText(getAllUsernames.get(ind));
+                        }
+                    });
 
                     if (getActivity() != null) {
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>
@@ -196,7 +198,7 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
                 clSendText.buildDrawingCache(true);
                 Bitmap b = Bitmap.createBitmap(clSendText.getDrawingCache());
 
-                String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), b, "Emoticon2", null);
+                String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), b, "IMG_" + System.currentTimeMillis(), null);
                 if (path != null) {
                     Uri fileUri = Uri.parse(path);
                     sendIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
@@ -248,9 +250,6 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
                 compose_description = description;
                 compose_recipient = recipient;
 
-                //Keeping for future use for more fine-grained categorization of messages!
-                //perspective_api();
-
                 int[] sent_val = {0};
                 OkHttpClient client = new OkHttpClient();
 
@@ -263,7 +262,6 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
                     e.printStackTrace();
                 }
 
-                //https://rapidapi.com/fyhao/api/text-sentiment-analysis-method/
                 RequestBody body = RequestBody.create(mediaType, "text=" + decoded);
                 Request request = new Request.Builder()
                         .url("https://text-sentiment.p.rapidapi.com/analyze")
@@ -376,17 +374,6 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
             }
         });
 
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginManager.getInstance().logOut();
-                ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser();
-
-                goLoginActivity();
-            }
-        });
-
     }
 
     private void perspective_api() {
@@ -405,12 +392,11 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
                     + "\"requestedAttributes\": {\"TOXICITY\": {}, \"SEVERE_TOXICITY\": {},\"IDENTITY_ATTACK\": {},\"INSULT\": {},\"THREAT\": {},\"SEXUALLY_EXPLICIT\": {},\"FLIRTATION\": {}}}");
             httpRequestBodyWriter.flush();
             httpRequestBodyWriter.close();
-            System.out.println("CODE : " + httpConnection.getResponseCode());
 
             BufferedReader responseBuffer = new BufferedReader(new InputStreamReader((httpConnection.getInputStream())));
             String output;
             while ((output = responseBuffer.readLine()) != null) {
-                System.out.println(output);
+
             }
 
             httpConnection.disconnect();
@@ -628,14 +614,6 @@ public class ComposeFragment extends Fragment implements DoNotSendDialogFragment
 
             }
         });
-
-    }
-
-    private void goLoginActivity() {
-        Intent i = new Intent(getActivity(), LoginActivity.class);
-        startActivity(i);
-
-        getActivity().finish();
 
     }
 

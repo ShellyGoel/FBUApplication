@@ -5,6 +5,7 @@ import com.parse.ParseObject;
 
 import java.util.Date;
 
+//Relation class between a Group Object and User Object
 @ParseClassName("GroupToMembers")
 public class GroupToMembers extends ParseObject {
 

@@ -43,7 +43,7 @@
         android:background="@drawable/rounded_corners_3"
         android:fontFamily="@font/biko_regular"
         android:hint="Enter recipient user..."
-        android:textSize="20sp" />
+        android:textSize="22dp" />
 
     <Button
         android:id="@+id/btnSubmitFriend"
@@ -51,10 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/purple_500"
-        android:fontFamily="@font/biko_regular"
+        android:fontFamily="sans-serif"
         android:text="Send Friend Request!"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

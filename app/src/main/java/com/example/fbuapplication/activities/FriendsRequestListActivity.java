@@ -25,6 +25,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+//class to view all friend requests
 public class FriendsRequestListActivity extends AppCompatActivity {
 
     protected FriendRequestsAdapter adapter;
@@ -135,6 +136,7 @@ public class FriendsRequestListActivity extends AppCompatActivity {
         }).attachToRecyclerView(rvFriendRequest);
 
         queryFriendRequests();
+        queryFriends();
 
         int[] color = {R.color.teal_200, R.color.teal_400, R.color.teal_700, R.color.purple_500};
         pullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_WATER_DROP);
@@ -143,7 +145,7 @@ public class FriendsRequestListActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
 
@@ -151,7 +153,7 @@ public class FriendsRequestListActivity extends AppCompatActivity {
 
     }
 
-    public void fetchTimelineAsync(int page) {
+    public void fetchTimelineAsync() {
 
         adapter.clear();
         queryFriendRequests();

@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.fbuapplication.R;
 import com.example.fbuapplication.fragments.ComposeFragment;
 
+//class to see group details for each group
 public class GroupDetailsActivity extends AppCompatActivity {
 
     TextView tvDate;

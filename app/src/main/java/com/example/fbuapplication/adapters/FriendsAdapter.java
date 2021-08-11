@@ -23,6 +23,7 @@ import com.parse.SaveCallback;
 import java.util.Date;
 import java.util.List;
 
+//adapter to populate data in friends recyclerView
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
     private final Context context;
 

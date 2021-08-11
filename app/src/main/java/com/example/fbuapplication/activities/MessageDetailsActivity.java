@@ -12,6 +12,7 @@ import com.example.fbuapplication.R;
 
 import java.util.Random;
 
+//class to view full text of messages in the inbox or on a user's wall
 public class MessageDetailsActivity extends AppCompatActivity {
 
     TextView tvDate;

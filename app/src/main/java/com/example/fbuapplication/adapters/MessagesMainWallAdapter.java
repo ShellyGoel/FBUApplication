@@ -26,6 +26,7 @@ import java.util.List;
 
 import tyrantgit.explosionfield.ExplosionField;
 
+//adapter to populate data in main wall (including the kudos/memories/goals walls) recyclerView
 public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWallAdapter.ViewHolder> implements View.OnLongClickListener {
     private final Context context;
     private final MainWallInterface mListener;
@@ -167,7 +168,6 @@ public class MessagesMainWallAdapter extends RecyclerView.Adapter<MessagesMainWa
             int idClicked = mListener.onWork();
             int stickyNote;
 
-            System.out.println("HERE: " + idClicked);
             switch (idClicked) {
 
                 case 0:

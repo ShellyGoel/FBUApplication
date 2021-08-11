@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;
 
+//added to disable swiping between fragments as it interfered with inbox swiping
 public class CustomViewPager extends ViewPager {
 
     private boolean isPagingEnabled = false;

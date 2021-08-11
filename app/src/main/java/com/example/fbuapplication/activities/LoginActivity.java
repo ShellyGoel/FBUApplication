@@ -33,6 +33,7 @@ import java.util.Arrays;
 
 import dyanamitechetan.vusikview.VusikView;
 
+//class to login user to app via app login or facebook account
 public class LoginActivity extends AppCompatActivity {
 
     public static final String PROFILE = "public_profile";
@@ -204,7 +205,6 @@ public class LoginActivity extends AppCompatActivity {
     private void goMainActivity() {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
-
         finish();
 
     }
@@ -212,6 +212,7 @@ public class LoginActivity extends AppCompatActivity {
     private void goSignUpActivity() {
         Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(i);
+        finish();
 
     }
 
