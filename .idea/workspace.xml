@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="AUTOSCROLL_TO_SOURCE" value="true" />
+    <option name="GROUP_BY_SEVERITY" value="true" />
+    <option name="FILTER_RESOLVED_ITEMS" value="false" />
+    <option name="SHOW_STRUCTURE" value="true" />
+  </component>
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel_2" />
+        <device id="pixel_4a" />
+      </config>
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="84fdbd92-71e4-48dd-ae78-22d30074ae16" name="Default Changelist" comment="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/shellygoel/.android/avd/Pixel_4a_API_30.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FBUApplication" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FBUApplication" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="FBUApplication" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/ShellyGoel/FBUApplication" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1vE6bvVoCoexPdvjLY45Wty4SL5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="VirtualDevicePath@/Users/shellygoel/.android/avd/Pixel_4a_API_30.avd" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-27T22:04:19.576119Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android-custom-view/Users/shellygoel/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
+    <property name="android-custom-view/Users/shellygoel/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-common/5.15.3/da10d66520c279b843992c24893cab96eb471e65/facebook-common-5.15.3-sources.jar!/com/facebook/FacebookButtonBase.java_SELECTED" value="FacebookButtonBase" />
+    <property name="android-custom-view/Users/shellygoel/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.4.0/51035a8f6342c20d4d8f242d100e6f25e0c271ac/material-1.4.0-sources.jar!/com/google/android/material/bottomnavigation/BottomNavigationView.java_SELECTED" value="BottomNavigationView" />
+    <property name="android-custom-view/Users/shellygoel/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.4.0/51035a8f6342c20d4d8f242d100e6f25e0c271ac/material-1.4.0-sources.jar!/com/google/android/material/navigation/NavigationBarView.java_SELECTED" value="NavigationBarView" />
+    <property name="android-custom-view/Users/shellygoel/Documents/codepath/FBUApplication/app/src/main/java/com/example/fbuapplication/CustomViewPager.java_SELECTED" value="CustomViewPager" />
+    <property name="android-custom-view/Users/shellygoel/Library/Android/sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1626280687433" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Default Config" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.-1182591026">
+      <recent name="com.example.fbuapplication.activities" />
+      <recent name="com.example.fbuapplication" />
+    </key>
+    <key name="android.template.-1693024558">
+      <recent name="com.example.fbuapplication" />
+    </key>
+    <key name="android.template.-1200143986">
+      <recent name="com.example.fbuapplication" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.fbuapplication" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/font" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="FBUApplication.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="84fdbd92-71e4-48dd-ae78-22d30074ae16" name="Default Changelist" comment="" />
+      <created>1626114975948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1626114975948</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Finished setting up adapters, recyclerViews, and fragments of app.">
+      <created>1626156745494</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1626156745494</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated adapters.">
+      <created>1626159515360</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626159515360</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Finished Login, logout, and sign up with persistence and finished testing.">
+      <created>1626194858973</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626194858973</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implemented being able to compose a message and send it to a valid user. Checked that it populates correctly in the Back4App database.">
+      <created>1626201288562</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626201288562</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implemented AutoCompleteTextView which allows user to type two characters and then see users that they might be looking to select with dropdown menu.">
+      <created>1626203400138</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1626203400138</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Replaced EditView with AutocompleteView in compose fragment.">
+      <created>1626205818304</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1626205818304</updated>
+    </task>
+    <task id="LOCAL-00007" summary="User can choose choose their own profile picture by taking a picture and setting it as their profile picture on the profile screen.">
+      <created>1626207577615</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1626207577615</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Can get notes sent to the current user.">
+      <created>1626209135953</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1626209135953</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Implemented pinning messages to user's main wall by updating Message class to include isPinned attribute.">
+      <created>1626222407568</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1626222407568</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Finished changing color of pin when clicked. Changed color layout. Changed icon format.">
+      <created>1626244273421</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1626244273421</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added error checking to handle when getActivity() is null before populating the autocomplete adapter. Also added finish() when logging out to ensure that user cannot return back to MainActivity">
+      <created>1626279464904</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1626279464904</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Implemented Sentiment analysis on text user enters using https://rapidapi.com/fyhao/api/text-sentiment-analysis-method/ API. May update to a more finer sentiment analysis API later but implementation all completed. Aldo have included MeaningCloud client for future use but issues with no static field instance of type lorg apache error.">
+      <created>1626297379266</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1626297379266</updated>
+    </task>
+    <task id="LOCAL-00013" summary="updated secret key protection.">
+      <created>1626298226614</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1626298226614</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Updated inbox recyclerView with card layout. A message view can be swiped right to delete and Snackbar message gives option to undo delete. Updated adapter and recyclerView.&#10;&#10;Reference: https://www.geeksforgeeks.org/swipe-to-delete-and-undo-in-android-recyclerview/">
+      <created>1626300406878</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1626300406878</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Updated profile picture to be circular shape and with border. Used circleimageview library.">
+      <created>1626300891983</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1626300891983</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Still need to update User fields when a message is deleted from their inbox.">
+      <created>1626304487647</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1626304487647</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Still need to update User fields when a message is deleted from their inbox.">
+      <created>1626305021190</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1626305021190</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added Space Tab Layout to transition between fragments by swiping.">
+      <created>1626330726176</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1626330726176</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added error checking and putting default values (O or &quot;User&quot; string if ParseUser parameters are null.">
+      <created>1626367481526</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1626367481526</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added toolbar, Added search in toolbar (in Main Wall fragment), implemented searching in recyclerView of main wall and displaying corresponding sticky notes.">
+      <created>1626377567762</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1626377567762</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Updated all Toast messages with SnackBar instead.">
+      <created>1626378668385</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1626378668385</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Only delete message from Parse if user decides not to click undo. Otherwise keep message in Parse backend.">
+      <created>1626390971651</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1626390971651</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Updates: Initially wouldn't delete message from backend if user swiped another inbox message before the Snackbar timed out. Added DISMISS_EVENT_CONSECUTIVE so that a message will be deleted if a Snackbar was dismissed from a new Snackbar being shown. Aloso added other DISMISS_EVENTS to account for all edge cases - Only delete message from Parse if user decides not to click undo. Otherwise keep message in Parse backend.">
+      <created>1626457584843</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1626457584843</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Removed updating user_inbox, inbox_messages, main_wall_messages, main_wall_notes for now since not using. Might begin to use main_wall_messages and inbox_messages to make more efficient retrieval.&#10;&#10;Also added current app GIF.">
+      <created>1626460143750</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1626460143750</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Updated Profile fragment with better profile image icon. Used https://rapidapi.com/bitbiscuit-bitbiscuit-default/api/motivational-quotes1/ Motivational API to get and populate a motivational quote on the profile screen. Updated Inbox fragment to update the number of notes sent by and populate Profile fragment with value.">
+      <created>1626473505088</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1626473505088</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added second sentiment analysis API. Added DialogBox to warn user that their message might be negative. Prompts them to decide to continue sending or don't send.">
+      <created>1626493461768</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1626493461768</updated>
+    </task>
+    <task id="LOCAL-00027" summary="-Removed Snackbar.Callback.DISMISS_EVENT_MANUAL from onDismissed()&#10;-Implemented DoNotSendDialogFragment which extends DialogFragment.&#10;-defined the listener interface in DoNotSendDialogFragment&#10;-implemented sendBackResult() method in DoNotSendDialogFragment to send data back to ComposeFragment&#10;-Have ComposeFragment implement the DoNotSendDialogListener&#10;-Displayed the dialog within ComposeFragment and setTargetFragment as ComposeFragment&#10;-create to set methods (one for description and the other for recipient) to get description and recipient.&#10;-call prepareMessage() within the onFinishDoNotSendDialog if toSend(user chooses to send in dialog box) is true, else display message not sent!&#10;-Finished two sentiment analysis APIs, prompts user if they want to send a message if it is potentially mean">
+      <created>1626549443776</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1626549443776</updated>
+    </task>
+    <task id="LOCAL-00028" summary="-Fixed issue with profile picture not persisting when switching to the Inbox and Main wall tab. Now saving file in background first before putting file in User's profile picture field and then saving user in background.">
+      <created>1626563576828</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1626563576828</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fixed bug where if sentiment was detected then message didn't send (message should send by default if negative sentiment detected)">
+      <created>1626645981678</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1626645981678</updated>
+    </task>
+    <task id="LOCAL-00030" summary="-Disabled swiping in viewpager (by creating a custom viewpager) in order to use swiping to delete a message from inbox.&#10;-Added Perspective API which shows toxicity value of a message.&#10;-Updated layout UI">
+      <created>1626731457274</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1626731457274</updated>
+    </task>
+    <task id="LOCAL-00031" summary="-Updated DetailsActivity screen&#10;-Updated Perspective key security">
+      <created>1626736967878</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1626736967878</updated>
+    </task>
+    <task id="LOCAL-00032" summary="-Update isUnread boolean as being false if a user clicks on a message in their inbox. Visually grays out that message when screen is refreshed. &#10;-Updated profile picture click to prompt the user if they want to take a photo or choose a photo from their gallery. Added SelectCameraFragment dialogFragment to do this. Also needed to add a verifyStoragePermissions method to ask the user for permission to access their gallery if it isn't already allowed.">
+      <created>1626888056998</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1626888056998</updated>
+    </task>
+    <task id="LOCAL-00033" summary="-Finished creating dialog fragment called from Inbox Fragment to let user decide which wall they want to pin a note to (memories, kudos, or goals) which updates back4app accordingly (added three boolean columns for each wall).&#10;-Added dropdown menu to MainWallFragment which allows user to decide which wall of stick notes they want to see with onOptionsItemSelected filtering the messages based on the option/wall selected by creating helper filter methods for each wall. Updated adapter with the filtered notes per wall. &#10;-Added animations to login screen (https://github.com/dynamitechetan/VusikView) and details screen(https://github.com/glomadrian/Grav)">
+      <created>1627022547575</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1627022547575</updated>
+    </task>
+    <task id="LOCAL-00034" summary="-added Interace to the MainWallFragmentAdapter in order to pass information from the MainWallFragment to the bind function in the adapter in order to change the sticky note colors based on the wall being displayed.&#10;-Sticky notes are now different colors! Main wall background added.&#10;-added water droplet swipe down and refresh">
+      <created>1627076093737</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1627076093737</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Implement autofilling a random compliment if a user decides to press the random compliment button.">
+      <created>1627085836498</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1627085836498</updated>
+    </task>
+    <task id="LOCAL-00036" summary="-Added number of unread messages to Profile screen.&#10;-Set up FriendRequest class in Parse and added class in project.&#10;-Added add friend and add group buttons on profile screen.&#10;-updated inbox screen so that it shows a graphic first that says Loading messages... followed by how many unread messages there are.&#10;-Updated sticky note graphics for the case when you initially load the main wall.&#10;-Added scrolling to the details sticky note so that if the user receives a really long message that doesn't fit on a sticky note they can still scroll through the text on the sticky note. &#10;-MainWall: Added a onOptionsItemSelected case for when the search icon is pressed so that it doesn't automatically refresh to showing all the messages (adapter filter set to only use messages of the current wall).&#10;-Added a send message icon on the ComposeMessage screen where if a user want to send a message to a user that's not on the app they have the option to still compose the message and then click the send text message icon which will allow the user to share it via email/text/other apps. Added a layout for setting up a sticky note graphic where the message the user composes is the text within the sticky note along with a message on top where it says that 'you were invited by [user] to join the app!' (used buildDrawingCache and creating a bitmap) and then created a ACTION_SEND intent)&#10;-Updated layouts and backgrounds&#10;-">
+      <created>1627314557529</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1627314557529</updated>
+    </task>
+    <task id="LOCAL-00037" summary="-Finished basic functionality of send friend request, accept friend request, reject friend request, and unfriend. (Pending/Friended/Unfriended/Rejected).">
+      <created>1627368198918</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1627368198918</updated>
+    </task>
+    <task id="LOCAL-00038" summary="-Finished implementing Facebook SDK login where a user is automatically signed up with their name as their username if a first-time user and otherwise logged in automatically (after entering their fb login info) if they already have an account.">
+      <created>1627454783643</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1627454783643</updated>
+    </task>
+    <task id="LOCAL-00039" summary="-Added ExplodedView to Goals wall where a user is able to long-click a sticky note once they have finished a goal and the sticky note will burst into a bunch of confetti. When this happens the message is also deleted from Parse.&#10;-Added multi-selection Dialog instead for deciding which walls to pin a sticky note to instead of the single option Dialog.">
+      <created>1627544416362</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1627544416362</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Adding Group Creation feature.">
+      <created>1627891947170</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1627891947170</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Finished Group feature.">
+      <created>1627978596885</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1627978596885</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Finished sending Assigned User text back to the Compose Fragmentby using the Fragment Manager and FragmentTransaction to send the data from GroupDetailsActivity to the ComposeFragment">
+      <created>1628023152667</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1628023152667</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Finished sending Assigned User text back to the Compose Fragmentby using the Fragment Manager and FragmentTransaction to send the data from GroupDetailsActivity to the ComposeFragment">
+      <created>1628023730603</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1628023730603</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)">
+      <created>1628066677542</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1628066677542</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)">
+      <created>1628112425944</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1628112425944</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)">
+      <created>1628708528268</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1628708528268</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)">
+      <created>1628887716837</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1628887716837</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updates: Initially wouldn't delete message from backend if user swiped another inbox message before the Snackbar timed out. Added DISMISS_EVENT_CONSECUTIVE so that a message will be deleted if a Snackbar was dismissed from a new Snackbar being shown. Aloso added other DISMISS_EVENTS to account for all edge cases - Only delete message from Parse if user decides not to click undo. Otherwise keep message in Parse backend." />
+    <MESSAGE value="Removed updating user_inbox, inbox_messages, main_wall_messages, main_wall_notes for now since not using. Might begin to use main_wall_messages and inbox_messages to make more efficient retrieval.&#10;&#10;Also added current app GIF." />
+    <MESSAGE value="Updated Profile fragment with better profile image icon. Used https://rapidapi.com/bitbiscuit-bitbiscuit-default/api/motivational-quotes1/ Motivational API to get and populate a motivational quote on the profile screen. Updated Inbox fragment to update the number of notes sent by and populate Profile fragment with value." />
+    <MESSAGE value="Added second sentiment analysis API. Added DialogBox to warn user that their message might be negative. Prompts them to decide to continue sending or don't send." />
+    <MESSAGE value="-Removed Snackbar.Callback.DISMISS_EVENT_MANUAL from onDismissed()&#10;-Implemented DoNotSendDialogFragment which extends DialogFragment.&#10;-defined the listener interface in DoNotSendDialogFragment&#10;-implemented sendBackResult() method in DoNotSendDialogFragment to send data back to ComposeFragment&#10;-Have ComposeFragment implement the DoNotSendDialogListener&#10;-Displayed the dialog within ComposeFragment and setTargetFragment as ComposeFragment&#10;-create to set methods (one for description and the other for recipient) to get description and recipient.&#10;-call prepareMessage() within the onFinishDoNotSendDialog if toSend(user chooses to send in dialog box) is true, else display message not sent!" />
+    <MESSAGE value="-Removed Snackbar.Callback.DISMISS_EVENT_MANUAL from onDismissed()&#10;-Implemented DoNotSendDialogFragment which extends DialogFragment.&#10;-defined the listener interface in DoNotSendDialogFragment&#10;-implemented sendBackResult() method in DoNotSendDialogFragment to send data back to ComposeFragment&#10;-Have ComposeFragment implement the DoNotSendDialogListener&#10;-Displayed the dialog within ComposeFragment and setTargetFragment as ComposeFragment&#10;-create to set methods (one for description and the other for recipient) to get description and recipient.&#10;-call prepareMessage() within the onFinishDoNotSendDialog if toSend(user chooses to send in dialog box) is true, else display message not sent!&#10;-Finished two sentiment analysis APIs" />
+    <MESSAGE value="-Removed Snackbar.Callback.DISMISS_EVENT_MANUAL from onDismissed()&#10;-Implemented DoNotSendDialogFragment which extends DialogFragment.&#10;-defined the listener interface in DoNotSendDialogFragment&#10;-implemented sendBackResult() method in DoNotSendDialogFragment to send data back to ComposeFragment&#10;-Have ComposeFragment implement the DoNotSendDialogListener&#10;-Displayed the dialog within ComposeFragment and setTargetFragment as ComposeFragment&#10;-create to set methods (one for description and the other for recipient) to get description and recipient.&#10;-call prepareMessage() within the onFinishDoNotSendDialog if toSend(user chooses to send in dialog box) is true, else display message not sent!&#10;-Finished two sentiment analysis APIs, prompts user if they want to send a message if it is potentially mean" />
+    <MESSAGE value="-Fixed issue with profile picture not persisting when switching to the Inbox and Main wall tab. Now saving file in background first before putting file in User's profile picture field and then saving user in background." />
+    <MESSAGE value="Fixed bug where if sentiment was detected then message didn't send (message should send by default if negative sentiment detected)" />
+    <MESSAGE value="-Disabled swiping in viewpager (by creating a custom viewpager) in order to use swiping to delete a message from inbox.&#10;-Added Perspective API which shows toxicity value of a message.&#10;-Updated layout UI" />
+    <MESSAGE value="-Updated DetailsActivity screen&#10;-Updated Perspective key security" />
+    <MESSAGE value="-Update isUnread boolean as being false if a user clicks on a message in their inbox. Visually grays out that message when screen is refreshed. &#10;-Updated profile picture click to prompt the user if they want to take a photo or choose a photo from their gallery. Added SelectCameraFragment dialogFragment to do this. Also needed to add a verifyStoragePermissions method to ask the user for permission to access their gallery if it isn't already allowed." />
+    <MESSAGE value="-Finished creating dialog fragment called from Inbox Fragment to let user decide which wall they want to pin a note to (memories, kudos, or goals) which updates back4app accordingly.&#10;-Added dropdown menu to MainWallFragment which allows user to decide which wall of stick notes they want to see with onOptionsItemSelected filtering the messages based on the option/wall selected by creating helper filter methods for each wall. Updated adapter with the filtered notes per wall.&#10;-Added animations to login screen (https://github.com/dynamitechetan/VusikView) and details screen(https://github.com/glomadrian/Grav)" />
+    <MESSAGE value="-Finished creating dialog fragment called from Inbox Fragment to let user decide which wall they want to pin a note to (memories, kudos, or goals) which updates back4app accordingly (added three boolean columns for each wall).&#10;-Added dropdown menu to MainWallFragment which allows user to decide which wall of stick notes they want to see with onOptionsItemSelected filtering the messages based on the option/wall selected by creating helper filter methods for each wall. Updated adapter with the filtered notes per wall. &#10;-Added animations to login screen (https://github.com/dynamitechetan/VusikView) and details screen(https://github.com/glomadrian/Grav)" />
+    <MESSAGE value="-added Interace to the MainWallFragmentAdapter in order to pass information from the MainWallFragment to the bind function in the adapter in order to change the sticky note colors based on the wall being displayed.&#10;-Sticky notes are now different colors! Main wall background added.&#10;-added water droplet swipe down and refresh" />
+    <MESSAGE value="Implement autofilling a random compliment if a user decides to press the random compliment button." />
+    <MESSAGE value="-Added number of unread messages to Profile screen.&#10;-Set up FriendRequest class in Parse and added class in project.&#10;-Added add friend and add group buttons on profile screen.&#10;-updated inbox screen so that it shows a graphic first that says Loading messages... followed by how many unread messages there are.&#10;-Updated sticky note graphics for the case when you initially load the main wall.&#10;-Added scrolling to the details sticky note so that if the user receives a really long message that doesn't fit on a sticky note they can still scroll through the text on the sticky note. &#10;-MainWall: Added a onOptionsItemSelected case for when the search icon is pressed so that it doesn't automatically refresh to showing all the messages (adapter filter set to only use messages of the current wall).&#10;-Added a send message icon on the ComposeMessage screen where if a user want to send a message to a user that's not on the app they have the option to still compose the message and then click the send text message icon which will allow the user to share it via email/text/other apps. Added a layout for setting up a sticky note graphic where the message the user composes is the text within the sticky note along with a message on top where it says that 'you were invited by [user] to join the app!' (used buildDrawingCache and creating a bitmap) and then created a ACTION_SEND intent)&#10;-Updated layouts and backgrounds&#10;-" />
+    <MESSAGE value="-Finished basic functionality of send friend request, accept friend request, reject friend request, and unfriend. (Pending/Friended/Unfriended/Rejected)." />
+    <MESSAGE value="-Finished implementing Facebook SDK login where a user is automatically signed up with their name as their username if a first-time user and otherwise logged in automatically (after entering their fb login info) if they already have an account." />
+    <MESSAGE value="-Added ExplodedView to Goals wall where a user is able to long-click a sticky note once they have finished a goal and the sticky note will burst into a bunch of confetti. When this happens the message is also deleted from Parse.&#10;-Added multi-selection Dialog instead for deciding which walls to pin a sticky note to instead of the single option Dialog." />
+    <MESSAGE value="Adding Group Creation feature." />
+    <MESSAGE value="Finished Group feature." />
+    <MESSAGE value="Finished sending Assigned User text back to the Compose Fragmentby using the Fragment Manager and FragmentTransaction to send the data from GroupDetailsActivity to the ComposeFragment" />
+    <MESSAGE value="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images." />
+    <MESSAGE value="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed Commented out code blocks. Removed extra lines. Reformatted multiple screens for better UI experience. Updated title of app and images. App completely finished!:)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="625" y="388" key="#Notifications" timestamp="1627149485445">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="625" y="388" key="#Notifications/0.0.1792.1120@0.0.1792.1120" timestamp="1627149485445" />
+    <state x="2277" y="276" key="#PSD" timestamp="1628053917478">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2277" y="276" key="#PSD/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628053917478" />
+    <state x="811" y="232" key="#PSD/0.25.1792.1021@0.25.1792.1021" timestamp="1626326797093" />
+    <state x="2565" y="250" key="#com.intellij.ide.util.MemberChooser" timestamp="1627975270953">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2565" y="250" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627975270953" />
+    <state x="721" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1627544165781" />
+    <state x="721" y="262" key="#com.intellij.ide.util.MemberChooser/0.25.1792.1024@0.25.1792.1024" timestamp="1626542941578" />
+    <state x="2565" y="250" key="#com.intellij.ide.util.MemberChooser/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626886872918" />
+    <state x="387" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1626547943775">
+      <screen x="0" y="25" width="1792" height="1024" />
+    </state>
+    <state x="387" y="25" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.25.1792.1024@0.25.1792.1024" timestamp="1626547943775" />
+    <state x="2490" y="291" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628540385814">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2490" y="291" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628540168308" />
+    <state x="651" y="302" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1626502762034" />
+    <state x="651" y="301" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1792.1024@0.25.1792.1024" timestamp="1626547921300" />
+    <state x="2490" y="291" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628540385814" />
+    <state x="2490" y="291" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1627976016598">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2490" y="291" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627976016598" />
+    <state x="2501" y="378" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1628539949458">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2501" y="378" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628539949458" />
+    <state x="2501" y="378" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628539511254" />
+    <state x="1899" y="25" width="1706" height="1055" key="AVDManager" timestamp="1627664707391">
+      <screen x="1792" y="25" width="1920" height="1055" />
+    </state>
+    <state x="100" y="25" width="1592" height="1035" key="AVDManager/0.25.1792.1035@0.25.1792.1035" timestamp="1627432214129" />
+    <state x="100" y="100" width="1592" height="920" key="AVDManager/0.25.1792.1036@0.25.1792.1036" timestamp="1627408054897" />
+    <state x="1899" y="25" width="1706" height="1055" key="AVDManager/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627664707391" />
+    <state x="100" y="25" width="1592" height="1095" key="AVDManager/0.25.1792.1095@0.25.1792.1095" timestamp="1627431734655" />
+    <state x="2577" y="293" key="AndroidCreateResourceDirectoryDialog" timestamp="1626368122540">
+      <screen x="1792" y="25" width="1920" height="1055" />
+    </state>
+    <state x="2577" y="293" key="AndroidCreateResourceDirectoryDialog/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626368122540" />
+    <state x="2340" y="299" key="AndroidCreateResourceFileDialog" timestamp="1628065634447">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2340" y="299" key="AndroidCreateResourceFileDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628065634447" />
+    <state x="511" y="310" key="AndroidCreateResourceFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1627366417048" />
+    <state x="2340" y="317" key="AndroidCreateResourceFileDialog/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626378809182" />
+    <state x="2340" y="299" key="AndroidCreateResourceFileDialog/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627505880765" />
+    <state x="3116" y="199" key="AndroidCreateXmlResourceDialog" timestamp="1627020849613">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="3116" y="199" key="AndroidCreateXmlResourceDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627020849613" />
+    <state x="688" y="301" key="AndroidProcessChooserDialog" timestamp="1627431719492">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="2529" y="290" key="AndroidProcessChooserDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626237192986" />
+    <state x="688" y="301" key="AndroidProcessChooserDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1627431719492" />
+    <state x="688" y="299" key="AndroidProcessChooserDialog/0.25.1792.1021@0.25.1792.1021" timestamp="1626329574132" />
+    <state x="688" y="300" key="AndroidProcessChooserDialog/0.25.1792.1024@0.25.1792.1024" timestamp="1626546784822" />
+    <state x="2529" y="290" key="AndroidProcessChooserDialog/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626814495955" />
+    <state width="450" height="466" key="DebuggerActiveHint" timestamp="1627320833291">
+      <screen x="1792" y="25" width="1920" height="1055" />
+    </state>
+    <state width="450" height="466" key="DebuggerActiveHint/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320833291" />
+    <state x="1891" y="100" width="1720" height="880" key="DiffContextDialog" timestamp="1626812715033">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1891" y="100" width="1720" height="880" key="DiffContextDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626812715033" />
+    <state x="1892" y="100" width="1720" height="880" key="DiffContextDialog/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626729937548" />
+    <state x="579" y="319" key="Downloadable.Font.Dialog.Size" timestamp="1626561300509">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="579" y="319" key="Downloadable.Font.Dialog.Size/0.0.1792.1120@0.0.1792.1120" timestamp="1626561300509" />
+    <state x="2609" y="441" key="Github.ShareDialog" timestamp="1628896484477">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2609" y="441" key="Github.ShareDialog/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628896484477" />
+    <state width="1750" height="229" key="GridCell.Tab.0.bottom" timestamp="1628749324220">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="311" key="GridCell.Tab.0.bottom/0.0.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626209891263" />
+    <state width="1878" height="33" key="GridCell.Tab.0.bottom/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628110202967" />
+    <state width="1750" height="229" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324220" />
+    <state width="1878" height="305" key="GridCell.Tab.0.bottom/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626205461957" />
+    <state width="1878" height="336" key="GridCell.Tab.0.bottom/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063442" />
+    <state width="1878" height="336" key="GridCell.Tab.0.bottom/0.25.1792.1017/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626295924800" />
+    <state width="1878" height="139" key="GridCell.Tab.0.bottom/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626456840606" />
+    <state width="854" height="254" key="GridCell.Tab.0.bottom/0.25.1792.1019@0.25.1792.1019" timestamp="1626323899914" />
+    <state width="1750" height="177" key="GridCell.Tab.0.bottom/0.25.1792.1021@0.25.1792.1021" timestamp="1626327306941" />
+    <state width="1878" height="240" key="GridCell.Tab.0.bottom/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626472935853" />
+    <state width="854" height="352" key="GridCell.Tab.0.bottom/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124486" />
+    <state width="1750" height="639" key="GridCell.Tab.0.bottom/0.25.1792.1026@0.25.1792.1026" timestamp="1626645791907" />
+    <state width="1878" height="298" key="GridCell.Tab.0.bottom/0.25.1792.1027/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884862548" />
+    <state width="1878" height="385" key="GridCell.Tab.0.bottom/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575759" />
+    <state width="854" height="317" key="GridCell.Tab.0.bottom/0.25.1792.1027@0.25.1792.1027" timestamp="1626749949474" />
+    <state width="1878" height="1" key="GridCell.Tab.0.bottom/0.25.1792.1029/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626898772253" />
+    <state width="1878" height="425" key="GridCell.Tab.0.bottom/0.25.1792.1030/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626909234271" />
+    <state width="1209" height="113" key="GridCell.Tab.0.bottom/0.25.1792.1033@0.25.1792.1033" timestamp="1627188754242" />
+    <state width="1294" height="154" key="GridCell.Tab.0.bottom/0.25.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627074170489" />
+    <state width="1139" height="324" key="GridCell.Tab.0.bottom/0.25.1792.1035@0.25.1792.1035" timestamp="1627196823585" />
+    <state width="1878" height="309" key="GridCell.Tab.0.bottom/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334385778" />
+    <state width="1298" height="69" key="GridCell.Tab.0.bottom/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976195" />
+    <state width="1878" height="463" key="GridCell.Tab.0.bottom/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116852" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883098543" />
+    <state width="1878" height="254" key="GridCell.Tab.0.bottom/0.25.1792.1040/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627876878659" />
+    <state width="1878" height="-29" key="GridCell.Tab.0.bottom/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628539521669" />
+    <state width="1387" height="234" key="GridCell.Tab.0.bottom/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626368304957" />
+    <state width="1878" height="167" key="GridCell.Tab.0.bottom/0.25.1792.1095/1792.25.1920.985@1792.25.1920.985" timestamp="1626810923455" />
+    <state width="1878" height="219" key="GridCell.Tab.0.bottom/0.25.1792.1095/1792.25.1920.990@1792.25.1920.990" timestamp="1626992330249" />
+    <state width="1878" height="440" key="GridCell.Tab.0.bottom/0.25.1792.1095/1792.25.1920.994@1792.25.1920.994" timestamp="1628110550800" />
+    <state width="1878" height="683" key="GridCell.Tab.0.bottom/0.25.1792.1095/1792.25.1920.995@1792.25.1920.995" timestamp="1628110208662" />
+    <state width="1750" height="229" key="GridCell.Tab.0.center" timestamp="1628749324218">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="311" key="GridCell.Tab.0.center/0.0.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626209891261" />
+    <state width="1878" height="33" key="GridCell.Tab.0.center/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628110202966" />
+    <state width="1750" height="229" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324218" />
+    <state width="1878" height="305" key="GridCell.Tab.0.center/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626205461956" />
+    <state width="1878" height="336" key="GridCell.Tab.0.center/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063440" />
+    <state width="1878" height="336" key="GridCell.Tab.0.center/0.25.1792.1017/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626295924798" />
+    <state width="1878" height="139" key="GridCell.Tab.0.center/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626456840604" />
+    <state width="854" height="254" key="GridCell.Tab.0.center/0.25.1792.1019@0.25.1792.1019" timestamp="1626323899908" />
+    <state width="1750" height="177" key="GridCell.Tab.0.center/0.25.1792.1021@0.25.1792.1021" timestamp="1626327306940" />
+    <state width="1878" height="240" key="GridCell.Tab.0.center/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626472935851" />
+    <state width="854" height="352" key="GridCell.Tab.0.center/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124483" />
+    <state width="1750" height="639" key="GridCell.Tab.0.center/0.25.1792.1026@0.25.1792.1026" timestamp="1626645791906" />
+    <state width="1878" height="298" key="GridCell.Tab.0.center/0.25.1792.1027/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884862545" />
+    <state width="1878" height="385" key="GridCell.Tab.0.center/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575757" />
+    <state width="854" height="317" key="GridCell.Tab.0.center/0.25.1792.1027@0.25.1792.1027" timestamp="1626749949472" />
+    <state width="1878" height="1" key="GridCell.Tab.0.center/0.25.1792.1029/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626898772250" />
+    <state width="1878" height="425" key="GridCell.Tab.0.center/0.25.1792.1030/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626909234269" />
+    <state width="1209" height="113" key="GridCell.Tab.0.center/0.25.1792.1033@0.25.1792.1033" timestamp="1627188754240" />
+    <state width="1294" height="154" key="GridCell.Tab.0.center/0.25.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627074170488" />
+    <state width="1139" height="324" key="GridCell.Tab.0.center/0.25.1792.1035@0.25.1792.1035" timestamp="1627196823584" />
+    <state width="1878" height="309" key="GridCell.Tab.0.center/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334385776" />
+    <state width="1298" height="69" key="GridCell.Tab.0.center/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976194" />
+    <state width="1878" height="463" key="GridCell.Tab.0.center/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116850" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883098542" />
+    <state width="1878" height="254" key="GridCell.Tab.0.center/0.25.1792.1040/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627876878656" />
+    <state width="1878" height="-29" key="GridCell.Tab.0.center/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628539521667" />
+    <state width="1387" height="234" key="GridCell.Tab.0.center/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626368304956" />
+    <state width="1878" height="167" key="GridCell.Tab.0.center/0.25.1792.1095/1792.25.1920.985@1792.25.1920.985" timestamp="1626810923453" />
+    <state width="1878" height="219" key="GridCell.Tab.0.center/0.25.1792.1095/1792.25.1920.990@1792.25.1920.990" timestamp="1626992330247" />
+    <state width="1878" height="440" key="GridCell.Tab.0.center/0.25.1792.1095/1792.25.1920.994@1792.25.1920.994" timestamp="1628110550799" />
+    <state width="1878" height="683" key="GridCell.Tab.0.center/0.25.1792.1095/1792.25.1920.995@1792.25.1920.995" timestamp="1628110208661" />
+    <state width="1750" height="229" key="GridCell.Tab.0.left" timestamp="1628749324217">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="311" key="GridCell.Tab.0.left/0.0.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626209891261" />
+    <state width="1878" height="33" key="GridCell.Tab.0.left/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628110202965" />
+    <state width="1750" height="229" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324217" />
+    <state width="1878" height="305" key="GridCell.Tab.0.left/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626205461955" />
+    <state width="1878" height="336" key="GridCell.Tab.0.left/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063439" />
+    <state width="1878" height="336" key="GridCell.Tab.0.left/0.25.1792.1017/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626295924797" />
+    <state width="1878" height="139" key="GridCell.Tab.0.left/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626456840603" />
+    <state width="854" height="254" key="GridCell.Tab.0.left/0.25.1792.1019@0.25.1792.1019" timestamp="1626323899906" />
+    <state width="1750" height="177" key="GridCell.Tab.0.left/0.25.1792.1021@0.25.1792.1021" timestamp="1626327306939" />
+    <state width="1878" height="240" key="GridCell.Tab.0.left/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626472935849" />
+    <state width="854" height="352" key="GridCell.Tab.0.left/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124482" />
+    <state width="1750" height="639" key="GridCell.Tab.0.left/0.25.1792.1026@0.25.1792.1026" timestamp="1626645791905" />
+    <state width="1878" height="298" key="GridCell.Tab.0.left/0.25.1792.1027/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884862544" />
+    <state width="1878" height="385" key="GridCell.Tab.0.left/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575756" />
+    <state width="854" height="317" key="GridCell.Tab.0.left/0.25.1792.1027@0.25.1792.1027" timestamp="1626749949471" />
+    <state width="1878" height="1" key="GridCell.Tab.0.left/0.25.1792.1029/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626898772248" />
+    <state width="1878" height="425" key="GridCell.Tab.0.left/0.25.1792.1030/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626909234268" />
+    <state width="1209" height="113" key="GridCell.Tab.0.left/0.25.1792.1033@0.25.1792.1033" timestamp="1627188754239" />
+    <state width="1294" height="154" key="GridCell.Tab.0.left/0.25.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627074170488" />
+    <state width="1139" height="324" key="GridCell.Tab.0.left/0.25.1792.1035@0.25.1792.1035" timestamp="1627196823583" />
+    <state width="1878" height="309" key="GridCell.Tab.0.left/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334385775" />
+    <state width="1298" height="69" key="GridCell.Tab.0.left/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976193" />
+    <state width="1878" height="463" key="GridCell.Tab.0.left/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116849" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883098541" />
+    <state width="1878" height="254" key="GridCell.Tab.0.left/0.25.1792.1040/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627876878654" />
+    <state width="1878" height="-29" key="GridCell.Tab.0.left/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628539521662" />
+    <state width="1387" height="234" key="GridCell.Tab.0.left/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626368304956" />
+    <state width="1878" height="167" key="GridCell.Tab.0.left/0.25.1792.1095/1792.25.1920.985@1792.25.1920.985" timestamp="1626810923452" />
+    <state width="1878" height="219" key="GridCell.Tab.0.left/0.25.1792.1095/1792.25.1920.990@1792.25.1920.990" timestamp="1626992330246" />
+    <state width="1878" height="440" key="GridCell.Tab.0.left/0.25.1792.1095/1792.25.1920.994@1792.25.1920.994" timestamp="1628110550798" />
+    <state width="1878" height="683" key="GridCell.Tab.0.left/0.25.1792.1095/1792.25.1920.995@1792.25.1920.995" timestamp="1628110208660" />
+    <state width="1750" height="229" key="GridCell.Tab.0.right" timestamp="1628749324219">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="311" key="GridCell.Tab.0.right/0.0.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626209891262" />
+    <state width="1878" height="33" key="GridCell.Tab.0.right/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628110202967" />
+    <state width="1750" height="229" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324219" />
+    <state width="1878" height="305" key="GridCell.Tab.0.right/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626205461956" />
+    <state width="1878" height="336" key="GridCell.Tab.0.right/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063441" />
+    <state width="1878" height="336" key="GridCell.Tab.0.right/0.25.1792.1017/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626295924799" />
+    <state width="1878" height="139" key="GridCell.Tab.0.right/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626456840605" />
+    <state width="854" height="254" key="GridCell.Tab.0.right/0.25.1792.1019@0.25.1792.1019" timestamp="1626323899911" />
+    <state width="1750" height="177" key="GridCell.Tab.0.right/0.25.1792.1021@0.25.1792.1021" timestamp="1626327306940" />
+    <state width="1878" height="240" key="GridCell.Tab.0.right/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626472935852" />
+    <state width="854" height="352" key="GridCell.Tab.0.right/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124484" />
+    <state width="1750" height="639" key="GridCell.Tab.0.right/0.25.1792.1026@0.25.1792.1026" timestamp="1626645791907" />
+    <state width="1878" height="298" key="GridCell.Tab.0.right/0.25.1792.1027/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884862547" />
+    <state width="1878" height="385" key="GridCell.Tab.0.right/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575758" />
+    <state width="854" height="317" key="GridCell.Tab.0.right/0.25.1792.1027@0.25.1792.1027" timestamp="1626749949473" />
+    <state width="1878" height="1" key="GridCell.Tab.0.right/0.25.1792.1029/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626898772252" />
+    <state width="1878" height="425" key="GridCell.Tab.0.right/0.25.1792.1030/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626909234270" />
+    <state width="1209" height="113" key="GridCell.Tab.0.right/0.25.1792.1033@0.25.1792.1033" timestamp="1627188754241" />
+    <state width="1294" height="154" key="GridCell.Tab.0.right/0.25.1792.1035/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627074170489" />
+    <state width="1139" height="324" key="GridCell.Tab.0.right/0.25.1792.1035@0.25.1792.1035" timestamp="1627196823584" />
+    <state width="1878" height="309" key="GridCell.Tab.0.right/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334385777" />
+    <state width="1298" height="69" key="GridCell.Tab.0.right/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976195" />
+    <state width="1878" height="463" key="GridCell.Tab.0.right/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116851" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883098542" />
+    <state width="1878" height="254" key="GridCell.Tab.0.right/0.25.1792.1040/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627876878658" />
+    <state width="1878" height="-29" key="GridCell.Tab.0.right/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628539521668" />
+    <state width="1387" height="234" key="GridCell.Tab.0.right/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626368304957" />
+    <state width="1878" height="167" key="GridCell.Tab.0.right/0.25.1792.1095/1792.25.1920.985@1792.25.1920.985" timestamp="1626810923454" />
+    <state width="1878" height="219" key="GridCell.Tab.0.right/0.25.1792.1095/1792.25.1920.990@1792.25.1920.990" timestamp="1626992330248" />
+    <state width="1878" height="440" key="GridCell.Tab.0.right/0.25.1792.1095/1792.25.1920.994@1792.25.1920.994" timestamp="1628110550799" />
+    <state width="1878" height="683" key="GridCell.Tab.0.right/0.25.1792.1095/1792.25.1920.995@1792.25.1920.995" timestamp="1628110208661" />
+    <state width="1750" height="229" key="GridCell.Tab.1.bottom" timestamp="1628749324223">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="220" key="GridCell.Tab.1.bottom/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883310818" />
+    <state width="1750" height="229" key="GridCell.Tab.1.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324223" />
+    <state width="1878" height="305" key="GridCell.Tab.1.bottom/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626199895375" />
+    <state width="1878" height="448" key="GridCell.Tab.1.bottom/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063428" />
+    <state width="1351" height="328" key="GridCell.Tab.1.bottom/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626452673115" />
+    <state width="1878" height="388" key="GridCell.Tab.1.bottom/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626477917973" />
+    <state width="854" height="352" key="GridCell.Tab.1.bottom/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124490" />
+    <state width="1878" height="385" key="GridCell.Tab.1.bottom/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575764" />
+    <state width="1878" height="463" key="GridCell.Tab.1.bottom/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334830254" />
+    <state width="1298" height="69" key="GridCell.Tab.1.bottom/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976198" />
+    <state width="1878" height="463" key="GridCell.Tab.1.bottom/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116856" />
+    <state width="875" height="540" key="GridCell.Tab.1.bottom/0.25.1792.1038@0.25.1792.1038" timestamp="1627407355181" />
+    <state width="1878" height="212" key="GridCell.Tab.1.bottom/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627881658191" />
+    <state width="1878" height="385" key="GridCell.Tab.1.bottom/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884905815" />
+    <state width="1750" height="229" key="GridCell.Tab.1.center" timestamp="1628749324222">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="220" key="GridCell.Tab.1.center/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883310816" />
+    <state width="1750" height="229" key="GridCell.Tab.1.center/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324222" />
+    <state width="1878" height="305" key="GridCell.Tab.1.center/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626199895374" />
+    <state width="1878" height="448" key="GridCell.Tab.1.center/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063426" />
+    <state width="1351" height="328" key="GridCell.Tab.1.center/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626452673113" />
+    <state width="1878" height="388" key="GridCell.Tab.1.center/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626477917970" />
+    <state width="854" height="352" key="GridCell.Tab.1.center/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124488" />
+    <state width="1878" height="385" key="GridCell.Tab.1.center/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575761" />
+    <state width="1878" height="463" key="GridCell.Tab.1.center/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334830248" />
+    <state width="1298" height="69" key="GridCell.Tab.1.center/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976196" />
+    <state width="1878" height="463" key="GridCell.Tab.1.center/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116854" />
+    <state width="875" height="540" key="GridCell.Tab.1.center/0.25.1792.1038@0.25.1792.1038" timestamp="1627407355180" />
+    <state width="1878" height="212" key="GridCell.Tab.1.center/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627881658190" />
+    <state width="1878" height="385" key="GridCell.Tab.1.center/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884905807" />
+    <state width="1750" height="229" key="GridCell.Tab.1.left" timestamp="1628749324220">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="220" key="GridCell.Tab.1.left/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883310815" />
+    <state width="1750" height="229" key="GridCell.Tab.1.left/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324220" />
+    <state width="1878" height="305" key="GridCell.Tab.1.left/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626199895373" />
+    <state width="1878" height="448" key="GridCell.Tab.1.left/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063425" />
+    <state width="1351" height="328" key="GridCell.Tab.1.left/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626452673112" />
+    <state width="1878" height="388" key="GridCell.Tab.1.left/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626477917969" />
+    <state width="854" height="352" key="GridCell.Tab.1.left/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124487" />
+    <state width="1878" height="385" key="GridCell.Tab.1.left/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575760" />
+    <state width="1878" height="463" key="GridCell.Tab.1.left/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334830247" />
+    <state width="1298" height="69" key="GridCell.Tab.1.left/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976196" />
+    <state width="1878" height="463" key="GridCell.Tab.1.left/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116853" />
+    <state width="875" height="540" key="GridCell.Tab.1.left/0.25.1792.1038@0.25.1792.1038" timestamp="1627407355179" />
+    <state width="1878" height="212" key="GridCell.Tab.1.left/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627881658189" />
+    <state width="1878" height="385" key="GridCell.Tab.1.left/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884905805" />
+    <state width="1750" height="229" key="GridCell.Tab.1.right" timestamp="1628749324222">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state width="1878" height="220" key="GridCell.Tab.1.right/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627883310817" />
+    <state width="1750" height="229" key="GridCell.Tab.1.right/0.0.1792.1120@0.0.1792.1120" timestamp="1628749324222" />
+    <state width="1878" height="305" key="GridCell.Tab.1.right/0.25.1792.1010/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626199895375" />
+    <state width="1878" height="448" key="GridCell.Tab.1.right/0.25.1792.1017/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626296063427" />
+    <state width="1351" height="328" key="GridCell.Tab.1.right/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626452673114" />
+    <state width="1878" height="388" key="GridCell.Tab.1.right/0.25.1792.1024/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626477917972" />
+    <state width="854" height="352" key="GridCell.Tab.1.right/0.25.1792.1024@0.25.1792.1024" timestamp="1626547124489" />
+    <state width="1878" height="385" key="GridCell.Tab.1.right/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626728575763" />
+    <state width="1878" height="463" key="GridCell.Tab.1.right/0.25.1792.1037/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627334830250" />
+    <state width="1298" height="69" key="GridCell.Tab.1.right/0.25.1792.1037/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627320976197" />
+    <state width="1878" height="463" key="GridCell.Tab.1.right/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627333116855" />
+    <state width="875" height="540" key="GridCell.Tab.1.right/0.25.1792.1038@0.25.1792.1038" timestamp="1627407355180" />
+    <state width="1878" height="212" key="GridCell.Tab.1.right/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627881658191" />
+    <state width="1878" height="385" key="GridCell.Tab.1.right/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884905813" />
+    <state x="2479" y="25" width="1110" height="1055" key="ScreenshotViewer.Dimensions" timestamp="1627884143772">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2479" y="25" width="1110" height="1055" key="ScreenshotViewer.Dimensions/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627884143772" />
+    <state x="2226" y="189" key="SettingsEditor" timestamp="1628039815624">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2226" y="189" key="SettingsEditor/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628039815624" />
+    <state x="405" y="196" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1627149519990" />
+    <state width="500" height="556" key="SwitcherDM" timestamp="1628024237470">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state width="500" height="556" key="SwitcherDM/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628024237470" />
+    <state x="2352" y="277" key="Vcs.Push.Dialog.v2" timestamp="1628896551723">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2352" y="277" key="Vcs.Push.Dialog.v2/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628887722920" />
+    <state x="523" y="287" key="Vcs.Push.Dialog.v2/0.0.1792.1120@0.0.1792.1120" timestamp="1628708530453" />
+    <state x="2352" y="295" key="Vcs.Push.Dialog.v2/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626390977658" />
+    <state x="523" y="287" key="Vcs.Push.Dialog.v2/0.25.1792.1024@0.25.1792.1024" timestamp="1626549448026" />
+    <state x="2352" y="296" key="Vcs.Push.Dialog.v2/0.25.1792.1036/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627080661801" />
+    <state x="2352" y="277" key="Vcs.Push.Dialog.v2/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628896551723" />
+    <state x="2352" y="295" key="Vcs.Push.Dialog.v2/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626367631565" />
+    <state x="2543" y="322" key="chooseDestDirectoryDialog" timestamp="1626281181123">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2543" y="322" key="chooseDestDirectoryDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626281181123" />
+    <state x="186" y="150" width="1606" height="908" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1628228727232">
+      <screen x="0" y="25" width="1792" height="1027" />
+    </state>
+    <state x="1856" y="225" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628024727775" />
+    <state x="186" y="150" width="1606" height="908" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1628227684162" />
+    <state x="1767" y="124" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1017/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626289757523" />
+    <state x="2036" y="121" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626729093196" />
+    <state x="186" y="150" width="1606" height="908" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1027@0.25.1792.1027" timestamp="1628228727232" />
+    <state x="2115" y="166" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1034/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627085594781" />
+    <state x="186" y="150" width="1606" height="908" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1035@0.25.1792.1035" timestamp="1627149406102" />
+    <state x="1880" y="79" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1038/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628097685635" />
+    <state x="1856" y="225" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1039/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627891549668" />
+    <state x="1856" y="225" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1040/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627860915727" />
+    <state x="1792" y="124" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1095/1792.0.1920.1010@1792.0.1920.1010" timestamp="1626814656469" />
+    <state x="1856" y="225" width="1720" height="855" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628097548779" />
+    <state x="100" y="100" width="1592" height="920" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1628228727233">
+      <screen x="0" y="25" width="1792" height="1027" />
+    </state>
+    <state x="100" y="100" width="1592" height="920" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.25.1792.1027@0.25.1792.1027" timestamp="1628228727233" />
+    <state x="2530" y="331" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1627881434466">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2530" y="331" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627881434466" />
+    <state x="597" y="343" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1792.1120@0.0.1792.1120" timestamp="1627434148051" />
+    <state x="2817" y="348" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626451288617" />
+    <state x="2530" y="331" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626884903122" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-1" timestamp="1626388501598">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-1/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501598" />
+    <state x="1792" y="0" width="1920" height="1080" maximized="true" key="dock-window-10" timestamp="1626414104216">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1792" y="0" width="1920" height="1080" key="dock-window-10/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626413958208" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-10/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501599" />
+    <state x="1892" y="77" width="1720" height="901" key="dock-window-11" timestamp="1626414104217">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="77" width="1720" height="901" key="dock-window-11/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626414104217" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-11/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626389261498" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-11/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501601" />
+    <state x="1892" y="77" width="1720" height="901" key="dock-window-12" timestamp="1626414104219">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="77" width="1720" height="901" key="dock-window-12/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626414104219" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-12/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626389261502" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-12/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501604" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-13" timestamp="1626388501607">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-13/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501607" />
+    <state x="2205" y="386" width="1720" height="880" key="dock-window-14" timestamp="1626389261503">
+      <screen x="1792" y="25" width="1920" height="1055" />
+    </state>
+    <state x="2205" y="386" width="1720" height="880" key="dock-window-14/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626389261503" />
+    <state x="2037" y="925" width="1720" height="880" key="dock-window-14/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501611" />
+    <state x="1824" y="0" width="2468" height="1080" maximized="true" key="dock-window-15" timestamp="1626414104222">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1824" y="0" width="2468" height="1080" key="dock-window-15/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501612" />
+    <state x="1892" y="100" width="1720" height="880" maximized="true" key="dock-window-16" timestamp="1626388501614">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" maximized="true" key="dock-window-16/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501614" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-2" timestamp="1626388501615">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-2/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501615" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-3" timestamp="1626388501616">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-3/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501616" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-4" timestamp="1626388501618">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-4/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501618" />
+    <state x="2064" y="331" width="1720" height="880" key="dock-window-5" timestamp="1626388501619">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2064" y="331" width="1720" height="880" key="dock-window-5/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501619" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-6" timestamp="1626388501621">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-6/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501621" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-7" timestamp="1626388501622">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-7/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501622" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-8" timestamp="1626388501623">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-8/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501623" />
+    <state x="1792" y="25" width="1920" height="1055" key="dock-window-9" timestamp="1626389261504">
+      <screen x="1792" y="25" width="1920" height="1055" />
+    </state>
+    <state x="1792" y="25" width="1920" height="1055" key="dock-window-9/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626389261504" />
+    <state x="1892" y="100" width="1720" height="880" key="dock-window-9/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1626388501624" />
+    <state x="615" y="306" width="704" height="548" key="find.popup" timestamp="1628266648672">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="2117" y="63" width="1121" height="787" key="find.popup/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628104434847" />
+    <state x="615" y="306" width="704" height="548" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1628266648672" />
+    <state x="3079" y="312" width="608" height="582" key="find.popup/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626415053619" />
+    <state x="2451" y="313" width="608" height="507" key="find.popup/0.25.1792.1021/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626363197141" />
+    <state x="615" y="304" width="567" height="491" key="find.popup/0.25.1792.1021@0.25.1792.1021" timestamp="1626327428582" />
+    <state x="984" y="557" width="586" height="492" key="find.popup/0.25.1792.1024@0.25.1792.1024" timestamp="1626546720695" />
+    <state x="2489" y="311" width="1121" height="769" key="find.popup/0.25.1792.1026/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626805439222" />
+    <state x="1874" y="293" width="1121" height="787" key="find.popup/0.25.1792.1027/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626882014760" />
+    <state x="1167" y="340" width="596" height="494" key="find.popup/0.25.1792.1027@0.25.1792.1027" timestamp="1626708095719" />
+    <state x="2489" y="311" width="1121" height="769" key="find.popup/0.25.1792.1036/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627078728030" />
+    <state x="615" y="308" width="596" height="498" key="find.popup/0.25.1792.1036@0.25.1792.1036" timestamp="1626926415694" />
+    <state x="2484" y="294" width="602" height="548" key="find.popup/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628039967275" />
+    <state x="2451" y="313" width="608" height="582" key="find.popup/0.25.1792.1095/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626367422104" />
+    <state x="2489" y="292" width="1121" height="718" key="find.popup/0.25.1792.1095/1792.25.1920.985@1792.25.1920.985" timestamp="1626805698575" />
+    <state x="2808" y="269" key="git4idea.branch.GitSmartOperationDialog" timestamp="1627080649299">
+      <screen x="1792" y="25" width="1920" height="1055" />
+    </state>
+    <state x="2808" y="269" key="git4idea.branch.GitSmartOperationDialog/0.25.1792.1036/1792.25.1920.1055@1792.25.1920.1055" timestamp="1627080649299" />
+    <state x="810" y="243" key="psd.add.library.dependency.panel.dimension" timestamp="1626326790174">
+      <screen x="0" y="25" width="1792" height="1021" />
+    </state>
+    <state x="810" y="243" key="psd.add.library.dependency.panel.dimension/0.25.1792.1021@0.25.1792.1021" timestamp="1626326790174" />
+    <state x="2563" y="320" key="refactoring.ChangeSignatureDialog" timestamp="1628097095352">
+      <screen x="1792" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2563" y="320" key="refactoring.ChangeSignatureDialog/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628097095352" />
+    <state x="583" y="249" width="670" height="703" key="search.everywhere.popup" timestamp="1628227407411">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="2417" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120/1792.0.1920.1080@1792.0.1920.1080" timestamp="1627879881568" />
+    <state x="583" y="249" width="670" height="703" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1628227407411" />
+    <state x="2417" y="260" width="670" height="661" key="search.everywhere.popup/0.25.1792.1019/1792.25.1920.1055@1792.25.1920.1055" timestamp="1626451700519" />
+    <state x="583" y="253" width="670" height="642" key="search.everywhere.popup/0.25.1792.1024@0.25.1792.1024" timestamp="1626546193508" />
+    <state x="583" y="255" width="670" height="650" key="search.everywhere.popup/0.25.1792.1035@0.25.1792.1035" timestamp="1627197674188" />
+    <state x="2417" y="241" width="670" height="676" key="search.everywhere.popup/0.25.1792.1095/1792.0.1920.1080@1792.0.1920.1080" timestamp="1628026947806" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/InboxFragment.java</url>
+          <line>248</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/InboxFragment.java</url>
+          <line>170</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>522</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>525</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>530</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>529</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>531</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>361</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>492</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>554</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>532</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>469</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>369</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>252</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/adapters/MessagesInboxAdapter.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/adapters/MessagesInboxAdapter.java</url>
+          <line>175</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/adapters/MessagesInboxAdapter.java</url>
+          <line>208</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/adapters/MessagesInboxAdapter.java</url>
+          <line>206</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>170</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>187</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>200</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>447</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/LoginActivity.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/MainWallFragment.java</url>
+          <line>199</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>184</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>202</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>201</line>
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ProfileFragment.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ProfileFragment.java</url>
+          <line>158</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/LoginActivity.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ProfileFragment.java</url>
+          <line>292</line>
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/AddGroupActivity.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/AddGroupActivity.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/AddGroupActivity.java</url>
+          <line>164</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/AddGroupActivity.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/AddGroupActivity.java</url>
+          <line>170</line>
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/AddGroupActivity.java</url>
+          <line>174</line>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/LoginActivity.java</url>
+          <line>227</line>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/fragments/ComposeFragment.java</url>
+          <line>620</line>
+          <properties class="com.example.fbuapplication.fragments.ComposeFragment" method="onFinishDoNotSendDialog" />
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/LoginActivity.java</url>
+          <line>123</line>
+          <properties method="onError" />
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/LoginActivity.java</url>
+          <line>131</line>
+          <properties class="com.example.fbuapplication.activities.LoginActivity" />
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/fbuapplication/activities/LoginActivity.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.json.JSONArray" memberName="shadow$_klass_" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>
