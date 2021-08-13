@@ -123,7 +123,7 @@
 
         <Button
             android:id="@+id/tvNumSent"
-            android:layout_width="212dp"
+            android:layout_width="220dp"
             android:layout_height="21dp"
             android:layout_marginTop="84dp"
             android:background="@drawable/rounded_corners_4"

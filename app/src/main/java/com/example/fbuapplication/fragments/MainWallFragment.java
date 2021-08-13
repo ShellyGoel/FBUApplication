@@ -79,6 +79,7 @@ public class MainWallFragment extends Fragment {
         searchView = (SearchView) MenuItemCompat.getActionView(item);
         final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
 
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -446,6 +447,9 @@ public class MainWallFragment extends Fragment {
 
                 adapter.addAll(messages);
                 adapter.notifyDataSetChanged();
+
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(allMessages);
             }
         });
     }
