@@ -21,6 +21,7 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+//Class for sending a friend request to a user
 public class AddFriendActivity extends AppCompatActivity {
 
     public static final String TAG = "AddFriend";
@@ -141,6 +142,8 @@ public class AddFriendActivity extends AppCompatActivity {
 
                                                             }
 
+                                                            autocompleteFriend.setText("");
+
                                                         }
 
                                                     });
@@ -173,6 +176,8 @@ public class AddFriendActivity extends AppCompatActivity {
                                                     }
 
                                                     allFriendRequest.saveInBackground();
+
+                                                    autocompleteFriend.setText("");
 
                                                 }
 

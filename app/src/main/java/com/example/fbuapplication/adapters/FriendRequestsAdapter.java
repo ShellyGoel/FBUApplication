@@ -23,6 +23,7 @@ import com.parse.SaveCallback;
 import java.util.Date;
 import java.util.List;
 
+//adapter to populate data in friend request recyclerView
 public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAdapter.ViewHolder> {
     private final Context context;
 
@@ -130,6 +131,8 @@ public class FriendRequestsAdapter extends RecyclerView.Adapter<FriendRequestsAd
             Date createdAt = addFriendRequest.getCreatedAt();
             String timeAgo = FriendRequest.calculateTimeAgo(createdAt);
             tvFriendDate.setText(timeAgo);
+
+            Glide.with(context).load(R.drawable.ic_baseline_person_add_person).into(btnAccept);
 
             btnAccept.setOnClickListener(new View.OnClickListener() {
                 @Override

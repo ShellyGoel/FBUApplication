@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//class to display the toal number of notes sent by the user to date
 public class AllNotesActivity extends AppCompatActivity {
 
     public static final String TAG = "FeedActivity";
@@ -55,7 +56,7 @@ public class AllNotesActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
 
@@ -65,7 +66,7 @@ public class AllNotesActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
     }
 
-    public void fetchTimelineAsync(int page) {
+    public void fetchTimelineAsync() {
 
         adapter.clear();
         queryMessages();

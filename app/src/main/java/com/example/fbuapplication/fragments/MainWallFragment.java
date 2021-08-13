@@ -40,6 +40,7 @@ import java.util.Random;
 
 import dyanamitechetan.vusikview.VusikView;
 
+//Fragment where messages are pinned to the user's wall
 public class MainWallFragment extends Fragment {
 
     public static final String TAG = "FeedActivity";
@@ -77,6 +78,7 @@ public class MainWallFragment extends Fragment {
         final MenuItem item = menu.findItem(R.id.action_search);
         searchView = (SearchView) MenuItemCompat.getActionView(item);
         final MenuItem itemSelectWall = menu.findItem(R.id.action_choosewall);
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -135,7 +137,7 @@ public class MainWallFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         clickedID = id;
-        System.out.println("clicked " + clickedID);
+
         final List<Message> filteredModelList;
         rvMainWallMessages.setVisibility(View.VISIBLE);
 
@@ -349,7 +351,7 @@ public class MainWallFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
 
@@ -359,7 +361,7 @@ public class MainWallFragment extends Fragment {
                 android.R.color.holo_red_light);
     }
 
-    public void fetchTimelineAsync(int page) {
+    public void fetchTimelineAsync() {
 
         if (searchView.getQuery().length() != 0) {
             swipeContainer.setRefreshing(false);
@@ -445,6 +447,9 @@ public class MainWallFragment extends Fragment {
 
                 adapter.addAll(messages);
                 adapter.notifyDataSetChanged();
+
+                wallSpecificAllMessages.clear();
+                wallSpecificAllMessages.addAll(allMessages);
             }
         });
     }

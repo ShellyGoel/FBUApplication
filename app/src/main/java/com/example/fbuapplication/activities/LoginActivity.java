@@ -33,6 +33,7 @@ import java.util.Arrays;
 
 import dyanamitechetan.vusikview.VusikView;
 
+//class to login user to app via app login or facebook account
 public class LoginActivity extends AppCompatActivity {
 
     public static final String PROFILE = "public_profile";
@@ -192,7 +193,6 @@ public class LoginActivity extends AppCompatActivity {
                         return;
                     } else {
                         goMainActivity();
-
                         Snackbar.make(btnLogin, "Success! Logging in...", Snackbar.LENGTH_LONG).show();
                     }
 
@@ -204,7 +204,6 @@ public class LoginActivity extends AppCompatActivity {
     private void goMainActivity() {
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
-
         finish();
 
     }
@@ -212,6 +211,7 @@ public class LoginActivity extends AppCompatActivity {
     private void goSignUpActivity() {
         Intent i = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(i);
+        finish();
 
     }
 
@@ -225,52 +225,60 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            if (isLoggedIn()) {
+            if (ParseUser.getCurrentUser() != null) {
                 try {
+
 
                     loginUser(object.getString("name"), "facebook_user", false);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            } else {
 
-                if (ParseUser.getCurrentUser() == null) {
 
-                    ParseUser user = new ParseUser();
-                    try {
-                        if (object.has("name")) {
-                            user.setUsername(object.getString("name"));
-                            user.put("full_name", object.getString("name"));
-                        } else {
-                            user.setUsername("");
-                        }
-                        if (object.has("email"))
-                            user.setEmail(object.getString("email"));
-                        else {
-                            user.setEmail("");
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+            }
 
-                    user.put("facebook_login", true);
-                    user.setPassword("facebook_user");
+            if(isLoggedIn()){
+                try {
 
-                    user.signUpInBackground(e -> {
-                        if (e == null) {
 
-                            goMainActivity();
-                        } else {
-
-                            Log.e(TAG, "issue with sign up", e);
-
-                        }
-                    });
-
-                } else {
-
-                    goMainActivity();
+                    loginUser(object.getString("name"), "facebook_user", false);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }
+            else {
+
+                ParseUser.getCurrentUser();
+
+                ParseUser user = new ParseUser();
+                try {
+                    if (object.has("name")) {
+                        user.setUsername(object.getString("name"));
+                        user.put("full_name", object.getString("name"));
+                    } else {
+                        user.setUsername("");
+                    }
+                    if (object.has("email"))
+                        user.setEmail(object.getString("email"));
+                    else {
+                        user.setEmail("");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                user.put("facebook_login", true);
+                user.setPassword("facebook_user");
+
+                user.signUpInBackground(e -> {
+                    if (e == null) {
+                        goMainActivity();
+                    } else {
+
+                        Log.e(TAG, "issue with sign up", e);
+
+                    }
+                });
 
             }
         });

@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,13 +38,16 @@ import com.example.fbuapplication.activities.AddGroupActivity;
 import com.example.fbuapplication.activities.AllNotesActivity;
 import com.example.fbuapplication.activities.FriendsRequestListActivity;
 import com.example.fbuapplication.activities.GroupActivity;
+import com.example.fbuapplication.activities.LoginActivity;
 import com.example.fbuapplication.fragments.dialogFragments.SelectCameraFragment;
+import com.facebook.login.LoginManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,6 +63,7 @@ import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 
+//Fragment showing user's profile page which includes their profile photo, motivational quote, and navigation to the friends and group features.
 public class ProfileFragment extends Fragment implements SelectCameraFragment.SelectCameraDialogListener {
 
     public static final String TAG = "profileFragment";
@@ -85,6 +90,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     private Button btnAddGroup;
     private Button btnAcceptFriend;
     private Button btnAcceptGroup;
+    private Button btnLogout;
     private boolean chooseCamera;
     private File photoFile;
 
@@ -130,6 +136,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         btnAddGroup = view.findViewById(R.id.btnAddGroup);
         btnAcceptFriend = view.findViewById(R.id.btnAcceptFriend);
         btnAcceptGroup = view.findViewById(R.id.btnAcceptGroup);
+        btnLogout = view.findViewById(R.id.btnLogout);
 
 //        tvUsername.setText("Welcome " + ParseUser.getCurrentUser().getUsername().toString() +"!");
 
@@ -194,17 +201,23 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
                 viewProfile = arg0;
 
-                ParseFile img_user = ParseUser.getCurrentUser().getParseFile(KEY_PROFILE_PICTURE);
-                if (img_user != null) {
-                    Glide.with(getContext()).load(img_user.getUrl()).into(ivProfileImage);
-
-                }
                 FragmentManager fm = getFragmentManager();
                 SelectCameraFragment selectCameraFragment = new SelectCameraFragment();//;EditNameDialog.newInstance("Some Title");
                 // SETS the target fragment for use later when sending results
                 selectCameraFragment.setTargetFragment(ProfileFragment.this, 300);
                 selectCameraFragment.show(fm, "toSend");
 
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().logOut();
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser();
+
+                goLoginActivity();
             }
         });
 
@@ -251,6 +264,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
                             public void run() {
 
                                 // Stuff that updates the UI
+                                tvMotivationalQuote.setMovementMethod(new ScrollingMovementMethod());
                                 tvMotivationalQuote.setText(jsonData);
 
                             }
@@ -298,7 +312,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         return image;
     }
 
-    public void onLaunchCamera(View view) {
+    public void onLaunchCamera() {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -321,7 +335,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
-                Bitmap takenImage = rotateBitmapOrientation(photoFile.getAbsolutePath());//BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());// rotateBitmapOrientation(photoFile.getAbsolutePath());
 
                 ivProfileImage.setImageBitmap(takenImage);
             } else {
@@ -331,7 +345,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
             }
 
         }
-        if (requestCode == GALLERY_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && null != data) {
+        if (requestCode == GALLERY_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContext().getContentResolver().query(selectedImage,
@@ -362,8 +376,33 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
     private void updateUserWithPhoto(ParseUser currentUser, File photoFile) {
 
-        ParseFile img = new ParseFile(photoFile);
-        currentUser.put(KEY_PROFILE_PICTURE, img);
+        ParseFile photo = new ParseFile(photoFile);
+
+        Log.i("SAVING", "SAVING IMAGE");
+        photo.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(com.parse.ParseException e) {
+                // Handle success or failure here ...
+
+                if (e != null) {
+                    Log.i("NOT SAVING", "Error: " + e);
+                } else {
+                    currentUser.put(KEY_PROFILE_PICTURE, photo);
+                    Log.i("SAVING", "SAVING IMAGE");
+                    currentUser.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(com.parse.ParseException e) {
+                            // Handle success or failure here ...
+                            if (e != null) {
+                                Log.i("NOT SAVING", "Error: " + e);
+                            } else {
+                                Log.i("SAVING", "SAVING IMAGE");
+                            }
+                        }
+                    });
+                }
+            }
+        });
 
         try {
             currentUser.save();
@@ -377,7 +416,7 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
     public void onFinishSelectCameraDialog(boolean chooseCamera) {
 
         if (chooseCamera) {
-            onLaunchCamera(getCameraView());
+            onLaunchCamera();
             ParseUser currentUser = ParseUser.getCurrentUser();
             updateUserWithPhoto(currentUser, photoFile);
         } else {
@@ -425,7 +464,6 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
 
         });
 
-        System.out.println("NUM " + numUnread[0]);
         return numUnread[0];
     }
 
@@ -497,6 +535,14 @@ public class ProfileFragment extends Fragment implements SelectCameraFragment.Se
         Bitmap rotatedBitmap = Bitmap.createBitmap(bm, 0, 0, bounds.outWidth, bounds.outHeight, matrix, true);
 
         return rotatedBitmap;
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        startActivity(i);
+
+        getActivity().finish();
+
     }
 
 }

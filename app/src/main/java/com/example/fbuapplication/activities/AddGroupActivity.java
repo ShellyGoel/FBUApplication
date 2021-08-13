@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+//class for creating a group
 public class AddGroupActivity extends AppCompatActivity {
 
     public static final String TAG = "AddGroup";

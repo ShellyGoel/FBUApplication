@@ -28,6 +28,7 @@ import com.parse.SaveCallback;
 import java.util.Date;
 import java.util.List;
 
+//adapter to populate data in inbox recyclerView
 public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdapter.ViewHolder> implements DecidePinnedWallDialogFragment.DecidePinnedWallDialogListener {
     private final Context context;
     private final List<Message> messages;
@@ -61,7 +62,7 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
         currentMessage = message;
-        holder.bind(message);
+        holder.bind(message, position);
         position = position;
     }
 
@@ -162,7 +163,7 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
             });
         }
 
-        public void bind(Message message) {
+        public void bind(Message message, int position) {
             // Bind the message data to the view elements
             tvMessageBody.setText(message.getMessageBody());
             Date createdAt = message.getCreatedAt();
@@ -172,6 +173,14 @@ public class MessagesInboxAdapter extends RecyclerView.Adapter<MessagesInboxAdap
 //            if (image != null) {
 //                Glide.with(context).load(image.getUrl()).into(ivImage);
 //            }
+
+            if (position % 2 == 0) {
+                tvMessageBody.setTextColor(itemView.getResources().getColor(R.color.teal_400));
+
+            } else {
+                tvMessageBody.setTextColor(itemView.getResources().getColor(R.color.title));
+
+            }
 
             //TODO: Check this!
             if (message.getIsPinned()) {

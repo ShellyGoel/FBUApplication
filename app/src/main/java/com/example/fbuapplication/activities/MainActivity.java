@@ -19,6 +19,7 @@ import java.util.List;
 
 import eu.long1.spacetablayout.SpaceTabLayout;
 
+//sets up tab layout and fragment navigation
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     private static final String DEFAULT_FB_APP_ID = "826542378066880";

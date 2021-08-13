@@ -10,13 +10,70 @@
     tools:context=".activities.LoginActivity">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/_removal_ai__tmp_60ebbf1103f00" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/_removal_ai__tmp_60ebbf8c7f2f5" />
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.36"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/_removal_ai__tmp_60ebbfa7ca7cc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:background="@color/title"
+        android:fontFamily="@font/hey_magnolia"
+        android:text="Cup of Positivitea"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     <EditText
         android:id="@+id/etSignUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corners_3"
         android:ems="10"
@@ -27,9 +84,9 @@
         android:id="@+id/etSignPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corner"
         android:ems="10"
@@ -40,9 +97,9 @@
         android:id="@+id/etSignEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corners_3"
         android:ems="10"
@@ -53,9 +110,9 @@
         android:id="@+id/etSignFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corner"
         android:ems="10"
@@ -66,10 +123,10 @@
     <Button
         android:id="@+id/btnSignLogin"
         android:layout_width="123dp"
-        android:layout_height="27dp"
+        android:layout_height="35dp"
         android:layout_gravity="center|center_horizontal|center_vertical"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:backgroundTint="@color/purple_500"
@@ -82,11 +139,12 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="225dp"
         android:cropToPadding="false"
         android:visibility="visible"
-        app:srcCompat="@drawable/fresh_folk___plants_15"
-        tools:srcCompat="@drawable/fresh_folk___plants_15"
+        app:srcCompat="@drawable/cup"
+        tools:srcCompat="@drawable/cup"
         tools:visibility="visible" />
+
 
 </LinearLayout>

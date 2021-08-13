@@ -16,6 +16,7 @@ import com.example.fbuapplication.R;
 import java.util.ArrayList;
 import java.util.List;
 
+//adapter to populate data in all notes page
 public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNotesAdapter.ViewHolder> {
     private final Context context;
     private List<Integer> messages;
@@ -78,11 +79,48 @@ public class MessagesAllNotesAdapter extends RecyclerView.Adapter<MessagesAllNot
             if (message != null && message % 5 == 0) {
 
                 messageNum.setVisibility(View.VISIBLE);
+                messageNum.setTextColor(context.getResources().getColor(R.color.purple_500));
+                messageNum.setTextSize(20);
                 messageNum.setText(message.toString());
+                if (message % 50 == 0) {
+                    messageNum.setTextColor(context.getResources().getColor(R.color.white));
+                    messageNum.setTextSize(28);
+                    Glide.with(context).load(R.drawable.cup).into(ivStickyNoteImage);
+                    return;
+                }
+
+                if (message % 40 == 0) {
+                    messageNum.setTextColor(context.getResources().getColor(R.color.white));
+                    messageNum.setTextSize(28);
+
+                    Glide.with(context).load(R.drawable.fresh_folk___plants_14).into(ivStickyNoteImage);
+                    return;
+                }
+
+                if (message % 30 == 0) {
+                    messageNum.setTextColor(context.getResources().getColor(R.color.white));
+                    messageNum.setTextSize(28);
+
+                    Glide.with(context).load(R.drawable.fresh_folk___plants_16).into(ivStickyNoteImage);
+                    return;
+                }
+
                 if (message % 20 == 0) {
                     messageNum.setTextColor(context.getResources().getColor(R.color.white));
-                    messageNum.setTextSize(30);
+                    messageNum.setTextSize(28);
+
+                    Glide.with(context).load(R.drawable.fresh_folk___plants_3).into(ivStickyNoteImage);
+                    return;
                 }
+
+                if (message % 10 == 0) {
+                    messageNum.setTextColor(context.getResources().getColor(R.color.white));
+                    messageNum.setTextSize(28);
+
+                    Glide.with(context).load(R.drawable.fresh_folk___plants_15).into(ivStickyNoteImage);
+                    return;
+                }
+
                 Glide.with(context).load(R.drawable._removal_ai__tmp_60ebbfc098d23).into(ivStickyNoteImage);
             } else if (message != null && message % 5 == 1) {
 

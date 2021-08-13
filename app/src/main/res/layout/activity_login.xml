@@ -182,6 +182,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_up" />
 
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="366dp"
@@ -191,6 +192,52 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="280dp"
+            android:rotation="-9"
+            android:rotationX="-13"
+            android:rotationY="39"
+            android:src="@drawable/_removal_ai__tmp_60ebbfb3c4dd3"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.398"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="284dp"
+            android:rotation="9"
+            android:rotationX="-21"
+            android:rotationY="2"
+            android:src="@drawable/_removal_ai__tmp_60ebbfcbb11a1"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.556"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="400dp"
+            android:rotation="-60"
+            android:rotationX="56"
+            android:rotationY="2"
+            android:src="@drawable/_removal_ai__tmp_60ebbf1103f00"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.699"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

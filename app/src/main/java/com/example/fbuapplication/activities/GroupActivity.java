@@ -21,6 +21,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
+//class to view all groups
 public class GroupActivity extends AppCompatActivity {
 
     protected GroupsAdapter adapter;
@@ -68,7 +69,7 @@ public class GroupActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
 
@@ -76,7 +77,7 @@ public class GroupActivity extends AppCompatActivity {
 
     }
 
-    public void fetchTimelineAsync(int page) {
+    public void fetchTimelineAsync() {
 
         adapter.clear();
         queryGroups();
@@ -104,7 +105,7 @@ public class GroupActivity extends AppCompatActivity {
                     Snackbar.make(rvGroup, "Issue with getting groups. Please try again.", Snackbar.LENGTH_LONG).show();
                     return;
                 } else {
-                    Snackbar.make(rvGroup, "Got all groups!", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(rvGroup, "All groups shown!", Snackbar.LENGTH_LONG).show();
                     for (GroupToMembers g : groups) {
 
                         toAddGroups.add(g);

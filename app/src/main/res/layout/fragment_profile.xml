@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="648dp"
+        android:layout_height="685dp"
         android:background="@drawable/b7">
 
 
@@ -28,6 +28,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
+            android:id="@+id/imageView9"
             android:layout_width="400dp"
             android:layout_height="400dp"
             android:layout_marginTop="176dp"
@@ -122,9 +123,9 @@
 
         <Button
             android:id="@+id/tvNumSent"
-            android:layout_width="212dp"
+            android:layout_width="220dp"
             android:layout_height="21dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="84dp"
             android:background="@drawable/rounded_corners_4"
             android:fontFamily="@font/biko_regular"
             android:paddingStart="4dp"
@@ -132,7 +133,7 @@
             android:shadowRadius="0"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="14dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:tooltipText="Groups"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,10 +150,8 @@
             android:background="@color/purple_500"
             android:fontFamily="@font/biko_regular"
             android:gravity="center_vertical"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
             android:textColor="@color/title_text"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -162,12 +161,15 @@
 
         <TextView
             android:id="@+id/tvMotivationalQuote"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_width="0dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="544dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="15dp"
             android:fontFamily="@font/biko_regular"
+            android:isScrollContainer="true"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
             android:textAlignment="center"
             android:textColor="@color/teal_700"
             android:textSize="17sp"
@@ -177,6 +179,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Motivational quote" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/purple_500"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMotivationalQuote"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

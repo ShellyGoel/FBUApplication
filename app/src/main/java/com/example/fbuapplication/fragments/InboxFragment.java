@@ -27,7 +27,6 @@ import com.example.fbuapplication.fragments.dialogFragments.DecidePinnedWallDial
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -35,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+//Fragment where a user can view all the messages they have received
 public class InboxFragment extends Fragment implements DecidePinnedWallDialogFragment.DecidePinnedWallDialogListener {
 
     public static final String TAG = "InboxFragment";
@@ -114,14 +114,14 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
                     public void onClick(View v) {
 
                         if (!deleteMessageStack.isEmpty()) {
-                            Snackbar.make(rvInboxMessages, "Undo Delete of " + deleteMessageStack.peek().second.getMessageBody(), Snackbar.LENGTH_SHORT).show();
-
                             Pair<Integer, Message> dpair = deleteMessageStack.peek();
                             Message dMessage = dpair.second;
                             int dposition = dpair.first;
 
                             allMessages.add(dposition, dMessage);
+
                             adapter.notifyItemInserted(dposition);
+                            rvInboxMessages.smoothScrollToPosition(dposition);
                             shouldDelete = false;
                             deleteMessageStack.pop();
                         } else {
@@ -147,7 +147,12 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
                         allMessages.add(position, deletedMessage);
 
                         adapter.notifyItemInserted(position);
+                        rvInboxMessages.smoothScrollToPosition(position);
                         shouldDelete = false;
+
+                        if (!deleteMessageStack.isEmpty()) {
+                            deleteMessageStack.pop();
+                        }
 
                     }
 
@@ -161,17 +166,20 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
 
                             if (false) {
 
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+                                ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
 
                                 query.whereEqualTo("objectId", deletedMessage.getObjectId());
-                                query.findInBackground(new FindCallback<ParseObject>() {
-                                    public void done(List<ParseObject> messages, ParseException e) {
+                                query.findInBackground(new FindCallback<Message>() {
+                                    public void done(List<Message> messages, ParseException e) {
                                         if (e == null) {
 
-                                            for (ParseObject message : messages) {
-
+                                            for (Message message : messages) {
                                                 message.deleteInBackground();
                                             }
+                                            allMessages.clear();
+                                            allMessages.addAll(messages);
+                                            adapter.notifyDataSetChanged();
+
                                         } else {
                                             Log.d(TAG, e.getMessage());
                                         }
@@ -201,23 +209,31 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
             @Override
             public void onRefresh() {
 
-                Snackbar.make(rvInboxMessages, "Deleted " + deleteMessageStack.size() + " messages.", Snackbar.LENGTH_SHORT).show();
-
+                int numDeleted = deleteMessageStack.size();
+                if (numDeleted > 0) {
+                    Snackbar.make(rvInboxMessages, "Deleting " + numDeleted + " messages... Please refresh again.", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Snackbar.make(rvInboxMessages, "Refreshing completed. All messages are loaded!", Snackbar.LENGTH_SHORT).show();
+                }
                 for (Pair<Integer, Message> a : deleteMessageStack) {
 
                     Message m = a.second;
 
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+                    ParseQuery<Message> query = ParseQuery.getQuery(Message.class);
 
                     query.whereEqualTo("objectId", m.getObjectId());
-                    query.findInBackground(new FindCallback<ParseObject>() {
-                        public void done(List<ParseObject> messages, ParseException e) {
+                    query.findInBackground(new FindCallback<Message>() {
+                        public void done(List<Message> messages, ParseException e) {
                             if (e == null) {
 
-                                for (ParseObject message : messages) {
+                                for (Message message : messages) {
 
                                     message.deleteInBackground();
                                 }
+
+                                allMessages.clear();
+                                allMessages.addAll(messages);
+                                adapter.notifyDataSetChanged();
                             } else {
                                 Log.d(TAG, e.getMessage());
                             }
@@ -226,7 +242,7 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
                 }
                 deleteMessageStack.clear();
                 undoButton.setVisibility(View.INVISIBLE);
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
 
@@ -234,12 +250,12 @@ public class InboxFragment extends Fragment implements DecidePinnedWallDialogFra
 
     }
 
-    public void fetchTimelineAsync(int page) {
+    public void fetchTimelineAsync() {
 
         adapter.clear();
         queryMessages();
-
-
+        adapter.notifyDataSetChanged();
+        pullRefreshLayout.setRefreshing(false);
 
     }
 
