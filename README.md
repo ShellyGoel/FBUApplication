@@ -5,19 +5,11 @@ Original App Design Project - README Template
 
 ## Table of Contents
 1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
 
 ## Overview
 ### Description
 The overall concept of the app is that users are able to send each other kind messages, wishes, and memories which is by default shared anonymously unless the user wants to share their name. When a message is sent it arrives to the recepient 'in the mail' and the recipient clicks on their mailbox icon in order to view messages that have been sent to them. The recipient can decide which messages to accept or reject and can categorize them and post them across different personal 'walls' which are labelled by the user's preference. The message they recieve comes on a sticky note and that sticky note is then tacked on the wall they select giving each user a wall of notes they can come back to anytime for encouragement! Each sticky note can be clicked on to view the entire message. If a recipient user is not on the app might have a way to connect to the user's texting app and creating the sticky note template note so that they are still able to send the note along with a link to the app!
-
-## Product Spec
-
-#1 Technical challenges for your project (Some features that you have not learned from code path).
-
-#2 Set the reasonable milestones for your milestones. Please set the milestones for your required feature first (don't think about the stretch goal), also include the work for debugging and polishing.
 
 ## Milestones:
 
